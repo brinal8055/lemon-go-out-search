@@ -3,6 +3,8 @@ import { spawnSync } from 'node:child_process';
 const suite = process.argv.slice(2).find((argument) => argument !== '--');
 const supportedSuites = new Map([
   ['db-01a', 'supabase/tests/db-01a.sql'],
+  ['db-01b', 'supabase/tests/db-01b.sql'],
+  ['db-01c', 'supabase/tests/db-01c.sql'],
 ]);
 
 if (!suite || !supportedSuites.has(suite)) {
