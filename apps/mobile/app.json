@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Lemon Going-Out Search",
+    "slug": "lemon-going-out-search",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android"]
+  }
+}
+

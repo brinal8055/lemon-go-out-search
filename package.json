@@ -1,0 +1,36 @@
+{
+  "name": "lemon-going-out-search",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @lemon/mobile start",
+    "env:check": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target mobile",
+    "env:check:edge": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target edge",
+    "env:check:deploy": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target deploy",
+    "typecheck": "tsc -b",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "mobile:export": "pnpm --filter @lemon/mobile exec expo export --platform android",
+    "supabase": "supabase",
+    "db:start:bootstrap": "supabase start --exclude gotrue,realtime,storage-api,imgproxy,kong,mailpit,postgrest,postgres-meta,studio,edge-runtime,logflare,vector,supavisor",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "edge:serve": "supabase functions serve search --no-verify-jwt"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.10.13",
+    "eslint": "10.8.1",
+    "globals": "17.11.0",
+    "supabase": "2.114.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.67.0",
+    "vitest": "4.1.10"
+  }
+}
