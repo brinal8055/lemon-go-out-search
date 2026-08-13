@@ -11,6 +11,7 @@
     "env:check": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target mobile",
     "env:check:edge": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target edge",
     "env:check:deploy": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target deploy",
+    "eval:validate-corpus": "node scripts/validate-eval-corpus.mjs",
     "typecheck": "tsc -b",
     "lint": "eslint .",
     "test": "vitest run",

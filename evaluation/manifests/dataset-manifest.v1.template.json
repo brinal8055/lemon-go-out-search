@@ -1,0 +1,38 @@
+{
+  "manifest_version": "dataset-manifest.v1-scaffold",
+  "status": "SCAFFOLD_UNBOUND",
+  "canonical_dataset_version": null,
+  "source_record_ingestion_run_ids": [],
+  "boundary": {
+    "id": "0a39b199-4cd5-5358-85de-2c1a5f91a347",
+    "version": "lm-current-2026-08-14",
+    "checksum": "257a277667cde164bcb70eae16ca6985578fe34666df92ff289af519a262df1d"
+  },
+  "taxonomy": {
+    "version": "active-going-out.v1",
+    "checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2"
+  },
+  "normalization_version": null,
+  "search_documents": {
+    "template_version": null,
+    "document_version": null,
+    "hashes": []
+  },
+  "embedding": {
+    "provider": null,
+    "model": null,
+    "revision": null,
+    "dimension": null
+  },
+  "search_config_version": null,
+  "evaluation_clock_utc": "2026-10-15T12:00:00Z",
+  "corpus": {
+    "version": "corpus.v1",
+    "checksum": "bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c"
+  },
+  "judgment": {
+    "version": null,
+    "checksum": null
+  },
+  "code_git_commit": null
+}

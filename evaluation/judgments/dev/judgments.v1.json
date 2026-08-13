@@ -1,0 +1,12 @@
+{
+  "judgment_version": "judgments.dev.v1-scaffold",
+  "status": "SCAFFOLD_UNBOUND",
+  "split": "DEV",
+  "corpus_version": "corpus.v1",
+  "corpus_checksum": "bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c",
+  "dataset_version": null,
+  "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+  "boundary_version": "lm-current-2026-08-14",
+  "hard_constraint_policy": "GRADE_0_REGARDLESS_OF_TEXT_SIMILARITY",
+  "records": []
+}

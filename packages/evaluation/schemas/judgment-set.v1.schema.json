@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lemon.local/schemas/evaluation/judgment-set.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["judgment_version", "status", "split", "corpus_version", "corpus_checksum", "dataset_version", "taxonomy_checksum", "boundary_version", "hard_constraint_policy", "records"],
+  "properties": {
+    "judgment_version": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["SCAFFOLD_UNBOUND", "FROZEN"] },
+    "split": { "enum": ["DEV", "SEALED", "ADVERSARIAL"] },
+    "corpus_version": { "const": "corpus.v1" },
+    "corpus_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "dataset_version": { "type": ["string", "null"] },
+    "taxonomy_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "boundary_version": { "type": "string", "minLength": 1 },
+    "hard_constraint_policy": { "const": "GRADE_0_REGARDLESS_OF_TEXT_SIMILARITY" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["judgment_version", "query_id", "relevant", "known_item_target", "acceptable_taxonomy_node_ids", "acceptable_group_keys", "expected_protected_behavior", "expected_ineligible_behavior", "rationale", "judged_by", "judged_at", "dataset_version", "taxonomy_checksum", "boundary_version"],
+        "properties": {
+          "judgment_version": { "type": "string" },
+          "query_id": { "type": "string" },
+          "relevant": { "type": "array", "items": { "type": "object", "required": ["entity_id", "grade"], "properties": { "entity_id": { "type": "string", "format": "uuid" }, "grade": { "enum": [0, 1, 2, 3] } } } },
+          "known_item_target": { "type": ["string", "null"], "format": "uuid" },
+          "acceptable_taxonomy_node_ids": { "type": "array", "items": { "type": "string", "format": "uuid" } },
+          "acceptable_group_keys": { "type": "array", "items": { "type": "string" } },
+          "expected_protected_behavior": { "type": "array", "items": { "type": "string" } },
+          "expected_ineligible_behavior": { "type": "array", "items": { "type": "string" } },
+          "rationale": { "type": "string" },
+          "judged_by": { "type": "string" },
+          "judged_at": { "type": "string", "format": "date-time" },
+          "dataset_version": { "type": "string" },
+          "taxonomy_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "boundary_version": { "type": "string" }
+        }
+      }
+    }
+  },
+  "allOf": [{ "if": { "properties": { "status": { "const": "FROZEN" } } }, "then": { "properties": { "dataset_version": { "type": "string", "minLength": 1 } } } }]
+}

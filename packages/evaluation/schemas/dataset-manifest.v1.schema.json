@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lemon.local/schemas/evaluation/dataset-manifest.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifest_version", "status", "canonical_dataset_version", "source_record_ingestion_run_ids", "boundary", "taxonomy", "normalization_version", "search_documents", "embedding", "search_config_version", "evaluation_clock_utc", "corpus", "judgment", "code_git_commit"],
+  "properties": {
+    "manifest_version": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["SCAFFOLD_UNBOUND", "FROZEN"] },
+    "canonical_dataset_version": { "type": ["string", "null"] },
+    "source_record_ingestion_run_ids": { "type": "array", "items": { "type": "string", "format": "uuid" } },
+    "boundary": { "type": "object", "required": ["id", "version", "checksum"], "properties": { "id": { "type": "string", "format": "uuid" }, "version": { "type": "string" }, "checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" } } },
+    "taxonomy": { "type": "object", "required": ["version", "checksum"], "properties": { "version": { "type": "string" }, "checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" } } },
+    "normalization_version": { "type": ["string", "null"] },
+    "search_documents": { "type": "object", "required": ["template_version", "document_version", "hashes"], "properties": { "template_version": { "type": ["string", "null"] }, "document_version": { "type": ["string", "null"] }, "hashes": { "type": "array", "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" } } } },
+    "embedding": { "type": "object", "required": ["provider", "model", "revision", "dimension"], "properties": { "provider": { "type": ["string", "null"] }, "model": { "type": ["string", "null"] }, "revision": { "type": ["string", "null"] }, "dimension": { "type": ["integer", "null"], "minimum": 1 } } },
+    "search_config_version": { "type": ["string", "null"] },
+    "evaluation_clock_utc": { "type": "string", "format": "date-time" },
+    "corpus": { "type": "object", "required": ["version", "checksum"], "properties": { "version": { "const": "corpus.v1" }, "checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" } } },
+    "judgment": { "type": "object", "required": ["version", "checksum"], "properties": { "version": { "type": ["string", "null"] }, "checksum": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" } } },
+    "code_git_commit": { "type": ["string", "null"] }
+  }
+}
