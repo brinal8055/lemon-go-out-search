@@ -1,0 +1,1279 @@
+{
+  "taxonomy_version": "active-going-out.v1",
+  "nodes": [
+    {
+      "id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "slug": "food-and-dining",
+      "parent_id": null,
+      "label_en": "Food & Dining",
+      "label_sv": "Mat och restauranger",
+      "depth": 0,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1"
+      ],
+      "is_leaf": false,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Food & Dining"
+        },
+        {
+          "language": "sv",
+          "alias": "Mat och restauranger"
+        }
+      ]
+    },
+    {
+      "id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "slug": "dining",
+      "parent_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "label_en": "Dining",
+      "label_sv": "Restauranger",
+      "depth": 1,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e"
+      ],
+      "is_leaf": false,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Dining"
+        },
+        {
+          "language": "sv",
+          "alias": "Restauranger"
+        }
+      ]
+    },
+    {
+      "id": "a1c93f96-63bb-5f5b-b929-bac7b2f133dd",
+      "slug": "american",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "American",
+      "label_sv": "Amerikansk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "a1c93f96-63bb-5f5b-b929-bac7b2f133dd"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "American"
+        },
+        {
+          "language": "sv",
+          "alias": "Amerikansk"
+        }
+      ]
+    },
+    {
+      "id": "6ab01ce5-750f-51f3-b0a5-39b3398c66cd",
+      "slug": "mexican",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Mexican",
+      "label_sv": "Mexikansk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "6ab01ce5-750f-51f3-b0a5-39b3398c66cd"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Mexican"
+        },
+        {
+          "language": "sv",
+          "alias": "Mexikansk"
+        }
+      ]
+    },
+    {
+      "id": "d43e33db-0ad3-575c-8514-d01ccf700587",
+      "slug": "italian",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Italian",
+      "label_sv": "Italiensk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "d43e33db-0ad3-575c-8514-d01ccf700587"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Italian"
+        },
+        {
+          "language": "sv",
+          "alias": "Italiensk"
+        }
+      ]
+    },
+    {
+      "id": "3a51d1cf-31c9-529f-b585-1102253dc735",
+      "slug": "japanese",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Japanese",
+      "label_sv": "Japansk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "3a51d1cf-31c9-529f-b585-1102253dc735"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Japanese"
+        },
+        {
+          "language": "sv",
+          "alias": "Japansk"
+        }
+      ]
+    },
+    {
+      "id": "a4e93169-34db-52d0-a474-f42045679a81",
+      "slug": "chinese",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Chinese",
+      "label_sv": "Kinesisk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "a4e93169-34db-52d0-a474-f42045679a81"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Chinese"
+        },
+        {
+          "language": "sv",
+          "alias": "Kinesisk"
+        }
+      ]
+    },
+    {
+      "id": "de848fba-6b54-551a-9fcb-e3b3c25b1d3b",
+      "slug": "thai",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Thai",
+      "label_sv": "Thailändsk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "de848fba-6b54-551a-9fcb-e3b3c25b1d3b"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Thai"
+        },
+        {
+          "language": "sv",
+          "alias": "Thailändsk"
+        }
+      ]
+    },
+    {
+      "id": "493d4231-5caf-5300-a489-bdc6cf98de6c",
+      "slug": "indian",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Indian",
+      "label_sv": "Indisk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "493d4231-5caf-5300-a489-bdc6cf98de6c"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Indian"
+        },
+        {
+          "language": "sv",
+          "alias": "Indisk"
+        }
+      ]
+    },
+    {
+      "id": "18a33f0c-8408-59ce-9927-cceae1a4e4c1",
+      "slug": "greek",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Greek",
+      "label_sv": "Grekisk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "18a33f0c-8408-59ce-9927-cceae1a4e4c1"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Greek"
+        },
+        {
+          "language": "sv",
+          "alias": "Grekisk"
+        }
+      ]
+    },
+    {
+      "id": "65c34f92-d992-50e7-aff2-f31fd1871345",
+      "slug": "african",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "African",
+      "label_sv": "Afrikansk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "65c34f92-d992-50e7-aff2-f31fd1871345"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "African"
+        },
+        {
+          "language": "sv",
+          "alias": "Afrikansk"
+        }
+      ]
+    },
+    {
+      "id": "3ae33c42-f401-5989-be69-5ab9223aded2",
+      "slug": "seafood",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Seafood",
+      "label_sv": "Fisk och skaldjur",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "3ae33c42-f401-5989-be69-5ab9223aded2"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Seafood"
+        },
+        {
+          "language": "sv",
+          "alias": "Fisk och skaldjur"
+        }
+      ]
+    },
+    {
+      "id": "dcdb5cb7-4ebf-5b55-a867-f1f86b164c8c",
+      "slug": "steakhouse",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Steakhouse",
+      "label_sv": "Steakhouse",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "dcdb5cb7-4ebf-5b55-a867-f1f86b164c8c"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Steakhouse"
+        },
+        {
+          "language": "sv",
+          "alias": "Steakhouse"
+        }
+      ]
+    },
+    {
+      "id": "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8",
+      "slug": "vegan-vegetarian",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Vegan/Vegetarian",
+      "label_sv": "Vegansk/vegetarisk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Vegan/Vegetarian"
+        },
+        {
+          "language": "sv",
+          "alias": "Vegansk/vegetarisk"
+        }
+      ]
+    },
+    {
+      "id": "a7d01142-e735-51c9-bf56-b20250c527f1",
+      "slug": "cuban",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Cuban",
+      "label_sv": "Kubansk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "a7d01142-e735-51c9-bf56-b20250c527f1"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Cuban"
+        },
+        {
+          "language": "sv",
+          "alias": "Kubansk"
+        }
+      ]
+    },
+    {
+      "id": "3e7336f3-5dbc-51d8-884e-e677e7e1108c",
+      "slug": "french",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "French",
+      "label_sv": "Fransk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "3e7336f3-5dbc-51d8-884e-e677e7e1108c"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "French"
+        },
+        {
+          "language": "sv",
+          "alias": "Fransk"
+        }
+      ]
+    },
+    {
+      "id": "27693ef7-a722-551d-ac89-bb8a7b1d5c97",
+      "slug": "spanish",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Spanish",
+      "label_sv": "Spansk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "27693ef7-a722-551d-ac89-bb8a7b1d5c97"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Spanish"
+        },
+        {
+          "language": "sv",
+          "alias": "Spansk"
+        }
+      ]
+    },
+    {
+      "id": "3dd38a02-124b-5b4e-aa96-3566ed575340",
+      "slug": "mediterranean",
+      "parent_id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "label_en": "Mediterranean",
+      "label_sv": "Medelhavsk",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "15904283-fd01-5fc3-ac00-c42e62e8422e",
+        "3dd38a02-124b-5b4e-aa96-3566ed575340"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Mediterranean"
+        },
+        {
+          "language": "sv",
+          "alias": "Medelhavsk"
+        }
+      ]
+    },
+    {
+      "id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "slug": "casual",
+      "parent_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "label_en": "Casual",
+      "label_sv": "Avslappnad mat",
+      "depth": 1,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3"
+      ],
+      "is_leaf": false,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Casual"
+        },
+        {
+          "language": "sv",
+          "alias": "Avslappnad mat"
+        }
+      ]
+    },
+    {
+      "id": "acda530f-d654-5027-97b8-a5a912e4b752",
+      "slug": "burgers",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Burgers",
+      "label_sv": "Burgare",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "acda530f-d654-5027-97b8-a5a912e4b752"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Burgers"
+        },
+        {
+          "language": "sv",
+          "alias": "Burgare"
+        }
+      ]
+    },
+    {
+      "id": "63d2b4df-0fd9-5296-bab2-1cf5fd457cbc",
+      "slug": "pizza",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Pizza",
+      "label_sv": "Pizza",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "63d2b4df-0fd9-5296-bab2-1cf5fd457cbc"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Pizza"
+        },
+        {
+          "language": "sv",
+          "alias": "Pizza"
+        }
+      ]
+    },
+    {
+      "id": "f734c4f1-8cfa-5a5a-b4ee-4e65022cf21b",
+      "slug": "tacos",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Tacos",
+      "label_sv": "Tacos",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "f734c4f1-8cfa-5a5a-b4ee-4e65022cf21b"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Tacos"
+        },
+        {
+          "language": "sv",
+          "alias": "Tacos"
+        }
+      ]
+    },
+    {
+      "id": "6aea79ed-2599-5748-b2fe-a78e1aaeb78d",
+      "slug": "sushi",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Sushi",
+      "label_sv": "Sushi",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "6aea79ed-2599-5748-b2fe-a78e1aaeb78d"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Sushi"
+        },
+        {
+          "language": "sv",
+          "alias": "Sushi"
+        }
+      ]
+    },
+    {
+      "id": "5a61890b-e633-5ea0-93eb-f1a18863f0cd",
+      "slug": "poke",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Poke",
+      "label_sv": "Poke",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "5a61890b-e633-5ea0-93eb-f1a18863f0cd"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Poke"
+        },
+        {
+          "language": "sv",
+          "alias": "Poke"
+        }
+      ]
+    },
+    {
+      "id": "4516fcf5-4c53-5f7e-8d47-bbd7a93542bf",
+      "slug": "chicken",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Chicken",
+      "label_sv": "Kyckling",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "4516fcf5-4c53-5f7e-8d47-bbd7a93542bf"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Chicken"
+        },
+        {
+          "language": "sv",
+          "alias": "Kyckling"
+        }
+      ]
+    },
+    {
+      "id": "b48854d0-1ed6-5e1b-a101-83f74ad048c1",
+      "slug": "sandwiches",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Sandwiches",
+      "label_sv": "Smörgåsar",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "b48854d0-1ed6-5e1b-a101-83f74ad048c1"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Sandwiches"
+        },
+        {
+          "language": "sv",
+          "alias": "Smörgåsar"
+        }
+      ]
+    },
+    {
+      "id": "6ab10ddc-f9ef-5743-b44f-433d2d4884bf",
+      "slug": "food-truck",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Food Truck",
+      "label_sv": "Matvagn",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "6ab10ddc-f9ef-5743-b44f-433d2d4884bf"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Food Truck"
+        },
+        {
+          "language": "sv",
+          "alias": "Matvagn"
+        }
+      ]
+    },
+    {
+      "id": "c519a006-ea39-509b-bde4-8dd92cf9505a",
+      "slug": "bowls",
+      "parent_id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "label_en": "Bowls",
+      "label_sv": "Bowls",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+        "c519a006-ea39-509b-bde4-8dd92cf9505a"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Bowls"
+        },
+        {
+          "language": "sv",
+          "alias": "Bowls"
+        }
+      ]
+    },
+    {
+      "id": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "slug": "cafes",
+      "parent_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "label_en": "Cafés",
+      "label_sv": "Kaféer",
+      "depth": 1,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "89cc433a-423a-5eba-9d6a-17c9745d66d8"
+      ],
+      "is_leaf": false,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Cafés"
+        },
+        {
+          "language": "sv",
+          "alias": "Kaféer"
+        }
+      ]
+    },
+    {
+      "id": "92167dc5-bf32-5014-9d07-46f7c4f902dd",
+      "slug": "coffee-shop",
+      "parent_id": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "label_en": "Coffee Shop",
+      "label_sv": "Kaffebar",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+        "92167dc5-bf32-5014-9d07-46f7c4f902dd"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Coffee Shop"
+        },
+        {
+          "language": "sv",
+          "alias": "Kaffebar"
+        }
+      ]
+    },
+    {
+      "id": "8187ab7f-f040-5594-9a14-b01871086788",
+      "slug": "tea-house",
+      "parent_id": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "label_en": "Tea House",
+      "label_sv": "Tehus",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+        "8187ab7f-f040-5594-9a14-b01871086788"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Tea House"
+        },
+        {
+          "language": "sv",
+          "alias": "Tehus"
+        }
+      ]
+    },
+    {
+      "id": "9bd7d2c9-205f-5bc3-8321-ab9c63a14294",
+      "slug": "bubble-tea",
+      "parent_id": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "label_en": "Bubble Tea",
+      "label_sv": "Bubble tea",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+        "9bd7d2c9-205f-5bc3-8321-ab9c63a14294"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Bubble Tea"
+        },
+        {
+          "language": "sv",
+          "alias": "Bubble tea"
+        }
+      ]
+    },
+    {
+      "id": "9d3578bc-0108-5a05-90f0-ef1b717013c4",
+      "slug": "dessert-cafe",
+      "parent_id": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "label_en": "Dessert Café",
+      "label_sv": "Dessertkafé",
+      "depth": 2,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+        "9d3578bc-0108-5a05-90f0-ef1b717013c4"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Dessert Café"
+        },
+        {
+          "language": "sv",
+          "alias": "Dessertkafé"
+        }
+      ]
+    },
+    {
+      "id": "b4176896-4ce9-5815-a445-30a1bd3272e9",
+      "slug": "bakeries",
+      "parent_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "label_en": "Bakeries",
+      "label_sv": "Bagerier",
+      "depth": 1,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "b4176896-4ce9-5815-a445-30a1bd3272e9"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Bakeries"
+        },
+        {
+          "language": "sv",
+          "alias": "Bagerier"
+        }
+      ]
+    },
+    {
+      "id": "dc6dafd8-bb60-5989-a4f4-2b2ba86329ef",
+      "slug": "desserts",
+      "parent_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "label_en": "Desserts",
+      "label_sv": "Desserter",
+      "depth": 1,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "dc6dafd8-bb60-5989-a4f4-2b2ba86329ef"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Desserts"
+        },
+        {
+          "language": "sv",
+          "alias": "Desserter"
+        }
+      ]
+    },
+    {
+      "id": "fa1b8735-3c31-5c2c-9762-036a4c74fa06",
+      "slug": "brunch",
+      "parent_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "label_en": "Brunch",
+      "label_sv": "Brunch",
+      "depth": 1,
+      "path": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+        "fa1b8735-3c31-5c2c-9762-036a4c74fa06"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Brunch"
+        },
+        {
+          "language": "sv",
+          "alias": "Brunch"
+        }
+      ]
+    },
+    {
+      "id": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "slug": "drinks-and-nightlife",
+      "parent_id": null,
+      "label_en": "Drinks & Nightlife",
+      "label_sv": "Dryck och nattliv",
+      "depth": 0,
+      "path": [
+        "2a046d43-20d8-5bb1-9378-e0f66c7d86c1"
+      ],
+      "is_leaf": false,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Drinks & Nightlife"
+        },
+        {
+          "language": "sv",
+          "alias": "Dryck och nattliv"
+        }
+      ]
+    },
+    {
+      "id": "14257b1c-8bed-5909-97c1-8f2fc6936135",
+      "slug": "bars",
+      "parent_id": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "label_en": "Bars",
+      "label_sv": "Barer",
+      "depth": 1,
+      "path": [
+        "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+        "14257b1c-8bed-5909-97c1-8f2fc6936135"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Bars"
+        },
+        {
+          "language": "sv",
+          "alias": "Barer"
+        }
+      ]
+    },
+    {
+      "id": "687fb02d-72a2-55a7-af0f-aea3b992aff3",
+      "slug": "cocktails",
+      "parent_id": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "label_en": "Cocktails",
+      "label_sv": "Cocktails",
+      "depth": 1,
+      "path": [
+        "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+        "687fb02d-72a2-55a7-af0f-aea3b992aff3"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Cocktails"
+        },
+        {
+          "language": "sv",
+          "alias": "Cocktails"
+        }
+      ]
+    },
+    {
+      "id": "d5056f41-1b30-5f6f-8eb0-d65cac76f86b",
+      "slug": "wine",
+      "parent_id": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "label_en": "Wine",
+      "label_sv": "Vin",
+      "depth": 1,
+      "path": [
+        "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+        "d5056f41-1b30-5f6f-8eb0-d65cac76f86b"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Wine"
+        },
+        {
+          "language": "sv",
+          "alias": "Vin"
+        }
+      ]
+    },
+    {
+      "id": "1a48f9c0-9247-554e-9fcf-07ea8707c8cd",
+      "slug": "breweries",
+      "parent_id": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "label_en": "Breweries",
+      "label_sv": "Bryggerier",
+      "depth": 1,
+      "path": [
+        "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+        "1a48f9c0-9247-554e-9fcf-07ea8707c8cd"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Breweries"
+        },
+        {
+          "language": "sv",
+          "alias": "Bryggerier"
+        }
+      ]
+    },
+    {
+      "id": "20c64458-9996-56ad-a8a6-0cad74c82506",
+      "slug": "nightlife",
+      "parent_id": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "label_en": "Nightlife",
+      "label_sv": "Nattliv",
+      "depth": 1,
+      "path": [
+        "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+        "20c64458-9996-56ad-a8a6-0cad74c82506"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Nightlife"
+        },
+        {
+          "language": "sv",
+          "alias": "Nattliv"
+        }
+      ]
+    },
+    {
+      "id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "slug": "activities-and-experiences",
+      "parent_id": null,
+      "label_en": "Activities & Experiences",
+      "label_sv": "Aktiviteter och upplevelser",
+      "depth": 0,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f"
+      ],
+      "is_leaf": false,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Activities & Experiences"
+        },
+        {
+          "language": "sv",
+          "alias": "Aktiviteter och upplevelser"
+        }
+      ]
+    },
+    {
+      "id": "ab9ee0ec-2e7e-5f14-b2bb-15c66aaf979f",
+      "slug": "sports",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Sports",
+      "label_sv": "Sport",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "ab9ee0ec-2e7e-5f14-b2bb-15c66aaf979f"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Sports"
+        },
+        {
+          "language": "sv",
+          "alias": "Sport"
+        }
+      ]
+    },
+    {
+      "id": "e0aa09ec-717d-5e2e-8552-4dd33ba5b5fe",
+      "slug": "games",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Games",
+      "label_sv": "Spel",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "e0aa09ec-717d-5e2e-8552-4dd33ba5b5fe"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Games"
+        },
+        {
+          "language": "sv",
+          "alias": "Spel"
+        }
+      ]
+    },
+    {
+      "id": "90f47852-7a14-50d0-a8d0-a9440b62fee0",
+      "slug": "tours",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Tours",
+      "label_sv": "Turer",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "90f47852-7a14-50d0-a8d0-a9440b62fee0"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Tours"
+        },
+        {
+          "language": "sv",
+          "alias": "Turer"
+        }
+      ]
+    },
+    {
+      "id": "6432bde9-17e2-5a04-92b3-9bf6f4589cf2",
+      "slug": "culture",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Culture",
+      "label_sv": "Kultur",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "6432bde9-17e2-5a04-92b3-9bf6f4589cf2"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Culture"
+        },
+        {
+          "language": "sv",
+          "alias": "Kultur"
+        }
+      ]
+    },
+    {
+      "id": "e1a9cc86-214f-5967-b0a5-6925694b01d5",
+      "slug": "events",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Events",
+      "label_sv": "Evenemang",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "e1a9cc86-214f-5967-b0a5-6925694b01d5"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Events"
+        },
+        {
+          "language": "sv",
+          "alias": "Evenemang"
+        }
+      ]
+    },
+    {
+      "id": "231bbce4-ee4e-552e-a34c-d5a08f0debb1",
+      "slug": "classes",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Classes",
+      "label_sv": "Kurser",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "231bbce4-ee4e-552e-a34c-d5a08f0debb1"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Classes"
+        },
+        {
+          "language": "sv",
+          "alias": "Kurser"
+        }
+      ]
+    },
+    {
+      "id": "f5978b3b-3c95-52fe-8c9c-bf5b6fae9d77",
+      "slug": "nature-and-public-places",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Nature & Public Places",
+      "label_sv": "Natur och offentliga platser",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "f5978b3b-3c95-52fe-8c9c-bf5b6fae9d77"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Nature & Public Places"
+        },
+        {
+          "language": "sv",
+          "alias": "Natur och offentliga platser"
+        }
+      ]
+    },
+    {
+      "id": "4b839f2a-5da8-5aff-b66b-2c34e9715b26",
+      "slug": "attractions",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Attractions",
+      "label_sv": "Sevärdheter",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "4b839f2a-5da8-5aff-b66b-2c34e9715b26"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Attractions"
+        },
+        {
+          "language": "sv",
+          "alias": "Sevärdheter"
+        }
+      ]
+    },
+    {
+      "id": "445e443a-1dcc-5479-8da2-fddaa1032c50",
+      "slug": "malls-and-shopping-centers",
+      "parent_id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "label_en": "Malls & Shopping Centers",
+      "label_sv": "Köpcentrum",
+      "depth": 1,
+      "path": [
+        "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+        "445e443a-1dcc-5479-8da2-fddaa1032c50"
+      ],
+      "is_leaf": true,
+      "active": true,
+      "aliases": [
+        {
+          "language": "en",
+          "alias": "Malls & Shopping Centers"
+        },
+        {
+          "language": "sv",
+          "alias": "Köpcentrum"
+        }
+      ]
+    }
+  ]
+}
