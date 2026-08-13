@@ -20,6 +20,12 @@ pnpm lint
 pnpm test
 ```
 
+DB contract packages add focused local PostgreSQL suites. With the local stack running:
+
+```bash
+pnpm test:db -- db-01a
+```
+
 `pnpm env:check` intentionally fails with a list of missing variables until `EXPO_PUBLIC_LEMON_SEARCH_EDGE_URL` is configured. Edge and deployment checks are separate so mobile development never needs backend secrets:
 
 ```bash
