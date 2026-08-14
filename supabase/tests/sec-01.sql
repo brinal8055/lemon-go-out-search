@@ -133,7 +133,7 @@ select is(
 );
 select is(
   (select version from app.search_configs where is_active),
-  'search-02-deterministic-v1',
+  'embed-01a-preflight-v1',
   'the deterministic discovery configuration is active'
 );
 select ok(
@@ -168,8 +168,8 @@ select is(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   )),
   1::bigint,
   'service_role can execute the shaped RPC'
@@ -181,8 +181,8 @@ select is(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   )),
   'SEC Fixture Café',
   'the RPC returns the safe canonical display name'
@@ -195,8 +195,8 @@ select ok(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   )),
   'the deterministic slice reports no semantic use or degradation'
 );
@@ -207,8 +207,8 @@ select is(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
     null, null, null, null,
     array['EVENT']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   )),
   0::bigint,
   'an unsupported Event-only filter cannot leak Place results'
@@ -221,8 +221,8 @@ select throws_ok(
     select * from api.search_v1(
       null, 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
-      null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
+      null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01a-preflight-v1'
     )
   $$,
   '22023',
@@ -234,8 +234,8 @@ select throws_ok(
     select * from api.search_v1(
       gen_random_uuid(), 'SEC Fixture Café', 'wrong', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
-      null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
+      null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01a-preflight-v1'
     )
   $$,
   '22023',
@@ -247,8 +247,8 @@ select throws_ok(
     select * from api.search_v1(
       gen_random_uuid(), 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
-      null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'stale-config'
+      null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'stale-config'
     )
   $$,
   '55000',
@@ -260,8 +260,8 @@ select throws_ok(
     select * from api.search_v1(
       gen_random_uuid(), 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', 57.7, null, null, null,
-      null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
+      null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01a-preflight-v1'
     )
   $$,
   '22023',
@@ -273,8 +273,8 @@ select throws_ok(
     select * from api.search_v1(
       gen_random_uuid(), 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
-      null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 21::smallint, 'search-02-deterministic-v1'
+      null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
+      'voyage-4-preflight-v1', 1024, 21::smallint, 'embed-01a-preflight-v1'
     )
   $$,
   '22023',
@@ -288,8 +288,8 @@ select throws_ok(
       '91000000-0000-0000-0000-000000000099',
       'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
-      null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
+      null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01a-preflight-v1'
     )
   $$,
   '42501',

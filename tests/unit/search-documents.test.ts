@@ -222,6 +222,17 @@ describe('DOC-01 database lifecycle', () => {
 
   it('invalidates when a verified manual alias is added', async () => {
     const before = await activeDocument(evergreenId);
+    const [embedding] = await fixtureQuery<{ id: string; generated_at: Date }>(connectionString, `
+      insert into app.embeddings (
+        search_document_id, entity_id, provider, model, model_revision, dimension,
+        embedding, document_hash, status, attempt_key, attempted_at, generated_at
+      ) values (
+        (select id from app.search_documents where entity_id = $1 and is_active),
+        $1, 'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+        ('[' || array_to_string(array_fill(0.01::real, array[1024]), ',') || ']')::extensions.vector,
+        $2, 'READY', $3, now(), now()
+      ) returning id, generated_at
+    `, [evergreenId, before.content_hash, `doc01-invalidation-${randomUUID()}`]);
     const normalized = normalizeForSearch('Evergreen Pizza Jönköping');
     await fixtureQuery(connectionString, `
       insert into app.entity_aliases (
@@ -234,6 +245,18 @@ describe('DOC-01 database lifecycle', () => {
     expect(report.contentChanges).toBe(1);
     expect(after.content_hash).not.toBe(before.content_hash);
     expect(after.aliases_text).toContain('Evergreen Pizza Jönköping');
+    const [stale] = await fixtureQuery<{
+      status: string; stale_reason: string; vector_retained: boolean; generated_at: Date;
+    }>(connectionString, `
+      select status, stale_reason, embedding is not null as vector_retained, generated_at
+      from app.embeddings where id = $1
+    `, [embedding.id]);
+    expect(stale).toEqual({
+      status: 'STALE',
+      stale_reason: 'SEARCH_DOCUMENT_REPLACED',
+      vector_retained: true,
+      generated_at: embedding.generated_at,
+    });
   });
 
   it('invalidates when active direct taxonomy truth changes', async () => {

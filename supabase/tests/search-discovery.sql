@@ -105,7 +105,7 @@ select ok(
 );
 select is(
   (select version from app.search_configs where is_active),
-  'search-02-deterministic-v1',
+  'embed-01a-preflight-v1',
   'the versioned SEARCH-02 config is active'
 );
 select ok(
@@ -429,8 +429,8 @@ select is(
     gen_random_uuid(), 'wood fired', 'wood fired', 'wood fired', 'en',
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   ) limit 1),
   'Aurora Kitchen',
   'api.search_v1 returns representative lexical discovery'
@@ -441,8 +441,8 @@ select is(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null,
     '63d2b4df-0fd9-5296-bab2-1cf5fd457cbc',
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   )),
   1::bigint,
   'empty query plus explicit taxonomy category browse works through the one public RPC'
@@ -453,8 +453,8 @@ select is(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null,
     '63d2b4df-0fd9-5296-bab2-1cf5fd457cbc',
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   ) where entity_id = 'a2000000-0000-0000-0000-000000000001'),
   0::bigint,
   'explicit taxonomy filter remains an authoritative hard filter'
@@ -464,8 +464,8 @@ select throws_ok(
     gen_random_uuid(), '', '', '', 'en',
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   )$$,
   '22023', 'query is required',
   'unsupported empty query retains the frozen validation contract'
@@ -475,8 +475,8 @@ select is(
     gen_random_uuid(), 'Pizza', 'pizza', 'pizza', 'sv',
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    10::smallint, 'embed-01a-preflight-v1'
   ) where entity_id = 'a2000000-0000-0000-0000-000000000011'),
   1::bigint,
   'api.search_v1 returns recognized taxonomy discovery without exposing stages'
@@ -486,8 +486,8 @@ select ok(
     gen_random_uuid(), 'Food & Dining', 'food dining', 'food dining', 'en',
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
-    'not-configured', 'not-configured', 'not-configured', 1,
-    20::smallint, 'search-02-deterministic-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+    20::smallint, 'embed-01a-preflight-v1'
   )),
   'public results contain unique canonical IDs after stage union'
 );
