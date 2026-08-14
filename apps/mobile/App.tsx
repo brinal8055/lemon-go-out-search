@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -16,22 +17,42 @@ import {
   resolveSearch,
   startSearch,
 } from './src/search';
+import { localizedText } from './src/localization';
+import { loadActiveTaxonomy } from './src/taxonomy-reference';
+import { taxonomyLabel, type TaxonomyNode } from './src/taxonomy';
+
+type UiLocale = 'en' | 'sv';
+type DiscoveryRequest = { query: string; taxonomyNodeId?: string };
 
 export default function App() {
   const [query, setQuery] = useState('');
+  const [uiLocale, setUiLocale] = useState<UiLocale>('en');
+  const [taxonomy, setTaxonomy] = useState<TaxonomyNode[]>([]);
+  const [taxonomyUnavailable, setTaxonomyUnavailable] = useState(false);
   const [state, setState] = useState(initialSearchState);
   const generation = useRef(0);
   const activeRequest = useRef<AbortController | null>(null);
+  const lastRequest = useRef<DiscoveryRequest | null>(null);
+  const text = localizedText(uiLocale);
 
-  const search = async () => {
-    const request = createSearchRequest(query);
-    if (!request.query) return;
+  useEffect(() => {
+    let current = true;
+    void loadActiveTaxonomy()
+      .then((nodes) => { if (current) setTaxonomy(nodes); })
+      .catch(() => { if (current) setTaxonomyUnavailable(true); });
+    return () => { current = false; };
+  }, []);
+
+  const search = async (nextRequest: DiscoveryRequest) => {
+    const request = createSearchRequest(nextRequest.query, uiLocale, nextRequest.taxonomyNodeId);
+    if (!request.query && !request.taxonomyNodeId) return;
 
     activeRequest.current?.abort();
     const controller = new AbortController();
     activeRequest.current = controller;
     const requestGeneration = generation.current + 1;
     generation.current = requestGeneration;
+    lastRequest.current = nextRequest;
     setState(startSearch());
 
     try {
@@ -47,18 +68,34 @@ export default function App() {
     }
   };
 
+  const searchText = () => void search({ query });
+  const searchCategory = (taxonomyNodeId: string) => void search({ query: '', taxonomyNodeId });
+
   return (
     <SafeAreaView style={styles.screen}>
-      <View style={styles.content}>
+      <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.eyebrow}>JÖNKÖPING TRIAL</Text>
         <Text style={styles.title}>Lemon Going-Out Search</Text>
+        <View style={styles.localeRow}>
+          {(['en', 'sv'] as const).map((locale) => (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityState={{ selected: uiLocale === locale }}
+              key={locale}
+              onPress={() => setUiLocale(locale)}
+              style={styles.localeButton}
+            >
+              <Text style={styles.localeText}>{locale === 'en' ? 'English' : 'Svenska'}</Text>
+            </Pressable>
+          ))}
+        </View>
         <View style={styles.searchRow}>
           <TextInput
-            accessibilityLabel="Search places"
+            accessibilityLabel={text.searchPlaceholder}
             autoCapitalize="none"
             onChangeText={setQuery}
-            onSubmitEditing={search}
-            placeholder="Search places"
+            onSubmitEditing={searchText}
+            placeholder={text.searchPlaceholder}
             returnKeyType="search"
             style={styles.input}
             value={query}
@@ -66,15 +103,40 @@ export default function App() {
           <Pressable
             accessibilityRole="button"
             disabled={!query.trim()}
-            onPress={search}
+            onPress={searchText}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Search</Text>
+            <Text style={styles.buttonText}>{text.search}</Text>
           </Pressable>
         </View>
-        {state.status === 'loading' && <ActivityIndicator accessibilityLabel="Searching" />}
-        {state.status === 'empty' && <Text style={styles.body}>No places found.</Text>}
-        {state.status === 'error' && <Text style={styles.body}>{state.message}</Text>}
+        <Text style={styles.browseTitle}>{text.browse}</Text>
+        {taxonomyUnavailable && <Text style={styles.body}>{text.categoriesUnavailable}</Text>}
+        <View style={styles.categories}>
+          {taxonomy.map((node) => (
+            <Pressable
+              accessibilityRole="button"
+              key={node.id}
+              onPress={() => searchCategory(node.id)}
+              style={[styles.category, { marginLeft: node.depth * 12 }]}
+            >
+              <Text style={styles.categoryText}>{taxonomyLabel(node, uiLocale)}</Text>
+            </Pressable>
+          ))}
+        </View>
+        {state.status === 'loading' && <ActivityIndicator accessibilityLabel={text.loading} />}
+        {state.status === 'empty' && <Text style={styles.body}>{text.noResults}</Text>}
+        {state.status === 'error' && (
+          <View>
+            <Text style={styles.body}>{text.unavailable}</Text>
+            <Pressable
+              accessibilityRole="button"
+              onPress={() => { if (lastRequest.current) void search(lastRequest.current); }}
+              style={styles.retryButton}
+            >
+              <Text style={styles.buttonText}>{text.retry}</Text>
+            </Pressable>
+          </View>
+        )}
         {state.results.map((place) => (
           <View key={place.canonicalId} style={styles.card}>
             <Text style={styles.cardTitle}>{place.name}</Text>
@@ -84,7 +146,7 @@ export default function App() {
             {place.factualSummary && <Text style={styles.body}>{place.factualSummary}</Text>}
           </View>
         ))}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -95,7 +157,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fffbe6',
   },
   content: {
-    flex: 1,
     padding: 24,
   },
   eyebrow: {
@@ -121,6 +182,22 @@ const styles = StyleSheet.create({
     gap: 8,
     marginTop: 24,
   },
+  localeRow: {
+    flexDirection: 'row',
+    gap: 12,
+    justifyContent: 'center',
+    marginTop: 12,
+  },
+  localeButton: {
+    borderColor: '#637000',
+    borderWidth: 1,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  localeText: {
+    color: '#4c5200',
+    fontWeight: '700',
+  },
   input: {
     backgroundColor: '#ffffff',
     borderColor: '#637000',
@@ -141,6 +218,31 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     marginTop: 16,
     padding: 16,
+  },
+  browseTitle: {
+    color: '#202400',
+    fontSize: 18,
+    fontWeight: '700',
+    marginTop: 24,
+  },
+  categories: {
+    gap: 8,
+    marginTop: 12,
+  },
+  category: {
+    borderColor: '#c3cb84',
+    borderWidth: 1,
+    padding: 10,
+  },
+  categoryText: {
+    color: '#4c5200',
+  },
+  retryButton: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#637000',
+    marginTop: 12,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   cardTitle: {
     color: '#202400',

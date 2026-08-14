@@ -8,6 +8,8 @@ import {
   resolveSearch,
   startSearch,
 } from '../../apps/mobile/src/search.ts';
+import { localizedText } from '../../apps/mobile/src/localization.ts';
+import { parseActiveTaxonomy, taxonomyLabel } from '../../apps/mobile/src/taxonomy.ts';
 import type { SearchResponseV1 } from '../../packages/contracts/src/index.ts';
 
 const EDGE_URL = 'http://127.0.0.1:54321/functions/v1/search';
@@ -49,7 +51,7 @@ describe('MOB-01 search client and state', () => {
     expect(resolveSearch(2, 2, { ...response, metadata: { limit: 10, resultCount: 0 }, results: [] }))
       .toEqual({ status: 'empty', results: [] });
     expect(rejectSearch(2, 2)).toEqual({
-      status: 'error', results: [], message: 'Search is temporarily unavailable. Try again.',
+      status: 'error', results: [], message: 'SEARCH_UNAVAILABLE',
     });
     expect(resolveSearch(3, 3, response)?.status).toBe('results');
   });
@@ -79,5 +81,49 @@ describe('MOB-01 search client and state', () => {
     const source = files.join('\n');
     expect(source).not.toMatch(/LEMON_SUPABASE_SECRET_KEY|SUPABASE_SERVICE_ROLE_KEY|service[_-]?role|embedding.*key/i);
     expect(source).not.toMatch(/api\.search_v1|\/rest\/v1|\/rpc\//i);
+  });
+});
+
+describe('MOB-02 bilingual discovery', () => {
+  it('provides the required English and Swedish presentation strings', () => {
+    expect(localizedText('en')).toMatchObject({
+      searchPlaceholder: 'Search places', search: 'Search', loading: 'Searching',
+      noResults: 'No places found.', retry: 'Retry', browse: 'Browse categories',
+    });
+    expect(localizedText('sv')).toMatchObject({
+      searchPlaceholder: 'Sök platser', search: 'Sök', loading: 'Söker',
+      noResults: 'Inga platser hittades.', retry: 'Försök igen', browse: 'Bläddra bland kategorier',
+    });
+  });
+
+  it('keeps literal query text independent of the UI language', () => {
+    const swedishQuery = 'restauranger i Jönköping';
+    const englishQuery = 'restaurants in Jönköping';
+    expect(createSearchRequest(swedishQuery, 'en').query).toBe(swedishQuery);
+    expect(createSearchRequest(englishQuery, 'sv').query).toBe(englishQuery);
+    expect(createSearchRequest('thai restauranger', 'sv').query).toBe('thai restauranger');
+  });
+
+  it('loads active taxonomy labels by stable ID and switches only their presentation', async () => {
+    const reference = await readFile(new URL('../../reference/taxonomy/active-going-out.v1.yaml', import.meta.url), 'utf8');
+    const nodes = parseActiveTaxonomy(reference);
+    const dining = nodes.find((node) => node.slug === 'dining');
+    expect(dining).toMatchObject({ id: '15904283-fd01-5fc3-ac00-c42e62e8422e', parentId: '27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1' });
+    expect(taxonomyLabel(dining!, 'en')).toBe('Dining');
+    expect(taxonomyLabel(dining!, 'sv')).toBe('Restauranger');
+    expect(nodes).toHaveLength(52);
+    expect(nodes.indexOf(dining!)).toBeGreaterThan(nodes.findIndex((node) => node.slug === 'food-and-dining'));
+  });
+
+  it('uses the existing empty-query taxonomy browse request without a fake label query', () => {
+    const taxonomyNodeId = '27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1';
+    const request = createSearchRequest('', 'sv', taxonomyNodeId);
+    expect(request).toMatchObject({ query: '', uiLocale: 'sv', taxonomyNodeId });
+    expect(request.query).not.toContain('Mat och restauranger');
+  });
+
+  it('retains generation protection for text and category requests', () => {
+    expect(resolveSearch(4, 3, response)).toBeNull();
+    expect(rejectSearch(4, 3)).toBeNull();
   });
 });

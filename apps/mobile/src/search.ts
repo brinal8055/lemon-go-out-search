@@ -1,4 +1,4 @@
-import type { PlaceCard, SearchRequestV1, SearchResponseV1 } from '@lemon/contracts';
+import type { PlaceCard, SearchRequestV1, SearchResponseV1, UiLocale } from '@lemon/contracts';
 
 export const JONKOPING_SCOPE_ID = 'a4b19b09-b272-5748-80ef-2c91d9d33ca6';
 
@@ -15,13 +15,18 @@ export function startSearch(): SearchState {
   return { status: 'loading', results: [] };
 }
 
-export function createSearchRequest(query: string): SearchRequestV1 {
+export function createSearchRequest(
+  query: string,
+  uiLocale: UiLocale = 'en',
+  taxonomyNodeId?: string,
+): SearchRequestV1 {
   return {
     query: query.trim(),
-    uiLocale: 'en',
+    uiLocale,
     scopeId: JONKOPING_SCOPE_ID,
     entityTypes: ['PLACE'],
     limit: 10,
+    ...(taxonomyNodeId ? { taxonomyNodeId } : {}),
   };
 }
 
@@ -58,7 +63,7 @@ export function resolveSearch(
 
 export function rejectSearch(currentGeneration: number, responseGeneration: number): SearchState | null {
   if (responseGeneration !== currentGeneration) return null;
-  return { status: 'error', results: [], message: 'Search is temporarily unavailable. Try again.' };
+  return { status: 'error', results: [], message: 'SEARCH_UNAVAILABLE' };
 }
 
 function isSearchResponse(value: unknown): value is SearchResponseV1 {
