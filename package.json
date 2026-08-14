@@ -8,7 +8,6 @@
   },
   "scripts": {
     "dev": "pnpm --filter @lemon/mobile start",
-    "demo:laptop": "node scripts/serve-laptop-demo.mjs",
     "env:check": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target mobile",
     "env:check:edge": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target edge",
     "env:check:deploy": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target deploy",
