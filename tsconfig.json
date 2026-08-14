@@ -4,6 +4,7 @@
     { "path": "packages/contracts" },
     { "path": "packages/normalization" },
     { "path": "packages/ingestion-domain" },
+    { "path": "packages/search-documents" },
     { "path": "packages/source-adapters" },
     { "path": "packages/evaluation" },
     { "path": "apps/mobile" },

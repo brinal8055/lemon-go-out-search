@@ -71,6 +71,19 @@ importers:
 
   packages/normalization: {}
 
+  packages/search-documents:
+    dependencies:
+      '@lemon/normalization':
+        specifier: workspace:*
+        version: link:../normalization
+      pg:
+        specifier: ^8.23.0
+        version: 8.23.0
+    devDependencies:
+      '@types/pg':
+        specifier: ^8.21.0
+        version: 8.21.0
+
   packages/source-adapters:
     dependencies:
       '@lemon/ingestion-domain':
