@@ -15,6 +15,8 @@
     "ingest:fixture": "node --experimental-strip-types packages/ingestion-domain/src/cli.ts",
     "ingest:municipal": "node --experimental-strip-types packages/source-adapters/src/jonkoping-utegym-cli.ts",
     "ingest:osm": "node --experimental-strip-types packages/source-adapters/src/osm-cli.ts",
+    "dedup:review": "node --experimental-strip-types packages/ingestion-domain/src/duplicate-review-cli.ts",
+    "dedup:smoke": "node --experimental-strip-types packages/ingestion-domain/src/duplicate-review-smoke.ts",
     "publish:first-place": "node --experimental-strip-types packages/ingestion-domain/src/publish-first-place-cli.ts",
     "typecheck": "tsc -b",
     "lint": "eslint .",
