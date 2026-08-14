@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./jonkoping-events": "./src/jonkoping-events.ts",
     "./jonkoping-utegym": "./src/jonkoping-utegym.ts",
     "./osm": "./src/osm.ts"
   },

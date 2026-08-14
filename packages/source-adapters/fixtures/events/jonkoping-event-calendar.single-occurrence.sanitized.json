@@ -1,0 +1,50 @@
+{
+  "sourceKey": "JONKOPING_EVENT_CALENDAR",
+  "fetchedAt": "2026-08-15",
+  "adapterVersion": "jonkoping-event-smoke-v1",
+  "persistencePolicy": "EXTRACTED_FIELDS_ONLY",
+  "occurrencePolicy": "SINGLE_OCCURRENCE_ONLY",
+  "events": [
+    {
+      "sourceEventUuid": "17f7be01-1c69-40cf-a701-00916c765ef3",
+      "externalKey": "event/17f7be01-1c69-40cf-a701-00916c765ef3",
+      "title": "Upptäck konst och kulturhistoria med årets Hittaut",
+      "start": "2026-06-02T22:00:00.000Z",
+      "end": "2026-10-04T21:59:00.000Z",
+      "timeZone": "Europe/Stockholm",
+      "venueName": null,
+      "city": "Gränna",
+      "address": "Gränna",
+      "latitude": 58.02502339999999,
+      "longitude": 14.4700948,
+      "categories": [
+        "Historia",
+        "Hälsa",
+        "Konst",
+        "Natur",
+        "Träning"
+      ],
+      "sourceUrl": "https://www.jonkoping.se/evenemangskalender/evenemangskalender/evenemang/upptackkonstochkulturhistoriamedaretshittaut.5.7079ce8d19e7385a1963556a.html",
+      "status": null
+    },
+    {
+      "sourceEventUuid": "48a0b597-1d16-4a64-943e-bc17b382a42f",
+      "externalKey": "event/48a0b597-1d16-4a64-943e-bc17b382a42f",
+      "title": "Smålandstriennalen: Berätta om oron och skönheten",
+      "start": "2026-05-29T15:00:00.000Z",
+      "end": "2026-08-30T13:00:00.000Z",
+      "timeZone": "Europe/Stockholm",
+      "venueName": "Österängens konsthall",
+      "city": "Jönköping",
+      "address": "Birkagatan 8",
+      "latitude": 57.78682559999999,
+      "longitude": 14.243184,
+      "categories": [
+        "Konst",
+        "Utställning"
+      ],
+      "sourceUrl": "https://www.jonkoping.se/evenemangskalender/evenemangskalender/evenemang/2026-05-13-beratta-om-oron-och-skonheten",
+      "status": null
+    }
+  ]
+}
