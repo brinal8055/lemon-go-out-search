@@ -28,6 +28,7 @@
     "test:api:smoke": "node --experimental-strip-types scripts/test-edge.mjs",
     "test:watch": "vitest",
     "mobile:export": "pnpm --filter @lemon/mobile exec expo export --platform android",
+    "mobile:smoke": "node --experimental-strip-types scripts/test-mobile.mjs",
     "supabase": "supabase",
     "db:start:bootstrap": "supabase start --exclude gotrue,realtime,storage-api,imgproxy,kong,mailpit,postgrest,postgres-meta,studio,edge-runtime,logflare,vector,supavisor",
     "db:start": "supabase start",
