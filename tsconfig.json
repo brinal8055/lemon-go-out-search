@@ -7,6 +7,7 @@
     { "path": "packages/search-documents" },
     { "path": "packages/source-adapters" },
     { "path": "packages/evaluation" },
+    { "path": "packages/time-parser" },
     { "path": "apps/mobile" },
     { "path": "supabase/functions/search" }
   ]

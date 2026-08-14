@@ -98,6 +98,8 @@ importers:
         specifier: workspace:*
         version: link:../ingestion-domain
 
+  packages/time-parser: {}
+
 packages:
 
   '@babel/code-frame@7.29.7':
