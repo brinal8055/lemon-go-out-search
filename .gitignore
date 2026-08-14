@@ -18,5 +18,3 @@ supabase/functions/.env.*
 
 *.log
 .DS_Store
-
-AGENTS.md
