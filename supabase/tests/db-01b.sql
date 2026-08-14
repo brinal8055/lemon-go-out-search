@@ -1393,8 +1393,8 @@ select ok(
 select ok(
   not has_schema_privilege('anon', 'app', 'USAGE')
     and not has_schema_privilege('authenticated', 'app', 'USAGE')
-    and not has_schema_privilege('service_role', 'app', 'USAGE'),
-  'DB-01B private schema remains unavailable to Data API roles'
+    and has_schema_privilege('service_role', 'app', 'USAGE'),
+  'DB-01B remains private while service_role has signature-only app usage'
 );
 select ok(
   not has_table_privilege('anon', 'app.canonical_entities', 'SELECT')

@@ -31,8 +31,8 @@ select ok((select enabled from app.sources where key = 'OSM_OVERPASS'), 'OSM sou
 select ok(
   not has_schema_privilege('anon', 'app', 'USAGE')
   and not has_schema_privilege('authenticated', 'app', 'USAGE')
-  and not has_schema_privilege('service_role', 'app', 'USAGE'),
-  'private app schema exposure remains unchanged'
+  and has_schema_privilege('service_role', 'app', 'USAGE'),
+  'private app objects remain hidden with signature-only service schema usage'
 );
 
 select * from finish();

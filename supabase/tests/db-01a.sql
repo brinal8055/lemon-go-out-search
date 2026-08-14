@@ -876,8 +876,8 @@ select throws_ok(
 select ok(
   not has_schema_privilege('anon', 'app', 'USAGE')
     and not has_schema_privilege('authenticated', 'app', 'USAGE')
-    and not has_schema_privilege('service_role', 'app', 'USAGE'),
-  'private app schema is unavailable to public and Edge roles'
+    and has_schema_privilege('service_role', 'app', 'USAGE'),
+  'public roles cannot use app; service_role has signature-only schema usage'
 );
 
 select is(

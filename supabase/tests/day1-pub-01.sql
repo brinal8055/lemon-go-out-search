@@ -207,9 +207,12 @@ select ok(
 );
 
 select is(
-  (select count(*) from pg_proc p join pg_namespace n on n.oid = p.pronamespace where n.nspname = 'api'),
+  (select count(*)
+   from pg_proc p
+   join pg_namespace n on n.oid = p.pronamespace
+   where n.nspname = 'api' and p.proname = 'publish_place_from_current_evidence'),
   0::bigint,
-  'DAY1-PUB-01 exposes no Data API function'
+  'DAY1-PUB-01 publication helper remains private after SEC-01'
 );
 
 create temporary table day1_fixtures (key text primary key, value jsonb);

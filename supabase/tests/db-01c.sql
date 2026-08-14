@@ -9,6 +9,10 @@ select has_table('app', 'search_documents', 'search documents table exists');
 select has_table('app', 'embeddings', 'embeddings table exists');
 select has_table('app', 'search_configs', 'versioned search config table exists');
 
+update app.search_configs
+set is_active = false, activated_at = null
+where is_active;
+
 insert into app.search_configs (
   version, config_checksum, is_active,
   prefix_min_length, trigram_min_length, trigram_threshold,

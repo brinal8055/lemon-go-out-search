@@ -71,9 +71,13 @@ select is(
     from pg_proc as procedure
     join pg_namespace as namespace on namespace.oid = procedure.pronamespace
     where namespace.nspname = 'api'
+      and procedure.proname in (
+        'select_source_record_current_evidence',
+        'assert_source_record_current_evidence'
+      )
   ),
   0::bigint,
-  'DB-02 exposes no Data API function'
+  'DB-02 exposes no source-current helper through the Data API'
 );
 
 insert into app.geographic_scopes (

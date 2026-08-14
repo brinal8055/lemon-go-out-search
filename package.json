@@ -22,6 +22,7 @@
     "test:reference": "node scripts/verify-reference.mjs",
     "test:ingestion": "vitest run tests/unit/ingestion-core.test.ts tests/unit/first-place-publication.test.ts",
     "test:normalization": "vitest run tests/unit/normalization.test.ts",
+    "test:security": "node scripts/test-security.mjs",
     "test:watch": "vitest",
     "mobile:export": "pnpm --filter @lemon/mobile exec expo export --platform android",
     "supabase": "supabase",

@@ -87,9 +87,15 @@ select ok(
 
 select is(
   (select count(*) from pg_proc p join pg_namespace n on n.oid = p.pronamespace
-   where n.nspname = 'api'),
+   where n.nspname = 'api'
+     and p.proname in (
+       'search_eligible_places',
+       'search_exact_candidates',
+       'search_fuzzy_candidates',
+       'search_known_item_candidates'
+     )),
   0::bigint,
-  'SEARCH-01 exposes no api function'
+  'SEARCH-01 candidate helpers remain private after SEC-01'
 );
 
 select ok(

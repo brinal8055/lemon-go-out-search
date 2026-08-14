@@ -95,8 +95,8 @@ select is(
   'the Jönköping scope uses Europe/Stockholm'
 );
 select ok(
-  (select is_active and not public_search_enabled from app.geographic_scopes where slug = 'jonkoping-municipality'),
-  'the reference scope is active but public search remains gated'
+  (select is_active and public_search_enabled from app.geographic_scopes where slug = 'jonkoping-municipality'),
+  'the reference scope is active and enabled by SEC-01'
 );
 select is(
   (select count(*) from app.geographic_scope_boundaries where is_active),
