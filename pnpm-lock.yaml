@@ -54,7 +54,15 @@ importers:
 
   packages/contracts: {}
 
-  packages/evaluation: {}
+  packages/evaluation:
+    dependencies:
+      pg:
+        specifier: ^8.23.0
+        version: 8.23.0
+    devDependencies:
+      '@types/pg':
+        specifier: ^8.21.0
+        version: 8.21.0
 
   packages/ingestion-domain:
     dependencies:

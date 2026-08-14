@@ -22,6 +22,7 @@
     "taxonomy:manual": "node --experimental-strip-types packages/ingestion-domain/src/taxonomy-cli.ts manual-add",
     "coverage:generate": "node --experimental-strip-types scripts/coverage-report.ts",
     "search-documents:rebuild": "node --experimental-strip-types packages/search-documents/src/cli.ts",
+    "diagnose-search": "node --experimental-strip-types packages/evaluation/src/diagnose-search-cli.ts",
     "publish:first-place": "node --experimental-strip-types packages/ingestion-domain/src/publish-first-place-cli.ts",
     "typecheck": "tsc -b",
     "lint": "eslint .",

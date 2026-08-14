@@ -27,7 +27,10 @@ function assert(condition, message) {
   if (!condition) throw new Error(`Security smoke failed: ${message}`);
 }
 
+const diagnosticsRequested = process.argv.slice(2).includes('diagnostics');
+
 run('pnpm', ['test:db', '--', 'sec-01']);
+if (diagnosticsRequested) run('pnpm', ['test:db', '--', 'search-diagnostics']);
 
 const local = parseEnvironment(run('pnpm', ['exec', 'supabase', 'status', '-o', 'env']));
 const restUrl = local.REST_URL;
@@ -131,4 +134,6 @@ assert(
   'an HTTP response reflected a credential',
 );
 
-console.log(`SEC-01 security smoke: PASS (${assertions} HTTP/config assertions + 38 pgTAP assertions)`);
+console.log(
+  `SEC-01 security smoke: PASS (${assertions} HTTP/config assertions + 38 pgTAP assertions${diagnosticsRequested ? ' + 34 diagnostic pgTAP assertions' : ''})`,
+);
