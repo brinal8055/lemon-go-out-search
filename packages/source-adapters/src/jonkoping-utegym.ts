@@ -13,7 +13,7 @@ export const JONKOPING_UTEGYM_ENDPOINT =
 export const JONKOPING_UTEGYM_QUERY_ENDPOINT = `${JONKOPING_UTEGYM_ENDPOINT}/query`;
 export const JONKOPING_UTEGYM_ADAPTER_VERSION = 'jonkoping-utegym-arcgis-v1';
 export const JONKOPING_UTEGYM_PARSER_VERSION = 'jonkoping-utegym-parser-v1';
-export const JONKOPING_UTEGYM_MAPPING_VERSION = 'municipal-no-taxonomy-map-v1';
+export const JONKOPING_UTEGYM_MAPPING_VERSION = 'source-taxonomy.v1';
 export const JONKOPING_SCOPE_ID = 'a4b19b09-b272-5748-80ef-2c91d9d33ca6';
 export const JONKOPING_SCOPE_SLUG = 'jonkoping-municipality';
 

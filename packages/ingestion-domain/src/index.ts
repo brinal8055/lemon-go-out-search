@@ -5,3 +5,5 @@ export * from './postgres-store.ts';
 export * from './runner.ts';
 export * from './duplicate-review.ts';
 export * from './provenance-revocation.ts';
+export * from './taxonomy-mapping.ts';
+export * from './taxonomy-coverage.ts';
