@@ -8,6 +8,7 @@ const supportedSuites = new Map([
   ['db-02', 'supabase/tests/db-02.sql'],
   ['ref-01', 'supabase/tests/ref-01.sql'],
   ['src-01', 'supabase/tests/src-01.sql'],
+  ['day1-pub-01', 'supabase/tests/day1-pub-01.sql'],
 ]);
 
 if (!suite || !supportedSuites.has(suite)) {
