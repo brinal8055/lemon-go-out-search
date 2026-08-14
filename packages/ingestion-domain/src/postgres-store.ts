@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import pg from 'pg';
+import { normalizeForSearch } from '@lemon/normalization';
 import type { PoolClient, QueryResultRow } from 'pg';
 import type {
   AdapterConfig,
@@ -282,8 +283,9 @@ export class PostgresIngestionStore implements IngestionStore {
       if (!covered.covered) throw new Error('fixture candidate is outside the configured active boundary');
 
       const canonicalName = input.candidate.place.canonicalName;
-      const canonicalNameNorm = normalizeName(canonicalName);
-      const canonicalNameAscii = accentless(canonicalNameNorm);
+      const normalizedName = normalizeForSearch(canonicalName);
+      const canonicalNameNorm = normalizedName.preserving;
+      const canonicalNameAscii = normalizedName.accentless;
       let canonicalEntityId = assignment.canonical_entity_id;
       let canonicalChanged: boolean;
 
@@ -564,14 +566,6 @@ function sortValue(value: unknown): unknown {
 
 function sha256(value: string): string {
   return createHash('sha256').update(value).digest('hex');
-}
-
-function normalizeName(value: string): string {
-  return value.normalize('NFC').trim().replace(/\s+/g, ' ').toLocaleLowerCase('sv-SE');
-}
-
-function accentless(value: string): string {
-  return value.normalize('NFKD').replace(/\p{M}/gu, '');
 }
 
 function payloadStorageMode(permission: string): string {

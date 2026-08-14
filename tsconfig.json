@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "packages/contracts" },
+    { "path": "packages/normalization" },
     { "path": "packages/ingestion-domain" },
     { "path": "packages/source-adapters" },
     { "path": "packages/evaluation" },

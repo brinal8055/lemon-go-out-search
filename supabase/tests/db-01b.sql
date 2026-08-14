@@ -779,7 +779,7 @@ select throws_ok(
       source_record_version_id
     ) values (
       '10000000-0000-0000-0000-000000000601',
-      'Duplicate text', 'källalias', 'kallalias', 'sv', 'ALTERNATE',
+      'KÄLLALIAS', 'källalias', 'kallalias', 'sv', 'ALTERNATE',
       '10000000-0000-0000-0000-000000000401'
     )
   $$,
@@ -1246,7 +1246,7 @@ select throws_ok(
       taxonomy_node_id, language, alias, alias_norm, alias_ascii
     ) values (
       '10000000-0000-0000-0000-000000000902',
-      'sv', 'Bio salong', 'biograf', 'biograf'
+      'sv', 'BIOGRAF', 'biograf', 'biograf'
     )
   $$,
   '23505',
