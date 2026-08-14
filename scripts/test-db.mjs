@@ -13,6 +13,7 @@ const supportedSuites = new Map([
   ['provenance-redaction', 'supabase/tests/provenance-redaction.sql'],
   ['day1-pub-01', 'supabase/tests/day1-pub-01.sql'],
   ['search-known-item', 'supabase/tests/search-known-item.sql'],
+  ['search-discovery', 'supabase/tests/search-discovery.sql'],
   ['sec-01', 'supabase/tests/sec-01.sql'],
 ]);
 

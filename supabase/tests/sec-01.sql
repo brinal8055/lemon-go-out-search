@@ -122,7 +122,7 @@ select ok(
 );
 select is(
   (select count(*) from pg_policies where schemaname = 'app' and roles = '{lemon_api_owner}'),
-  9::bigint,
+  10::bigint,
   'lemon_api_owner has exactly the narrow read policies required by search'
 );
 
@@ -133,8 +133,8 @@ select is(
 );
 select is(
   (select version from app.search_configs where is_active),
-  'sec-01-known-item-v1',
-  'the deterministic known-item configuration is active'
+  'search-02-deterministic-v1',
+  'the deterministic discovery configuration is active'
 );
 select ok(
   (select is_active and public_search_enabled
@@ -169,7 +169,7 @@ select is(
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
     'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'sec-01-known-item-v1'
+    10::smallint, 'search-02-deterministic-v1'
   )),
   1::bigint,
   'service_role can execute the shaped RPC'
@@ -182,7 +182,7 @@ select is(
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
     'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'sec-01-known-item-v1'
+    10::smallint, 'search-02-deterministic-v1'
   )),
   'SEC Fixture Café',
   'the RPC returns the safe canonical display name'
@@ -196,7 +196,7 @@ select ok(
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
     'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'sec-01-known-item-v1'
+    10::smallint, 'search-02-deterministic-v1'
   )),
   'the deterministic slice reports no semantic use or degradation'
 );
@@ -208,7 +208,7 @@ select is(
     null, null, null, null,
     array['EVENT']::app.entity_type[], null, null, null::extensions.vector,
     'not-configured', 'not-configured', 'not-configured', 1,
-    10::smallint, 'sec-01-known-item-v1'
+    10::smallint, 'search-02-deterministic-v1'
   )),
   0::bigint,
   'an unsupported Event-only filter cannot leak Place results'
@@ -222,7 +222,7 @@ select throws_ok(
       null, 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'sec-01-known-item-v1'
+      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
     )
   $$,
   '22023',
@@ -235,7 +235,7 @@ select throws_ok(
       gen_random_uuid(), 'SEC Fixture Café', 'wrong', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'sec-01-known-item-v1'
+      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
     )
   $$,
   '22023',
@@ -261,7 +261,7 @@ select throws_ok(
       gen_random_uuid(), 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', 57.7, null, null, null,
       null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'sec-01-known-item-v1'
+      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
     )
   $$,
   '22023',
@@ -274,7 +274,7 @@ select throws_ok(
       gen_random_uuid(), 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 21::smallint, 'sec-01-known-item-v1'
+      'not-configured', 1, 21::smallint, 'search-02-deterministic-v1'
     )
   $$,
   '22023',
@@ -289,7 +289,7 @@ select throws_ok(
       'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'not-configured', 'not-configured',
-      'not-configured', 1, 10::smallint, 'sec-01-known-item-v1'
+      'not-configured', 1, 10::smallint, 'search-02-deterministic-v1'
     )
   $$,
   '42501',

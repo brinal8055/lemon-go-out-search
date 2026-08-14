@@ -82,7 +82,7 @@ describe('EDGE-01 search handler', () => {
       p_query_norm: 'evergreen restaurang pizzeria',
       p_query_ascii: 'evergreen restaurang pizzeria',
       p_query_vector: null,
-      p_search_config_version: 'sec-01-known-item-v1',
+      p_search_config_version: 'search-02-deterministic-v1',
     }));
     expect(body).toEqual({
       requestId: REQUEST_ID,
@@ -240,7 +240,7 @@ describe('EDGE-01 server RPC client', () => {
       p_embedding_revision: 'not-configured',
       p_embedding_dimension: 1,
       p_limit: 10,
-      p_search_config_version: 'sec-01-known-item-v1',
+      p_search_config_version: 'search-02-deterministic-v1',
     } satisfies SearchRpcParams;
 
     await client.schema('api').rpc('search_v1', params);

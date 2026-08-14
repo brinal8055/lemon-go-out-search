@@ -245,8 +245,7 @@ from (values
 ) as seed(taxonomy_node_id, language, alias)
 on conflict (taxonomy_node_id, language, alias_norm) do nothing;
 
--- SEC-01 activates one deterministic known-item-only configuration. Later search
--- packages version and supersede this row rather than mutating it in place.
+-- SEARCH-02 active deterministic discovery configuration.
 insert into app.search_configs (
   version, config_checksum, is_active,
   prefix_min_length, trigram_min_length, trigram_threshold,
@@ -259,8 +258,8 @@ insert into app.search_configs (
   chain_repetition_cap, event_venue_repetition_cap,
   activated_at, created_by, note
 ) values (
-  'sec-01-known-item-v1',
-  'f3c5b8503c13a14d57099881b2bd4f0b65a9a85255b38cd90c3895156ce228a9',
+  'search-02-deterministic-v1',
+  '2e5cf5050a1c3662436d12528a9f011a00525b7e02942c584042f2b5743c8d37',
   true,
   3, 4, 0.3,
   20, 20, 20, 20, 20, 20, 20,
@@ -270,7 +269,7 @@ insert into app.search_configs (
   '{}', 50000, false, '{}',
   1, 0.8, 2,
   2, 2,
-  '2026-08-14T00:00:00Z', 'SEC-01',
-  'Initial deterministic known-item boundary; semantic and later retrieval stages disabled.'
+  '2026-08-14T00:00:00Z', 'SEARCH-02',
+  'Deterministic exact, fuzzy, multilingual FTS, and taxonomy candidate stages.'
 )
 on conflict (version) do nothing;

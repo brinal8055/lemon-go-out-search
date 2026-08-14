@@ -59,7 +59,7 @@ const requestBody = JSON.stringify({
   p_embedding_revision: 'not-configured',
   p_embedding_dimension: 1,
   p_limit: 10,
-  p_search_config_version: 'sec-01-known-item-v1',
+  p_search_config_version: 'search-02-deterministic-v1',
 });
 
 const noKey = await fetch(rpcUrl, {
