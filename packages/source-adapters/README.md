@@ -16,3 +16,14 @@ Overpass. The live bounded command is:
 ```sh
 pnpm ingest:osm --scope a4b19b09-b272-5748-80ef-2c91d9d33ca6 --bounded
 ```
+
+`jonkoping-utegym.ts` is the SRC-02 municipal supplement. It is deliberately
+limited to the official Jönköpings kommun Utegym layer 41. Source identity is
+`layer-41/globalid/<lowercase GlobalID>`. The adapter requests EPSG:4326 from
+ArcGIS, retains only the reviewed factual envelope, and treats polling as
+`DELTA_ONLY` because the continuously updated layer has no published atomic
+snapshot contract.
+
+```sh
+pnpm ingest:municipal --layer utegym --scope a4b19b09-b272-5748-80ef-2c91d9d33ca6 --bounded
+```

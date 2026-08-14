@@ -43,6 +43,43 @@ insert into app.sources (
   credentials_secret_name = excluded.credentials_secret_name,
   enabled = excluded.enabled;
 
+insert into app.sources (
+  id, key, name, kind, base_url, licence, licence_url, terms_url, attribution,
+  persistence_permission, refresh_mode, rate_limit_requests,
+  rate_limit_window_seconds, adapter_version, credentials_secret_name, enabled
+) values (
+  '9722cb0d-17dd-4a8e-871b-1f0c46393e16',
+  'JONKOPING_MUNICIPAL_UTEGYM',
+  'Jönköpings kommun Utegym',
+  'MUNICIPAL',
+  'https://gis.jonkoping.se/arcgis/rest/services/open_data_digg/MapServer/41',
+  'CC0-1.0',
+  'https://creativecommons.org/publicdomain/zero/1.0/deed.sv',
+  'https://data-jonkoping.opendata.arcgis.com/',
+  'Jönköpings kommun',
+  'EXTRACTED_FIELDS_ONLY',
+  'DELTA_ONLY',
+  null,
+  null,
+  'jonkoping-utegym-arcgis-v1',
+  null,
+  true
+) on conflict (key) do update set
+  name = excluded.name,
+  kind = excluded.kind,
+  base_url = excluded.base_url,
+  licence = excluded.licence,
+  licence_url = excluded.licence_url,
+  terms_url = excluded.terms_url,
+  attribution = excluded.attribution,
+  persistence_permission = excluded.persistence_permission,
+  refresh_mode = excluded.refresh_mode,
+  rate_limit_requests = excluded.rate_limit_requests,
+  rate_limit_window_seconds = excluded.rate_limit_window_seconds,
+  adapter_version = excluded.adapter_version,
+  credentials_secret_name = excluded.credentials_secret_name,
+  enabled = excluded.enabled;
+
 insert into app.taxonomy_nodes (id, slug, parent_id, taxonomy_version, taxonomy_checksum, label_en, label_sv, depth, path, is_leaf, active) values
   ('27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1', 'food-and-dining', null, 'active-going-out.v1', 'ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2', 'Food & Dining', 'Mat och restauranger', '0', '{27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1}'::uuid[], false, true),
   ('15904283-fd01-5fc3-ac00-c42e62e8422e', 'dining', '27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1', 'active-going-out.v1', 'ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2', 'Dining', 'Restauranger', '1', '{27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1,15904283-fd01-5fc3-ac00-c42e62e8422e}'::uuid[], false, true),

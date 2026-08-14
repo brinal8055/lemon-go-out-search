@@ -8,6 +8,7 @@ const supportedSuites = new Map([
   ['db-02', 'supabase/tests/db-02.sql'],
   ['ref-01', 'supabase/tests/ref-01.sql'],
   ['src-01', 'supabase/tests/src-01.sql'],
+  ['src-02', 'supabase/tests/src-02.sql'],
   ['day1-pub-01', 'supabase/tests/day1-pub-01.sql'],
   ['search-known-item', 'supabase/tests/search-known-item.sql'],
   ['sec-01', 'supabase/tests/sec-01.sql'],

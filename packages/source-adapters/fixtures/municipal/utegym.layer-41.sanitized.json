@@ -1,0 +1,51 @@
+{
+  "spatialReference": { "wkid": 4326, "latestWkid": 4326 },
+  "features": [
+    {
+      "attributes": {
+        "OBJECTID": 1,
+        "GlobalID": "{F41A2453-A30B-4F6E-8EFC-275A5303A6BC}",
+        "name": "Axamobadet: utegym*",
+        "visit_url": "https://www.jonkoping.se/",
+        "street": null,
+        "house_number": null,
+        "postcode": null,
+        "city": null,
+        "phone": "+46-36-105000",
+        "andrad_datum": 1748345472000
+      },
+      "geometry": { "x": 14.063057590534296, "y": 57.77558532589883 }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 2,
+        "GlobalID": "{DE4FEE7D-B847-4089-A89B-FE0E1FF9A511}",
+        "name": "IF Hallby SOK: utegym*",
+        "visit_url": "https://www.jonkoping.se/",
+        "street": null,
+        "house_number": null,
+        "postcode": null,
+        "city": null,
+        "phone": "+46-36-105000",
+        "andrad_datum": 1748345472000
+      },
+      "geometry": { "x": 14.081823637563552, "y": 57.78504305164521 }
+    },
+    {
+      "attributes": {
+        "OBJECTID": 3,
+        "GlobalID": "{4A7315E8-EF59-4CAF-B4F9-EED3E14A3720}",
+        "name": "Jönköpings OK: utegym*",
+        "visit_url": "https://www.jonkoping.se/",
+        "street": null,
+        "house_number": null,
+        "postcode": null,
+        "city": null,
+        "phone": "+46-36-105000",
+        "andrad_datum": 1748345472000
+      },
+      "geometry": { "x": 14.090468769855846, "y": 57.69231508438181 }
+    }
+  ],
+  "exceededTransferLimit": false
+}

@@ -1,0 +1,19 @@
+{
+  "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+  "datasetTitle": "Utegym",
+  "publisher": "Jönköpings kommun",
+  "arcgisItemId": "1de92c84c958413fab16f37fa1e4fe86",
+  "layerId": 41,
+  "layerUrl": "https://gis.jonkoping.se/arcgis/rest/services/open_data_digg/MapServer/41",
+  "catalogUrl": "https://data-jonkoping.opendata.arcgis.com/",
+  "licence": "CC0-1.0",
+  "licenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.sv",
+  "attribution": "Jönköpings kommun",
+  "persistencePermission": "EXTRACTED_FIELDS_ONLY",
+  "refreshMode": "DELTA_ONLY",
+  "refreshSemantics": "Official metadata says continuous updates; no atomic complete-snapshot contract is published, so absence has no meaning.",
+  "externalKey": "layer-41/globalid/<lowercase GlobalID>",
+  "sourceCrs": "EPSG:3008 (SWEREF99 13 30)",
+  "requestCrs": "EPSG:4326 via ArcGIS outSR=4326",
+  "reviewedAt": "2026-08-14"
+}

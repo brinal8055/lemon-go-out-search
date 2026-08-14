@@ -13,6 +13,7 @@
     "env:check:deploy": "node --env-file-if-exists=.env.local scripts/check-env.mjs --target deploy",
     "eval:validate-corpus": "node scripts/validate-eval-corpus.mjs",
     "ingest:fixture": "node --experimental-strip-types packages/ingestion-domain/src/cli.ts",
+    "ingest:municipal": "node --experimental-strip-types packages/source-adapters/src/jonkoping-utegym-cli.ts",
     "ingest:osm": "node --experimental-strip-types packages/source-adapters/src/osm-cli.ts",
     "publish:first-place": "node --experimental-strip-types packages/ingestion-domain/src/publish-first-place-cli.ts",
     "typecheck": "tsc -b",
