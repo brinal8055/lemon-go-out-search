@@ -1,0 +1,13 @@
+{
+  "name": "@lemon/source-adapters",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./osm": "./src/osm.ts"
+  },
+  "types": "./src/osm.ts",
+  "dependencies": {
+    "@lemon/ingestion-domain": "workspace:*"
+  }
+}

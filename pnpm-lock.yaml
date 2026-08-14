@@ -66,6 +66,12 @@ importers:
         specifier: ^8.21.0
         version: 8.21.0
 
+  packages/source-adapters:
+    dependencies:
+      '@lemon/ingestion-domain':
+        specifier: workspace:*
+        version: link:../ingestion-domain
+
 packages:
 
   '@babel/code-frame@7.29.7':

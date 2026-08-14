@@ -78,9 +78,11 @@ export class PostgresIngestionStore implements IngestionStore {
         current_version_id: string | null;
         current_parse_attempt_id: string | null;
         selected_parser_version: string | null;
+        persistence_permission: string;
       }>(client, `
         select record.id, record.current_version_id, record.current_parse_attempt_id,
-               attempt.parser_version as selected_parser_version
+               attempt.parser_version as selected_parser_version,
+               source.persistence_permission
         from app.source_records as record
         join app.sources as source on source.id = record.source_id
         left join app.source_record_parse_attempts as attempt
@@ -103,7 +105,7 @@ export class PostgresIngestionStore implements IngestionStore {
           source_record_id, capture_run_id, content_hash, payload,
           payload_storage_mode, source_url, http_etag, http_last_modified,
           fetched_at, observed_at
-        ) values ($1, $2, $3, $4::jsonb, 'FULL_PAYLOAD', $5, $6, $7, $8, $9)
+        ) values ($1, $2, $3, $4::jsonb, $10, $5, $6, $7, $8, $9)
         on conflict (source_record_id, content_hash) do nothing
         returning id
       `, [
@@ -116,6 +118,7 @@ export class PostgresIngestionStore implements IngestionStore {
         observation.httpLastModified ?? null,
         observation.fetchedAt,
         observation.observedAt,
+        payloadStorageMode(record.persistence_permission),
       ]);
 
       const versionId = insertedVersion.rows[0]?.id ?? (await one<{ id: string }>(client, `
@@ -297,10 +300,10 @@ export class PostgresIngestionStore implements IngestionStore {
         await client.query(`
           insert into app.places (
             entity_id, location, street_address, postal_code, locality, status,
-            last_authoritative_observed_at
+            official_url, phone, opening_hours, last_authoritative_observed_at
           ) values (
             $1, extensions.st_setsrid(extensions.st_makepoint($3, $2), 4326)::extensions.geography,
-            $4, $5, $6, $7, $8
+            $4, $5, $6, $7, $8, $9, $10::jsonb, $11
           )
         `, [
           canonicalEntityId,
@@ -310,6 +313,9 @@ export class PostgresIngestionStore implements IngestionStore {
           input.candidate.place.postalCode ?? null,
           input.candidate.place.locality ?? null,
           input.candidate.place.status,
+          input.candidate.place.officialUrl ?? null,
+          input.candidate.place.phone ?? null,
+          input.candidate.place.openingHours ? JSON.stringify(input.candidate.place.openingHours) : null,
           input.candidate.observedAt,
         ]);
         await client.query(`
@@ -329,14 +335,16 @@ export class PostgresIngestionStore implements IngestionStore {
           update app.places
           set location = extensions.st_setsrid(extensions.st_makepoint($3, $2), 4326)::extensions.geography,
               street_address = $4, postal_code = $5, locality = $6, status = $7,
-              last_authoritative_observed_at = $8
+              official_url = $8, phone = $9, opening_hours = $10::jsonb,
+              last_authoritative_observed_at = $11
           where entity_id = $1
             and (
-              location, street_address, postal_code, locality, status,
+              location, street_address, postal_code, locality, status, official_url,
+              phone, opening_hours,
               last_authoritative_observed_at
             ) is distinct from (
               extensions.st_setsrid(extensions.st_makepoint($3, $2), 4326)::extensions.geography,
-              $4, $5, $6, $7, $8::timestamptz
+              $4, $5, $6, $7, $8, $9, $10::jsonb, $11::timestamptz
             )
         `, [
           canonicalEntityId,
@@ -346,6 +354,9 @@ export class PostgresIngestionStore implements IngestionStore {
           input.candidate.place.postalCode ?? null,
           input.candidate.place.locality ?? null,
           input.candidate.place.status,
+          input.candidate.place.officialUrl ?? null,
+          input.candidate.place.phone ?? null,
+          input.candidate.place.openingHours ? JSON.stringify(input.candidate.place.openingHours) : null,
           input.candidate.observedAt,
         ]);
         canonicalChanged = canonicalUpdate.rowCount === 1 || placeUpdate.rowCount === 1;
@@ -491,11 +502,10 @@ export async function ensureFixtureSource(
   connectionString: string,
   config: AdapterConfig,
 ): Promise<void> {
-  assertLocalDatabase(connectionString);
+  await prepareLocalIngestionRuntime(connectionString);
   const client = new Client({ connectionString });
   await client.connect();
   try {
-    await client.query('grant lemon_ingestion to postgres with set true');
     await client.query(`
       insert into app.sources (
         key, name, kind, licence, attribution, persistence_permission,
@@ -507,6 +517,17 @@ export async function ensureFixtureSource(
       set name = excluded.name, refresh_mode = excluded.refresh_mode,
           adapter_version = excluded.adapter_version, enabled = true
     `, [config.sourceKey, config.sourceName, config.refreshMode, config.adapterVersion]);
+  } finally {
+    await client.end();
+  }
+}
+
+export async function prepareLocalIngestionRuntime(connectionString: string): Promise<void> {
+  assertLocalDatabase(connectionString);
+  const client = new Client({ connectionString });
+  await client.connect();
+  try {
+    await client.query('grant lemon_ingestion to postgres with set true');
   } finally {
     await client.end();
   }
@@ -551,6 +572,13 @@ function normalizeName(value: string): string {
 
 function accentless(value: string): string {
   return value.normalize('NFKD').replace(/\p{M}/gu, '');
+}
+
+function payloadStorageMode(permission: string): string {
+  if (permission === 'FULL_PAYLOAD') return 'FULL_PAYLOAD';
+  if (permission === 'EXTRACTED_FIELDS_ONLY') return 'EXTRACTED_ENVELOPE';
+  if (permission === 'METADATA_ONLY') return 'METADATA_ENVELOPE';
+  throw new Error(`unsupported source persistence permission: ${permission}`);
 }
 
 function isNormalizedSourceRecord(value: unknown): value is NormalizedSourceRecord {

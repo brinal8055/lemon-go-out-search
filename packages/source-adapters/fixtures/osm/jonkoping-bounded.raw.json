@@ -1,0 +1,53 @@
+{
+  "acquiredAt": "2026-08-14T05:27:29.263Z",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "querySha256": "0425455f5a5ad38c7206461779efa5443f56b1d98695de2366bd548cd7927c90",
+  "elements": [
+    {
+      "type": "node",
+      "id": 2271410640,
+      "version": 4,
+      "timestamp": "2015-07-02T18:45:58Z",
+      "lat": 57.7793764,
+      "lon": 14.159859,
+      "tags": {
+        "name": "Sajens Mat & Möten",
+        "amenity": "restaurant",
+        "cuisine": "international",
+        "addr:city": "Jönköping",
+        "addr:country": "SE",
+        "addr:housenumber": "9",
+        "addr:postcode": "553 18",
+        "addr:street": "Gjuterigatan",
+        "opening_hours": "Mo-Fr 07:45-16:00"
+      }
+    },
+    {
+      "type": "node",
+      "id": 2271413648,
+      "version": 2,
+      "timestamp": "2019-03-05T14:58:05Z",
+      "lat": 57.7780921,
+      "lon": 14.1583465,
+      "tags": {
+        "name": "Tandori palace",
+        "amenity": "restaurant",
+        "cuisine": "indian",
+        "website": "https://www.tandooripalace.se/start.html"
+      }
+    },
+    {
+      "type": "node",
+      "id": 254912492,
+      "version": 7,
+      "timestamp": "2026-05-29T09:50:02Z",
+      "lat": 57.7793606,
+      "lon": 14.1570439,
+      "tags": {
+        "name": "Evergreen Restaurang & Pizzeria",
+        "amenity": "restaurant",
+        "contact:phone": "+46 36 16 30 32"
+      }
+    }
+  ]
+}

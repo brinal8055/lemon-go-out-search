@@ -28,6 +28,9 @@ export type PlaceCandidate = {
   streetAddress?: string;
   postalCode?: string;
   locality?: string;
+  officialUrl?: string;
+  phone?: string;
+  openingHours?: { raw: string };
   taxonomySlug?: string;
   resolution: 'NEW' | 'UNRESOLVED';
 };

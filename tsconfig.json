@@ -3,9 +3,9 @@
   "references": [
     { "path": "packages/contracts" },
     { "path": "packages/ingestion-domain" },
+    { "path": "packages/source-adapters" },
     { "path": "packages/evaluation" },
     { "path": "apps/mobile" },
     { "path": "supabase/functions/search" }
   ]
 }
-
