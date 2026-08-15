@@ -536,7 +536,11 @@ function validateFrozenInputs(
 ): void {
   if (corpus.length !== 60 || corpus.some(({ split }) => split !== 'DEV')) throw new Error('FULL_DEV_SELECTION_INVALID');
   if (judgments.status !== 'FROZEN' || judgments.split !== 'DEV' || judgments.records.length !== 60) throw new Error('FULL_DEV_JUDGMENTS_REQUIRED');
-  if (manifest.manifest_version !== 'dataset-manifest.day3-current.v2'
+  const acceptedPins = new Map([
+    ['dataset-manifest.day3-current.v2', 'judgments.day3.v1'],
+    ['dataset-manifest.day4-postcoverage.v2', 'judgments.day4-postcoverage.v1'],
+  ]);
+  if (!acceptedPins.has(manifest.manifest_version)
     || manifest.status !== 'FROZEN_FOR_HUMAN_REVIEW'
     || manifest.corpus.checksum !== checksums.corpusChecksum
     || manifest.corpus.dev_query_count !== 60
@@ -547,7 +551,8 @@ function validateFrozenInputs(
     || judgments.dataset_version !== manifest.canonical_dataset_version
     || judgments.taxonomy_checksum !== manifest.taxonomy.checksum
     || judgments.boundary_version !== manifest.boundary.version) throw new Error('FROZEN_INPUT_PIN_MISMATCH');
-  if (judgments.judgment_version !== 'judgments.day3.v1' || !checksums.judgmentChecksum) throw new Error('DAY3_JUDGMENT_VERSION_REQUIRED');
+  if (judgments.judgment_version !== acceptedPins.get(manifest.manifest_version)
+    || !checksums.judgmentChecksum) throw new Error('FROZEN_JUDGMENT_VERSION_REQUIRED');
   if (manifest.held_out_access.parsed_splits.join(',') !== 'DEV'
     || manifest.held_out_access.sealed_queries_executed !== 0
     || manifest.held_out_access.adversarial_queries_executed !== 0

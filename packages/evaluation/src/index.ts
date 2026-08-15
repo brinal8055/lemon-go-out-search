@@ -45,6 +45,11 @@ export type EvalJudgmentRecordV1 = {
   known_item_inventory_status?: 'TARGET_NOT_IN_FROZEN_DATASET' | 'TARGET_MATCHED' | 'NOT_APPLICABLE';
   primary_failure_attribution?: 'INVENTORY' | null;
   search_ranking_assessment?: 'EVALUATED' | 'NOT_EVALUATED';
+  approved_target_decision?: {
+    status: string;
+    matched_entity_ids: string[];
+    additional_highly_relevant_entity_ids?: string[];
+  } | null;
 };
 
 export type EvalJudgmentSetV1 = {
