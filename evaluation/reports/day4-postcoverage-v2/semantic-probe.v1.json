@@ -1,0 +1,185 @@
+{
+  "reportVersion": "postcov-semantic-probe.v1",
+  "label": "PRODUCTION_EQUIVALENT_700MS_PROBE",
+  "contract": {
+    "provider": "Voyage",
+    "model": "voyage-4",
+    "revision": "voyage-4-preflight-v1",
+    "dimension": 1024,
+    "inputType": "query",
+    "queryTemplate": "semantic-query-template-v1",
+    "providerTimeoutMs": 700,
+    "providerSpacingMs": 31000,
+    "concurrency": 1
+  },
+  "devQueryCount": 60,
+  "shouldEmbedCount": 26,
+  "shouldEmbedQueries": [
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-02",
+      "language": "sv",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-03",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-05",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-07",
+      "language": "mixed",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-01",
+      "language": "en",
+      "reason": "BROAD_DISCOVERY"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-02",
+      "language": "sv",
+      "reason": "BROAD_DISCOVERY"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-03",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-01",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-02",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-03",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-04",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-05",
+      "language": "en",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-06",
+      "language": "sv",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-09",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-10",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-11",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-12",
+      "language": "sv",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-13",
+      "language": "en",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-14",
+      "language": "sv",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-15",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-16",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-01",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-02",
+      "language": "en",
+      "reason": "BROAD_DISCOVERY"
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-03",
+      "language": "sv",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-01",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-02",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    }
+  ],
+  "connectionReuse": "NODE_GLOBAL_FETCH_SHARED_UNDICI_DISPATCHER",
+  "results": [
+    {
+      "queryId": "eval-v1-dev-broad-discovery-02",
+      "language": "sv",
+      "shouldEmbedReason": "BROAD_DISCOVERY",
+      "status": "SUCCESS",
+      "pacingWaitMs": 0,
+      "providerElapsedMs": 442.291791,
+      "providerTimeoutMs": 700,
+      "httpStatus": 200,
+      "reportedTokens": 11
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-05",
+      "language": "en",
+      "shouldEmbedReason": "OCCASION_INTENT",
+      "status": "SUCCESS",
+      "pacingWaitMs": 30560,
+      "providerElapsedMs": 417.3439580000013,
+      "providerTimeoutMs": 700,
+      "httpStatus": 200,
+      "reportedTokens": 7
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-06",
+      "language": "sv",
+      "shouldEmbedReason": "OCCASION_INTENT",
+      "status": "SUCCESS",
+      "pacingWaitMs": 30585,
+      "providerElapsedMs": 398.721000000005,
+      "providerTimeoutMs": 700,
+      "httpStatus": 200,
+      "reportedTokens": 13
+    }
+  ]
+}

@@ -14,6 +14,7 @@
     "eval:validate-corpus": "node scripts/validate-eval-corpus.mjs",
     "eval:dev": "node --experimental-strip-types packages/evaluation/src/evaluate-dev-cli.ts",
     "eval:dev:full": "node --env-file-if-exists=.env --experimental-strip-types scripts/eval03-full-dev.ts",
+    "eval:probe-semantic": "node --env-file-if-exists=.env --experimental-strip-types scripts/postcov-semantic-probe.ts",
     "eval:report:day3": "node --experimental-strip-types packages/evaluation/src/eval03-report-cli.ts",
     "eval:review-packet": "node --experimental-strip-types packages/evaluation/src/day2-review-cli.ts",
     "eval:review-packet-v1.1": "node --experimental-strip-types packages/evaluation/src/day2-review-v1-1-cli.ts",

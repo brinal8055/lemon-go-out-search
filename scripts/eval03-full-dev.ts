@@ -1,10 +1,13 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { createRequire } from 'node:module';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { performance } from 'node:perf_hooks';
 
-import { requestVoyageEmbedding } from '../packages/embedding/src/voyage-client.ts';
+import { requestVoyageEmbeddings } from '../packages/embedding/src/voyage-client.ts';
+import { classifyEvaluationProviderFailure } from '../packages/embedding/src/provider-diagnostics.ts';
+import { createHybridOperationalJournal } from '../packages/evaluation/src/hybrid-operational-journal.ts';
+import { createEvaluationProviderPacer } from '../packages/evaluation/src/provider-pacing.ts';
 import { metricsFor, stableJson, verifyChecksum } from '../packages/evaluation/src/dev-runner.ts';
 import type {
   EvalCorpusRecordV1,
@@ -51,6 +54,7 @@ type QueryResult = {
   searchRankingAssessment: 'EVALUATED' | 'NOT_EVALUATED';
   failureAttribution: FailureAttribution | null;
   semanticCandidateCount: number;
+  semanticCandidates: Array<{ entityId: string; rank: number; cosineDistance: number; cosineSimilarity: number }>;
   stages: Array<{ entityId: string; ranks: Record<string, number>; semanticPresent: boolean }>;
   nonCollapse: Array<{
     entityId: string;
@@ -76,6 +80,8 @@ const judgmentPath = resolve(requiredArg('--judgments'));
 const judgmentChecksumPath = resolve(requiredArg('--judgment-checksum'));
 const outputDirectory = resolve(requiredArg('--output'));
 if (requiredArg('--config') !== 'eval-03-baseline.v1') throw new Error('BASELINE_CONFIG_REQUIRED');
+const providerSpacingMs = Number(optionalArg('--provider-spacing-ms') ?? '31000');
+if (!Number.isInteger(providerSpacingMs) || providerSpacingMs < 31_000) throw new Error('PROVIDER_SPACING_UNSAFE');
 
 const [corpusText, corpusChecksumText, manifestText, manifestChecksumText, judgmentText, judgmentChecksumText] = await Promise.all([
   readFile(corpusUrl, 'utf8'),
@@ -100,23 +106,85 @@ validateFrozenInputs(corpus, judgments, manifest, {
   judgmentChecksum: judgmentChecksumText.trim(),
 });
 
+const journal = mode === 'HYBRID'
+  ? createHybridOperationalJournal({ directory: outputDirectory, runId: randomUUID() })
+  : null;
+let activeQueryId = '';
+let activeRecord: EvalCorpusRecordV1 | null = null;
+let providerCallOrdinal = 0;
 const database = new pg.Client({ connectionString });
-await database.connect();
+await journal?.start();
+let databaseConnected = false;
 try {
+  await database.connect();
+  databaseConnected = true;
   await verifyCurrentDatabase(database, manifest);
   const telemetry = new Map<string, SearchTelemetry>();
   const operational = new Map<string, { dbLatencyMs: number; requestLatencyMs: number }>();
   const rankedRows = new Map<string, RankedRow[]>();
-  let activeQueryId = '';
-  const rpcClient = createEvaluationRpcClient(database, manifest.evaluation_clock_utc, rankedRows, operational, () => activeQueryId);
+  const semanticRows = new Map<string, SemanticCandidateRow[]>();
+  const queryVectorFingerprints = new Map<string, string>();
+  const rpcClient = createEvaluationRpcClient(
+    database, manifest.evaluation_clock_utc, rankedRows, semanticRows, operational, () => activeQueryId,
+  );
   const voyageApiKey = process.env.VOYAGE_API_KEY;
+  const providerPacer = mode === 'HYBRID' && voyageApiKey ? createEvaluationProviderPacer({
+    spacingMs: providerSpacingMs,
+    request: async (input, timeoutMs) => {
+      const providerInvocationStartedAt = new Date().toISOString();
+      const startedAt = performance.now();
+      const ordinal = ++providerCallOrdinal;
+      let httpStatus: number | null = null;
+      try {
+        const result = await requestVoyageEmbeddings([input], 'query', voyageApiKey, {
+          timeoutMs,
+          fetch: async (...fetchArgs: Parameters<typeof fetch>) => {
+            const response = await fetch(...fetchArgs);
+            httpStatus = response.status;
+            return response;
+          },
+        });
+        const embedding = result.embeddings[0];
+        const fingerprint = fingerprintQueryVector(embedding);
+        if (fingerprint) queryVectorFingerprints.set(activeQueryId, fingerprint);
+        await journal?.recordProviderAttempt({
+          queryId: activeQueryId,
+          language: activeRecord?.language ?? 'unknown',
+          shouldEmbed: true,
+          providerCallOrdinal: ordinal,
+          queryVectorFingerprint: fingerprint,
+          providerInvocationStartedAt,
+          providerElapsedMs: performance.now() - startedAt,
+          outcome: 'SUCCESS',
+          httpStatus,
+          providerErrorCategory: null,
+        });
+        return { embedding, totalTokens: result.totalTokens };
+      } catch (error) {
+        const failure = classifyEvaluationProviderFailure(error, httpStatus);
+        await journal?.recordProviderAttempt({
+          queryId: activeQueryId,
+          language: activeRecord?.language ?? 'unknown',
+          shouldEmbed: true,
+          providerCallOrdinal: ordinal,
+          queryVectorFingerprint: null,
+          providerInvocationStartedAt,
+          providerElapsedMs: performance.now() - startedAt,
+          outcome: failure.outcome,
+          httpStatus,
+          providerErrorCategory: failure.category,
+        });
+        throw error;
+      }
+    },
+  }) : null;
   const handler = createSearchHandler({
     client: rpcClient,
     semanticEnabled: mode === 'HYBRID',
     clock: () => new Date(manifest.evaluation_clock_utc),
     randomUUID: () => deterministicUuid(activeQueryId),
-    ...(mode === 'HYBRID' && voyageApiKey
-      ? { queryEmbedder: (input: string, timeoutMs: number) => requestVoyageEmbedding(input, 'query', voyageApiKey, { timeoutMs }) }
+    ...(providerPacer
+      ? { queryEmbedder: providerPacer.embed }
       : {}),
     telemetry: (event) => telemetry.set(activeQueryId, event),
   });
@@ -124,6 +192,8 @@ try {
   const queries: QueryResult[] = [];
   for (const record of corpus) {
     activeQueryId = record.query_id;
+    activeRecord = record;
+    await journal?.setNextQuery(record.query_id);
     const requestStartedAt = performance.now();
     const response = await handler(new Request('http://eval.local/search', {
       method: 'POST',
@@ -152,6 +222,13 @@ try {
     const relevantMiss = relevantEntityRanks.some(({ rank }) => rank === null || rank > 20);
     const event = telemetry.get(record.query_id);
     if (!event) throw new Error(`SEARCH_TELEMETRY_MISSING:${record.query_id}`);
+    await journal?.recordSearchOutcome({
+      queryId: record.query_id,
+      providerCallOrdinal: providerPacer && event.semanticAttempted ? providerCallOrdinal : 0,
+      semanticCandidateCount: event.semanticCandidateCount,
+      semanticDegraded: event.semanticDegraded,
+    });
+    if (mode === 'HYBRID' && event.semanticDegraded) throw new Error(`HYBRID_PROVIDER_DEGRADED:${record.query_id}:${event.degradationReason}`);
     const rows = rankedRows.get(record.query_id) ?? [];
     queries.push({
       queryId: record.query_id,
@@ -168,6 +245,12 @@ try {
       failureAttribution: unavailable ? 'INVENTORY' : noEligible ? 'ELIGIBILITY'
         : relevantMiss ? 'CANDIDATE_RETRIEVAL' : null,
       semanticCandidateCount: event.semanticCandidateCount,
+      semanticCandidates: (semanticRows.get(record.query_id) ?? []).map((row) => ({
+        entityId: row.entity_id,
+        rank: row.candidate_rank,
+        cosineDistance: row.cosine_distance,
+        cosineSimilarity: row.cosine_similarity,
+      })),
       stages: rows.map((row) => ({
         entityId: row.entity_id,
         ranks: row.stage_ranks,
@@ -186,6 +269,7 @@ try {
         eventVenueGroupKey: row.event_venue_group_key,
       })),
     });
+    await journal?.markQueryCompleted(record.query_id);
   }
   const reportWithoutChecksum = buildReport(mode, corpus, judgments, manifest, {
     corpusChecksum: corpusChecksumText.trim(),
@@ -203,11 +287,13 @@ try {
     providerDegradationCount: telemetryRows.filter(({ semanticDegraded }) => semanticDegraded).length,
     providerAttemptCount: telemetryRows.filter(({ semanticAttempted }) => semanticAttempted).length,
     providerSuccessCount: telemetryRows.filter(({ semanticSuccess }) => semanticSuccess).length,
+    providerPacing: providerPacer?.snapshot() ?? null,
     databaseLatencyMs: percentiles(timings.map(({ dbLatencyMs }) => dbLatencyMs)),
     requestLatencyMs: percentiles(timings.map(({ requestLatencyMs }) => requestLatencyMs)),
     queries: timings.map((timing) => ({
       ...timing,
       semantic: telemetryRows.find(({ queryId }) => queryId === timing.queryId),
+      queryVectorFingerprint: queryVectorFingerprints.get(timing.queryId) ?? null,
     })),
   };
   await mkdir(outputDirectory, { recursive: true });
@@ -216,6 +302,7 @@ try {
     writeNew(resolve(outputDirectory, 'dev-result.v1.md'), renderResultMarkdown(report)),
     writeNew(resolve(outputDirectory, 'operational.v1.json'), `${JSON.stringify(operationalReport, null, 2)}\n`),
   ]);
+  await journal?.complete(['dev-result.v1.json', 'dev-result.v1.md', 'operational.v1.json']);
   console.log(JSON.stringify({
     mode,
     queries: queries.length,
@@ -226,8 +313,11 @@ try {
     ndcgAt5: report.overall.metrics.ndcgAt5.value,
     providerDegradationCount: operationalReport.providerDegradationCount,
   }));
+} catch (error) {
+  await journal?.fail(evaluationFailureCategory(error));
+  throw error;
 } finally {
-  await database.end();
+  if (databaseConnected) await database.end();
 }
 
 type Day3Manifest = {
@@ -274,10 +364,18 @@ type RankedRow = SearchRpcRow & {
   event_venue_group_key: string | null;
 };
 
+type SemanticCandidateRow = {
+  entity_id: string;
+  candidate_rank: number;
+  cosine_distance: number;
+  cosine_similarity: number;
+};
+
 function createEvaluationRpcClient(
   database: PgClient,
   evaluationClock: string,
   rankedRows: Map<string, RankedRow[]>,
+  semanticRows: Map<string, SemanticCandidateRow[]>,
   operational: Map<string, { dbLatencyMs: number; requestLatencyMs: number }>,
   activeQueryId: () => string,
 ): SearchRpcClient {
@@ -290,7 +388,11 @@ function createEvaluationRpcClient(
           const startedAt = performance.now();
           try {
             const result = await database.query<RankedRow>(rankingSql(), rankingParams(params, evaluationClock));
+            const semantic = await database.query<SemanticCandidateRow>(
+              semanticCandidateSql(), semanticCandidateParams(params, evaluationClock),
+            );
             rankedRows.set(activeQueryId(), result.rows);
+            semanticRows.set(activeQueryId(), semantic.rows);
             return { data: result.rows, error: null };
           } catch (error) {
             console.error(`EVAL_DB_QUERY_FAILED:${activeQueryId()}:${error instanceof Error ? error.message : 'unknown'}`);
@@ -366,6 +468,27 @@ function rankingParams(params: SearchRpcParams, evaluationClock: string): unknow
     params.p_query, params.p_scope_id, evaluationClock, params.p_latitude, params.p_longitude,
     params.p_radius_m, params.p_taxonomy_node_id, params.p_entity_types,
     params.p_time_start, params.p_time_end, params.p_query_vector, params.p_search_config_version,
+  ];
+}
+
+function semanticCandidateSql(): string {
+  return `select canonical_entity_id::text as entity_id, candidate_rank, cosine_distance, cosine_similarity
+from app.search_semantic_candidates(
+  $1::extensions.vector, $2::uuid, $3::timestamptz,
+  (select event_horizon_days from app.search_configs where is_active),
+  (select event_freshness_by_source from app.search_configs where is_active),
+  $4::timestamptz, $5::timestamptz, $6::double precision, $7::double precision,
+  $8::integer, $9::uuid, $10::app.entity_type[], 'voyage', 'voyage-4',
+  'voyage-4-preflight-v1', 1024,
+  (select semantic_cap from app.search_configs where is_active)
+) order by candidate_rank`;
+}
+
+function semanticCandidateParams(params: SearchRpcParams, evaluationClock: string): unknown[] {
+  return [
+    params.p_query_vector, params.p_scope_id, evaluationClock,
+    params.p_time_start, params.p_time_end, params.p_latitude, params.p_longitude,
+    params.p_radius_m, params.p_taxonomy_node_id, params.p_entity_types,
   ];
 }
 
@@ -595,11 +718,29 @@ function percentiles(values: number[]) {
   return { count: sorted.length, p50: percentile(0.5), p95: percentile(0.95), max: sorted.at(-1) ?? null };
 }
 
+function fingerprintQueryVector(value: unknown): string | null {
+  if (!Array.isArray(value) || !value.every((component) => typeof component === 'number' && Number.isFinite(component))) return null;
+  return createHash('sha256').update(Buffer.from(new Float32Array(value).buffer)).digest('hex');
+}
+
+function evaluationFailureCategory(error: unknown): string {
+  if (!(error instanceof Error)) return 'UNEXPECTED_EVALUATION_EXCEPTION';
+  if (error.message.startsWith('HYBRID_PROVIDER_DEGRADED:')) return 'SEMANTIC_DEGRADED';
+  if (error.message.startsWith('SEARCH_EXECUTION_FAILED:')) return 'SEARCH_EXECUTION_FAILED';
+  if (error.message.startsWith('CURRENT_DATABASE_')) return 'FROZEN_INPUT_OR_DATABASE_MISMATCH';
+  return error.message.split(':', 1)[0] || 'EVALUATION_EXCEPTION';
+}
+
 function requiredArg(name: string): string {
   const prefix = `${name}=`;
   const value = args.find((argument) => argument.startsWith(prefix))?.slice(prefix.length);
   if (!value) throw new Error(`${name.slice(2).replaceAll('-', '_').toUpperCase()}_REQUIRED`);
   return value;
+}
+
+function optionalArg(name: string): string | undefined {
+  const prefix = `${name}=`;
+  return args.find((argument) => argument.startsWith(prefix))?.slice(prefix.length);
 }
 
 async function writeNew(path: string, value: string): Promise<void> {

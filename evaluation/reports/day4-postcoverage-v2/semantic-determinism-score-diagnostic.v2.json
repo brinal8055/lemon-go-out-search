@@ -1,0 +1,1647 @@
+{
+  "reportVersion": "postcov-semantic-probe.v1",
+  "label": "PRODUCTION_EQUIVALENT_700MS_PROBE",
+  "contract": {
+    "provider": "Voyage",
+    "model": "voyage-4",
+    "revision": "voyage-4-preflight-v1",
+    "dimension": 1024,
+    "inputType": "query",
+    "queryTemplate": "semantic-query-template-v1",
+    "providerTimeoutMs": 700,
+    "providerSpacingMs": 31000,
+    "concurrency": 1
+  },
+  "devQueryCount": 60,
+  "shouldEmbedCount": 26,
+  "shouldEmbedQueries": [
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-02",
+      "language": "sv",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-03",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-05",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-07",
+      "language": "mixed",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-01",
+      "language": "en",
+      "reason": "BROAD_DISCOVERY"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-02",
+      "language": "sv",
+      "reason": "BROAD_DISCOVERY"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-03",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-01",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-02",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-03",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-04",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-05",
+      "language": "en",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-06",
+      "language": "sv",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-09",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-10",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-11",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-12",
+      "language": "sv",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-13",
+      "language": "en",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-14",
+      "language": "sv",
+      "reason": "OCCASION_INTENT"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-15",
+      "language": "en",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-16",
+      "language": "sv",
+      "reason": "UNCERTAIN_MULTI_TOKEN"
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-01",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-02",
+      "language": "en",
+      "reason": "BROAD_DISCOVERY"
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-03",
+      "language": "sv",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-01",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-02",
+      "language": "en",
+      "reason": "MIXED_CONSTRAINTS"
+    }
+  ],
+  "connectionReuse": "NODE_GLOBAL_FETCH_SHARED_UNDICI_DISPATCHER",
+  "results": [
+    {
+      "queryId": "eval-v1-dev-broad-discovery-03",
+      "language": "en",
+      "shouldEmbedReason": "MIXED_CONSTRAINTS",
+      "status": "SUCCESS",
+      "pacingWaitMs": 0,
+      "providerElapsedMs": 455.41308300000003,
+      "providerTimeoutMs": 700,
+      "httpStatus": 200,
+      "reportedTokens": 4,
+      "providerInputFingerprint": "91ee76a026deaa0b200b3992c196b8707f9ed10c25153633b5226e74c269a621",
+      "queryVectorFingerprint": "1143d98d617e3b857aa1357551c307a4d5928c774399abb8ac492cfd448616ee",
+      "rankingDiagnostics": {
+        "semanticCandidates": [
+          {
+            "entity_id": "0ef096bf-7221-4d50-b38e-4f87de7cd948",
+            "candidate_rank": 1,
+            "cosine_distance": 0.584887005249823,
+            "cosine_similarity": 0.415112994750177
+          },
+          {
+            "entity_id": "f86894f6-5b9c-4680-b7bf-c9eefbc564ea",
+            "candidate_rank": 2,
+            "cosine_distance": 0.603389847379606,
+            "cosine_similarity": 0.396610152620394
+          },
+          {
+            "entity_id": "4afdd23d-b0e2-454f-9965-7e3ae78db52e",
+            "candidate_rank": 3,
+            "cosine_distance": 0.603518222923702,
+            "cosine_similarity": 0.396481777076298
+          },
+          {
+            "entity_id": "9f323d3b-0635-49a5-8f98-c5c3a5e73c45",
+            "candidate_rank": 4,
+            "cosine_distance": 0.60748816594693,
+            "cosine_similarity": 0.39251183405307
+          },
+          {
+            "entity_id": "ab57735c-8125-459b-acf7-4ddc002aa0a4",
+            "candidate_rank": 5,
+            "cosine_distance": 0.607528018054003,
+            "cosine_similarity": 0.392471981945997
+          },
+          {
+            "entity_id": "7c1a70e3-d313-4e8d-8571-ad622ce1e9d2",
+            "candidate_rank": 6,
+            "cosine_distance": 0.608216272805179,
+            "cosine_similarity": 0.391783727194821
+          },
+          {
+            "entity_id": "ad7415f4-102b-4ca2-94a7-513789a0ca93",
+            "candidate_rank": 7,
+            "cosine_distance": 0.609183709171346,
+            "cosine_similarity": 0.390816290828654
+          },
+          {
+            "entity_id": "d9886bb1-19f5-442a-ac30-0bc6a446e174",
+            "candidate_rank": 8,
+            "cosine_distance": 0.609498749464973,
+            "cosine_similarity": 0.390501250535027
+          },
+          {
+            "entity_id": "ad5032c9-9957-4e32-825d-2ab53338985c",
+            "candidate_rank": 9,
+            "cosine_distance": 0.609869705454143,
+            "cosine_similarity": 0.390130294545857
+          },
+          {
+            "entity_id": "80e3e763-fc67-41a0-8866-92550b5515e7",
+            "candidate_rank": 10,
+            "cosine_distance": 0.610092434861079,
+            "cosine_similarity": 0.389907565138921
+          },
+          {
+            "entity_id": "e6141308-0a3f-4666-8ff6-87c6ae9dccb7",
+            "candidate_rank": 11,
+            "cosine_distance": 0.610252784460448,
+            "cosine_similarity": 0.389747215539552
+          },
+          {
+            "entity_id": "35a6faa0-1448-476b-91d4-bc7473f582ce",
+            "candidate_rank": 12,
+            "cosine_distance": 0.610879967651372,
+            "cosine_similarity": 0.389120032348628
+          },
+          {
+            "entity_id": "e28fae27-183b-4356-9a24-d04193986845",
+            "candidate_rank": 13,
+            "cosine_distance": 0.614729636029617,
+            "cosine_similarity": 0.385270363970383
+          },
+          {
+            "entity_id": "96470807-3e19-48ce-b914-fafa0fb4ce03",
+            "candidate_rank": 14,
+            "cosine_distance": 0.615861120018692,
+            "cosine_similarity": 0.384138879981308
+          },
+          {
+            "entity_id": "2306bccd-fc6b-43cb-96d7-701f60e3a647",
+            "candidate_rank": 15,
+            "cosine_distance": 0.616007486103626,
+            "cosine_similarity": 0.383992513896374
+          },
+          {
+            "entity_id": "08f00d26-c360-4dd8-bedd-04c339820ad3",
+            "candidate_rank": 16,
+            "cosine_distance": 0.618595764804389,
+            "cosine_similarity": 0.381404235195611
+          },
+          {
+            "entity_id": "89e1894a-0864-4e8a-bff4-b6ee6c45aa19",
+            "candidate_rank": 17,
+            "cosine_distance": 0.619204268550361,
+            "cosine_similarity": 0.380795731449639
+          },
+          {
+            "entity_id": "4ece0d85-7be5-4ad8-8f87-bb6e21980b54",
+            "candidate_rank": 18,
+            "cosine_distance": 0.620524690088664,
+            "cosine_similarity": 0.379475309911336
+          },
+          {
+            "entity_id": "9cb9dbb6-aeb4-4ad5-b682-43de25e237b4",
+            "candidate_rank": 19,
+            "cosine_distance": 0.621866062657108,
+            "cosine_similarity": 0.378133937342892
+          },
+          {
+            "entity_id": "539fd5da-85e9-414a-8a53-a80fde313dce",
+            "candidate_rank": 20,
+            "cosine_distance": 0.622185275294149,
+            "cosine_similarity": 0.377814724705851
+          },
+          {
+            "entity_id": "24c09f45-1824-4437-baf6-c5a070a0e064",
+            "candidate_rank": 21,
+            "cosine_distance": 0.623440690617437,
+            "cosine_similarity": 0.376559309382563
+          },
+          {
+            "entity_id": "57f5cec2-920e-4d4b-8472-a7c686fd1d7d",
+            "candidate_rank": 22,
+            "cosine_distance": 0.623713027724227,
+            "cosine_similarity": 0.376286972275773
+          },
+          {
+            "entity_id": "af499320-24de-47fc-a143-7c7f0bbc2b20",
+            "candidate_rank": 23,
+            "cosine_distance": 0.625666662971176,
+            "cosine_similarity": 0.374333337028824
+          },
+          {
+            "entity_id": "11c5824b-96a5-4696-9941-ef1a443d5fde",
+            "candidate_rank": 24,
+            "cosine_distance": 0.630901981321023,
+            "cosine_similarity": 0.369098018678977
+          },
+          {
+            "entity_id": "b35a633f-2e51-42ce-a586-0fb13068291c",
+            "candidate_rank": 25,
+            "cosine_distance": 0.632554499493957,
+            "cosine_similarity": 0.367445500506043
+          },
+          {
+            "entity_id": "a81d014b-4a2a-4bd7-8dbc-a7badaa6474b",
+            "candidate_rank": 26,
+            "cosine_distance": 0.63420713528267,
+            "cosine_similarity": 0.36579286471733
+          },
+          {
+            "entity_id": "57825a9d-bf37-4b91-922a-2588cb34f90f",
+            "candidate_rank": 27,
+            "cosine_distance": 0.64542522539491,
+            "cosine_similarity": 0.35457477460509
+          },
+          {
+            "entity_id": "0f1f767c-b59f-40dc-9ed9-ebdab5b3ff9a",
+            "candidate_rank": 28,
+            "cosine_distance": 0.650959783563666,
+            "cosine_similarity": 0.349040216436334
+          },
+          {
+            "entity_id": "a2d481cf-d49e-4f53-bb78-197166034eaa",
+            "candidate_rank": 29,
+            "cosine_distance": 0.652140995732481,
+            "cosine_similarity": 0.347859004267519
+          },
+          {
+            "entity_id": "ad091f3a-8f76-4aa5-9efd-ed26ca8577f8",
+            "candidate_rank": 30,
+            "cosine_distance": 0.653106999026892,
+            "cosine_similarity": 0.346893000973108
+          }
+        ],
+        "semanticRepeatStable": true,
+        "rankedSemanticCandidates": [
+          {
+            "entity_id": "0ef096bf-7221-4d50-b38e-4f87de7cd948",
+            "semantic_rank": 1,
+            "rrf_score": "0.01639344262295081967",
+            "rrf_contributions": [
+              {
+                "rank": 1,
+                "stage": "SEMANTIC",
+                "contribution": 0.01639344262295082
+              }
+            ],
+            "pre_protection_fused_rank": 1,
+            "base_rank": 1,
+            "final_rank": 1,
+            "tie_break_key": "0ef096bf-7221-4d50-b38e-4f87de7cd948",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "f86894f6-5b9c-4680-b7bf-c9eefbc564ea",
+            "semantic_rank": 2,
+            "rrf_score": "0.01612903225806451613",
+            "rrf_contributions": [
+              {
+                "rank": 2,
+                "stage": "SEMANTIC",
+                "contribution": 0.016129032258064516
+              }
+            ],
+            "pre_protection_fused_rank": 2,
+            "base_rank": 2,
+            "final_rank": 2,
+            "tie_break_key": "f86894f6-5b9c-4680-b7bf-c9eefbc564ea",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "4afdd23d-b0e2-454f-9965-7e3ae78db52e",
+            "semantic_rank": 3,
+            "rrf_score": "0.01587301587301587302",
+            "rrf_contributions": [
+              {
+                "rank": 3,
+                "stage": "SEMANTIC",
+                "contribution": 0.015873015873015872
+              }
+            ],
+            "pre_protection_fused_rank": 3,
+            "base_rank": 3,
+            "final_rank": 3,
+            "tie_break_key": "4afdd23d-b0e2-454f-9965-7e3ae78db52e",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "9f323d3b-0635-49a5-8f98-c5c3a5e73c45",
+            "semantic_rank": 4,
+            "rrf_score": "0.01562500000000000000",
+            "rrf_contributions": [
+              {
+                "rank": 4,
+                "stage": "SEMANTIC",
+                "contribution": 0.015625
+              }
+            ],
+            "pre_protection_fused_rank": 4,
+            "base_rank": 4,
+            "final_rank": 4,
+            "tie_break_key": "9f323d3b-0635-49a5-8f98-c5c3a5e73c45",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "ab57735c-8125-459b-acf7-4ddc002aa0a4",
+            "semantic_rank": 5,
+            "rrf_score": "0.01538461538461538462",
+            "rrf_contributions": [
+              {
+                "rank": 5,
+                "stage": "SEMANTIC",
+                "contribution": 0.015384615384615385
+              }
+            ],
+            "pre_protection_fused_rank": 5,
+            "base_rank": 5,
+            "final_rank": 5,
+            "tie_break_key": "ab57735c-8125-459b-acf7-4ddc002aa0a4",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "7c1a70e3-d313-4e8d-8571-ad622ce1e9d2",
+            "semantic_rank": 6,
+            "rrf_score": "0.01515151515151515152",
+            "rrf_contributions": [
+              {
+                "rank": 6,
+                "stage": "SEMANTIC",
+                "contribution": 0.015151515151515152
+              }
+            ],
+            "pre_protection_fused_rank": 6,
+            "base_rank": 6,
+            "final_rank": 6,
+            "tie_break_key": "7c1a70e3-d313-4e8d-8571-ad622ce1e9d2",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "ad7415f4-102b-4ca2-94a7-513789a0ca93",
+            "semantic_rank": 7,
+            "rrf_score": "0.01492537313432835821",
+            "rrf_contributions": [
+              {
+                "rank": 7,
+                "stage": "SEMANTIC",
+                "contribution": 0.014925373134328358
+              }
+            ],
+            "pre_protection_fused_rank": 7,
+            "base_rank": 7,
+            "final_rank": 7,
+            "tie_break_key": "ad7415f4-102b-4ca2-94a7-513789a0ca93",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "d9886bb1-19f5-442a-ac30-0bc6a446e174",
+            "semantic_rank": 8,
+            "rrf_score": "0.01470588235294117647",
+            "rrf_contributions": [
+              {
+                "rank": 8,
+                "stage": "SEMANTIC",
+                "contribution": 0.014705882352941176
+              }
+            ],
+            "pre_protection_fused_rank": 8,
+            "base_rank": 8,
+            "final_rank": 8,
+            "tie_break_key": "d9886bb1-19f5-442a-ac30-0bc6a446e174",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "ad5032c9-9957-4e32-825d-2ab53338985c",
+            "semantic_rank": 9,
+            "rrf_score": "0.01449275362318840580",
+            "rrf_contributions": [
+              {
+                "rank": 9,
+                "stage": "SEMANTIC",
+                "contribution": 0.014492753623188406
+              }
+            ],
+            "pre_protection_fused_rank": 9,
+            "base_rank": 9,
+            "final_rank": 9,
+            "tie_break_key": "ad5032c9-9957-4e32-825d-2ab53338985c",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "80e3e763-fc67-41a0-8866-92550b5515e7",
+            "semantic_rank": 10,
+            "rrf_score": "0.01428571428571428571",
+            "rrf_contributions": [
+              {
+                "rank": 10,
+                "stage": "SEMANTIC",
+                "contribution": 0.014285714285714285
+              }
+            ],
+            "pre_protection_fused_rank": 10,
+            "base_rank": 10,
+            "final_rank": 10,
+            "tie_break_key": "80e3e763-fc67-41a0-8866-92550b5515e7",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "e6141308-0a3f-4666-8ff6-87c6ae9dccb7",
+            "semantic_rank": 11,
+            "rrf_score": "0.01408450704225352113",
+            "rrf_contributions": [
+              {
+                "rank": 11,
+                "stage": "SEMANTIC",
+                "contribution": 0.014084507042253521
+              }
+            ],
+            "pre_protection_fused_rank": 11,
+            "base_rank": 11,
+            "final_rank": 11,
+            "tie_break_key": "e6141308-0a3f-4666-8ff6-87c6ae9dccb7",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "35a6faa0-1448-476b-91d4-bc7473f582ce",
+            "semantic_rank": 12,
+            "rrf_score": "0.01388888888888888889",
+            "rrf_contributions": [
+              {
+                "rank": 12,
+                "stage": "SEMANTIC",
+                "contribution": 0.013888888888888888
+              }
+            ],
+            "pre_protection_fused_rank": 12,
+            "base_rank": 12,
+            "final_rank": 12,
+            "tie_break_key": "35a6faa0-1448-476b-91d4-bc7473f582ce",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "e28fae27-183b-4356-9a24-d04193986845",
+            "semantic_rank": 13,
+            "rrf_score": "0.01369863013698630137",
+            "rrf_contributions": [
+              {
+                "rank": 13,
+                "stage": "SEMANTIC",
+                "contribution": 0.0136986301369863
+              }
+            ],
+            "pre_protection_fused_rank": 13,
+            "base_rank": 13,
+            "final_rank": 13,
+            "tie_break_key": "e28fae27-183b-4356-9a24-d04193986845",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "96470807-3e19-48ce-b914-fafa0fb4ce03",
+            "semantic_rank": 14,
+            "rrf_score": "0.01351351351351351351",
+            "rrf_contributions": [
+              {
+                "rank": 14,
+                "stage": "SEMANTIC",
+                "contribution": 0.013513513513513514
+              }
+            ],
+            "pre_protection_fused_rank": 14,
+            "base_rank": 14,
+            "final_rank": 14,
+            "tie_break_key": "96470807-3e19-48ce-b914-fafa0fb4ce03",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "2306bccd-fc6b-43cb-96d7-701f60e3a647",
+            "semantic_rank": 15,
+            "rrf_score": "0.01333333333333333333",
+            "rrf_contributions": [
+              {
+                "rank": 15,
+                "stage": "SEMANTIC",
+                "contribution": 0.013333333333333334
+              }
+            ],
+            "pre_protection_fused_rank": 15,
+            "base_rank": 15,
+            "final_rank": 15,
+            "tie_break_key": "2306bccd-fc6b-43cb-96d7-701f60e3a647",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "08f00d26-c360-4dd8-bedd-04c339820ad3",
+            "semantic_rank": 16,
+            "rrf_score": "0.01315789473684210526",
+            "rrf_contributions": [
+              {
+                "rank": 16,
+                "stage": "SEMANTIC",
+                "contribution": 0.013157894736842105
+              }
+            ],
+            "pre_protection_fused_rank": 16,
+            "base_rank": 16,
+            "final_rank": 16,
+            "tie_break_key": "08f00d26-c360-4dd8-bedd-04c339820ad3",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "89e1894a-0864-4e8a-bff4-b6ee6c45aa19",
+            "semantic_rank": 17,
+            "rrf_score": "0.01298701298701298701",
+            "rrf_contributions": [
+              {
+                "rank": 17,
+                "stage": "SEMANTIC",
+                "contribution": 0.012987012987012988
+              }
+            ],
+            "pre_protection_fused_rank": 17,
+            "base_rank": 17,
+            "final_rank": 17,
+            "tie_break_key": "89e1894a-0864-4e8a-bff4-b6ee6c45aa19",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "4ece0d85-7be5-4ad8-8f87-bb6e21980b54",
+            "semantic_rank": 18,
+            "rrf_score": "0.01282051282051282051",
+            "rrf_contributions": [
+              {
+                "rank": 18,
+                "stage": "SEMANTIC",
+                "contribution": 0.01282051282051282
+              }
+            ],
+            "pre_protection_fused_rank": 18,
+            "base_rank": 18,
+            "final_rank": 18,
+            "tie_break_key": "4ece0d85-7be5-4ad8-8f87-bb6e21980b54",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "9cb9dbb6-aeb4-4ad5-b682-43de25e237b4",
+            "semantic_rank": 19,
+            "rrf_score": "0.01265822784810126582",
+            "rrf_contributions": [
+              {
+                "rank": 19,
+                "stage": "SEMANTIC",
+                "contribution": 0.012658227848101266
+              }
+            ],
+            "pre_protection_fused_rank": 19,
+            "base_rank": 19,
+            "final_rank": 19,
+            "tie_break_key": "9cb9dbb6-aeb4-4ad5-b682-43de25e237b4",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "539fd5da-85e9-414a-8a53-a80fde313dce",
+            "semantic_rank": 20,
+            "rrf_score": "0.01250000000000000000",
+            "rrf_contributions": [
+              {
+                "rank": 20,
+                "stage": "SEMANTIC",
+                "contribution": 0.0125
+              }
+            ],
+            "pre_protection_fused_rank": 20,
+            "base_rank": 20,
+            "final_rank": 20,
+            "tie_break_key": "539fd5da-85e9-414a-8a53-a80fde313dce",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "24c09f45-1824-4437-baf6-c5a070a0e064",
+            "semantic_rank": 21,
+            "rrf_score": "0.01234567901234567901",
+            "rrf_contributions": [
+              {
+                "rank": 21,
+                "stage": "SEMANTIC",
+                "contribution": 0.012345679012345678
+              }
+            ],
+            "pre_protection_fused_rank": 21,
+            "base_rank": 21,
+            "final_rank": 21,
+            "tie_break_key": "24c09f45-1824-4437-baf6-c5a070a0e064",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "57f5cec2-920e-4d4b-8472-a7c686fd1d7d",
+            "semantic_rank": 22,
+            "rrf_score": "0.01219512195121951220",
+            "rrf_contributions": [
+              {
+                "rank": 22,
+                "stage": "SEMANTIC",
+                "contribution": 0.012195121951219513
+              }
+            ],
+            "pre_protection_fused_rank": 22,
+            "base_rank": 22,
+            "final_rank": 22,
+            "tie_break_key": "57f5cec2-920e-4d4b-8472-a7c686fd1d7d",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "af499320-24de-47fc-a143-7c7f0bbc2b20",
+            "semantic_rank": 23,
+            "rrf_score": "0.01204819277108433735",
+            "rrf_contributions": [
+              {
+                "rank": 23,
+                "stage": "SEMANTIC",
+                "contribution": 0.012048192771084338
+              }
+            ],
+            "pre_protection_fused_rank": 23,
+            "base_rank": 23,
+            "final_rank": 23,
+            "tie_break_key": "af499320-24de-47fc-a143-7c7f0bbc2b20",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "11c5824b-96a5-4696-9941-ef1a443d5fde",
+            "semantic_rank": 24,
+            "rrf_score": "0.01190476190476190476",
+            "rrf_contributions": [
+              {
+                "rank": 24,
+                "stage": "SEMANTIC",
+                "contribution": 0.011904761904761904
+              }
+            ],
+            "pre_protection_fused_rank": 24,
+            "base_rank": 24,
+            "final_rank": 24,
+            "tie_break_key": "11c5824b-96a5-4696-9941-ef1a443d5fde",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "b35a633f-2e51-42ce-a586-0fb13068291c",
+            "semantic_rank": 25,
+            "rrf_score": "0.01176470588235294118",
+            "rrf_contributions": [
+              {
+                "rank": 25,
+                "stage": "SEMANTIC",
+                "contribution": 0.011764705882352941
+              }
+            ],
+            "pre_protection_fused_rank": 25,
+            "base_rank": 25,
+            "final_rank": 25,
+            "tie_break_key": "b35a633f-2e51-42ce-a586-0fb13068291c",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "a81d014b-4a2a-4bd7-8dbc-a7badaa6474b",
+            "semantic_rank": 26,
+            "rrf_score": "0.01162790697674418605",
+            "rrf_contributions": [
+              {
+                "rank": 26,
+                "stage": "SEMANTIC",
+                "contribution": 0.011627906976744186
+              }
+            ],
+            "pre_protection_fused_rank": 26,
+            "base_rank": 26,
+            "final_rank": 26,
+            "tie_break_key": "a81d014b-4a2a-4bd7-8dbc-a7badaa6474b",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "57825a9d-bf37-4b91-922a-2588cb34f90f",
+            "semantic_rank": 27,
+            "rrf_score": "0.01149425287356321839",
+            "rrf_contributions": [
+              {
+                "rank": 27,
+                "stage": "SEMANTIC",
+                "contribution": 0.011494252873563218
+              }
+            ],
+            "pre_protection_fused_rank": 27,
+            "base_rank": 27,
+            "final_rank": 27,
+            "tie_break_key": "57825a9d-bf37-4b91-922a-2588cb34f90f",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "0f1f767c-b59f-40dc-9ed9-ebdab5b3ff9a",
+            "semantic_rank": 28,
+            "rrf_score": "0.01136363636363636364",
+            "rrf_contributions": [
+              {
+                "rank": 28,
+                "stage": "SEMANTIC",
+                "contribution": 0.011363636363636364
+              }
+            ],
+            "pre_protection_fused_rank": 28,
+            "base_rank": 28,
+            "final_rank": 28,
+            "tie_break_key": "0f1f767c-b59f-40dc-9ed9-ebdab5b3ff9a",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "a2d481cf-d49e-4f53-bb78-197166034eaa",
+            "semantic_rank": 29,
+            "rrf_score": "0.01123595505617977528",
+            "rrf_contributions": [
+              {
+                "rank": 29,
+                "stage": "SEMANTIC",
+                "contribution": 0.011235955056179775
+              }
+            ],
+            "pre_protection_fused_rank": 29,
+            "base_rank": 29,
+            "final_rank": 29,
+            "tie_break_key": "a2d481cf-d49e-4f53-bb78-197166034eaa",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "ad091f3a-8f76-4aa5-9efd-ed26ca8577f8",
+            "semantic_rank": 30,
+            "rrf_score": "0.01111111111111111111",
+            "rrf_contributions": [
+              {
+                "rank": 30,
+                "stage": "SEMANTIC",
+                "contribution": 0.011111111111111112
+              }
+            ],
+            "pre_protection_fused_rank": 30,
+            "base_rank": 30,
+            "final_rank": 30,
+            "tie_break_key": "ad091f3a-8f76-4aa5-9efd-ed26ca8577f8",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          }
+        ]
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-03",
+      "language": "sv",
+      "shouldEmbedReason": "MIXED_CONSTRAINTS",
+      "status": "SUCCESS",
+      "pacingWaitMs": 30396,
+      "providerElapsedMs": 427.0410000000011,
+      "providerTimeoutMs": 700,
+      "httpStatus": 200,
+      "reportedTokens": 6,
+      "providerInputFingerprint": "c7d45aa5f6ffd60d14723e83debac5d34a717a03bd854666c93f1740bbc5a5fe",
+      "queryVectorFingerprint": "00730d06d0f788857e099dec45abf4d2dd01cde954338372da200b0bfedf711c",
+      "rankingDiagnostics": {
+        "semanticCandidates": [
+          {
+            "entity_id": "0e6cd2ed-9eb2-4f3c-95ab-64e132eaef09",
+            "candidate_rank": 1,
+            "cosine_distance": 0.40046347374159,
+            "cosine_similarity": 0.59953652625841
+          },
+          {
+            "entity_id": "96470807-3e19-48ce-b914-fafa0fb4ce03",
+            "candidate_rank": 2,
+            "cosine_distance": 0.402908813606638,
+            "cosine_similarity": 0.597091186393362
+          },
+          {
+            "entity_id": "f75f48a5-e00e-4563-bac7-570eb58a9446",
+            "candidate_rank": 3,
+            "cosine_distance": 0.405600154733666,
+            "cosine_similarity": 0.594399845266334
+          },
+          {
+            "entity_id": "4380ae47-23cb-46a3-9f00-7aba4e12237d",
+            "candidate_rank": 4,
+            "cosine_distance": 0.406960666179657,
+            "cosine_similarity": 0.593039333820343
+          },
+          {
+            "entity_id": "008e1bce-9494-44f4-baaa-1ab28333fa55",
+            "candidate_rank": 5,
+            "cosine_distance": 0.408765112831287,
+            "cosine_similarity": 0.591234887168713
+          },
+          {
+            "entity_id": "27ef0aa8-0a48-4be0-af0d-929134119f5a",
+            "candidate_rank": 6,
+            "cosine_distance": 0.41088593006134,
+            "cosine_similarity": 0.58911406993866
+          },
+          {
+            "entity_id": "ad091f3a-8f76-4aa5-9efd-ed26ca8577f8",
+            "candidate_rank": 7,
+            "cosine_distance": 0.412419021129608,
+            "cosine_similarity": 0.587580978870392
+          },
+          {
+            "entity_id": "a65444e5-6086-440d-930b-7ba78b3febca",
+            "candidate_rank": 8,
+            "cosine_distance": 0.415407741988166,
+            "cosine_similarity": 0.584592258011834
+          },
+          {
+            "entity_id": "02a410fb-77fc-4a8f-be6d-7b88c47f2109",
+            "candidate_rank": 9,
+            "cosine_distance": 0.416140980971541,
+            "cosine_similarity": 0.583859019028459
+          },
+          {
+            "entity_id": "04137126-fa06-41d9-a564-c9331c020a7f",
+            "candidate_rank": 10,
+            "cosine_distance": 0.416516542434692,
+            "cosine_similarity": 0.583483457565308
+          },
+          {
+            "entity_id": "9e0b5ee6-cb2e-4129-b636-2737aa92b1e4",
+            "candidate_rank": 11,
+            "cosine_distance": 0.417799413204193,
+            "cosine_similarity": 0.582200586795807
+          },
+          {
+            "entity_id": "d5c15043-eb4e-4687-a69d-5496d791cd07",
+            "candidate_rank": 12,
+            "cosine_distance": 0.41785410536205,
+            "cosine_similarity": 0.58214589463795
+          },
+          {
+            "entity_id": "a7cbbcc3-0f2b-45b5-9e33-5d5e89226164",
+            "candidate_rank": 13,
+            "cosine_distance": 0.417887797103853,
+            "cosine_similarity": 0.582112202896147
+          },
+          {
+            "entity_id": "bfcefc8d-9758-42cb-9d9c-345df5c9462c",
+            "candidate_rank": 14,
+            "cosine_distance": 0.419369526449099,
+            "cosine_similarity": 0.580630473550901
+          },
+          {
+            "entity_id": "d4405116-be7e-4bc9-8297-4e7091655fcc",
+            "candidate_rank": 15,
+            "cosine_distance": 0.420231878757477,
+            "cosine_similarity": 0.579768121242523
+          },
+          {
+            "entity_id": "0a60b263-b292-4bdd-978a-dc5c301396e8",
+            "candidate_rank": 16,
+            "cosine_distance": 0.420495398684922,
+            "cosine_similarity": 0.579504601315078
+          },
+          {
+            "entity_id": "9d7af88c-50e4-4a59-a7fd-b06cbce66fb2",
+            "candidate_rank": 17,
+            "cosine_distance": 0.421954256950445,
+            "cosine_similarity": 0.578045743049555
+          },
+          {
+            "entity_id": "93285f6b-81cb-4581-a299-bbae8b1da0de",
+            "candidate_rank": 18,
+            "cosine_distance": 0.422178626060486,
+            "cosine_similarity": 0.577821373939514
+          },
+          {
+            "entity_id": "d18a9cee-553b-49e6-a8c0-a141da500849",
+            "candidate_rank": 19,
+            "cosine_distance": 0.422195996176957,
+            "cosine_similarity": 0.577804003823043
+          },
+          {
+            "entity_id": "cf772963-ab32-41dc-98a9-eaa07e10033d",
+            "candidate_rank": 20,
+            "cosine_distance": 0.423875178329656,
+            "cosine_similarity": 0.576124821670344
+          },
+          {
+            "entity_id": "7dfd3376-6a05-42a7-ad94-378bd1d52e6a",
+            "candidate_rank": 21,
+            "cosine_distance": 0.424347554186131,
+            "cosine_similarity": 0.575652445813869
+          },
+          {
+            "entity_id": "33a2af4a-e0e0-4971-90db-b69ee0843469",
+            "candidate_rank": 22,
+            "cosine_distance": 0.425728236095413,
+            "cosine_similarity": 0.574271763904587
+          },
+          {
+            "entity_id": "9e1be76b-3975-48e0-aaab-ed271a1cb8c1",
+            "candidate_rank": 23,
+            "cosine_distance": 0.425905993688817,
+            "cosine_similarity": 0.574094006311183
+          },
+          {
+            "entity_id": "861dc849-17cf-4ad8-84ed-8fac7c24ed3b",
+            "candidate_rank": 24,
+            "cosine_distance": 0.427017211914062,
+            "cosine_similarity": 0.572982788085938
+          },
+          {
+            "entity_id": "0f1f767c-b59f-40dc-9ed9-ebdab5b3ff9a",
+            "candidate_rank": 25,
+            "cosine_distance": 0.427573331883744,
+            "cosine_similarity": 0.572426668116256
+          },
+          {
+            "entity_id": "7bd0a259-9c84-46bc-aa7c-f4a4a7abc3ac",
+            "candidate_rank": 26,
+            "cosine_distance": 0.427608813500929,
+            "cosine_similarity": 0.572391186499071
+          },
+          {
+            "entity_id": "e4453bbf-f738-41c3-9a30-fbf385ae69eb",
+            "candidate_rank": 27,
+            "cosine_distance": 0.428105030768809,
+            "cosine_similarity": 0.571894969231191
+          },
+          {
+            "entity_id": "699f9013-535f-44b1-a353-0e5ba8b3b0e4",
+            "candidate_rank": 28,
+            "cosine_distance": 0.430682241916656,
+            "cosine_similarity": 0.569317758083344
+          },
+          {
+            "entity_id": "3e5adfbc-c074-44e0-8554-621345fe8fe2",
+            "candidate_rank": 29,
+            "cosine_distance": 0.430685682019164,
+            "cosine_similarity": 0.569314317980836
+          },
+          {
+            "entity_id": "d92272ac-d67c-4391-a88e-28971cf4327c",
+            "candidate_rank": 30,
+            "cosine_distance": 0.431582518627339,
+            "cosine_similarity": 0.568417481372661
+          }
+        ],
+        "semanticRepeatStable": true,
+        "rankedSemanticCandidates": [
+          {
+            "entity_id": "a7cbbcc3-0f2b-45b5-9e33-5d5e89226164",
+            "semantic_rank": 13,
+            "rrf_score": "0.03009207275993712104",
+            "rrf_contributions": [
+              {
+                "rank": 1,
+                "stage": "TRIGRAM",
+                "contribution": 0.01639344262295082
+              },
+              {
+                "rank": 13,
+                "stage": "SEMANTIC",
+                "contribution": 0.0136986301369863
+              }
+            ],
+            "pre_protection_fused_rank": 1,
+            "base_rank": 1,
+            "final_rank": 1,
+            "tie_break_key": "a7cbbcc3-0f2b-45b5-9e33-5d5e89226164",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "cf772963-ab32-41dc-98a9-eaa07e10033d",
+            "semantic_rank": 20,
+            "rrf_score": "0.02837301587301587302",
+            "rrf_contributions": [
+              {
+                "rank": 3,
+                "stage": "TRIGRAM",
+                "contribution": 0.015873015873015872
+              },
+              {
+                "rank": 20,
+                "stage": "SEMANTIC",
+                "contribution": 0.0125
+              }
+            ],
+            "pre_protection_fused_rank": 2,
+            "base_rank": 2,
+            "final_rank": 2,
+            "tie_break_key": "cf772963-ab32-41dc-98a9-eaa07e10033d",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "d92272ac-d67c-4391-a88e-28971cf4327c",
+            "semantic_rank": 30,
+            "rrf_score": "0.02724014336917562724",
+            "rrf_contributions": [
+              {
+                "rank": 2,
+                "stage": "TRIGRAM",
+                "contribution": 0.016129032258064516
+              },
+              {
+                "rank": 30,
+                "stage": "SEMANTIC",
+                "contribution": 0.011111111111111112
+              }
+            ],
+            "pre_protection_fused_rank": 3,
+            "base_rank": 3,
+            "final_rank": 3,
+            "tie_break_key": "d92272ac-d67c-4391-a88e-28971cf4327c",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "0e6cd2ed-9eb2-4f3c-95ab-64e132eaef09",
+            "semantic_rank": 1,
+            "rrf_score": "0.01639344262295081967",
+            "rrf_contributions": [
+              {
+                "rank": 1,
+                "stage": "SEMANTIC",
+                "contribution": 0.01639344262295082
+              }
+            ],
+            "pre_protection_fused_rank": 4,
+            "base_rank": 4,
+            "final_rank": 4,
+            "tie_break_key": "0e6cd2ed-9eb2-4f3c-95ab-64e132eaef09",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "96470807-3e19-48ce-b914-fafa0fb4ce03",
+            "semantic_rank": 2,
+            "rrf_score": "0.01612903225806451613",
+            "rrf_contributions": [
+              {
+                "rank": 2,
+                "stage": "SEMANTIC",
+                "contribution": 0.016129032258064516
+              }
+            ],
+            "pre_protection_fused_rank": 5,
+            "base_rank": 5,
+            "final_rank": 5,
+            "tie_break_key": "96470807-3e19-48ce-b914-fafa0fb4ce03",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "f75f48a5-e00e-4563-bac7-570eb58a9446",
+            "semantic_rank": 3,
+            "rrf_score": "0.01587301587301587302",
+            "rrf_contributions": [
+              {
+                "rank": 3,
+                "stage": "SEMANTIC",
+                "contribution": 0.015873015873015872
+              }
+            ],
+            "pre_protection_fused_rank": 6,
+            "base_rank": 6,
+            "final_rank": 6,
+            "tie_break_key": "f75f48a5-e00e-4563-bac7-570eb58a9446",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "4380ae47-23cb-46a3-9f00-7aba4e12237d",
+            "semantic_rank": 4,
+            "rrf_score": "0.01562500000000000000",
+            "rrf_contributions": [
+              {
+                "rank": 4,
+                "stage": "SEMANTIC",
+                "contribution": 0.015625
+              }
+            ],
+            "pre_protection_fused_rank": 7,
+            "base_rank": 7,
+            "final_rank": 7,
+            "tie_break_key": "4380ae47-23cb-46a3-9f00-7aba4e12237d",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "008e1bce-9494-44f4-baaa-1ab28333fa55",
+            "semantic_rank": 5,
+            "rrf_score": "0.01538461538461538462",
+            "rrf_contributions": [
+              {
+                "rank": 5,
+                "stage": "SEMANTIC",
+                "contribution": 0.015384615384615385
+              }
+            ],
+            "pre_protection_fused_rank": 9,
+            "base_rank": 9,
+            "final_rank": 9,
+            "tie_break_key": "008e1bce-9494-44f4-baaa-1ab28333fa55",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "27ef0aa8-0a48-4be0-af0d-929134119f5a",
+            "semantic_rank": 6,
+            "rrf_score": "0.01515151515151515152",
+            "rrf_contributions": [
+              {
+                "rank": 6,
+                "stage": "SEMANTIC",
+                "contribution": 0.015151515151515152
+              }
+            ],
+            "pre_protection_fused_rank": 11,
+            "base_rank": 11,
+            "final_rank": 11,
+            "tie_break_key": "27ef0aa8-0a48-4be0-af0d-929134119f5a",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "ad091f3a-8f76-4aa5-9efd-ed26ca8577f8",
+            "semantic_rank": 7,
+            "rrf_score": "0.01492537313432835821",
+            "rrf_contributions": [
+              {
+                "rank": 7,
+                "stage": "SEMANTIC",
+                "contribution": 0.014925373134328358
+              }
+            ],
+            "pre_protection_fused_rank": 13,
+            "base_rank": 13,
+            "final_rank": 13,
+            "tie_break_key": "ad091f3a-8f76-4aa5-9efd-ed26ca8577f8",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "a65444e5-6086-440d-930b-7ba78b3febca",
+            "semantic_rank": 8,
+            "rrf_score": "0.01470588235294117647",
+            "rrf_contributions": [
+              {
+                "rank": 8,
+                "stage": "SEMANTIC",
+                "contribution": 0.014705882352941176
+              }
+            ],
+            "pre_protection_fused_rank": 14,
+            "base_rank": 14,
+            "final_rank": 14,
+            "tie_break_key": "a65444e5-6086-440d-930b-7ba78b3febca",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "02a410fb-77fc-4a8f-be6d-7b88c47f2109",
+            "semantic_rank": 9,
+            "rrf_score": "0.01449275362318840580",
+            "rrf_contributions": [
+              {
+                "rank": 9,
+                "stage": "SEMANTIC",
+                "contribution": 0.014492753623188406
+              }
+            ],
+            "pre_protection_fused_rank": 15,
+            "base_rank": 15,
+            "final_rank": 15,
+            "tie_break_key": "02a410fb-77fc-4a8f-be6d-7b88c47f2109",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "04137126-fa06-41d9-a564-c9331c020a7f",
+            "semantic_rank": 10,
+            "rrf_score": "0.01428571428571428571",
+            "rrf_contributions": [
+              {
+                "rank": 10,
+                "stage": "SEMANTIC",
+                "contribution": 0.014285714285714285
+              }
+            ],
+            "pre_protection_fused_rank": 16,
+            "base_rank": 16,
+            "final_rank": 16,
+            "tie_break_key": "04137126-fa06-41d9-a564-c9331c020a7f",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "9e0b5ee6-cb2e-4129-b636-2737aa92b1e4",
+            "semantic_rank": 11,
+            "rrf_score": "0.01408450704225352113",
+            "rrf_contributions": [
+              {
+                "rank": 11,
+                "stage": "SEMANTIC",
+                "contribution": 0.014084507042253521
+              }
+            ],
+            "pre_protection_fused_rank": 17,
+            "base_rank": 17,
+            "final_rank": 17,
+            "tie_break_key": "9e0b5ee6-cb2e-4129-b636-2737aa92b1e4",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "d5c15043-eb4e-4687-a69d-5496d791cd07",
+            "semantic_rank": 12,
+            "rrf_score": "0.01388888888888888889",
+            "rrf_contributions": [
+              {
+                "rank": 12,
+                "stage": "SEMANTIC",
+                "contribution": 0.013888888888888888
+              }
+            ],
+            "pre_protection_fused_rank": 18,
+            "base_rank": 18,
+            "final_rank": 18,
+            "tie_break_key": "d5c15043-eb4e-4687-a69d-5496d791cd07",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "bfcefc8d-9758-42cb-9d9c-345df5c9462c",
+            "semantic_rank": 14,
+            "rrf_score": "0.01351351351351351351",
+            "rrf_contributions": [
+              {
+                "rank": 14,
+                "stage": "SEMANTIC",
+                "contribution": 0.013513513513513514
+              }
+            ],
+            "pre_protection_fused_rank": 19,
+            "base_rank": 19,
+            "final_rank": 19,
+            "tie_break_key": "bfcefc8d-9758-42cb-9d9c-345df5c9462c",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "d4405116-be7e-4bc9-8297-4e7091655fcc",
+            "semantic_rank": 15,
+            "rrf_score": "0.01333333333333333333",
+            "rrf_contributions": [
+              {
+                "rank": 15,
+                "stage": "SEMANTIC",
+                "contribution": 0.013333333333333334
+              }
+            ],
+            "pre_protection_fused_rank": 20,
+            "base_rank": 20,
+            "final_rank": 20,
+            "tie_break_key": "d4405116-be7e-4bc9-8297-4e7091655fcc",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "0a60b263-b292-4bdd-978a-dc5c301396e8",
+            "semantic_rank": 16,
+            "rrf_score": "0.01315789473684210526",
+            "rrf_contributions": [
+              {
+                "rank": 16,
+                "stage": "SEMANTIC",
+                "contribution": 0.013157894736842105
+              }
+            ],
+            "pre_protection_fused_rank": 21,
+            "base_rank": 21,
+            "final_rank": 21,
+            "tie_break_key": "0a60b263-b292-4bdd-978a-dc5c301396e8",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "9d7af88c-50e4-4a59-a7fd-b06cbce66fb2",
+            "semantic_rank": 17,
+            "rrf_score": "0.01298701298701298701",
+            "rrf_contributions": [
+              {
+                "rank": 17,
+                "stage": "SEMANTIC",
+                "contribution": 0.012987012987012988
+              }
+            ],
+            "pre_protection_fused_rank": 22,
+            "base_rank": 22,
+            "final_rank": 22,
+            "tie_break_key": "9d7af88c-50e4-4a59-a7fd-b06cbce66fb2",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "93285f6b-81cb-4581-a299-bbae8b1da0de",
+            "semantic_rank": 18,
+            "rrf_score": "0.01282051282051282051",
+            "rrf_contributions": [
+              {
+                "rank": 18,
+                "stage": "SEMANTIC",
+                "contribution": 0.01282051282051282
+              }
+            ],
+            "pre_protection_fused_rank": 23,
+            "base_rank": 23,
+            "final_rank": 23,
+            "tie_break_key": "93285f6b-81cb-4581-a299-bbae8b1da0de",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "d18a9cee-553b-49e6-a8c0-a141da500849",
+            "semantic_rank": 19,
+            "rrf_score": "0.01265822784810126582",
+            "rrf_contributions": [
+              {
+                "rank": 19,
+                "stage": "SEMANTIC",
+                "contribution": 0.012658227848101266
+              }
+            ],
+            "pre_protection_fused_rank": 24,
+            "base_rank": 24,
+            "final_rank": 24,
+            "tie_break_key": "d18a9cee-553b-49e6-a8c0-a141da500849",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "7dfd3376-6a05-42a7-ad94-378bd1d52e6a",
+            "semantic_rank": 21,
+            "rrf_score": "0.01234567901234567901",
+            "rrf_contributions": [
+              {
+                "rank": 21,
+                "stage": "SEMANTIC",
+                "contribution": 0.012345679012345678
+              }
+            ],
+            "pre_protection_fused_rank": 25,
+            "base_rank": 25,
+            "final_rank": 25,
+            "tie_break_key": "7dfd3376-6a05-42a7-ad94-378bd1d52e6a",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "33a2af4a-e0e0-4971-90db-b69ee0843469",
+            "semantic_rank": 22,
+            "rrf_score": "0.01219512195121951220",
+            "rrf_contributions": [
+              {
+                "rank": 22,
+                "stage": "SEMANTIC",
+                "contribution": 0.012195121951219513
+              }
+            ],
+            "pre_protection_fused_rank": 26,
+            "base_rank": 26,
+            "final_rank": 26,
+            "tie_break_key": "33a2af4a-e0e0-4971-90db-b69ee0843469",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "9e1be76b-3975-48e0-aaab-ed271a1cb8c1",
+            "semantic_rank": 23,
+            "rrf_score": "0.01204819277108433735",
+            "rrf_contributions": [
+              {
+                "rank": 23,
+                "stage": "SEMANTIC",
+                "contribution": 0.012048192771084338
+              }
+            ],
+            "pre_protection_fused_rank": 27,
+            "base_rank": 27,
+            "final_rank": 27,
+            "tie_break_key": "9e1be76b-3975-48e0-aaab-ed271a1cb8c1",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "861dc849-17cf-4ad8-84ed-8fac7c24ed3b",
+            "semantic_rank": 24,
+            "rrf_score": "0.01190476190476190476",
+            "rrf_contributions": [
+              {
+                "rank": 24,
+                "stage": "SEMANTIC",
+                "contribution": 0.011904761904761904
+              }
+            ],
+            "pre_protection_fused_rank": 28,
+            "base_rank": 28,
+            "final_rank": 28,
+            "tie_break_key": "861dc849-17cf-4ad8-84ed-8fac7c24ed3b",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "0f1f767c-b59f-40dc-9ed9-ebdab5b3ff9a",
+            "semantic_rank": 25,
+            "rrf_score": "0.01176470588235294118",
+            "rrf_contributions": [
+              {
+                "rank": 25,
+                "stage": "SEMANTIC",
+                "contribution": 0.011764705882352941
+              }
+            ],
+            "pre_protection_fused_rank": 29,
+            "base_rank": 29,
+            "final_rank": 29,
+            "tie_break_key": "0f1f767c-b59f-40dc-9ed9-ebdab5b3ff9a",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "7bd0a259-9c84-46bc-aa7c-f4a4a7abc3ac",
+            "semantic_rank": 26,
+            "rrf_score": "0.01162790697674418605",
+            "rrf_contributions": [
+              {
+                "rank": 26,
+                "stage": "SEMANTIC",
+                "contribution": 0.011627906976744186
+              }
+            ],
+            "pre_protection_fused_rank": 30,
+            "base_rank": 30,
+            "final_rank": 30,
+            "tie_break_key": "7bd0a259-9c84-46bc-aa7c-f4a4a7abc3ac",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "e4453bbf-f738-41c3-9a30-fbf385ae69eb",
+            "semantic_rank": 27,
+            "rrf_score": "0.01149425287356321839",
+            "rrf_contributions": [
+              {
+                "rank": 27,
+                "stage": "SEMANTIC",
+                "contribution": 0.011494252873563218
+              }
+            ],
+            "pre_protection_fused_rank": 31,
+            "base_rank": 31,
+            "final_rank": 31,
+            "tie_break_key": "e4453bbf-f738-41c3-9a30-fbf385ae69eb",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "699f9013-535f-44b1-a353-0e5ba8b3b0e4",
+            "semantic_rank": 28,
+            "rrf_score": "0.01136363636363636364",
+            "rrf_contributions": [
+              {
+                "rank": 28,
+                "stage": "SEMANTIC",
+                "contribution": 0.011363636363636364
+              }
+            ],
+            "pre_protection_fused_rank": 32,
+            "base_rank": 32,
+            "final_rank": 32,
+            "tie_break_key": "699f9013-535f-44b1-a353-0e5ba8b3b0e4",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          },
+          {
+            "entity_id": "3e5adfbc-c074-44e0-8554-621345fe8fe2",
+            "semantic_rank": 29,
+            "rrf_score": "0.01123595505617977528",
+            "rrf_contributions": [
+              {
+                "rank": 29,
+                "stage": "SEMANTIC",
+                "contribution": 0.011235955056179775
+              }
+            ],
+            "pre_protection_fused_rank": 33,
+            "base_rank": 33,
+            "final_rank": 33,
+            "tie_break_key": "3e5adfbc-c074-44e0-8554-621345fe8fe2",
+            "tie_break_reason": "RRF_DIRECT_TAXONOMY_THEN_UUID",
+            "moved": false
+          }
+        ]
+      }
+    }
+  ]
+}

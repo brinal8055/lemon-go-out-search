@@ -1,0 +1,22 @@
+{
+  "reportVersion": "postcov-hybrid-run-status.v1",
+  "runId": "a4c61630-7f5e-489f-a1fe-c159ec842c77",
+  "mode": "HYBRID",
+  "status": "COMPLETED",
+  "validForQualityMetrics": true,
+  "lastCompletedQueryId": "eval-v1-dev-verified-colliding-aliases-03",
+  "nextQueryId": null,
+  "counts": {
+    "providerSuccessCount": 26,
+    "providerFailureCount": 0,
+    "timeoutCount": 0,
+    "providerErrorCount": 0,
+    "http429Count": 0
+  },
+  "failureCategory": null,
+  "finalArtifacts": [
+    "dev-result.v1.json",
+    "dev-result.v1.md",
+    "operational.v1.json"
+  ]
+}

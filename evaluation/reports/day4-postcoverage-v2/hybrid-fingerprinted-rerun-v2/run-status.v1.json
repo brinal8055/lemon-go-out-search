@@ -1,0 +1,18 @@
+{
+  "reportVersion": "postcov-hybrid-run-status.v1",
+  "runId": "57f712d9-a278-4ecb-889b-a8fec42c28e3",
+  "mode": "HYBRID",
+  "status": "FAILED",
+  "validForQualityMetrics": false,
+  "lastCompletedQueryId": "eval-v1-dev-semantic-occasion-language-01",
+  "nextQueryId": "eval-v1-dev-semantic-occasion-language-02",
+  "counts": {
+    "providerSuccessCount": 9,
+    "providerFailureCount": 1,
+    "timeoutCount": 0,
+    "providerErrorCount": 0,
+    "http429Count": 0
+  },
+  "failureCategory": "SEMANTIC_DEGRADED",
+  "finalArtifacts": []
+}
