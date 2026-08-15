@@ -1,0 +1,81 @@
+{
+  "manifest_version": "dataset-manifest.day2.v1",
+  "status": "FROZEN",
+  "canonical_dataset_version": "day2-deterministic.v1-ef89e8fb9824",
+  "source_record_ingestion_run_ids": [
+    "d73e8944-9187-438c-8008-f03ad132d1e9",
+    "e381a92c-13db-4446-8b4c-af812dd3fe5c"
+  ],
+  "boundary": {
+    "id": "0a39b199-4cd5-5358-85de-2c1a5f91a347",
+    "version": "lm-current-2026-08-14",
+    "checksum": "257a277667cde164bcb70eae16ca6985578fe34666df92ff289af519a262df1d"
+  },
+  "taxonomy": {
+    "version": "active-going-out.v1",
+    "checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2"
+  },
+  "normalization_version": "norm-v1",
+  "search_documents": {
+    "template_version": "lexical-embedding-template-v1",
+    "document_version": "search-document-v1",
+    "hashes": [
+      "02c32feb07df3e54807353177b72327423e1678514faf30effec8b79220cf9bf",
+      "270608729dc73ae7dea6d334582369ebf7c01c4734caf98e36d76bafd47471d2",
+      "323a597895f39252f546821bab20936c9e2325e013285ccbc792b070bff461cc",
+      "533c142a416ccaaf8adb1d4c8f4479b6d6f7f618ccc65841a3e8e8d3ccf45ef7",
+      "9f824d589335d49c7c868950229104ad8d73a6eee09e5bdede08c58153ff56d2",
+      "baa57da6b4ac8a69b952d86ccac67470e2345ec733cb22100f97a90f8025b150"
+    ]
+  },
+  "embedding": {
+    "provider": null,
+    "model": null,
+    "revision": null,
+    "dimension": null
+  },
+  "search_config_version": "embed-01a-preflight-v1",
+  "evaluation_clock_utc": "2026-10-15T12:00:00Z",
+  "corpus": {
+    "version": "corpus.v1",
+    "checksum": "bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c"
+  },
+  "judgment": {
+    "version": null,
+    "checksum": null
+  },
+  "code_git_commit": "4f26f920ebcdc979b6b091bb13cbc5d3f20a852b",
+  "code_state": "Accepted deterministic search code at Git HEAD; uncommitted EVAL-02 tooling does not alter search behavior.",
+  "dataset_inventory": {
+    "eligible_published_entities": 6,
+    "active_search_documents": 6,
+    "checksum": "ef89e8fb98246b4418a2094addc861ee5a85e2e842a3409c0e5c761f4ab0a1f2"
+  },
+  "source_fixtures": [
+    {
+      "source_key": "OSM_OVERPASS",
+      "path": "packages/source-adapters/fixtures/osm/jonkoping-bounded.raw.json",
+      "checksum": "b4b6afb6d47a4bb707098f7b18660757e7ba2a524dd772561f04448b3aa38147",
+      "ingestion_run_id": "d73e8944-9187-438c-8008-f03ad132d1e9"
+    },
+    {
+      "source_key": "JONKOPING_MUNICIPAL_UTEGYM",
+      "path": "packages/source-adapters/fixtures/municipal/utegym.layer-41.sanitized.json",
+      "checksum": "594e4c208a6d1effcf4fc6ef4d35ba064df28be9d0703d112257b3c10b353d33",
+      "ingestion_run_id": "e381a92c-13db-4446-8b4c-af812dd3fe5c"
+    }
+  ],
+  "capabilities": {
+    "exact": "IMPLEMENTED",
+    "alias": "IMPLEMENTED",
+    "accentless": "IMPLEMENTED",
+    "prefix": "IMPLEMENTED",
+    "trigram": "IMPLEMENTED",
+    "fts": "IMPLEMENTED",
+    "taxonomy": "IMPLEMENTED",
+    "event": "NOT_IMPLEMENTED",
+    "semantic": "NOT_IMPLEMENTED",
+    "rrf": "NOT_IMPLEMENTED",
+    "non_collapse": "NOT_IMPLEMENTED"
+  }
+}

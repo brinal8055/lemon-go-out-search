@@ -10,8 +10,9 @@ try {
   const record = await loadDevQuery(input.queryId);
   const connectionString = process.env.LEMON_LOCAL_DATABASE_URL
     ?? 'postgresql://postgres:postgres@127.0.0.1:54322/postgres';
-  await prepareLocalDiagnosticRuntime(connectionString);
-  const diagnostic = await diagnoseDevQuery(connectionString, record, input.entityId);
+  const cleanupDiagnosticRuntime = await prepareLocalDiagnosticRuntime(connectionString);
+  const diagnostic = await diagnoseDevQuery(connectionString, record, input.entityId)
+    .finally(cleanupDiagnosticRuntime);
   console.log(JSON.stringify({
     queryId: record.query_id,
     query: record.query,

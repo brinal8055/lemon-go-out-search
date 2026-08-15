@@ -125,6 +125,26 @@ export function validateJudgmentSet(judgments) {
   if (judgments.status === 'FROZEN') assert(typeof judgments.dataset_version === 'string' && judgments.dataset_version.length > 0, 'frozen judgments require a dataset version');
   for (const record of judgments.records) {
     assert(record.relevant.every(({ grade }) => [0, 1, 2, 3].includes(grade)), 'invalid relevance grade');
+    assert(new Set(record.relevant.map(({ entity_id }) => entity_id)).size === record.relevant.length,
+      'duplicate entity judgment');
+  }
+  if (judgments.judgment_version === 'judgments.day2.v1') {
+    const grades = judgments.records.flatMap(({ relevant }) => relevant.map(({ grade }) => grade));
+    const counts = [0, 1, 2, 3].map((grade) => grades.filter((value) => value === grade).length);
+    assert(judgments.records.length === 14 && grades.length === 84, 'Day-2 judgments require 14 queries and 84 grades');
+    assert(counts.join(',') === '60,15,6,3', 'Day-2 judgment grade distribution mismatch');
+    assert(judgments.selected_query_ids?.join(',') === judgments.records.map(({ query_id }) => query_id).join(','),
+      'Day-2 selected query IDs mismatch');
+    assert(/^[0-9a-f]{64}$/.test(judgments.dataset_manifest_checksum), 'invalid Day-2 manifest checksum pin');
+    assert(/^[0-9a-f]{64}$/.test(judgments.dataset_inventory_checksum), 'invalid Day-2 inventory checksum pin');
+    const inventoryUnavailable = judgments.records.filter(
+      ({ known_item_inventory_status }) => known_item_inventory_status === 'TARGET_NOT_IN_FROZEN_DATASET',
+    );
+    assert(inventoryUnavailable.length === 6, 'Day-2 inventory-unavailable query count mismatch');
+    assert(inventoryUnavailable.every((record) => record.known_item_target === null
+      && record.primary_failure_attribution === 'INVENTORY'
+      && record.search_ranking_assessment === 'NOT_EVALUATED'),
+    'invalid Day-2 inventory-unavailable treatment');
   }
   return judgments;
 }
@@ -138,10 +158,18 @@ export function validateDatasetManifest(manifest) {
     for (const key of ['canonical_dataset_version', 'normalization_version', 'search_config_version', 'code_git_commit']) {
       assert(typeof manifest[key] === 'string' && manifest[key].length > 0, `frozen manifest requires ${key}`);
     }
-    assert(manifest.judgment.version && manifest.judgment.checksum, 'frozen manifest requires judgment pin');
+    const judgmentPendingReview = manifest.manifest_version === 'dataset-manifest.day2.v1'
+      && manifest.judgment.version === null
+      && manifest.judgment.checksum === null
+      && /^[0-9a-f]{64}$/.test(manifest.dataset_inventory?.checksum)
+      && manifest.capabilities?.event === 'NOT_IMPLEMENTED'
+      && manifest.capabilities?.semantic === 'NOT_IMPLEMENTED';
+    assert(judgmentPendingReview || (manifest.judgment.version && manifest.judgment.checksum),
+      'frozen manifest requires judgment pin or explicit Day-2 human-review freeze');
     assert(manifest.source_record_ingestion_run_ids.length > 0, 'frozen manifest requires ingestion runs');
     assert(manifest.search_documents.template_version && manifest.search_documents.document_version && manifest.search_documents.hashes.length > 0, 'frozen manifest requires SearchDocument pins');
-    assert(manifest.embedding.provider && manifest.embedding.model && manifest.embedding.revision && manifest.embedding.dimension, 'frozen manifest requires embedding contract');
+    const embeddingValues = [manifest.embedding.provider, manifest.embedding.model, manifest.embedding.revision, manifest.embedding.dimension];
+    assert(embeddingValues.every((value) => value === null) || embeddingValues.every((value) => value !== null), 'frozen manifest embedding contract must be entirely absent or complete');
   }
   return manifest;
 }

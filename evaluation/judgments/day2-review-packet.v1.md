@@ -1,0 +1,242 @@
+# Day-2 DEV human judgment packet v1
+
+- Dataset manifest: dataset-manifest.day2.v1
+- Dataset manifest checksum: 5ade651f358bafed92d51ac5b29651cbea5123958380263633e18385b5d730f0
+- Selected DEV queries: 14
+- Grades in this packet: blank for human review
+
+## Frozen rubric
+
+- 0 = not relevant
+- 1 = marginal
+- 2 = relevant
+- 3 = highly relevant
+- Any explicit structured or hard-constraint violation receives grade 0 regardless of textual similarity.
+
+## eval-v1-dev-canonical-exact-same-name-01
+
+- Query: Rosenlunds rosarium
+- Language: sv
+- Family: canonical_exact_same_name
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `{"kind":"EXTERNAL_STABLE_TARGET","label":"Rosenlunds rosarium","reference":"https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/parker/rosenlunds-herrgard-och-rosarium/om-rosenlunds-rosarium"}`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `{"status":"NOT_RUN","reasonCode":"NO_CANONICAL_ENTITY_ID_IN_FROZEN_DATASET","targetLabels":["Rosenlunds rosarium"]}`
+
+_No current results._
+
+## eval-v1-dev-canonical-exact-same-name-04
+
+- Query: Espresso House
+- Language: language-neutral
+- Family: canonical_exact_same_name
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `{"kind":"EXTERNAL_TARGET_SET","members":[{"kind":"EXTERNAL_STABLE_TARGET","label":"Espresso House Jönköping Central","reference":"https://dk.espressohouse.com/en/find-us/jonkoping-central"},{"kind":"EXTERNAL_STABLE_TARGET","label":"Espresso House Östra Storgatan Jönköping","reference":"https://espressohouse.com/hitta-oss/ostra-storgatan-jonkoping"}]}`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `{"status":"NOT_RUN","reasonCode":"NO_CANONICAL_ENTITY_ID_IN_FROZEN_DATASET","targetLabels":["Espresso House Jönköping Central","Espresso House Östra Storgatan Jönköping"]}`
+
+_No current results._
+
+## eval-v1-dev-verified-colliding-aliases-02
+
+- Query: Rosenlund
+- Language: sv
+- Family: verified_colliding_aliases
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `{"kind":"EXTERNAL_STABLE_TARGET","label":"Rosenlunds rosarium","reference":"https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/parker/rosenlunds-herrgard-och-rosarium/om-rosenlunds-rosarium"}`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `{"status":"NOT_RUN","reasonCode":"NO_CANONICAL_ENTITY_ID_IN_FROZEN_DATASET","targetLabels":["Rosenlunds rosarium"]}`
+
+_No current results._
+
+## eval-v1-dev-prefix-04
+
+- Query: Espresso House Jönköping C
+- Language: language-neutral
+- Family: prefix
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `{"kind":"EXTERNAL_STABLE_TARGET","label":"Espresso House Jönköping Central","reference":"https://dk.espressohouse.com/en/find-us/jonkoping-central"}`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `{"status":"NOT_RUN","reasonCode":"NO_CANONICAL_ENTITY_ID_IN_FROZEN_DATASET","targetLabels":["Espresso House Jönköping Central"]}`
+
+_No current results._
+
+## eval-v1-dev-typo-transposition-accent-spacing-03
+
+- Query: Jonkopings stadsbibliotek
+- Language: sv
+- Family: typo_transposition_accent_spacing
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `{"kind":"EXTERNAL_STABLE_TARGET","label":"Stadsbiblioteket","reference":"https://bibliotek.jonkoping.se/-/stadsbibliotek"}`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `{"status":"NOT_RUN","reasonCode":"NO_CANONICAL_ENTITY_ID_IN_FROZEN_DATASET","targetLabels":["Stadsbiblioteket"]}`
+
+_No current results._
+
+## eval-v1-dev-typo-transposition-accent-spacing-04
+
+- Query: EspressoHouse Jönköping Central
+- Language: mixed
+- Family: typo_transposition_accent_spacing
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `{"kind":"EXTERNAL_STABLE_TARGET","label":"Espresso House Jönköping Central","reference":"https://dk.espressohouse.com/en/find-us/jonkoping-central"}`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `{"status":"NOT_RUN","reasonCode":"NO_CANONICAL_ENTITY_ID_IN_FROZEN_DATASET","targetLabels":["Espresso House Jönköping Central"]}`
+
+_No current results._
+
+## eval-v1-dev-taxonomy-parent-leaf-01
+
+- Query: Japanese restaurants
+- Language: en
+- Family: taxonomy_parent_leaf
+- Request filters: `{"taxonomy":{"node_id":"3a51d1cf-31c9-529f-b585-1102253dc735","slug":"japanese"}}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+_No current results._
+
+## eval-v1-dev-taxonomy-parent-leaf-04
+
+- Query: mat och restauranger
+- Language: sv
+- Family: taxonomy_parent_leaf
+- Request filters: `{"taxonomy":{"node_id":"27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1","slug":"food-and-dining"}}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+#### Rank 1
+
+- CanonicalEntity ID: `2e3c76fe-4b69-4070-86fb-e8d85f248f30`
+- Display name: Sajens Mat & Möten
+- Taxonomy memberships: dining (Dining / Restauranger; 15904283-fd01-5fc3-ac00-c42e62e8422e)
+- Location/scope: `{"latitude":57.7793764,"longitude":14.159859,"scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}`
+- DIAG-01 evidence: `{"entityExists":true,"eligible":true,"eligibilityFailureReason":"ELIGIBLE","reasonCodes":["TOP_5"],"exactQualification":{"canonical":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"protectionClass":null},"verifiedAlias":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"qualificationReason":"NO_MATCH"}},"stages":{"rrf":{"rank":null,"status":"NOT_IMPLEMENTED","contribution":null},"event":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"prefix":{"rank":null,"status":"EXECUTED","present":false},"lexical":{"rank":1,"status":"EXECUTED","present":true,"rawScore":0.21746,"absenceReason":null,"matchedWeight":"C"},"trigram":{"rank":null,"status":"EXECUTED","present":false,"rawScore":null},"semantic":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"taxonomy":{"rank":2,"direct":false,"status":"EXECUTED","present":true,"matchedNodeId":"15904283-fd01-5fc3-ac00-c42e62e8422e","hierarchyDistance":1},"accentless":{"rank":null,"status":"EXECUTED","present":false},"nonCollapse":{"rank":null,"status":"NOT_IMPLEMENTED","applied":null}},"candidateUnion":{"present":true,"reachedTop5":true,"stageEvidence":[{"stage":"FTS","rawScore":0.21746,"matchKind":"FTS","stageRank":1,"diagnostic":{"matchedWeight":"C"},"directTaxonomy":null},{"stage":"TAXONOMY","rawScore":null,"matchKind":"TAXONOMY","stageRank":2,"diagnostic":{"matchedNodeId":"15904283-fd01-5fc3-ac00-c42e62e8422e","requestedNodeId":"27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1","hierarchyDistance":1,"recognitionSource":"EXPLICIT_FILTER"},"directTaxonomy":false}],"postFilterRank":1,"provisionalUnionRank":1,"stagePresenceImpliesUnion":true},"versions":{"embedding":{"model":null,"status":"NOT_IMPLEMENTED","provider":null,"revision":null,"dimension":null},"searchDocument":{"id":"b6f8f71a-dfe4-4c1d-a0f9-8461ea45f2a3","status":"ACTIVE","contentHash":"270608729dc73ae7dea6d334582369ebf7c01c4734caf98e36d76bafd47471d2","documentVersion":"search-document-v1","templateVersion":"lexical-embedding-template-v1"},"boundaryVersion":"lm-current-2026-08-14","taxonomyVersion":"active-going-out.v1","taxonomyChecksum":"ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2","searchConfigVersion":"embed-01a-preflight-v1"}}`
+- grade: __
+
+#### Rank 2
+
+- CanonicalEntity ID: `17b30a56-fef9-4a2d-b2c6-ea5bfd153bd6`
+- Display name: Evergreen Restaurang & Pizzeria
+- Taxonomy memberships: dining (Dining / Restauranger; 15904283-fd01-5fc3-ac00-c42e62e8422e)
+- Location/scope: `{"latitude":57.7793606,"longitude":14.1570439,"scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}`
+- DIAG-01 evidence: `{"entityExists":true,"eligible":true,"eligibilityFailureReason":"ELIGIBLE","reasonCodes":["TOP_5"],"exactQualification":{"canonical":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"protectionClass":null},"verifiedAlias":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"qualificationReason":"NO_MATCH"}},"stages":{"rrf":{"rank":null,"status":"NOT_IMPLEMENTED","contribution":null},"event":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"prefix":{"rank":null,"status":"EXECUTED","present":false},"lexical":{"rank":2,"status":"EXECUTED","present":true,"rawScore":0.188889,"absenceReason":null,"matchedWeight":"C"},"trigram":{"rank":null,"status":"EXECUTED","present":false,"rawScore":null},"semantic":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"taxonomy":{"rank":1,"direct":false,"status":"EXECUTED","present":true,"matchedNodeId":"15904283-fd01-5fc3-ac00-c42e62e8422e","hierarchyDistance":1},"accentless":{"rank":null,"status":"EXECUTED","present":false},"nonCollapse":{"rank":null,"status":"NOT_IMPLEMENTED","applied":null}},"candidateUnion":{"present":true,"reachedTop5":true,"stageEvidence":[{"stage":"FTS","rawScore":0.188889,"matchKind":"FTS","stageRank":2,"diagnostic":{"matchedWeight":"C"},"directTaxonomy":null},{"stage":"TAXONOMY","rawScore":null,"matchKind":"TAXONOMY","stageRank":1,"diagnostic":{"matchedNodeId":"15904283-fd01-5fc3-ac00-c42e62e8422e","requestedNodeId":"27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1","hierarchyDistance":1,"recognitionSource":"EXPLICIT_FILTER"},"directTaxonomy":false}],"postFilterRank":2,"provisionalUnionRank":2,"stagePresenceImpliesUnion":true},"versions":{"embedding":{"model":null,"status":"NOT_IMPLEMENTED","provider":null,"revision":null,"dimension":null},"searchDocument":{"id":"d2781ce9-e481-4afb-a811-c02b1879d1bf","status":"ACTIVE","contentHash":"9f824d589335d49c7c868950229104ad8d73a6eee09e5bdede08c58153ff56d2","documentVersion":"search-document-v1","templateVersion":"lexical-embedding-template-v1"},"boundaryVersion":"lm-current-2026-08-14","taxonomyVersion":"active-going-out.v1","taxonomyChecksum":"ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2","searchConfigVersion":"embed-01a-preflight-v1"}}`
+- grade: __
+
+#### Rank 3
+
+- CanonicalEntity ID: `bf462ec4-f4b5-4781-a559-e9f260ee756c`
+- Display name: Tandori palace
+- Taxonomy memberships: dining (Dining / Restauranger; 15904283-fd01-5fc3-ac00-c42e62e8422e); indian (Indian / Indisk; 493d4231-5caf-5300-a489-bdc6cf98de6c)
+- Location/scope: `{"latitude":57.7780921,"longitude":14.1583465,"scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}`
+- DIAG-01 evidence: `{"entityExists":true,"eligible":true,"eligibilityFailureReason":"ELIGIBLE","reasonCodes":["TOP_5"],"exactQualification":{"canonical":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"protectionClass":null},"verifiedAlias":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"qualificationReason":"NO_MATCH"}},"stages":{"rrf":{"rank":null,"status":"NOT_IMPLEMENTED","contribution":null},"event":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"prefix":{"rank":null,"status":"EXECUTED","present":false},"lexical":{"rank":3,"status":"EXECUTED","present":true,"rawScore":0.166667,"absenceReason":null,"matchedWeight":"C"},"trigram":{"rank":null,"status":"EXECUTED","present":false,"rawScore":null},"semantic":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"taxonomy":{"rank":3,"direct":false,"status":"EXECUTED","present":true,"matchedNodeId":"15904283-fd01-5fc3-ac00-c42e62e8422e","hierarchyDistance":1},"accentless":{"rank":null,"status":"EXECUTED","present":false},"nonCollapse":{"rank":null,"status":"NOT_IMPLEMENTED","applied":null}},"candidateUnion":{"present":true,"reachedTop5":true,"stageEvidence":[{"stage":"FTS","rawScore":0.166667,"matchKind":"FTS","stageRank":3,"diagnostic":{"matchedWeight":"C"},"directTaxonomy":null},{"stage":"TAXONOMY","rawScore":null,"matchKind":"TAXONOMY","stageRank":3,"diagnostic":{"matchedNodeId":"15904283-fd01-5fc3-ac00-c42e62e8422e","requestedNodeId":"27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1","hierarchyDistance":1,"recognitionSource":"EXPLICIT_FILTER"},"directTaxonomy":false}],"postFilterRank":3,"provisionalUnionRank":3,"stagePresenceImpliesUnion":true},"versions":{"embedding":{"model":null,"status":"NOT_IMPLEMENTED","provider":null,"revision":null,"dimension":null},"searchDocument":{"id":"1a0e266b-4bdb-4024-8a03-412a509c0636","status":"ACTIVE","contentHash":"323a597895f39252f546821bab20936c9e2325e013285ccbc792b070bff461cc","documentVersion":"search-document-v1","templateVersion":"lexical-embedding-template-v1"},"boundaryVersion":"lm-current-2026-08-14","taxonomyVersion":"active-going-out.v1","taxonomyChecksum":"ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2","searchConfigVersion":"embed-01a-preflight-v1"}}`
+- grade: __
+
+## eval-v1-dev-taxonomy-parent-leaf-07
+
+- Query: culture och events
+- Language: mixed
+- Family: taxonomy_parent_leaf
+- Request filters: `{"taxonomy":{"node_id":"6432bde9-17e2-5a04-92b3-9bf6f4589cf2","slug":"culture"}}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+_No current results._
+
+## eval-v1-dev-broad-discovery-01
+
+- Query: things to do in Jönköping
+- Language: en
+- Family: broad_discovery
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+#### Rank 1
+
+- CanonicalEntity ID: `911ac4cb-a19c-490d-beef-0062cd7fdb1a`
+- Display name: Jönköpings OK: utegym*
+- Taxonomy memberships: sports (Sports / Sport; ab9ee0ec-2e7e-5f14-b2bb-15c66aaf979f)
+- Location/scope: `{"latitude":57.6923150843818,"longitude":14.0904687698558,"scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}`
+- DIAG-01 evidence: `{"entityExists":true,"eligible":true,"eligibilityFailureReason":"ELIGIBLE","reasonCodes":["TOP_5"],"exactQualification":{"canonical":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"protectionClass":null},"verifiedAlias":{"rank":null,"status":"EXECUTED","present":false,"protected":false,"qualificationReason":"NO_MATCH"}},"stages":{"rrf":{"rank":null,"status":"NOT_IMPLEMENTED","contribution":null},"event":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"prefix":{"rank":null,"status":"EXECUTED","present":false},"lexical":{"rank":null,"status":"EXECUTED","present":false,"rawScore":null,"absenceReason":"NO_FTS_MATCH","matchedWeight":null},"trigram":{"rank":1,"status":"EXECUTED","present":true,"rawScore":0.323529},"semantic":{"rank":null,"status":"NOT_IMPLEMENTED","present":null},"taxonomy":{"rank":null,"direct":null,"status":"EXECUTED","present":false,"matchedNodeId":null,"hierarchyDistance":null},"accentless":{"rank":null,"status":"EXECUTED","present":false},"nonCollapse":{"rank":null,"status":"NOT_IMPLEMENTED","applied":null}},"candidateUnion":{"present":true,"reachedTop5":true,"stageEvidence":[{"stage":"TRIGRAM","rawScore":0.323529,"matchKind":"TRIGRAM","stageRank":1,"diagnostic":{"matchedSource":"CANONICAL","aliasQualification":"ORDINARY_TRIGRAM"},"directTaxonomy":null}],"postFilterRank":1,"provisionalUnionRank":1,"stagePresenceImpliesUnion":true},"versions":{"embedding":{"model":null,"status":"NOT_IMPLEMENTED","provider":null,"revision":null,"dimension":null},"searchDocument":{"id":"a7d6bace-da91-415e-9cfb-77bdee74dd6d","status":"ACTIVE","contentHash":"533c142a416ccaaf8adb1d4c8f4479b6d6f7f618ccc65841a3e8e8d3ccf45ef7","documentVersion":"search-document-v1","templateVersion":"lexical-embedding-template-v1"},"boundaryVersion":"lm-current-2026-08-14","taxonomyVersion":"active-going-out.v1","taxonomyChecksum":"ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2","searchConfigVersion":"embed-01a-preflight-v1"}}`
+- grade: __
+
+## eval-v1-dev-broad-discovery-02
+
+- Query: saker att göra i Jönköping
+- Language: sv
+- Family: broad_discovery
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+_No current results._
+
+## eval-v1-dev-geo-scope-radius-02
+
+- Query: things to do within 1 km
+- Language: en
+- Family: geo_scope_radius
+- Request filters: `{"location":{"latitude":57.7826,"longitude":14.1618,"radius_meters":1000}}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+_No current results._
+
+## eval-v1-dev-scarcity-duplicate-state-01
+
+- Query: Cuban restaurants in Jönköping
+- Language: en
+- Family: scarcity_duplicate_state
+- Request filters: `{"taxonomy":{"node_id":"a7d01142-e735-51c9-bf56-b20250c527f1","slug":"cuban"}}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+_No current results._
+
+## eval-v1-dev-broad-concentration-04
+
+- Query: något kul i stan
+- Language: sv
+- Family: broad_concentration
+- Request filters: `{}`
+- Hard constraints: scope:jonkoping-municipality; publication:eligible-only
+- Evaluation clock: 2026-10-15T12:00:00Z
+- Frozen target reference: `null`
+- Target inventory matches: `[]`
+- Missing-target DIAG-01 evidence: `null`
+
+_No current results._

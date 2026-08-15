@@ -9,6 +9,10 @@ import {
   validateJudgmentSet,
   validateScaffolds,
 } from '../../packages/evaluation/validation/corpus.mjs';
+import {
+  DAY2_SELECTED_QUERY_IDS,
+  loadSelectedDevQueries,
+} from '../../packages/evaluation/src/day2-review-packet.ts';
 
 describe('EVAL-01 corpus foundation', () => {
   it('validates frozen allocation, identity, taxonomy references, and pairs', async () => {
@@ -35,6 +39,62 @@ describe('EVAL-01 corpus foundation', () => {
     const { judgments, manifest } = await validateScaffolds();
     expect(validateJudgmentSet(judgments).records).toEqual([]);
     expect(validateDatasetManifest(manifest).status).toBe('SCAFFOLD_UNBOUND');
+  });
+
+  it('allows a frozen deterministic manifest to explicitly omit a non-participating model', async () => {
+    const { manifest } = await validateScaffolds();
+    expect(validateDatasetManifest({
+      ...manifest,
+      status: 'FROZEN',
+      canonical_dataset_version: 'fixture-dataset.v1',
+      source_record_ingestion_run_ids: ['10000000-0000-4000-8000-000000000001'],
+      normalization_version: 'norm-v1',
+      search_config_version: 'search-config.v1',
+      code_git_commit: 'fixture-commit',
+      judgment: { version: 'judgments.dev.fixture', checksum: 'a'.repeat(64) },
+      search_documents: {
+        template_version: 'search-document-template-v1',
+        document_version: 'search-document-v1',
+        hashes: ['b'.repeat(64)],
+      },
+      embedding: { provider: null, model: null, revision: null, dimension: null },
+    }).status).toBe('FROZEN');
+  });
+
+  it('freezes the prescribed representative Day-2 DEV selection without unsupported families', async () => {
+    const { text } = await readCorpus();
+    const selected = await loadSelectedDevQueries(text);
+    expect(selected.map(({ query_id: queryId }) => queryId)).toEqual(DAY2_SELECTED_QUERY_IDS);
+    expect(selected).toHaveLength(14);
+    expect(selected.every(({ split }) => split === 'DEV')).toBe(true);
+    expect(selected.some(({ family }) => ['semantic_occasion_language', 'event_time'].includes(family))).toBe(false);
+  });
+
+  it('validates the immutable Day-2 dataset freeze before human judgment is populated', async () => {
+    const manifest = JSON.parse(await readFile(
+      new URL('../../evaluation/manifests/dataset-manifest.day2.v1.json', import.meta.url),
+      'utf8',
+    ));
+    expect(validateDatasetManifest(manifest).judgment).toEqual({ version: null, checksum: null });
+  });
+
+  it('keeps the corrected Day-2 human pool exhaustive and entirely ungraded', async () => {
+    const [manifestText, packetText] = await Promise.all([
+      readFile(new URL('../../evaluation/manifests/dataset-manifest.day2.v1.json', import.meta.url), 'utf8'),
+      readFile(new URL('../../evaluation/judgments/day2-review-packet.v1.1.json', import.meta.url), 'utf8'),
+    ]);
+    const packet = JSON.parse(packetText);
+    expect(packet.datasetManifestChecksum).toBe(sha256(manifestText));
+    expect(packet.queries).toHaveLength(14);
+    expect(packet.queries.every((query: { entityReviewRows: unknown[] }) => query.entityReviewRows.length === 6))
+      .toBe(true);
+    expect(packet.queries.flatMap((query: { entityReviewRows: Array<{ grade: unknown }> }) => query.entityReviewRows)
+      .every(({ grade }: { grade: unknown }) => grade === null)).toBe(true);
+    expect(packet.queries.filter((query: { targetInventoryStatus: string }) => (
+      query.targetInventoryStatus === 'TARGET_NOT_IN_FROZEN_DATASET'
+    )).every((query: { primaryTargetFailureAttribution: string }) => (
+      query.primaryTargetFailureAttribution === 'INVENTORY'
+    ))).toBe(true);
   });
 
   it('rejects SEALED, ADVERSARIAL, and generic all tuning access', async () => {

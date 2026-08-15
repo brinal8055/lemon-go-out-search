@@ -61,18 +61,42 @@ export async function diagnoseDevQuery(
   }
 }
 
-export async function prepareLocalDiagnosticRuntime(connectionString: string): Promise<void> {
+export async function prepareLocalDiagnosticRuntime(connectionString: string): Promise<() => Promise<void>> {
   const url = new URL(connectionString);
   if (!['127.0.0.1', 'localhost', '::1'].includes(url.hostname)) {
     throw new Error('diagnostic role preparation is restricted to a local database');
   }
   const client = new pg.Client({ connectionString });
   await client.connect();
+  let granted = false;
   try {
-    await client.query('grant lemon_evaluation to postgres with set true');
+    const membership = await client.query<{ set_option: boolean }>(`
+      select membership.set_option
+      from pg_catalog.pg_auth_members as membership
+      join pg_catalog.pg_roles as member_role on member_role.oid = membership.member
+      join pg_catalog.pg_roles as granted_role on granted_role.oid = membership.roleid
+      where member_role.rolname = session_user
+        and granted_role.rolname = 'lemon_evaluation'
+        and membership.set_option
+      limit 1
+    `);
+    if (membership.rowCount === 0) {
+      await client.query('grant lemon_evaluation to postgres with set true');
+      granted = true;
+    }
   } finally {
     await client.end();
   }
+  return async () => {
+    if (!granted) return;
+    const cleanup = new pg.Client({ connectionString });
+    await cleanup.connect();
+    try {
+      await cleanup.query('revoke lemon_evaluation from postgres granted by postgres');
+    } finally {
+      await cleanup.end();
+    }
+  };
 }
 
 function toDiagnosticRequest(record: EvalCorpusRecordV1): Record<string, unknown> {

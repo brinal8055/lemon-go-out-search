@@ -18,6 +18,49 @@
     "evaluation_clock_utc": { "type": "string", "format": "date-time" },
     "corpus": { "type": "object", "required": ["version", "checksum"], "properties": { "version": { "const": "corpus.v1" }, "checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" } } },
     "judgment": { "type": "object", "required": ["version", "checksum"], "properties": { "version": { "type": ["string", "null"] }, "checksum": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" } } },
-    "code_git_commit": { "type": ["string", "null"] }
+    "code_git_commit": { "type": ["string", "null"] },
+    "code_state": { "type": "string", "minLength": 1 },
+    "dataset_inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eligible_published_entities", "active_search_documents", "checksum"],
+      "properties": {
+        "eligible_published_entities": { "type": "integer", "minimum": 0 },
+        "active_search_documents": { "type": "integer", "minimum": 0 },
+        "checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "source_fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_key", "path", "checksum", "ingestion_run_id"],
+        "properties": {
+          "source_key": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "ingestion_run_id": { "type": "string", "format": "uuid" }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exact", "alias", "accentless", "prefix", "trigram", "fts", "taxonomy", "event", "semantic", "rrf", "non_collapse"],
+      "properties": {
+        "exact": { "const": "IMPLEMENTED" },
+        "alias": { "const": "IMPLEMENTED" },
+        "accentless": { "const": "IMPLEMENTED" },
+        "prefix": { "const": "IMPLEMENTED" },
+        "trigram": { "const": "IMPLEMENTED" },
+        "fts": { "const": "IMPLEMENTED" },
+        "taxonomy": { "const": "IMPLEMENTED" },
+        "event": { "const": "NOT_IMPLEMENTED" },
+        "semantic": { "const": "NOT_IMPLEMENTED" },
+        "rrf": { "const": "NOT_IMPLEMENTED" },
+        "non_collapse": { "const": "NOT_IMPLEMENTED" }
+      }
+    }
   }
 }

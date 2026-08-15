@@ -14,6 +14,19 @@
     "taxonomy_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "boundary_version": { "type": "string", "minLength": 1 },
     "hard_constraint_policy": { "const": "GRADE_0_REGARDLESS_OF_TEXT_SIMILARITY" },
+    "dataset_manifest_version": { "type": "string", "minLength": 1 },
+    "dataset_manifest_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "dataset_inventory_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "selected_query_ids": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "provenance"],
+      "properties": {
+        "authority": { "type": "string", "minLength": 1 },
+        "provenance": { "type": "string", "minLength": 1 }
+      }
+    },
     "records": {
       "type": "array",
       "items": {
@@ -34,7 +47,11 @@
           "judged_at": { "type": "string", "format": "date-time" },
           "dataset_version": { "type": "string" },
           "taxonomy_checksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-          "boundary_version": { "type": "string" }
+          "boundary_version": { "type": "string" },
+          "query_text": { "type": "string" },
+          "known_item_inventory_status": { "enum": ["TARGET_NOT_IN_FROZEN_DATASET", "TARGET_MATCHED", "NOT_APPLICABLE"] },
+          "primary_failure_attribution": { "type": ["string", "null"], "enum": ["INVENTORY", null] },
+          "search_ranking_assessment": { "enum": ["EVALUATED", "NOT_EVALUATED"] }
         }
       }
     }

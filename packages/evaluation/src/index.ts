@@ -41,4 +41,77 @@ export type EvalJudgmentRecordV1 = {
   dataset_version: string;
   taxonomy_checksum: string;
   boundary_version: string;
+  query_text?: string;
+  known_item_inventory_status?: 'TARGET_NOT_IN_FROZEN_DATASET' | 'TARGET_MATCHED' | 'NOT_APPLICABLE';
+  primary_failure_attribution?: 'INVENTORY' | null;
+  search_ranking_assessment?: 'EVALUATED' | 'NOT_EVALUATED';
+};
+
+export type EvalJudgmentSetV1 = {
+  judgment_version: string;
+  status: 'SCAFFOLD_UNBOUND' | 'FROZEN';
+  split: EvalSplit;
+  corpus_version: 'corpus.v1';
+  corpus_checksum: string;
+  dataset_version: string | null;
+  taxonomy_checksum: string;
+  boundary_version: string;
+  hard_constraint_policy: 'GRADE_0_REGARDLESS_OF_TEXT_SIMILARITY';
+  records: EvalJudgmentRecordV1[];
+  dataset_manifest_version?: string;
+  dataset_manifest_checksum?: string;
+  dataset_inventory_checksum?: string;
+  selected_query_ids?: string[];
+  approval?: { authority: string; provenance: string };
+};
+
+export type EvalDatasetManifestV1 = {
+  manifest_version: string;
+  status: 'SCAFFOLD_UNBOUND' | 'FROZEN';
+  canonical_dataset_version: string | null;
+  source_record_ingestion_run_ids: string[];
+  boundary: { id: string; version: string; checksum: string };
+  taxonomy: { version: string; checksum: string };
+  normalization_version: string | null;
+  search_documents: {
+    template_version: string | null;
+    document_version: string | null;
+    hashes: string[];
+  };
+  embedding: {
+    provider: string | null;
+    model: string | null;
+    revision: string | null;
+    dimension: number | null;
+  };
+  search_config_version: string | null;
+  evaluation_clock_utc: string;
+  corpus: { version: 'corpus.v1'; checksum: string };
+  judgment: { version: string | null; checksum: string | null };
+  code_git_commit: string | null;
+  code_state?: string;
+  dataset_inventory?: {
+    eligible_published_entities: number;
+    active_search_documents: number;
+    checksum: string;
+  };
+  source_fixtures?: Array<{
+    source_key: string;
+    path: string;
+    checksum: string;
+    ingestion_run_id: string;
+  }>;
+  capabilities?: {
+    exact: 'IMPLEMENTED';
+    alias: 'IMPLEMENTED';
+    accentless: 'IMPLEMENTED';
+    prefix: 'IMPLEMENTED';
+    trigram: 'IMPLEMENTED';
+    fts: 'IMPLEMENTED';
+    taxonomy: 'IMPLEMENTED';
+    event: 'NOT_IMPLEMENTED';
+    semantic: 'NOT_IMPLEMENTED';
+    rrf: 'NOT_IMPLEMENTED';
+    non_collapse: 'NOT_IMPLEMENTED';
+  };
 };

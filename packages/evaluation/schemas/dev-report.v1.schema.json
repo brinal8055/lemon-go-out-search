@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lemon.local/schemas/evaluation/dev-report.v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reportVersion",
+    "split",
+    "pins",
+    "capabilities",
+    "overall",
+    "byFamily",
+    "byLanguage",
+    "pairs",
+    "queries",
+    "failureAttributionSummary",
+    "contentChecksum"
+  ],
+  "properties": {
+    "reportVersion": { "const": "dev-evaluation-report.v1" },
+    "split": { "const": "DEV" },
+    "pins": { "type": "object" },
+    "capabilities": { "type": "object" },
+    "overall": { "type": "object" },
+    "byFamily": { "type": "object" },
+    "byLanguage": { "type": "object" },
+    "pairs": { "type": "array" },
+    "queries": { "type": "array" },
+    "failureAttributionSummary": { "type": "object" },
+    "contentChecksum": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}
