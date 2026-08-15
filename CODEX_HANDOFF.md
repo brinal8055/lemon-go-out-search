@@ -1,579 +1,1008 @@
-# Lemon Going-Out Search — Codex Implementation Handoff
+# Lemon Going-Out Search — Codex Handoff
 
-## Purpose
+Last updated: 2026-08-15
 
-This file allows a fresh Codex session to continue Lemon implementation without
-access to previous Codex conversation history.
+This file is durable implementation context for fresh Codex sessions.
 
-Codex should use:
-
-1. `AGENTS.md`
-2. `CODEX_HANDOFF.md`
-3. `docs/FROZEN_SOURCES.md`
-4. only the frozen document sections required for the explicitly supplied
-   current task
-
-`CODEX_START_HERE.md` is deprecated and intentionally removed.
-
-Do not require or recreate it.
-
-Do not routinely read historical drafts, amendments, reviews, research documents,
-or previously accepted task conversations.
-
-Git history is authoritative for completed implementation work.
-
-The explicit user task prompt is authoritative for the current approved task.
+Do NOT treat this file as a replacement for the frozen sources of truth.
+For normative behavior use the frozen hierarchy below.
 
 ---
 
-## Frozen authority hierarchy
+# 1. Frozen sources of truth
 
-Requirements
->
-Final Architecture
->
-Final Technical Specification
->
-Final Implementation Plan
+Authority order:
 
-Paths:
+1. `docs/requirements/Requirements_Baseline_v1_1.md`
+2. `docs/architecture/Final_Architecture_v1_0.md`
+3. `docs/specification/Final_Technical_Specification_v1_0.md`
+4. `docs/implementation/Final_Implementation_Plan_v1_0.md`
 
-- `docs/requirements/Requirements_Baseline_v1_1.md`
-- `docs/architecture/Final_Architecture_v1_0.md`
-- `docs/specification/Final_Technical_Specification_v1_0.md`
-- `docs/implementation/Final_Implementation_Plan_v1_0.md`
+Manifest:
 
-Frozen-source checksums and materialization metadata live in:
+`docs/FROZEN_SOURCES.md`
 
-- `docs/FROZEN_SOURCES.md`
-
-If a genuine contradiction exists between frozen authorities:
+True conflict:
 
 `SPEC_CHANGE_REQUIRED`
 
-Do not reinterpret, silently reconcile, or infer a new contract.
+Do not rewrite frozen documents.
+
+Do not reread all frozen documents for every task.
+Search only task-relevant sections.
+
+Git history + explicit task prompt are authoritative for accepted implementation
+state.
+
+`CODEX_START_HERE.md` is intentionally deprecated/deleted.
+Do not recreate it.
 
 ---
 
-## Usage discipline
+# 2. Product / trial scope
 
-Codex usage is constrained.
+Build a production-quality four-day vertical slice for:
 
-Optimize token/model usage without weakening implementation quality.
+Jönköping municipality, Sweden
 
-For every task:
+Stack:
 
-- do not reread accepted task history;
-- do not read all four frozen documents end-to-end;
-- search/open only current-task-relevant sections and direct cross-references;
-- inspect only implementation files needed by the current package;
-- do not produce architecture/design essays when architecture is already frozen;
-- perform dependency preflight internally;
-- if dependencies pass, continue automatically through implementation,
-  verification, diff inspection, scope audit, and commit;
-- stop early only for a genuine blocker or frozen-contract conflict;
-- keep successful command/test output concise;
-- inspect verbose logs only when something fails;
-- do not rerun expensive unrelated live-source/evaluation suites unless the
-  current change actually requires them;
-- do not use a stronger model than the task requires;
-- return concise completion reports.
+Expo / React Native
+→ Supabase Edge Function
+→ one public PostgreSQL search RPC
+→ PostgreSQL / PostGIS / pgvector
 
-Quality gates, frozen contracts, security requirements, and tests remain
-unchanged.
+Postgres is the single canonical/search datastore.
 
----
+No:
 
-## Core architecture invariants
+- Elasticsearch
+- Redis search
+- ANN index
+- request-time scraping
+- secondary search datastore
+- LLM reranker
+- learned ranking
 
-- Supabase/Postgres is canonical and the sole trial search datastore.
-- Stable Lemon canonical identity is separate from external source identity.
-- Place and Event lifecycles are separate.
-- Only the Active Going-Out Taxonomy is valid.
-- Geographic scope is the full Jönköping municipality.
-- Source chain:
+Search paths eventually include:
 
-  Source
-  → SourceRecord
-  → immutable SourceRecordVersion
-  → rerunnable ParseAttempt
+- protected canonical exact
+- qualified verified alias exact
+- accentless exact
+- prefix
+- trigram
+- FTS
+- taxonomy
+- Event/time
+- semantic exact-pgvector
+- fixed/simple RRF
+- bounded broad-discovery non-collapse
 
-- Source-current evidence is the selected successful H+A pair.
-- Source-current evidence and canonical-current truth are independent.
-- No heuristic cross-source auto-merge.
-- Deterministic retrieval always remains available.
-- Semantic retrieval is optional/additive.
-- Eligible accent-preserving canonical exact is protected.
-- Verified alias exact is protected only when qualifying/unambiguous.
-- Accentless exact, prefix, and trigram are ordinary evidence.
-- Simple fixed RRF is added later.
-- Broad non-collapse runs after ranking/relevance later.
-- The trial uses exact pgvector scan; no ANN.
-- Public search path:
-
-  Mobile
-  → Edge
-  → `api.search_v1`
-  → private PostgreSQL search implementation
-
-- Mobile never receives backend/service-role/database/provider secrets.
-- Edge performs exactly one public search RPC for a normal search request.
-- Embeddings are the only launch AI dependency.
-- Evaluation corpus, judgments, and manifests are frozen/versioned.
-- SEALED evaluation data is not available to ordinary DEV tuning.
+Semantic is additive and fail-open.
+Deterministic search must always work.
 
 ---
 
-# Accepted implementation
+# 3. Current milestone
 
-There are currently 14 accepted implementation packages.
+DAY 1: COMPLETE
+DAY 2: COMPLETE
 
-## BOOT-01
+Current next task:
 
-commit: `4e5ab76898886f8111cb5913ed64e4ad38edb903`
+SRC-03B — bounded real Event ingestion/canonicalization
 
-message: `chore(boot): establish BOOT-01 repository foundation`
+Do NOT automatically begin later packages.
 
-## DB-01A
+After SRC-03B:
 
-commit: `18653d2eaeebd1de15355c3b4b2cfc44eb902475`
+EVENT-01
 
-message: `feat(db): implement DB-01A source evidence foundation`
+Independent semantic branch:
 
-## DB-01B
+EMBED-01B
+→ SEM-01
 
-commit: `78861bb5f7f57e8e67d83801af4e7972ef91de1b`
+RANK-01 final completion requires:
 
-message: `feat(db): implement DB-01B canonical domain taxonomy schemaReadMe changes`
+EVENT-01 + SEM-01
 
-## DB-01C
+Then:
 
-commit: `be0d10963faf71a6c579e6a82fd676d9bac2cf2c`
-
-message: `feat(db): implement DB-01C search projection configuration schema`
-
-## DB-02
-
-commit: `8c5dbe31980ae37a6eeffd69e54e4f75424cbfe7`
-
-message: `feat(db): implement DB-02 source-current evidence transactions`
-
-## REF-01
-
-commit: `c5dc762449962064c44da681e1dd031b2980a087`
-
-message: `feat(ref): seed active taxonomy and Jonkoping scope`
-
-## EVAL-01
-
-commit: `3221f3f3cda64d95efb5472fa6f81dbc2408f2b7`
-
-message: `feat(eval): freeze evaluation corpus scaffold`
-
-## ING-01
-
-commit: `8ea9b7783fe8bccedac9478208545fc4c23252f6`
-
-message: `feat(ingest): implement six-stage ingestion core`
-
-## SRC-01
-
-commit: `18fff86e1b837a13876c98b35e19ea905c2e2ff5`
-
-message: `feat(source): add bounded OSM ingestion adapter`
-
-## DAY1-PUB-01
-
-commit: `1281c14b9faebf16accd45fa298784069f0fed3b`
-
-message: `fix(ingest): complete first-place publication bridge`
-
-## SEARCH-01
-
-commit: `8e1d6c09664c08088fc6882da67cf2ebe3204d9a`
-
-message: `feat(search): implement eligibility and known-item retrieval`
-
-## SEC-01
-
-commit: `a9cd73b28185804b65a1775e1af7ef55438eff22`
-
-message: `feat(security): implement SEC-01 search RPC boundary`
-
-## EDGE-01
-
-commit: `d0e3f1951581de51894920538403995ce77244ea`
-
-message: use the exact Git commit subject from repository history
-
-## MOB-01
-
-commit: `464c3f4d42ca961a82b051d74cfff5211611d75d`
-
-message: use the exact Git commit subject from repository history
-
-The accepted DB-01B/DB-01C history is preserved exactly as Git records it,
-including historical irregularities.
-
-Do not normalize or rewrite previously accepted history.
-
-Previously accepted Git history must not be amended, squashed, rebased, or
-rewritten unless explicitly instructed.
-
-For EDGE-01 and MOB-01, Git history is authoritative for the exact commit
-subjects if this handoff does not record them literally.
+RANK-01
+→ NONCOLLAPSE-01
+→ MOB-03
+→ EVAL-03
 
 ---
 
-# Milestone status
+# 4. Accepted package commits
 
-## Day 1 — COMPLETE
+Accepted history must not be rewritten.
 
-The non-negotiable first vertical slice is complete:
+BOOT-01
+`4e5ab768`
+chore(boot): establish BOOT-01 repository foundation
 
-Real OSM acquisition
-→ source evidence
-→ canonical Place
-→ truthful taxonomy/provenance
-→ deterministic SearchDocument
-→ published Place
-→ known-item search
-→ protected exact behavior
-→ secured public RPC
-→ thin Edge endpoint
-→ Expo/mobile search
-→ real result rendered
+DB-01A
+`18653d2e`
+feat(db): implement DB-01A source evidence foundation
 
-The real smoke entity is:
+DB-01B
+`78861bb5`
+historical commit irregularity accepted — do not rewrite
 
-OSM source identity:
-`OSM_OVERPASS + node/254912492`
+DB-01C
+`be0d1096`
+historical DB-01B/01C irregularity accepted — do not rewrite
 
-Canonical name:
-`Evergreen Restaurang & Pizzeria`
+DB-02
+`8c5dbe31`
+feat(db): implement DB-02 source-current evidence transactions
 
-A clean database reset may recreate a different CanonicalEntity UUID.
+REF-01
+`c5dc7624`
+feat(ref): seed active taxonomy and Jonkoping scope
 
-Do NOT treat a previously observed runtime CanonicalEntity UUID as durable across
-resets.
+EVAL-01
+`3221f3f3`
+feat(eval): freeze evaluation corpus scaffold
 
-Locate this real entity using source identity plus canonical name.
+ING-01
+`8ea9b778`
+feat(ingest): implement six-stage ingestion core
 
----
+SRC-01
+`18fff86e`
+feat(source): add bounded OSM ingestion adapter
 
-# Current implementation state
+DAY1-PUB-01
+`1281c14b`
+fix(ingest): complete first-place publication bridge
 
-## Reference data
+SEARCH-01
+`8e1d6c09`
+feat(search): implement eligibility and known-item retrieval
 
-- Active Going-Out Taxonomy: 52 nodes.
-- Taxonomy version: `active-going-out.v1`.
-- Taxonomy checksum:
+SEC-01
+`a9cd73b`
+feat(security): implement SEC-01 search RPC boundary
 
-  `ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2`
+EDGE-01
+`d0e3f195`
+thin fixed Edge → api.search_v1 boundary
 
-- Jönköping municipality scope ID:
+MOB-01
+`464c3f4d`
+minimal Expo search UI
 
-  `a4b19b09-b272-5748-80ef-2c91d9d33ca6`
+SRC-02
+`d29d7a47`
+feat(source): add bounded municipal ingestion
 
-- Municipality boundary is frozen from Lantmäteriet.
-- Boundary ID:
+DEDUP-01
+`65816f0c`
+feat(dedup): implement manual duplicate review lifecycle
 
-  `0a39b199-4cd5-5358-85de-2c1a5f91a347`
+PROV-01
+`743049a`
+feat(provenance): implement targeted provenance and compliance redaction
 
-- Boundary version:
+TAX-01
+`ec8d719`
+feat(taxonomy): implement mappings and truthful coverage
 
-  `lm-current-2026-08-14`
+DOC-01
+`20916fd`
+feat(search): implement deterministic search documents
 
-- Boundary artifact checksum:
+SEARCH-02
+`8bc55b2`
+feat(search): add lexical and taxonomy discovery
 
-  `257a277667cde164bcb70eae16ca6985578fe34666df92ff289af519a262df1d`
+DIAG-01
+`6b1b505`
+feat(search): add restricted diagnostics
 
-- Timezone:
+TIME-01
+`7c27d99`
+feat(time): implement deterministic bilingual parser
 
-  `Europe/Stockholm`
+EMBED-01A
+`779cef6`
+feat(embedding): implement lifecycle and provider preflight
 
----
+SRC-03A
+`205d022`
+feat(source): prove event source viability
 
-## Evaluation
+MOB-02
+`4f26f92`
+feat(mobile): add bilingual discovery experience
 
-- Corpus version: `corpus.v1`.
-- Corpus checksum:
+EVAL-02
+`4b4a20c`
+feat(eval): add deterministic dev runner
 
-  `bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c`
+Working tree after EVAL-02:
 
-- Total queries: 110.
-- DEV: 60.
-- SEALED: 30.
-- ADVERSARIAL: 20.
-- Semantic allocation:
-  - DEV 16
-  - SEALED 8
-  - ADVERSARIAL 6
-- EN/SV paired semantic intents:
-  12 groups / 24 queries.
-- SEALED judgments remain protected from normal DEV/tuning workflows.
-
----
-
-## Ingestion
-
-Implemented:
-
-- six-stage ingestion core;
-- capture-before-parse;
-- immutable SourceRecordVersion;
-- rerunnable ParseAttempt;
-- NEW / CHANGED / UNCHANGED behavior;
-- DB-02 source-current H+A selection;
-- stale-processing protection;
-- last-good preservation;
-- snapshot/delta refresh semantics;
-- fixture-driven rerun/idempotency;
-- bounded real OSM/Overpass adapter.
-
-OSM policy:
-
-- refresh mode: `DELTA_ONLY`;
-- persistence: `EXTRACTED_FIELDS_ONLY`;
-- stable external identity:
-
-  `node|way|relation/<id>`
-
-- bounded real OSM ingestion works and reruns reproducibly;
-- no heuristic cross-source merge exists.
+CLEAN
 
 ---
 
-## First published Place
+# 5. Core source/evidence invariants
 
-Durable source identity:
+Source lineage:
 
-`node/254912492`
+Source
+→ SourceRecord
+→ immutable SourceRecordVersion
+→ ParseAttempt
 
-Canonical name:
+Current source evidence is the exact pair:
 
-`Evergreen Restaurang & Pizzeria`
+SourceRecordVersion H
++
+ParseAttempt A
 
-Current accepted behavior:
+represented by:
 
-- publication status: `PUBLISHED`;
-- Place status: `UNKNOWN` and eligible;
-- scope: active full Jönköping municipality;
-- boundary validated with frozen PostGIS semantics;
-- taxonomy:
-  `Dining`;
-- taxonomy evidence:
-  `amenity=restaurant`;
-- membership method:
-  `DETERMINISTIC_MAP`;
-- targeted provenance:
-  - `canonical_name`
-  - `location`
-- active deterministic Day-1 SearchDocument exists;
-- deterministic publication does not require an embedding.
+current_version_id
++
+current_parse_attempt_id
 
-The minimal Day-1 SearchDocument template is not a replacement for DOC-01.
+Rules:
 
-DOC-01 still owns the full production SearchDocument builder.
+- capture before parse;
+- H is immutable;
+- parser replay uses same H with new A;
+- current H+A changes only through DB-02 contract;
+- only successful valid parsing may become selected current evidence;
+- newer failed parsing must not destroy last-good source-current evidence;
+- source-current evidence is independent of canonical-current truth.
 
----
-
-## norm-v1
-
-Authoritative shared implementation exists.
-
-Package:
-
-`packages/normalization/`
-
-SQL helpers:
-
-- `app.norm_v1_preserving`
-- `app.norm_v1_accentless`
-
-Frozen behavior:
-
-- preserve original display string separately;
-- reject forbidden control characters;
-- NFC normalization;
-- locale-independent lowercase/case-fold suitable for EN/SV;
-- retain `å`, `ä`, `ö` in accent-preserving form;
-- punctuation/separators → spaces;
-- internal apostrophes/hyphens → spaces;
-- collapse/trim whitespace;
-- derive separate PostgreSQL-compatible unaccent fallback.
-
-Accentless normalization is ordinary fallback evidence only.
-
-It is never equivalent to protected canonical exact.
-
-TypeScript and SQL implementations have golden-equivalence tests.
-
-Because the Supabase Edge runtime cannot import repository packages outside
-`supabase/functions`, EDGE-01 contains a self-contained norm-v1-equivalent
-implementation.
-
-That implementation is guarded by equivalence tests and must not diverge from
-the authoritative norm-v1 contract.
+Canonical truth may remain unchanged even when source-current H+A advances.
 
 ---
 
-# Search implementation
+# 6. Identity / dedupe invariants
 
-## SEARCH-01 — complete
+CanonicalEntity identity is separate from SourceRecord identity.
 
-Implemented privately:
+No heuristic cross-source auto-merge.
 
-- authoritative eligibility;
-- accent-preserving canonical exact;
-- protected canonical exact;
-- same-name canonical coexistence;
-- verified alias exact qualification;
-- protected verified alias only when unique/unambiguous;
-- alias collision removes protection;
-- alias-vs-active-canonical-name conflict removes alias protection;
-- ordinary accentless exact;
-- ordinary prefix;
-- bounded ordinary trigram;
-- canonical-ID deduplication;
-- internal match/protection diagnostics.
+Duplicate decisions pin exact H+A evidence.
+
+Any pinned H+A change makes a finalized decision stale and forces:
+
+OPEN_REVIEW
+
+Type A:
+
+SourceRecord → existing CanonicalEntity
+
+Type B:
+
+explicit survivor merge/relink
+
+No fake loser entity for Type A.
+
+---
+
+# 7. Provenance invariants
+
+Targeted canonical facts:
+
+- canonical_name
+- location
+- address
+- opening_hours
+- event_start
+- event_end
+- event_status
+
+Current selected provenance is exact and evidence-backed.
+
+History is retained.
+
+Revocation/redaction must preserve required audit identity while removing
+prohibited payload.
+
+Compliance:
+
+`redacted_by = session_user`
+
+Source revocation may rebuild/withhold canonical/search truth according to
+accepted PROV-01 behavior.
+
+---
+
+# 8. Geography
+
+Scope:
+
+full Jönköping municipality
+
+Municipality scope ID:
+
+`a4b19b09-b272-5748-80ef-2c91d9d33ca6`
+
+Boundary ID:
+
+`0a39b199-4cd5-5358-85de-2c1a5f91a347`
+
+Boundary version:
+
+`lm-current-2026-08-14`
+
+Boundary checksum:
+
+`257a277667cde164bcb70eae16ca6985578fe34666df92ff289af519a262df1d`
+
+Municipality code:
+
+0680
+
+Timezone:
+
+Europe/Stockholm
+
+Boundary semantics:
+
+PostGIS `ST_Covers`
+
+Do not use city-center approximation.
+
+---
+
+# 9. Taxonomy
+
+Active taxonomy version:
+
+`active-going-out.v1`
+
+52 active nodes.
+
+Checksum:
+
+`ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2`
+
+Only active taxonomy is valid.
+
+No legacy taxonomy.
+
+Membership methods include evidence-backed deterministic source mapping /
+SOURCE_FACT / controlled manual paths according to TAX-01.
+
+Do not stretch taxonomy to hit quotas.
+
+Coverage currently remains truthful; unsupported scarcity claims are prohibited.
+
+---
+
+# 10. Search status after Day 2
+
+Implemented deterministic retrieval:
+
+- eligibility
+- protected accent-preserving canonical exact
+- qualified verified alias exact
+- accentless ordinary exact
+- prefix
+- trigram
+- FTS
+- taxonomy recognition
+- descendant expansion
+- category browse
+- bilingual lexical behavior
+- restricted diagnostics
 
 Not yet implemented:
 
-- FTS candidates;
-- taxonomy discovery candidates;
-- Event candidates;
-- semantic candidates;
-- RRF;
-- broad non-collapse.
+- Event candidates
+- semantic retrieval
+- RRF
+- non-collapse
+
+Exact protection:
+
+1. eligible accent-preserving canonical exact → protected
+2. qualifying verified alias exact → protected only when unambiguous and not
+   colliding with active eligible canonical name
+3. accentless exact → ordinary
+4. prefix → ordinary
+5. discovery → ordinary
+
+Eligibility is applied before every retriever/protection decision.
 
 ---
 
-# Security / public RPC
+# 11. SearchDocuments
 
-## SEC-01 — complete
+Current versions:
 
-Implemented:
+document:
 
-- public shaped `api.search_v1` RPC;
-- `SECURITY DEFINER`;
-- empty/fixed controlled `search_path`;
-- non-login `lemon_api_owner`;
-- backend/service-role-only execution;
-- minimal SELECT/RLS privileges;
-- active deterministic search configuration;
-- Jönköping public-search activation;
-- no direct private-table exposure.
+`search-document-v1`
 
-Security invariants already proven:
+template:
 
-- public/no-key access denied as required;
-- backend credential can execute RPC;
-- private table/profile access denied;
-- OpenAPI exposes only intended RPC surface;
-- no private search diagnostic leakage.
+`lexical-embedding-template-v1`
 
-Do NOT redesign this trust boundary in later tasks unless a frozen requirement
-explicitly requires it.
+SearchDocuments are deterministic, evidence-grounded projections.
 
----
+Weights:
 
-# Edge
+A:
+names / qualifying aliases
 
-## EDGE-01 — complete
+B:
+strong factual/direct taxonomy
 
-Implemented:
+C:
+ancestor/context
 
-Mobile/client
-→ thin Supabase Edge Function
-→ exactly one fixed `api.search_v1` RPC
-→ shaped public response
+D:
+description
 
-Implemented/proven:
+Invalidation already exists for relevant canonical/provenance/taxonomy changes.
 
-- method validation;
-- request validation/caps;
-- request ID;
-- CORS;
-- backend-held credential;
-- client authorization does not become privileged DB authorization;
-- exactly one fixed RPC invocation;
-- safe error shaping;
-- no raw database/private diagnostic leakage;
-- real Evergreen search smoke through Edge.
-
-The Edge must remain thin.
-
-Do not move ranking, canonical truth, direct private-table reads, ingestion, or
-search-stage logic into Edge.
-
-Semantic provider orchestration may be added later only according to frozen
-EMBED/SEM packages.
+Do not put unsupported editorial text into embedding/search documents.
 
 ---
 
-# Mobile
+# 12. Event source — accepted SRC-03A facts
 
-## MOB-01 — complete
+Selected source:
 
-Implemented minimal Expo search slice:
+Jönköping municipality Event Calendar
 
-- search input;
-- search action;
-- Edge-only search client;
-- loading state;
-- factual Place result card;
-- empty state;
-- recoverable error/retry;
-- stale-response protection;
-- no direct DB search path;
-- no backend/service-role credential in mobile source/config.
+Source concept:
 
-Real smoke:
+`JONKOPING_EVENT_CALENDAR`
 
-`Evergreen Restaurang & Pizzeria`
+Acquisition path:
 
-was rendered through:
+bounded public Sitevision `/search` / Event-calendar structured path
 
-Mobile
-→ Edge
-→ `api.search_v1`
+Policy:
 
-No Day-2 mobile UX is implemented yet.
+`EXTRACTED_FIELDS_ONLY`
 
-Deferred mobile work includes:
+Refresh mode:
 
-- EN/SV UI;
-- richer card behavior;
-- category/discovery UI;
-- Event UI;
-- semantic/degraded-state UX.
+`DELTA_ONLY`
+
+Absence has NO disappearance/cancellation meaning.
+
+SRC-03A real smoke:
+
+- two bounded runs;
+- 6 requests/run;
+- 9 hits/run;
+- 5 usable single-occurrence Events/run;
+- 5/5 stable UUID-derived identities across runs.
+
+Stable logical source Event UUID is exposed.
+
+For accepted records:
+
+occurrence_count == 1
+
+External key:
+
+`event/<source-event-uuid>`
+
+Identity explicitly excludes:
+
+- title
+- date
+- start time
+- end time
+- venue
+- array index
+- hashes
+- generated UUID
+
+Schedule changes must preserve source identity.
+
+Multi-occurrence rule:
+
+occurrence_count > 1
+→ `UNSUPPORTED_MULTI_OCCURRENCE_IDENTITY`
+→ skip
+
+Cardinality change:
+
+1 occurrence
+→ N occurrences
+
+becomes:
+
+`IDENTITY_BECAME_AMBIGUOUS`
+
+Do not arbitrarily reinterpret the old Event as one of N occurrences.
+
+The public page-level Sitevision `id` is NOT an occurrence identifier.
+
+The source's form bundle generates random occurrence UUIDs and they are NOT
+durable.
 
 ---
 
-# Current next task
+# 13. Event factual fields permitted
 
-`SRC-02`
+Allowed bounded factual persistence:
 
-SRC-02 has NOT started unless Git history explicitly proves otherwise.
+- source Event UUID
+- stable external key
+- title
+- explicit start
+- explicit end
+- venue name
+- city/locality
+- address
+- coordinates
+- factual categories
+- source URL
+- explicit factual status where available
+- source observation/update timestamp where available
 
-The explicit user task prompt always overrides the handoff's next-task pointer.
+Excluded:
 
-Never infer that another task should run automatically.
+- long/editorial descriptions
+- marketing copy
+- images/image content
+- applicant/submitter personal data
+- organizer personal contacts
+- unnecessary personal data
+
+No invented duration.
+
+Missing explicit end:
+
+ends_at = NULL
 
 ---
 
-# Near-term Day-2 dependency sequence
+# 14. Human Event-status decision for SRC-03B
 
-Primary dependency spine:
+The municipality source does NOT expose a reliable literal status field.
 
-```text
-SRC-02
-→ DEDUP-01
-→ PROV-01
-→ TAX-01
-→ DOC-01
-→ SEARCH-02
-→ DIAG-01
-→ MOB-02
-→ EVAL-02
+Engineer-approved bounded trial interpretation:
+
+A concrete source occurrence may become canonical:
+
+SCHEDULED
+
+when all are true:
+
+1. official Jönköping Event Calendar currently emits it;
+2. it is an accepted single-occurrence record;
+3. it has an explicit future start time;
+4. it has sufficient venue/location evidence;
+5. there is no explicit cancellation/postponement indication.
+
+This is NOT a literal source `status=SCHEDULED` fact.
+
+Record provenance using the actual approved manual/human resolution method
+available in the frozen provenance model.
+
+Do NOT mislabel this as SOURCE_FACT if the schema distinguishes manual
+interpretation.
+
+Cancellation requires explicit evidence.
+
+Never infer CANCELLED/COMPLETED/POSTPONED from:
+
+- disappearance
+- DELTA absence
+- timeout
+- source outage
+- partial response
+
+If current provenance schema cannot represent this approved resolution cleanly:
+
+STOP with `SPEC_CHANGE_REQUIRED`.
+
+---
+
+# 15. Event domain invariants
+
+Event is separate from Place.
+
+Event may have:
+
+- deterministic linked Place; OR
+- sufficient standalone venue/location.
+
+Do not heuristic-link Place by:
+
+- similar venue name
+- proximity
+- similar address
+
+Standalone Event venue is valid when sufficient evidence exists.
+
+Later linking to a Place must not change Event identity.
+
+Canonical Event status domain includes frozen lifecycle values.
+
+Only EVENT-01 later decides Event search eligibility/time overlap.
+
+SRC-03B must NOT implement Event search.
+
+Event time intervals are half-open.
+
+Known-end overlap later:
+
+starts_at < query_end
+AND
+ends_at > query_start
+
+Missing end uses the frozen point-Event semantics owned by EVENT-01.
+
+---
+
+# 16. Time parser
+
+TIME-01 is accepted.
+
+Supports required EN/SV deterministic expressions including:
+
+EN:
+- tonight / this evening
+- tomorrow
+- weekday
+- this Friday
+- this weekend
+- next weekend
+
+SV:
+- ikväll
+- imorgon
+- weekday equivalents
+- på fredag
+- i helgen
+- nästa helg
+
+Timezone:
+
+Europe/Stockholm
+
+Properties:
+
+- injected clock
+- half-open intervals
+- DST-safe
+- 23/25-hour days
+- 47/49-hour weekends
+- conservative unsupported/ambiguous results
+- machine-timezone independent
+
+Do not replace with LLM time parsing.
+
+---
+
+# 17. Embedding preflight
+
+EMBED-01A accepted.
+
+Provider preflight:
+
+Voyage
+
+Candidate model:
+
+`voyage-4`
+
+Requested/validated dimension:
+
+1024
+
+Real document + query embedding smoke:
+
+PASS
+
+Input types:
+
+document → `document`
+query → `query`
+
+Lifecycle:
+
+READY
+FAILED
+STALE
+
+Rules:
+
+- READY only with valid vector
+- FAILED terminal immutable
+- READY → STALE retains vector/history
+- retries use distinct attempt identity
+- SearchDocument replacement stales READY embedding
+- no ANN
+
+This is PRE-FLIGHT ONLY.
+
+EMBED-01B must later perform bounded final human model selection and active
+SearchDocument generation.
+
+Do not begin EMBED-01B during SRC-03B.
+
+---
+
+# 18. Evaluation state
+
+Frozen corpus:
+
+110 total
+
+DEV:
+60
+
+SEALED:
+30
+
+ADVERSARIAL:
+20
+
+Semantic allocation:
+
+DEV 16
+SEALED 8
+ADVERSARIAL 6
+
+At least 12 EN/SV semantic paired intents.
+
+SEALED must remain unavailable during tuning.
+
+EVAL-02 accepted Day-2 baseline:
+
+Commit:
+
+`4b4a20c`
+
+Dataset manifest:
+
+`dataset-manifest.day2.v1`
+
+Manifest file SHA-256:
+
+`5ade651f358bafed92d51ac5b29651cbea5123958380263633e18385b5d730f0`
+
+Inventory checksum:
+
+`ef89e8fb98246b4418a2094addc861ee5a85e2e842a3409c0e5c761f4ab0a1f2`
+
+Judgment version:
+
+`judgments.day2.v1`
+
+Judgments:
+
+84 total
+- grade 0: 60
+- grade 1: 15
+- grade 2: 6
+- grade 3: 3
+
+14 DEV queries evaluated.
+
+Baseline:
+
+- 6 inventory-unavailable known-item queries
+- Hit@1/Hit@3/MRR: NOT_EVALUATED for those absent targets
+- Recall@20: 0.2333
+- Recall@50: NOT_REQUIRED
+- Precision@5: 0.1600
+- NDCG@5: 0.2832
+- EN P@5: 0.1000
+- SV P@5: 0.2000
+- EN NDCG@5: 0.2080
+- SV NDCG@5: 0.3333
+- zero-result: 12/14 = 85.71%
+- failures: INVENTORY 6; CANDIDATE_RETRIEVAL 4
+
+Rerun deterministic byte-identical.
+
+Report content checksum:
+
+`bae1ad69…34f7`
+
+This is a PRE-DAY-3 baseline.
+
+Do NOT tune against SEALED.
+
+Do not rewrite inspected judgment versions.
+
+---
+
+# 19. Current inventory note
+
+The deterministic Day-2 evaluation reconstruction contained:
+
+6 published entities
+6 active SearchDocuments
+
+This is not intended to represent final Jönköping coverage.
+
+Current sparse inventory is explicitly diagnosed by EVAL-02.
+
+Do not hand-insert frozen DEV target entities merely to improve metrics.
+
+Later legitimate source acquisition may naturally bring them into inventory.
+
+Never inspect SEALED targets to drive acquisition.
+
+---
+
+# 20. Next task: SRC-03B
+
+SRC-03B objective:
+
+take the already-proven municipal Event source through the accepted ingestion
+and canonicalization contracts.
+
+Expected path:
+
+bounded fetch
+→ immutable capture/version
+→ ParseAttempt
+→ selected source-current H+A
+→ deterministic canonical Event resolution
+→ targeted provenance
+→ taxonomy/location
+→ reproducible publication
+
+Real bounded sample should use legitimate upcoming single-occurrence Events.
+
+Run real ingest twice.
+
+Prove:
+
+- stable source keys
+- stable Lemon Event IDs
+- no duplicate canonical Events
+- exact H+A evidence
+- factual schedule
+- status provenance
+- location/venue
+- taxonomy
+- DELTA_ONLY semantics
+- idempotent rerun
+
+Do NOT implement:
+
+- `event_candidates`
+- Event search
+- expiry search behavior
+- semantic retrieval
+- RRF
+- non-collapse
+- MOB-03
+- recurrence engine
+- second Event source
+
+Expected commit subject:
+
+`feat(events): add bounded municipal ingestion`
+
+Stop after SRC-03B.
+
+---
+
+# 21. Remaining Day-3 sequence
+
+Recommended sequential execution:
+
+SRC-03B
+→ EVENT-01
+
+EMBED-01B
+→ SEM-01
+
+Then:
+
+EVENT-01 + SEM-01
+→ RANK-01
+→ NONCOLLAPSE-01
+→ MOB-03
+→ EVAL-03
+
+Event and semantic branches are independent until RANK-01.
+
+RANK-01 final DoD requires both branches.
+
+---
+
+# 22. Usage / execution discipline
+
+The user is operating under tight Codex usage limits.
+
+Optimize context and turns.
+
+At each package:
+
+1. use explicit package prompt;
+2. read AGENTS.md;
+3. use this handoff;
+4. inspect Git history only as needed;
+5. search task-relevant frozen sections only;
+6. preflight internally;
+7. implement;
+8. run focused tests;
+9. run only relevant regression;
+10. inspect diff/scope;
+11. commit;
+12. STOP.
+
+Do not reread all accepted package history.
+
+Do not dump enormous successful test logs.
+
+Do not ask unnecessary questions.
+
+Stop only for:
+
+- genuine external/access blocker;
+- missing legal/source truth;
+- irreconcilable frozen contract;
+- `SPEC_CHANGE_REQUIRED`;
+- explicit human decision required by frozen plan.
+
+Missing generated artifacts owned by the current package are normally not
+blockers.
+
+Use forward-only fixes.
+
+Do not rewrite accepted commits/history.
+
+One task = one commit for current clean package history.
+
+---
+
+# 23. Model guidance
+
+Bounded/mechanical mobile/docs:
+Medium
+
+Normal source adapters/time/provider:
+Sol Medium
+
+Contract-sensitive Event/search/provenance/semantic:
+Sol High
+
+Use strongest reasoning only when justified, especially:
+
+- DEDUP
+- RANK
+- NONCOLLAPSE
+- final evaluation
+
+Current SRC-03B recommendation:
+
+GPT-5.6 Sol
+High reasoning
+
+---
+
+# 24. Completion-report format
+
+Keep successful reports <=20 lines.
+
+Preferred:
+
+Task:
+Commit:
+Primary result:
+Tests:
+Frozen invariants:
+Scope audit:
+Unexpected issues:
+Blockers:
+Working tree:
+Next task:
+
+Do not automatically begin the next task.
