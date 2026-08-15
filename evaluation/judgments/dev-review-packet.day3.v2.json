@@ -1,0 +1,3222 @@
+{
+  "packet_version": "dev-review-packet.day3.v2",
+  "supersedes": "dev-review-packet.day3.v1",
+  "status": "HUMAN_DEV_JUDGMENT_REQUIRED",
+  "dataset_manifest": {
+    "version": "dataset-manifest.day3-current.v2",
+    "checksum": "11a1a73e37bd2af71b7948823c6509dfb98edd86c6629834e2fc54d8a2afe4f1"
+  },
+  "dataset_inventory_checksum": "aab903847c5fcfd840fe3285601d8da44d7596b5b985a2200de4f0a886b2e1fb",
+  "split": "DEV",
+  "dev_queries_total": 60,
+  "current_dataset_judgments_complete": 0,
+  "current_dataset_judgments_missing": 60,
+  "rubric": {
+    "grades": {
+      "0": "not relevant",
+      "1": "marginal",
+      "2": "relevant",
+      "3": "highly relevant"
+    },
+    "hard_constraint_rule": "Any explicit structured or hard-constraint violation receives grade 0 regardless of textual similarity.",
+    "prohibition": "Do not invent entity IDs or infer relevance grades from query wording."
+  },
+  "target_not_in_frozen_dataset_handling": {
+    "required_human_confirmation": true,
+    "known_item_target_id": null,
+    "product_outcome": "QUERY_UNSATISFIED",
+    "primary_failure_attribution": "INVENTORY",
+    "search_ranking_assessment": "NOT_EVALUATED",
+    "instruction": "Use only after confirming the target is absent from the frozen inventory; do not convert absence into a ranking miss."
+  },
+  "pooling_method": "EXHAUSTIVE_HARD_ELIGIBLE_CURRENT_CANONICAL_INVENTORY; no search results or configuration metrics were inspected",
+  "inventory": [
+    {
+      "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+      "entityType": "PLACE",
+      "canonicalName": "Evergreen Restaurang & Pizzeria",
+      "publicationStatus": "PUBLISHED",
+      "scopeId": "a4b19b09-b272-5748-80ef-2c91d9d33ca6",
+      "scopeBoundaryId": "0a39b199-4cd5-5358-85de-2c1a5f91a347",
+      "insideActiveBoundary": true,
+      "chainKey": null,
+      "place": {
+        "status": "UNKNOWN",
+        "latitude": 57.7793606,
+        "longitude": 14.1570439,
+        "streetAddress": null,
+        "locality": null
+      },
+      "event": null,
+      "taxonomyMemberships": [
+        {
+          "id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+          "slug": "dining",
+          "labelEn": "Dining",
+          "labelSv": "Restauranger",
+          "path": [
+            "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+            "15904283-fd01-5fc3-ac00-c42e62e8422e"
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "sourceKey": "OSM_OVERPASS",
+          "captureRunId": "e006b45d-4bd8-4ea4-bfe9-3e1dcff8bdf4"
+        }
+      ],
+      "searchDocument": {
+        "contentHash": "ccdaa63b3d3bd530d005596ee46869fb0e4449ae8292ab42a94a757268c32ee6",
+        "templateVersion": "lexical-embedding-template-v1",
+        "documentVersion": "search-document-v1"
+      }
+    },
+    {
+      "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+      "entityType": "EVENT",
+      "canonicalName": "Smålandstriennalen: Berätta om oron och skönheten",
+      "publicationStatus": "PUBLISHED",
+      "scopeId": "a4b19b09-b272-5748-80ef-2c91d9d33ca6",
+      "scopeBoundaryId": "0a39b199-4cd5-5358-85de-2c1a5f91a347",
+      "insideActiveBoundary": true,
+      "chainKey": null,
+      "place": null,
+      "event": {
+        "status": "SCHEDULED",
+        "startsAt": "2026-05-29T15:00:00.000Z",
+        "endsAt": "2026-08-30T13:00:00.000Z",
+        "statusObservedAt": "2026-08-15T12:42:39.584Z",
+        "venuePlaceId": null,
+        "venueName": "Österängens konsthall",
+        "latitude": 57.7868256,
+        "longitude": 14.243184,
+        "streetAddress": "Birkagatan 8",
+        "locality": "Jönköping"
+      },
+      "taxonomyMemberships": [
+        {
+          "id": "e1a9cc86-214f-5967-b0a5-6925694b01d5",
+          "slug": "events",
+          "labelEn": "Events",
+          "labelSv": "Evenemang",
+          "path": [
+            "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+            "e1a9cc86-214f-5967-b0a5-6925694b01d5"
+          ]
+        }
+      ],
+      "sourceEvidence": [
+        {
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "captureRunId": "9ab260ac-5c58-4473-b6a1-066084de4fee"
+        }
+      ],
+      "searchDocument": {
+        "contentHash": "b260b36a8df2a828b7e733d56b1638b75f141c74308cf4d0ba231669c5b21a8f",
+        "templateVersion": "lexical-embedding-template-v1",
+        "documentVersion": "search-document-v1"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "queryId": "eval-v1-dev-broad-concentration-01",
+      "query": "places to eat",
+      "language": "en",
+      "family": "broad_concentration",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-02",
+      "query": "coffee around Jönköping",
+      "language": "en",
+      "family": "broad_concentration",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "92167dc5-bf32-5014-9d07-46f7c4f902dd",
+          "slug": "coffee-shop"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-03",
+      "query": "events this weekend",
+      "language": "en",
+      "family": "broad_concentration",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "WEEKEND"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-04",
+      "query": "något kul i stan",
+      "language": "sv",
+      "family": "broad_concentration",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-01",
+      "query": "things to do in Jönköping",
+      "language": "en",
+      "family": "broad_discovery",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-02",
+      "query": "saker att göra i Jönköping",
+      "language": "sv",
+      "family": "broad_discovery",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-03",
+      "query": "somewhere nice nearby",
+      "language": "en",
+      "family": "broad_discovery",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "location": {
+          "latitude": 57.7826,
+          "longitude": 14.1618,
+          "radius_meters": 3000
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "RADIUS_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-04",
+      "query": "något roligt att göra",
+      "language": "sv",
+      "family": "broad_discovery",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-01",
+      "query": "Rosenlunds rosarium",
+      "language": "sv",
+      "family": "canonical_exact_same_name",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Rosenlunds rosarium",
+        "reference": "https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/parker/rosenlunds-herrgard-och-rosarium/om-rosenlunds-rosarium"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-02",
+      "query": "Kulturhuset Spira",
+      "language": "sv",
+      "family": "canonical_exact_same_name",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Kulturhuset Spira",
+        "reference": "https://www.jonkoping.se/evenemangskalender/evenemangskalender/evenemang/2026-03-10-thank-you-for-the-music"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-03",
+      "query": "Stadsbiblioteket",
+      "language": "sv",
+      "family": "canonical_exact_same_name",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Stadsbiblioteket",
+        "reference": "https://bibliotek.jonkoping.se/-/stadsbibliotek"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-04",
+      "query": "Espresso House",
+      "language": "language-neutral",
+      "family": "canonical_exact_same_name",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_TARGET_SET",
+        "members": [
+          {
+            "kind": "EXTERNAL_STABLE_TARGET",
+            "label": "Espresso House Jönköping Central",
+            "reference": "https://dk.espressohouse.com/en/find-us/jonkoping-central"
+          },
+          {
+            "kind": "EXTERNAL_STABLE_TARGET",
+            "label": "Espresso House Östra Storgatan Jönköping",
+            "reference": "https://espressohouse.com/hitta-oss/ostra-storgatan-jonkoping"
+          }
+        ]
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-05",
+      "query": "Espresso House Jönköping Central",
+      "language": "language-neutral",
+      "family": "canonical_exact_same_name",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Espresso House Jönköping Central",
+        "reference": "https://dk.espressohouse.com/en/find-us/jonkoping-central"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-01",
+      "query": "events tonight",
+      "language": "en",
+      "family": "event_time",
+      "pairGroupId": "event-dev-tonight",
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "TONIGHT"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-02",
+      "query": "evenemang ikväll",
+      "language": "sv",
+      "family": "event_time",
+      "pairGroupId": "event-dev-tonight",
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "TONIGHT"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-03",
+      "query": "what is happening tomorrow",
+      "language": "en",
+      "family": "event_time",
+      "pairGroupId": "event-dev-tomorrow",
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "TOMORROW"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-04",
+      "query": "vad händer imorgon",
+      "language": "sv",
+      "family": "event_time",
+      "pairGroupId": "event-dev-tomorrow",
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "TOMORROW"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-05",
+      "query": "events on Saturday",
+      "language": "en",
+      "family": "event_time",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "WEEKDAY:SATURDAY"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-06",
+      "query": "evenemang på Kulturhuset Spira i helgen",
+      "language": "sv",
+      "family": "event_time",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "WEEKEND"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Kulturhuset Spira",
+        "reference": "https://www.jonkoping.se/evenemangskalender/evenemangskalender/evenemang/2026-03-10-thank-you-for-the-music"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-01",
+      "query": "cafés in Jönköping municipality",
+      "language": "en",
+      "family": "geo_scope_radius",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+          "slug": "cafes"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-02",
+      "query": "things to do within 1 km",
+      "language": "en",
+      "family": "geo_scope_radius",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "location": {
+          "latitude": 57.7826,
+          "longitude": 14.1618,
+          "radius_meters": 1000
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "RADIUS_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-03",
+      "query": "restauranger nära mig",
+      "language": "sv",
+      "family": "geo_scope_radius",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-01",
+      "query": "Rosenlunds rosa",
+      "language": "sv",
+      "family": "prefix",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Rosenlunds rosarium",
+        "reference": "https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/parker/rosenlunds-herrgard-och-rosarium/om-rosenlunds-rosarium"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-02",
+      "query": "Kulturhuset Spi",
+      "language": "sv",
+      "family": "prefix",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Kulturhuset Spira",
+        "reference": "https://www.jonkoping.se/evenemangskalender/evenemangskalender/evenemang/2026-03-10-thank-you-for-the-music"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-03",
+      "query": "Stadsbibliot",
+      "language": "sv",
+      "family": "prefix",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Stadsbiblioteket",
+        "reference": "https://bibliotek.jonkoping.se/-/stadsbibliotek"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-04",
+      "query": "Espresso House Jönköping C",
+      "language": "language-neutral",
+      "family": "prefix",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Espresso House Jönköping Central",
+        "reference": "https://dk.espressohouse.com/en/find-us/jonkoping-central"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-01",
+      "query": "Cuban restaurants in Jönköping",
+      "language": "en",
+      "family": "scarcity_duplicate_state",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "a7d01142-e735-51c9-bf56-b20250c527f1",
+          "slug": "cuban"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-02",
+      "query": "Espresso House",
+      "language": "language-neutral",
+      "family": "scarcity_duplicate_state",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_TARGET_SET",
+        "members": [
+          {
+            "kind": "EXTERNAL_STABLE_TARGET",
+            "label": "Espresso House Jönköping Central",
+            "reference": "https://dk.espressohouse.com/en/find-us/jonkoping-central"
+          },
+          {
+            "kind": "EXTERNAL_STABLE_TARGET",
+            "label": "Espresso House Östra Storgatan Jönköping",
+            "reference": "https://espressohouse.com/hitta-oss/ostra-storgatan-jonkoping"
+          }
+        ]
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-03",
+      "query": "events happening yesterday",
+      "language": "en",
+      "family": "scarcity_duplicate_state",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "entity_types": [
+          "EVENT"
+        ],
+        "time_expression": "YESTERDAY"
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "ENTITY_TYPE_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-01",
+      "query": "a romantic place for two",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-romantic",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-02",
+      "query": "ett romantiskt ställe för två",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-romantic",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-03",
+      "query": "a fun family activity with children",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-family",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-04",
+      "query": "en rolig familjeaktivitet med barn",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-family",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-05",
+      "query": "somewhere cozy to talk with friends",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-cozy",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-06",
+      "query": "någonstans mysigt att prata med vänner",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-cozy",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-07",
+      "query": "an inexpensive evening out",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-budget",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-08",
+      "query": "en billig kväll ute",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-budget",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-09",
+      "query": "an indoor activity for a rainy day",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-indoor",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-10",
+      "query": "en inomhusaktivitet för en regnig dag",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-indoor",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-11",
+      "query": "a peaceful outdoor place to unwind",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-outdoor",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-12",
+      "query": "en lugn plats utomhus för att koppla av",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-outdoor",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-13",
+      "query": "vegan food for a relaxed dinner with friends",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-vegan-social",
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8",
+          "slug": "vegan-vegetarian"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-14",
+      "query": "vegansk mat för en avslappnad middag med vänner",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-vegan-social",
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8",
+          "slug": "vegan-vegetarian"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-15",
+      "query": "drinks somewhere with a pleasant atmosphere",
+      "language": "en",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-drinks-view",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-16",
+      "query": "något att dricka på ett ställe med trevlig stämning",
+      "language": "sv",
+      "family": "semantic_occasion_language",
+      "pairGroupId": "sem-dev-drinks-view",
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-01",
+      "query": "Japanese restaurants",
+      "language": "en",
+      "family": "taxonomy_parent_leaf",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "3a51d1cf-31c9-529f-b585-1102253dc735",
+          "slug": "japanese"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-02",
+      "query": "japanska restauranger",
+      "language": "sv",
+      "family": "taxonomy_parent_leaf",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "3a51d1cf-31c9-529f-b585-1102253dc735",
+          "slug": "japanese"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-03",
+      "query": "Food and dining",
+      "language": "en",
+      "family": "taxonomy_parent_leaf",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+          "slug": "food-and-dining"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-04",
+      "query": "mat och restauranger",
+      "language": "sv",
+      "family": "taxonomy_parent_leaf",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+          "slug": "food-and-dining"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-05",
+      "query": "coffee shops",
+      "language": "en",
+      "family": "taxonomy_parent_leaf",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "92167dc5-bf32-5014-9d07-46f7c4f902dd",
+          "slug": "coffee-shop"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-06",
+      "query": "natur och offentliga platser",
+      "language": "sv",
+      "family": "taxonomy_parent_leaf",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "f5978b3b-3c95-52fe-8c9c-bf5b6fae9d77",
+          "slug": "nature-and-public-places"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-07",
+      "query": "culture och events",
+      "language": "mixed",
+      "family": "taxonomy_parent_leaf",
+      "pairGroupId": null,
+      "structuredFilters": {
+        "taxonomy": {
+          "node_id": "6432bde9-17e2-5a04-92b3-9bf6f4589cf2",
+          "slug": "culture"
+        }
+      },
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": null,
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "NOT_APPLICABLE",
+        "humanConfirmationRequired": false
+      },
+      "candidatePool": [],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "reasons": [
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        },
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK",
+            "TAXONOMY_FILTER"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-01",
+      "query": "Rosenlunds rosairum",
+      "language": "sv",
+      "family": "typo_transposition_accent_spacing",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Rosenlunds rosarium",
+        "reference": "https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/parker/rosenlunds-herrgard-och-rosarium/om-rosenlunds-rosarium"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-02",
+      "query": "Kulturhuset Spra",
+      "language": "sv",
+      "family": "typo_transposition_accent_spacing",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Kulturhuset Spira",
+        "reference": "https://www.jonkoping.se/evenemangskalender/evenemangskalender/evenemang/2026-03-10-thank-you-for-the-music"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-03",
+      "query": "Jonkopings stadsbibliotek",
+      "language": "sv",
+      "family": "typo_transposition_accent_spacing",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Stadsbiblioteket",
+        "reference": "https://bibliotek.jonkoping.se/-/stadsbibliotek"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-04",
+      "query": "EspressoHouse Jönköping Central",
+      "language": "mixed",
+      "family": "typo_transposition_accent_spacing",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Espresso House Jönköping Central",
+        "reference": "https://dk.espressohouse.com/en/find-us/jonkoping-central"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-05",
+      "query": "Rosenlunds-rosarium",
+      "language": "sv",
+      "family": "typo_transposition_accent_spacing",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Rosenlunds rosarium",
+        "reference": "https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/parker/rosenlunds-herrgard-och-rosarium/om-rosenlunds-rosarium"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-verified-colliding-aliases-01",
+      "query": "Spira",
+      "language": "sv",
+      "family": "verified_colliding_aliases",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Kulturhuset Spira",
+        "reference": "https://www.jonkoping.se/evenemangskalender/evenemangskalender/evenemang/2026-03-10-thank-you-for-the-music"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-verified-colliding-aliases-02",
+      "query": "Rosenlund",
+      "language": "sv",
+      "family": "verified_colliding_aliases",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Rosenlunds rosarium",
+        "reference": "https://www.jonkoping.se/fritid-kultur--natur/friluftsliv-natur-och-parker/parker/rosenlunds-herrgard-och-rosarium/om-rosenlunds-rosarium"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    },
+    {
+      "queryId": "eval-v1-dev-verified-colliding-aliases-03",
+      "query": "Jönköpings bibliotek",
+      "language": "sv",
+      "family": "verified_colliding_aliases",
+      "pairGroupId": null,
+      "structuredFilters": {},
+      "hardConstraints": [
+        "scope:jonkoping-municipality",
+        "publication:eligible-only"
+      ],
+      "evaluationClockUtc": "2026-10-15T12:00:00Z",
+      "frozenTargetReference": {
+        "kind": "EXTERNAL_STABLE_TARGET",
+        "label": "Stadsbiblioteket",
+        "reference": "https://bibliotek.jonkoping.se/-/stadsbibliotek"
+      },
+      "targetInventoryEvidence": {
+        "exactCanonicalNameMatches": [],
+        "statusToConfirm": "TARGET_NOT_IN_FROZEN_DATASET",
+        "humanConfirmationRequired": true
+      },
+      "candidatePool": [
+        {
+          "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "displayName": "Evergreen Restaurang & Pizzeria",
+          "entityType": "PLACE",
+          "grade": null
+        }
+      ],
+      "hardConstraintExcludedInventory": [
+        {
+          "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+          "displayName": "Smålandstriennalen: Berätta om oron och skönheten",
+          "reasons": [
+            "EVENT_EXPIRED_AT_EVALUATION_CLOCK"
+          ],
+          "gradeRuleAfterHumanConfirmation": "0"
+        }
+      ],
+      "humanJudgment": {
+        "knownItemTargetId": null,
+        "relevant": [
+          {
+            "entityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+            "grade": null
+          }
+        ],
+        "rationale": null,
+        "judgedBy": null,
+        "judgedAt": null
+      }
+    }
+  ],
+  "held_out_guard": {
+    "parsed_splits": [
+      "DEV"
+    ],
+    "sealed_queries_executed": 0,
+    "adversarial_queries_executed": 0,
+    "sealed_or_adversarial_judgments_loaded": false
+  }
+}

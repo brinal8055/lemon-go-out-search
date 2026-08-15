@@ -1,0 +1,47 @@
+# EVAL-03A dataset provenance audit
+
+- Manifest: dataset-manifest.day3-current.v1
+- Manifest checksum: 7bf3624aac182e701f3ea1c5420e75d7ae93f14983ee2846e1615a3bbb723194
+- Classification: FIXTURE_CONTAMINATED_DATASET
+- Legitimate deterministic reconstruction: 4
+- Fixture/test: 22
+- Unknown: 0
+- NO_ACTIVE_DOCUMENT: 14
+- Frozen clock: 2026-10-15T12:00:00Z; all 18 Municipal Event fixtures expired
+
+## Exact entity audit
+
+| CanonicalEntity ID | Type | Name | Publication | SearchDocument | Origin | SourceRecord / H+A / capture run |
+|---|---|---|---|---|---|---|
+| 22ed1d70-f4a0-4c13-b9f3-9c2e935297e7 | PLACE | IF Hallby SOK: utegym* | PUBLISHED | ACTIVE | DETERMINISTIC_RECONSTRUCTION | b64daa60-5937-4c0b-9604-68879c02febd / 9ffa4bf9-77f2-4244-a494-7e0c59a038f0 + e39986ea-2176-457c-bf25-a075796e650d / 0672d285-8d6e-4806-9eff-5baf4447ffb5 |
+| 3dd7bd3e-e299-4554-93b3-0fc8e4062ecb | PLACE | Evergreen Restaurang & Pizzeria | PUBLISHED | ACTIVE | DETERMINISTIC_RECONSTRUCTION | 38ae4c49-870e-48e5-a5b7-acde299420c1 / 08ae97e6-ee85-454f-8ff8-89fabdfc9149 + 4cf06b13-d3b2-4b20-a91e-e0b05778ca34 / e2dadc48-a428-4825-96b8-70bc9fabed48 |
+| 45c5a3a1-4815-4088-a274-8857f1eddce3 | PLACE | Explicit Indian Restaurant | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 8deb39fb-2a28-4310-bdf2-5ccae0ec2d42 / 5a7e4352-f4d5-4052-94e2-1ddeb8199006 + 93b549aa-d510-48a8-a854-c43a75a08d25 / 5e225d31-019c-41e2-8365-07f61124b62c |
+| 7ece4261-a03b-49a2-ab28-d028e735d88d | PLACE | Rådhusparken | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | 855f4e63-3b42-4517-af3c-ccc1f42626f6 / 9e77b3df-efb9-4280-8def-799c8e607f89 + e97e0f90-5bb1-412a-a80e-2cd975eeefb1 / 00e43270-38d4-436b-87eb-acde3d5d2378 |
+| a86362ac-bbaf-43a9-9242-d59d41fab5a9 | PLACE | Rådhusparken | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | d4053bdf-cb3b-4edd-8844-9e668ac3bff4 / 1889cf0f-8012-455b-92de-5770c8ea6348 + 798435c9-db7f-4af3-9af7-d2ef81e42b19 / 04b29b95-69a6-4c3d-8622-b0b67a10a794 |
+| b430d455-8dec-4979-a6ad-cdde267e4fc7 | PLACE | Explicit Indian Restaurant | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | bd091ca7-47c2-4429-89cc-a4d45353ee2e / f994b2e3-a29b-41b0-9a64-216ba26d5abc + b480b62b-513a-4c9c-bf9f-459699bc5cd9 / ff024bac-22c8-4e47-b5bd-cd9d4e8ccf54 |
+| c7ac25bc-bb7c-4643-93db-f95cc821fa22 | PLACE | Tandori palace | PUBLISHED | ACTIVE | DETERMINISTIC_RECONSTRUCTION | 44111aea-9754-4a9f-a9f1-6ea65ddb67a3 / 5b7b1105-dd2b-4d2e-941b-be353af48925 + 5516e5b5-2c40-49e6-8faf-e6a0ad933041 / e2dadc48-a428-4825-96b8-70bc9fabed48 |
+| f191df6d-9aeb-4230-a048-7c2f7aafc2fd | PLACE | Jönköpings OK: utegym* | PUBLISHED | ACTIVE | DETERMINISTIC_RECONSTRUCTION | b349ac09-6326-434b-af50-3c69f519ccc4 / c7f09d09-328a-4d77-8c41-1c1aa9434755 + 7d0ea066-b224-47b7-9887-36ef82379405 / 0672d285-8d6e-4806-9eff-5baf4447ffb5 |
+| 165c346a-5f76-445c-86c5-a998aa52d209 | EVENT | Municipal Event ba482a13 | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | 7e19a548-aa9c-4fc9-bbbe-d7280cd40100 / 053ea18b-d67f-4cff-be38-5ce7549d63c9 + 4c2175b2-c4b1-42ab-a758-8989e9a958b5 / f552b79e-755d-4c6e-a3e0-a179454b35d5 |
+| 358deb23-1f5f-4f51-a623-869e7ae27680 | EVENT | Municipal Event 728b3479 | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | 0784e8a6-5e9e-459e-9959-9bf6e494a6dc / 883869ea-3e32-4d48-8c39-dff4a983ac89 + bcc592bc-ca3d-4c63-a526-4e9cc9c72a8c / fc040bb1-1252-4246-8d77-d54804639338 |
+| 53a9c418-c852-4143-b656-b8b68451d732 | EVENT | Municipal Event c2ab274a | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | 894049dd-335d-49d0-90c6-00cc6dfb1a9c / 920ac7d9-7dae-4640-8db2-341f5e716d35 + f2e1a445-b823-4099-b095-83e29e53652a / 606c2679-a81b-428f-88a9-b830d819a6cd |
+| 62c912d4-da32-4fd1-b416-a2fd5af65085 | EVENT | Municipal Event 78340209 | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 9a69930d-3496-42e8-9ad5-b23f2a5bf5d5 / 2364f58a-1847-4412-bab2-b2ea4470f4c0 + 56144b3c-ddf2-417f-bb6e-c55dcbe0e8ba / f9ea17d6-546b-416a-a41a-0459e2bad815 |
+| 63fef8df-9eb2-467c-af78-a5f93b83b55b | EVENT | Municipal Event db5bb579 | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | a1d748fe-d72d-4b28-862a-92b4def1d406 / c1279921-1007-429a-a451-f1df5b826783 + 0a00ae7c-a2b5-42ea-9b70-c5a4743fa3f8 / c1b483d8-cd67-4654-a19b-9ab27c0fb65d |
+| 812d6f6d-2ccf-452a-b78f-b01c140173c3 | EVENT | Municipal Event b9ce54c1 | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | 72b69632-4db8-45da-8ef7-e1519bd9ea57 / becab1ad-c90e-4d52-96eb-43068a351e5c + b57fbe5e-362d-4b28-be7a-46db3a34d4c1 / ea729d7d-d37e-4d04-b011-7e5dc60f3be3 |
+| 904f7b9e-bdbb-4374-8a39-68f3799a64bb | EVENT | Municipal Event 53ec0876 | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 12e2ff58-a1f1-4c5e-9336-14b4af95cabc / 2c8dfdfc-79a7-441e-80db-26b2783940b5 + d08c23a1-55bb-4a57-b945-82cd76ebf02b / 9260e9f2-1b20-412c-92ff-0a6fd193a6df |
+| a144190b-0c57-4f25-8129-744025b521bb | EVENT | Municipal Event e1e9e88f | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | bfffed72-b3c0-4998-8cfc-8ba395296fad / e78c7f95-5ecd-42c8-9ac5-c5bb534d5fa4 + e7b96d03-46b1-4b57-b261-7c1b67fae5df / 353df5ca-3f5d-4021-b4ea-f3bbd5d6b620 |
+| a3211a3c-c4cb-4406-b016-19bebe014e17 | EVENT | Municipal Event b4040d6b | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | b663d243-6249-4abf-959d-94fa3b1b53c6 / 186e4783-edf5-4983-adc7-044bf608d7aa + 3b41817f-77aa-4ac1-82c2-64f9e1654070 / 65854c94-8520-44c9-bb0d-78195c9b0d9a |
+| a52a7610-7538-4be3-bddd-1fc6f6361e0a | EVENT | Municipal Event 57831c7d | PUBLISHED | ACTIVE | PGTAP_UNIT_INTEGRATION_FIXTURE | 5aaf3258-b621-4a58-80a5-53060bf55a7e / 926c0bec-8178-4328-be92-d354c7c9f933 + 24f02d45-9359-4d6d-8eea-df04524ec775 / 852bbad7-22d6-4131-8660-5a2be0374fbb |
+| af1008ba-5846-4c77-80d4-d8c1619e63d4 | EVENT | Municipal Event 5c9fdb2f | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 621f870c-7b49-4ee9-859b-7f2507139328 / 02c0bb17-6797-454e-a638-47cc092c7f27 + e484d53e-34ed-42ad-af31-9c757cdc37b3 / 79b5f425-6483-40f6-b7a0-e81086f1b5ef |
+| b29dd35d-ebb5-48bc-b8e8-74290bd02b7d | EVENT | Municipal Event 46748e67 | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 630ee6dd-b01a-43f3-85e0-2baa99dc42ad / b8dbbf37-3f7d-4ca0-a0c1-c3e58ba4a978 + d5ab701c-5adf-40e9-8bdb-c0df13491031 / b740fa1e-2e2c-48a7-9ef1-f8654e4058ef |
+| be20eafd-0baa-41c7-9641-e2a9ebb76fde | EVENT | Municipal Event 3f8b6ddf | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 812e36e2-83c7-4b87-84fa-18022fecb08e / f37abe0a-5e15-4f77-9585-06e446239be5 + 56a66cdd-0902-431d-b818-936378f8d5d4 / 0aaf94d8-b1b7-464d-b5fb-2c1880c45b0a |
+| c60501f1-95d9-4f92-9095-071f1978f316 | EVENT | Municipal Event b86c56f1 | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | a85fdcc8-3250-4ad3-bfd0-142a7ca3a353 / 2bba0da5-571b-4518-b495-7e54b277a77d + a6dc65f4-ced2-45d4-a3db-ffdcc0744975 / 4aba6bbb-6b47-4b74-962b-6abcfe24f09f |
+| d1c1796c-ac21-467f-aeec-8739d678ff15 | EVENT | Municipal Event 72f3e98e | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 6de7ade2-bd99-466f-99c4-edd42947a377 / 9bffda6a-970c-4b07-b266-051bd2f026ae + 4b254d06-97d7-4607-822f-2615eb37d7f9 / 62582c1b-e3e2-495e-8e47-e58a37ad9bf3 |
+| dde7d4aa-4b7f-496a-b3bf-cdd031052b72 | EVENT | Municipal Event bbc96215 | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | 3f71b098-e7a8-4d6a-a330-14c007bd4e7b / 1fe62644-f834-4327-b5b5-f6d56b44bda2 + 5a69c864-e2aa-4ac3-9893-89e9985ef415 / ecb64aff-a656-4f84-878c-341aa7247205 |
+| f7b573e9-7d95-4849-9beb-dc195984fbf7 | EVENT | Municipal Event 64175fc4 | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | f2c2d0c4-ffe7-457b-ba86-30af2bbe1386 / 779a1761-eb42-4a9d-9497-073e985ddd5c + 04d8f2ee-d018-47d1-a6a9-e8be0161063c / f3feaa17-1c15-4205-9273-8f27a390eab1 |
+| fc30b0cf-ba52-4921-a626-ee1048e4bffd | EVENT | Municipal Event 18b27ec3 | PUBLISHED | NO_ACTIVE_DOCUMENT | PGTAP_UNIT_INTEGRATION_FIXTURE | aecb5c65-21c2-4520-8c45-851112e1607f / 8c1dc7f9-4357-4654-93ac-d6eae9b44bd7 + a762377a-4f7c-4385-b0ec-d9c66e315ee0 / 6998f90a-b3b9-4145-9da4-6a9bd29f53ac |
+
+## Fixture leakage
+
+- tests/unit/jonkoping-event-ingestion.test.ts creates random Municipal Event and src03b-place entities; afterAll only closes the store.
+- tests/unit/taxonomy.test.ts creates Explicit Indian Restaurant with a random OSM node; afterAll only closes the store.
+- vitest.config.mts disables file parallelism but provides no database transaction or isolated database.

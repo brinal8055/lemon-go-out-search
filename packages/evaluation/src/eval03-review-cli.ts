@@ -9,8 +9,10 @@ import type { EvalCorpusRecordV1 } from './index.ts';
 import { stableJson } from './dev-runner.ts';
 
 const root = new URL('../../../', import.meta.url);
-const manifestVersion = 'dataset-manifest.day3-current.v1';
-const packetVersion = 'dev-review-packet.day3.v1';
+const artifactVersion = argumentValue(process.argv.slice(2), '--artifact-version') ?? '1';
+if (!['1', '2'].includes(artifactVersion)) throw new Error('ARTIFACT_VERSION_UNSUPPORTED');
+const manifestVersion = `dataset-manifest.day3-current.v${artifactVersion}`;
+const packetVersion = `dev-review-packet.day3.v${artifactVersion}`;
 const evaluationClockUtc = '2026-10-15T12:00:00Z';
 const outputRoot = resolve(argumentValue(process.argv.slice(2), '--output-root') ?? root.pathname);
 const connectionString = process.env.LEMON_LOCAL_DATABASE_URL
@@ -140,14 +142,25 @@ const activeReadyEmbeddings = metadata.embeddingCounts
 const fixtureShapedEventCount = metadata.entities.filter(({ entityType, canonicalName }) => (
   entityType === 'EVENT' && /^Municipal Event [0-9a-f]{8}$/.test(canonicalName)
 )).length;
+const fixtureFingerprintCount = metadata.entities.filter(({ canonicalName, sourceEvidence }) => (
+  canonicalName === 'Explicit Indian Restaurant'
+  || sourceEvidence.some(({ sourceKey }) => sourceKey.startsWith('src03b-place-'))
+)).length + fixtureShapedEventCount;
+const missingActiveDocumentCount = metadata.entities.filter(({ searchDocument }) => searchDocument === null).length;
+if (artifactVersion === '2' && (
+  metadata.entities.length === 0 || fixtureFingerprintCount > 0 || missingActiveDocumentCount > 0
+)) {
+  throw new Error('V2_CLEAN_DATASET_ACCEPTANCE_FAILED');
+}
 const publishedEntityCount = metadata.entities.length;
 const activeSearchDocumentCount = metadata.searchDocuments.length;
 const codeGitCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 const manifest = {
   manifest_version: manifestVersion,
+  ...(artifactVersion === '2' ? { supersedes: 'dataset-manifest.day3-current.v1' } : {}),
   status: 'FROZEN_FOR_HUMAN_REVIEW',
   purpose: 'EVAL_03_DEV_JUDGMENT_PREPARATION_ONLY',
-  canonical_dataset_version: `day3-current.v1-${inventoryChecksum.slice(0, 12)}`,
+  canonical_dataset_version: `day3-current.v${artifactVersion}-${inventoryChecksum.slice(0, 12)}`,
   source_record_ingestion_runs: sourceRuns,
   boundary: metadata.boundary,
   taxonomy: metadata.taxonomy,
@@ -199,7 +212,9 @@ const manifest = {
   current_state_observations_requiring_human_inventory_confirmation: {
     active_ready_embeddings: activeReadyEmbeddings,
     fixture_shaped_event_names: fixtureShapedEventCount,
-    instruction: 'Confirm this is the intended legitimate inventory before approving judgments. If inventory changes, create v2; never edit this manifest or packet in place.',
+    fixture_fingerprints: fixtureFingerprintCount,
+    no_active_document_entities: missingActiveDocumentCount,
+    instruction: 'Confirm this is the intended legitimate inventory before approving judgments. If inventory changes, create a new version; never edit this manifest or packet in place.',
   },
   held_out_access: {
     parsed_splits: ['DEV'],
@@ -214,6 +229,7 @@ const manifestChecksum = sha256(manifestText);
 const queries = devRecords.map((record) => buildReviewQuery(record, metadata.entities));
 const packet = {
   packet_version: packetVersion,
+  ...(artifactVersion === '2' ? { supersedes: 'dev-review-packet.day3.v1' } : {}),
   status: 'HUMAN_DEV_JUDGMENT_REQUIRED',
   dataset_manifest: { version: manifestVersion, checksum: manifestChecksum },
   dataset_inventory_checksum: inventoryChecksum,

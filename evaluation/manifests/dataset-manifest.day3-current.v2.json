@@ -1,0 +1,224 @@
+{
+  "manifest_version": "dataset-manifest.day3-current.v2",
+  "supersedes": "dataset-manifest.day3-current.v1",
+  "status": "FROZEN_FOR_HUMAN_REVIEW",
+  "purpose": "EVAL_03_DEV_JUDGMENT_PREPARATION_ONLY",
+  "canonical_dataset_version": "day3-current.v2-aab903847c5f",
+  "source_record_ingestion_runs": [
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "9ab260ac-5c58-4473-b6a1-066084de4fee"
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "captureRunId": "e006b45d-4bd8-4ea4-bfe9-3e1dcff8bdf4"
+    }
+  ],
+  "boundary": {
+    "id": "0a39b199-4cd5-5358-85de-2c1a5f91a347",
+    "version": "lm-current-2026-08-14",
+    "checksum": "257a277667cde164bcb70eae16ca6985578fe34666df92ff289af519a262df1d"
+  },
+  "taxonomy": {
+    "version": "active-going-out.v1",
+    "checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+    "nodeCount": 52
+  },
+  "normalization_version": "norm-v1",
+  "search_documents": {
+    "template_version": "lexical-embedding-template-v1",
+    "document_version": "search-document-v1",
+    "hashes": [
+      "b260b36a8df2a828b7e733d56b1638b75f141c74308cf4d0ba231669c5b21a8f",
+      "ccdaa63b3d3bd530d005596ee46869fb0e4449ae8292ab42a94a757268c32ee6"
+    ]
+  },
+  "embedding": {
+    "provider": "voyage",
+    "model": "voyage-4",
+    "revision": "voyage-4-preflight-v1",
+    "dimension": 1024,
+    "query_template_version": "semantic-query-template-v1",
+    "current_rows_by_status": [],
+    "compatible_ready_count": 0
+  },
+  "search_config": {
+    "active_database_version": "noncollapse-v1",
+    "config_checksum": "cf017f94090c80c905be8868dd0239740726f0a9b2df929ef010b04a8675a624",
+    "baseline_candidate_version": "eval-03-baseline.v1",
+    "values": {
+      "version": "noncollapse-v1",
+      "config_checksum": "cf017f94090c80c905be8868dd0239740726f0a9b2df929ef010b04a8675a624",
+      "is_active": true,
+      "prefix_min_length": 3,
+      "trigram_min_length": 4,
+      "trigram_threshold": 0.3,
+      "exact_cap": 20,
+      "prefix_cap": 20,
+      "trigram_cap": 20,
+      "fts_cap": 20,
+      "taxonomy_cap": 20,
+      "event_cap": 20,
+      "semantic_cap": 30,
+      "rrf_k": 60,
+      "semantic_enabled": true,
+      "embedding_provider": "voyage",
+      "embedding_model": "voyage-4",
+      "embedding_revision": "voyage-4-preflight-v1",
+      "embedding_dimension": 1024,
+      "embedding_timeout_ms": 700,
+      "semantic_trigger_terms": [
+        "things to do",
+        "what to do",
+        "something to do",
+        "places to go",
+        "saker att göra",
+        "vad kan man göra",
+        "något att göra",
+        "ställen att gå",
+        "date night",
+        "family outing",
+        "with friends",
+        "birthday",
+        "celebrate",
+        "dejt",
+        "familjeutflykt",
+        "med vänner",
+        "födelsedag",
+        "fira",
+        "nearby",
+        "near me",
+        "within",
+        "outdoor",
+        "open now",
+        "i närheten",
+        "nära mig",
+        "inom",
+        "utomhus",
+        "öppet nu"
+      ],
+      "event_horizon_days": 30,
+      "event_freshness_by_source": {
+        "JONKOPING_EVENT_CALENDAR": {
+          "nearTermHours": 720,
+          "toleranceHours": 48,
+          "refreshTargetHours": 24
+        }
+      },
+      "radius_cap_m": 50000,
+      "noncollapse_enabled": true,
+      "broad_terms": [
+        "things to do",
+        "what to do",
+        "what should we do",
+        "something to do",
+        "something fun",
+        "fun things",
+        "places to go",
+        "places to eat",
+        "saker att göra",
+        "vad kan man göra",
+        "vad ska vi göra",
+        "något att göra",
+        "något roligt",
+        "något kul",
+        "ställen att gå",
+        "ställen att äta"
+      ],
+      "taxonomy_group_depth": 1,
+      "comparable_rrf_ratio": 0.9,
+      "top_k_group_cap": 2,
+      "chain_repetition_cap": 2,
+      "event_venue_repetition_cap": 2,
+      "created_at": "2026-08-15T12:38:06.509Z",
+      "activated_at": "2026-08-15T12:38:06.513Z",
+      "created_by": "NONCOLLAPSE-01",
+      "note": "Broad EN/SV only; top-5 cap 2; base-RRF ratio 0.90; active taxonomy depth 1; explicit chain and linked Event venue keys.",
+      "rrf_enabled": true,
+      "rrf_version": "RRF_V1",
+      "rrf_stages": [
+        "ASCII_EXACT",
+        "PREFIX",
+        "TRIGRAM",
+        "FTS",
+        "TAXONOMY",
+        "EVENT",
+        "SEMANTIC"
+      ],
+      "rrf_tie_policy": "PROTECTED_CONTEXT_RRF_DIRECT_TAXONOMY_UUID_ASC_V1",
+      "rrf_max_results": 20,
+      "noncollapse_version": "NONCOLLAPSE_V1",
+      "noncollapse_top_k": 5,
+      "noncollapse_group_priority": [
+        "TAXONOMY",
+        "CHAIN",
+        "EVENT_VENUE"
+      ],
+      "noncollapse_grouping_rules": [
+        "TAXONOMY:ACTIVE_MEMBERSHIP_PATH_DEPTH",
+        "CHAIN:EXPLICIT_CHAIN_KEY",
+        "EVENT_VENUE:LINKED_PLACE_ID"
+      ],
+      "noncollapse_tie_policy": "BASE_RRF_ORDER_EARLIEST_COMPARABLE_V1"
+    },
+    "semantic_runtime": {
+      "timeout_ms": 700,
+      "circuit_failures": 3,
+      "cooldown_seconds": 30
+    }
+  },
+  "evaluation_clock_utc": "2026-10-15T12:00:00Z",
+  "corpus": {
+    "version": "corpus.v1",
+    "checksum": "bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c",
+    "dev_query_count": 60
+  },
+  "judgment": {
+    "version": null,
+    "checksum": null,
+    "current_dataset_complete_count": 0,
+    "current_dataset_missing_count": 60,
+    "prior_version": "judgments.day2.v1",
+    "prior_manifest_version": "dataset-manifest.day2.v1",
+    "prior_dataset_inventory_checksum": "ef89e8fb98246b4418a2094addc861ee5a85e2e842a3409c0e5c761f4ab0a1f2",
+    "prior_version_compatible_with_current_inventory": false
+  },
+  "code_git_commit": "11cf31512184606e329b8da8f7d3e43093f5da7e",
+  "dataset_inventory": {
+    "published_unmerged_entities": 2,
+    "active_search_documents": 2,
+    "checksum": "aab903847c5fcfd840fe3285601d8da44d7596b5b985a2200de4f0a886b2e1fb",
+    "canonical_state_counts": [
+      {
+        "entityType": "PLACE",
+        "publicationStatus": "DRAFT",
+        "count": 5
+      },
+      {
+        "entityType": "PLACE",
+        "publicationStatus": "PUBLISHED",
+        "count": 1
+      },
+      {
+        "entityType": "EVENT",
+        "publicationStatus": "PUBLISHED",
+        "count": 1
+      }
+    ]
+  },
+  "current_state_observations_requiring_human_inventory_confirmation": {
+    "active_ready_embeddings": 0,
+    "fixture_shaped_event_names": 0,
+    "fixture_fingerprints": 0,
+    "no_active_document_entities": 0,
+    "instruction": "Confirm this is the intended legitimate inventory before approving judgments. If inventory changes, create a new version; never edit this manifest or packet in place."
+  },
+  "held_out_access": {
+    "parsed_splits": [
+      "DEV"
+    ],
+    "sealed_queries_executed": 0,
+    "adversarial_queries_executed": 0,
+    "sealed_or_adversarial_judgments_loaded": false
+  }
+}

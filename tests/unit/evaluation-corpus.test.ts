@@ -131,6 +131,47 @@ describe('EVAL-01 corpus foundation', () => {
     });
   });
 
+  it('preserves v1 and freezes a clean v2 DEV packet with every grade blank', async () => {
+    const root = new URL('../../', import.meta.url);
+    const [manifestText, manifestChecksum, packetText, packetChecksum] = await Promise.all([
+      readFile(new URL('evaluation/manifests/dataset-manifest.day3-current.v2.json', root), 'utf8'),
+      readFile(new URL('evaluation/manifests/dataset-manifest.day3-current.v2.sha256', root), 'utf8'),
+      readFile(new URL('evaluation/judgments/dev-review-packet.day3.v2.json', root), 'utf8'),
+      readFile(new URL('evaluation/judgments/dev-review-packet.day3.v2.sha256', root), 'utf8'),
+    ]);
+    const manifest = JSON.parse(manifestText);
+    const packet = JSON.parse(packetText);
+    expect(sha256(manifestText)).toBe(manifestChecksum.trim());
+    expect(sha256(packetText)).toBe(packetChecksum.trim());
+    expect(manifest.supersedes).toBe('dataset-manifest.day3-current.v1');
+    expect(manifest.dataset_inventory).toMatchObject({
+      published_unmerged_entities: 2,
+      active_search_documents: 2,
+    });
+    expect(manifest.current_state_observations_requiring_human_inventory_confirmation).toMatchObject({
+      fixture_shaped_event_names: 0,
+      fixture_fingerprints: 0,
+      no_active_document_entities: 0,
+    });
+    expect(packet.supersedes).toBe('dev-review-packet.day3.v1');
+    expect(packet.split).toBe('DEV');
+    expect(packet.inventory).toHaveLength(2);
+    expect(packet.queries).toHaveLength(60);
+    expect(packet.current_dataset_judgments_complete).toBe(0);
+    expect(packet.current_dataset_judgments_missing).toBe(60);
+    expect(packet.queries.flatMap((query: { candidatePool: Array<{ grade: unknown }> }) => query.candidatePool)
+      .every(({ grade }: { grade: unknown }) => grade === null)).toBe(true);
+    expect(packet.queries.flatMap((query: { humanJudgment: { relevant: Array<{ grade: unknown }> } }) => (
+      query.humanJudgment.relevant
+    )).every(({ grade }: { grade: unknown }) => grade === null)).toBe(true);
+    expect(packet.held_out_guard).toEqual({
+      parsed_splits: ['DEV'],
+      sealed_queries_executed: 0,
+      adversarial_queries_executed: 0,
+      sealed_or_adversarial_judgments_loaded: false,
+    });
+  });
+
   it('rejects SEALED, ADVERSARIAL, and generic all tuning access', async () => {
     await expect(loadTuningJudgments('SEALED')).rejects.toThrow('access denied');
     await expect(loadTuningJudgments('ADVERSARIAL')).rejects.toThrow('access denied');

@@ -1,0 +1,65 @@
+{
+  "auditVersion": "eval-03a-reconstruction.v1",
+  "classification": "FIXTURE_CONTAMINATED_DATASET",
+  "recovery": "LOCAL_RESET_AND_PINNED_ACCEPTED_SOURCE_RECONSTRUCTION",
+  "networkSourceAcquisition": false,
+  "commands": [
+    "pnpm db:reset",
+    "pnpm eval:reconstruct-dataset",
+    "pnpm taxonomy:apply",
+    "pnpm search-documents:rebuild",
+    "pnpm eval:review-full-dev --artifact-version=2"
+  ],
+  "sourceFixtures": [
+    "packages/source-adapters/fixtures/osm/jonkoping-bounded.raw.json",
+    "packages/source-adapters/fixtures/municipal/utegym.layer-41.sanitized.json",
+    "packages/source-adapters/fixtures/events/jonkoping-event-calendar.single-occurrence.sanitized.json"
+  ],
+  "publishedInventory": [
+    {
+      "canonicalEntityId": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+      "canonicalName": "Evergreen Restaurang & Pizzeria",
+      "entityType": "PLACE",
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/254912492",
+      "sourceRecordVersionId": "92e89063-8f45-4761-9822-b1acb6a385c9",
+      "sourceRecordParseAttemptId": "84d81acc-08a7-4447-9ca3-cf3081419530",
+      "captureRunId": "e006b45d-4bd8-4ea4-bfe9-3e1dcff8bdf4",
+      "searchDocumentHash": "ccdaa63b3d3bd530d005596ee46869fb0e4449ae8292ab42a94a757268c32ee6"
+    },
+    {
+      "canonicalEntityId": "ab9d91e4-8b37-4f39-9b4c-0217e08a9690",
+      "canonicalName": "Smålandstriennalen: Berätta om oron och skönheten",
+      "entityType": "EVENT",
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "externalKey": "event/48a0b597-1d16-4a64-943e-bc17b382a42f",
+      "sourceRecordVersionId": "2e6119d6-a30d-46b9-83f6-3d8f0b686a17",
+      "sourceRecordParseAttemptId": "a7ec51ce-681a-4fce-afa1-bed2dbdadf1c",
+      "captureRunId": "9ab260ac-5c58-4473-b6a1-066084de4fee",
+      "searchDocumentHash": "b260b36a8df2a828b7e733d56b1638b75f141c74308cf4d0ba231669c5b21a8f"
+    }
+  ],
+  "rejectedSourceRecords": [
+    {
+      "externalKey": "event/17f7be01-1c69-40cf-a701-00916c765ef3",
+      "reason": "EVENT_LOCATION_MISSING",
+      "canonicalEntityCreated": false
+    }
+  ],
+  "evaluationClockUtc": "2026-10-15T12:00:00Z",
+  "eventTimeResult": "All repository-pinned source Events are expired at the frozen DEV clock; no Event is hard-eligible there.",
+  "readyEmbeddings": 0,
+  "embeddingGeneration": "NOT_RUN_EXTERNAL_EGRESS_NOT_AUTHORIZED",
+  "newManifest": {
+    "version": "dataset-manifest.day3-current.v2",
+    "checksum": "11a1a73e37bd2af71b7948823c6509dfb98edd86c6629834e2fc54d8a2afe4f1",
+    "inventoryChecksum": "aab903847c5fcfd840fe3285601d8da44d7596b5b985a2200de4f0a886b2e1fb"
+  },
+  "newReviewPacket": "dev-review-packet.day3.v2",
+  "devJudgmentsAssigned": 0,
+  "heldOutAccess": {
+    "sealedQueriesExecuted": 0,
+    "adversarialQueriesExecuted": 0,
+    "sealedOrAdversarialJudgmentsLoaded": false
+  }
+}

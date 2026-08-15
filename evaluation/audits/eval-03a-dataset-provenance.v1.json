@@ -1,0 +1,1415 @@
+{
+  "auditVersion": "eval-03a-dataset-provenance.v1",
+  "manifestAudited": {
+    "version": "dataset-manifest.day3-current.v1",
+    "checksum": "7bf3624aac182e701f3ea1c5420e75d7ae93f14983ee2846e1615a3bbb723194"
+  },
+  "classification": "FIXTURE_CONTAMINATED_DATASET",
+  "summary": {
+    "entities": 26,
+    "legitimateEntities": 4,
+    "fixtureTestEntities": 22,
+    "unknownOriginEntities": 0,
+    "duplicateLookingEntities": 4,
+    "municipalEventEntities": 18,
+    "noActiveDocumentEntities": 14
+  },
+  "testIsolation": {
+    "primaryLocalDatabaseMutated": true,
+    "cleanupPresent": false,
+    "evidence": [
+      "tests/unit/jonkoping-event-ingestion.test.ts creates random Municipal Event and src03b-place entities; afterAll only closes the store.",
+      "tests/unit/taxonomy.test.ts creates Explicit Indian Restaurant with a random OSM node; afterAll only closes the store.",
+      "vitest.config.mts disables file parallelism but provides no database transaction or isolated database."
+    ]
+  },
+  "evaluationClock": {
+    "value": "2026-10-15T12:00:00Z",
+    "municipalEventRowsExpired": 18,
+    "result": "All Municipal Event test fixtures are expired at the frozen DEV clock."
+  },
+  "gitEvidence": {
+    "eventFixture": "tests/unit/jonkoping-event-ingestion.test.ts: title is `Municipal Event ${uuid.slice(0, 8)}` and venue is Rådhusparken.",
+    "linkedPlaceFixture": "tests/unit/jonkoping-event-ingestion.test.ts: source key is `src03b-place-${randomUUID()}` with fixture-adapter-v1.",
+    "taxonomyFixture": "tests/unit/taxonomy.test.ts: random OSM node named Explicit Indian Restaurant.",
+    "acceptedSourceFixtures": [
+      "packages/source-adapters/fixtures/osm/jonkoping-bounded.raw.json",
+      "packages/source-adapters/fixtures/municipal/utegym.layer-41.sanitized.json",
+      "packages/source-adapters/fixtures/events/jonkoping-event-calendar.single-occurrence.sanitized.json"
+    ]
+  },
+  "entities": [
+    {
+      "canonicalEntityId": "22ed1d70-f4a0-4c13-b9f3-9c2e935297e7",
+      "entityType": "PLACE",
+      "canonicalName": "IF Hallby SOK: utegym*",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:56.610Z",
+      "publishedAt": "2026-08-15T11:45:56.794Z",
+      "searchDocument": {
+        "id": "241290f8-0967-426b-901e-cf34720c9c92",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "b64daa60-5937-4c0b-9604-68879c02febd",
+          "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+          "externalKey": "layer-41/globalid/de4fee7d-b847-4089-a89b-fe0e1ff9a511",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "9ffa4bf9-77f2-4244-a494-7e0c59a038f0",
+          "currentParseAttemptId": "e39986ea-2176-457c-bf25-a075796e650d",
+          "contentHash": "865a1cd4058c8a369deb3a7d2a93b71811f19d2946b8e3c9511a2ea95cd66370",
+          "captureRunId": "0672d285-8d6e-4806-9eff-5baf4447ffb5",
+          "attemptIngestionRunId": "0672d285-8d6e-4806-9eff-5baf4447ffb5",
+          "attemptParserVersion": "jonkoping-utegym-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_MUNICIPAL_UTEGYM:jonkoping-municipality:jonkoping-utegym-arcgis-v1:jonkoping-utegym-parser-v1:723a5582-6b89-42d8-914f-d4abaa5be520",
+          "adapterVersion": "jonkoping-utegym-arcgis-v1",
+          "runParserVersion": "jonkoping-utegym-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "DOC-01 fixture"
+        ],
+        "notes": [
+          "deterministic projection verification"
+        ]
+      },
+      "origin": {
+        "classification": "DETERMINISTIC_RECONSTRUCTION",
+        "proof": [
+          "Exact SourceRecord external key exists in an accepted sanitized source fixture",
+          "Successful current H+A pins the accepted adapter/parser run"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "3dd7bd3e-e299-4554-93b3-0fc8e4062ecb",
+      "entityType": "PLACE",
+      "canonicalName": "Evergreen Restaurang & Pizzeria",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:56.592Z",
+      "publishedAt": "2026-08-15T11:45:56.659Z",
+      "searchDocument": {
+        "id": "3c5260f9-d2bd-4468-b10f-64736fe52449",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "38ae4c49-870e-48e5-a5b7-acde299420c1",
+          "sourceKey": "OSM_OVERPASS",
+          "externalKey": "node/254912492",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "08ae97e6-ee85-454f-8ff8-89fabdfc9149",
+          "currentParseAttemptId": "4cf06b13-d3b2-4b20-a91e-e0b05778ca34",
+          "contentHash": "cd385b275f1fa3faa0e2ea0623e227d1106f3283f09ab500d117c4415da9bd43",
+          "captureRunId": "e2dadc48-a428-4825-96b8-70bc9fabed48",
+          "attemptIngestionRunId": "e2dadc48-a428-4825-96b8-70bc9fabed48",
+          "attemptParserVersion": "osm-place-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "OSM_OVERPASS:jonkoping-municipality:osm-overpass-v1:osm-place-parser-v1:e768f839-cee1-4439-85f8-bc4144be1317",
+          "adapterVersion": "osm-overpass-v1",
+          "runParserVersion": "osm-place-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        },
+        {
+          "sourceRecordId": "e19790a3-53a9-4572-bb14-a4f921f94186",
+          "sourceKey": "OSM_OVERPASS",
+          "externalKey": "doc-redaction/e19790a3-53a9-4572-bb14-a4f921f94186",
+          "resolutionMethod": "MANUAL_MAPPING",
+          "currentVersionId": null,
+          "currentParseAttemptId": null,
+          "contentHash": null,
+          "captureRunId": null,
+          "attemptIngestionRunId": null,
+          "attemptParserVersion": null,
+          "attemptStatus": null,
+          "runIdempotencyKey": null,
+          "adapterVersion": null,
+          "runParserVersion": null,
+          "mappingVersion": null,
+          "runStatus": null
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "DAY1-PUB-01"
+        ],
+        "notes": [
+          "First real OSM Place publication from node/254912492"
+        ]
+      },
+      "origin": {
+        "classification": "DETERMINISTIC_RECONSTRUCTION",
+        "proof": [
+          "Exact SourceRecord external key exists in an accepted sanitized source fixture",
+          "Successful current H+A pins the accepted adapter/parser run"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "45c5a3a1-4815-4088-a274-8857f1eddce3",
+      "entityType": "PLACE",
+      "canonicalName": "Explicit Indian Restaurant",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:46:00.267Z",
+      "publishedAt": "2026-08-15T11:46:00.451Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "8deb39fb-2a28-4310-bdf2-5ccae0ec2d42",
+          "sourceKey": "OSM_OVERPASS",
+          "externalKey": "node/20474137136",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "5a7e4352-f4d5-4052-94e2-1ddeb8199006",
+          "currentParseAttemptId": "93b549aa-d510-48a8-a854-c43a75a08d25",
+          "contentHash": "fa01a60695d87bca809ede62f8d509e7ebe3d63c3a5d970201e5bffe39d08557",
+          "captureRunId": "5e225d31-019c-41e2-8365-07f61124b62c",
+          "attemptIngestionRunId": "5e225d31-019c-41e2-8365-07f61124b62c",
+          "attemptParserVersion": "osm-place-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "OSM_OVERPASS:jonkoping-municipality:osm-overpass-v1:osm-place-parser-v1:a9342976-8357-4b8e-9734-6ab602b55bce",
+          "adapterVersion": "osm-overpass-v1",
+          "runParserVersion": "osm-place-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        },
+        {
+          "sourceRecordId": "2e7cc19a-72ca-40e0-9b8b-0a2ef7148a66",
+          "sourceKey": "OSM_OVERPASS",
+          "externalKey": "taxonomy-duplicate-67bbe33d-c954-4bcf-a0f5-781ba70e4ffc",
+          "resolutionMethod": "MANUAL_MAPPING",
+          "currentVersionId": null,
+          "currentParseAttemptId": null,
+          "contentHash": null,
+          "captureRunId": null,
+          "attemptIngestionRunId": null,
+          "attemptParserVersion": null,
+          "attemptStatus": null,
+          "runIdempotencyKey": null,
+          "adapterVersion": null,
+          "runParserVersion": null,
+          "mappingVersion": null,
+          "runStatus": null
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [],
+        "notes": []
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "External key absent from accepted OSM fixture",
+          "Exact random-node generator in taxonomy.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "7ece4261-a03b-49a2-ab28-d028e735d88d",
+      "entityType": "PLACE",
+      "canonicalName": "Rådhusparken",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:58.980Z",
+      "publishedAt": "2026-08-15T11:45:59.036Z",
+      "searchDocument": {
+        "id": "10d95d47-5759-4498-b78f-7dd44994a99e",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "855f4e63-3b42-4517-af3c-ccc1f42626f6",
+          "sourceKey": "src03b-place-40df9c32-b1d6-4a21-bc7a-b3b7d6bb73b4",
+          "externalKey": "venue-place",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "9e77b3df-efb9-4280-8def-799c8e607f89",
+          "currentParseAttemptId": "e97e0f90-5bb1-412a-a80e-2cd975eeefb1",
+          "contentHash": "d09158c340de3264d31181111132e05ddb41cba86030f3a0640f8f1c6808850c",
+          "captureRunId": "00e43270-38d4-436b-87eb-acde3d5d2378",
+          "attemptIngestionRunId": "00e43270-38d4-436b-87eb-acde3d5d2378",
+          "attemptParserVersion": "fixture-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "src03b-place-40df9c32-b1d6-4a21-bc7a-b3b7d6bb73b4:jonkoping-municipality:fixture-adapter-v1:fixture-parser-v1:26899ce7-f15f-413e-a2c5-27a778996689",
+          "adapterVersion": "fixture-adapter-v1",
+          "runParserVersion": "fixture-parser-v1",
+          "mappingVersion": "fixture-map-v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B-LINK-FIXTURE"
+        ],
+        "notes": [
+          "deterministic linked Place fixture"
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "DB adapter_version=fixture-adapter-v1 / src03b-place-*",
+          "Exact generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "a86362ac-bbaf-43a9-9242-d59d41fab5a9",
+      "entityType": "PLACE",
+      "canonicalName": "Rådhusparken",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.538Z",
+      "publishedAt": "2026-08-15T12:05:14.622Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "d4053bdf-cb3b-4edd-8844-9e668ac3bff4",
+          "sourceKey": "src03b-place-2d473b76-4bd4-4edc-9412-17fff789abc6",
+          "externalKey": "venue-place",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "1889cf0f-8012-455b-92de-5770c8ea6348",
+          "currentParseAttemptId": "798435c9-db7f-4af3-9af7-d2ef81e42b19",
+          "contentHash": "d09158c340de3264d31181111132e05ddb41cba86030f3a0640f8f1c6808850c",
+          "captureRunId": "04b29b95-69a6-4c3d-8622-b0b67a10a794",
+          "attemptIngestionRunId": "04b29b95-69a6-4c3d-8622-b0b67a10a794",
+          "attemptParserVersion": "fixture-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "src03b-place-2d473b76-4bd4-4edc-9412-17fff789abc6:jonkoping-municipality:fixture-adapter-v1:fixture-parser-v1:b3a39c34-7b8b-42af-9a58-aa1ef6c5180d",
+          "adapterVersion": "fixture-adapter-v1",
+          "runParserVersion": "fixture-parser-v1",
+          "mappingVersion": "fixture-map-v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B-LINK-FIXTURE"
+        ],
+        "notes": [
+          "deterministic linked Place fixture"
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "DB adapter_version=fixture-adapter-v1 / src03b-place-*",
+          "Exact generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "b430d455-8dec-4979-a6ad-cdde267e4fc7",
+      "entityType": "PLACE",
+      "canonicalName": "Explicit Indian Restaurant",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:15.824Z",
+      "publishedAt": "2026-08-15T12:05:16.037Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "bd091ca7-47c2-4429-89cc-a4d45353ee2e",
+          "sourceKey": "OSM_OVERPASS",
+          "externalKey": "node/35156087602",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "f994b2e3-a29b-41b0-9a64-216ba26d5abc",
+          "currentParseAttemptId": "b480b62b-513a-4c9c-bf9f-459699bc5cd9",
+          "contentHash": "42c00d56936ca6142099ea9e9be09db349ae4bc479cec429b93bbef6eefc383b",
+          "captureRunId": "ff024bac-22c8-4e47-b5bd-cd9d4e8ccf54",
+          "attemptIngestionRunId": "ff024bac-22c8-4e47-b5bd-cd9d4e8ccf54",
+          "attemptParserVersion": "osm-place-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "OSM_OVERPASS:jonkoping-municipality:osm-overpass-v1:osm-place-parser-v1:8b7b9784-1fce-4443-9c7d-08feeda638ee",
+          "adapterVersion": "osm-overpass-v1",
+          "runParserVersion": "osm-place-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        },
+        {
+          "sourceRecordId": "ea247ef0-c846-4846-af75-0c48a155a30e",
+          "sourceKey": "OSM_OVERPASS",
+          "externalKey": "taxonomy-duplicate-15b46580-2d50-4817-9988-f829c0cf95b1",
+          "resolutionMethod": "MANUAL_MAPPING",
+          "currentVersionId": null,
+          "currentParseAttemptId": null,
+          "contentHash": null,
+          "captureRunId": null,
+          "attemptIngestionRunId": null,
+          "attemptParserVersion": null,
+          "attemptStatus": null,
+          "runIdempotencyKey": null,
+          "adapterVersion": null,
+          "runParserVersion": null,
+          "mappingVersion": null,
+          "runStatus": null
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [],
+        "notes": []
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "External key absent from accepted OSM fixture",
+          "Exact random-node generator in taxonomy.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "c7ac25bc-bb7c-4643-93db-f95cc821fa22",
+      "entityType": "PLACE",
+      "canonicalName": "Tandori palace",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:56.584Z",
+      "publishedAt": "2026-08-15T11:45:57.073Z",
+      "searchDocument": {
+        "id": "82ee11cd-43a0-431f-be75-d650cdb59dd7",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "44111aea-9754-4a9f-a9f1-6ea65ddb67a3",
+          "sourceKey": "OSM_OVERPASS",
+          "externalKey": "node/2271413648",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "5b7b1105-dd2b-4d2e-941b-be353af48925",
+          "currentParseAttemptId": "5516e5b5-2c40-49e6-8faf-e6a0ad933041",
+          "contentHash": "2feee9d7e6046f8b45a73e52857438c7f543b56eb51e721203148dd54b5ba9c4",
+          "captureRunId": "e2dadc48-a428-4825-96b8-70bc9fabed48",
+          "attemptIngestionRunId": "a33fff11-0b03-45e8-ad1b-de4e119de574",
+          "attemptParserVersion": "osm-place-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "OSM_OVERPASS:jonkoping-municipality:osm-overpass-v1:osm-place-parser-v1:e768f839-cee1-4439-85f8-bc4144be1317",
+          "adapterVersion": "osm-overpass-v1",
+          "runParserVersion": "osm-place-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "DOC-01 fixture"
+        ],
+        "notes": [
+          "deterministic projection verification"
+        ]
+      },
+      "origin": {
+        "classification": "DETERMINISTIC_RECONSTRUCTION",
+        "proof": [
+          "Exact SourceRecord external key exists in an accepted sanitized source fixture",
+          "Successful current H+A pins the accepted adapter/parser run"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "f191df6d-9aeb-4230-a048-7c2f7aafc2fd",
+      "entityType": "PLACE",
+      "canonicalName": "Jönköpings OK: utegym*",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:56.617Z",
+      "publishedAt": "2026-08-15T11:45:57.226Z",
+      "searchDocument": {
+        "id": "be6844ae-baeb-4ad3-b1df-ba9135b7701d",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "b349ac09-6326-434b-af50-3c69f519ccc4",
+          "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+          "externalKey": "layer-41/globalid/4a7315e8-ef59-4caf-b4f9-eed3e14a3720",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "c7f09d09-328a-4d77-8c41-1c1aa9434755",
+          "currentParseAttemptId": "7d0ea066-b224-47b7-9887-36ef82379405",
+          "contentHash": "0b699ece7965d2a891c8fa6f4df60caf72edeff7cea11e2f1ec0fb22e28a3d15",
+          "captureRunId": "0672d285-8d6e-4806-9eff-5baf4447ffb5",
+          "attemptIngestionRunId": "0672d285-8d6e-4806-9eff-5baf4447ffb5",
+          "attemptParserVersion": "jonkoping-utegym-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_MUNICIPAL_UTEGYM:jonkoping-municipality:jonkoping-utegym-arcgis-v1:jonkoping-utegym-parser-v1:723a5582-6b89-42d8-914f-d4abaa5be520",
+          "adapterVersion": "jonkoping-utegym-arcgis-v1",
+          "runParserVersion": "jonkoping-utegym-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "DOC-01 fixture"
+        ],
+        "notes": [
+          "deterministic projection verification"
+        ]
+      },
+      "origin": {
+        "classification": "DETERMINISTIC_RECONSTRUCTION",
+        "proof": [
+          "Exact SourceRecord external key exists in an accepted sanitized source fixture",
+          "Successful current H+A pins the accepted adapter/parser run"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "165c346a-5f76-445c-86c5-a998aa52d209",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event ba482a13",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:59.057Z",
+      "publishedAt": "2026-08-15T11:45:59.062Z",
+      "searchDocument": {
+        "id": "9127c3af-7429-4ed6-a89f-62c7cf392a8c",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "7e19a548-aa9c-4fc9-bbbe-d7280cd40100",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/ba482a13-1074-4452-8056-cd275c834773",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "053ea18b-d67f-4cff-be38-5ce7549d63c9",
+          "currentParseAttemptId": "4c2175b2-c4b1-42ab-a758-8989e9a958b5",
+          "contentHash": "22a2c3980d83eea8331c0ef37645bbf4d1d6234f1b2a31a812ac8710714986c9",
+          "captureRunId": "f552b79e-755d-4c6e-a3e0-a179454b35d5",
+          "attemptIngestionRunId": "f552b79e-755d-4c6e-a3e0-a179454b35d5",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:cf6f3956-eecd-454c-94fd-2a229a048d86",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "358deb23-1f5f-4f51-a623-869e7ae27680",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 728b3479",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:59.072Z",
+      "publishedAt": "2026-08-15T11:45:59.079Z",
+      "searchDocument": {
+        "id": "07302d4b-246a-4336-b6a9-852e91b91200",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "0784e8a6-5e9e-459e-9959-9bf6e494a6dc",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/728b3479-1557-4f3a-ad86-8d44b01282ae",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "883869ea-3e32-4d48-8c39-dff4a983ac89",
+          "currentParseAttemptId": "bcc592bc-ca3d-4c63-a526-4e9cc9c72a8c",
+          "contentHash": "a7eca5a734eed948a119d20f6254fd5e842f90b9d12fbd13ad18de01cdcce165",
+          "captureRunId": "fc040bb1-1252-4246-8d77-d54804639338",
+          "attemptIngestionRunId": "fc040bb1-1252-4246-8d77-d54804639338",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:2e19a2c9-237b-4839-a16a-afc637208af8",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "53a9c418-c852-4143-b656-b8b68451d732",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event c2ab274a",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:58.887Z",
+      "publishedAt": "2026-08-15T11:45:58.892Z",
+      "searchDocument": {
+        "id": "66b8d0cc-880e-468b-a56e-611466d3491c",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "894049dd-335d-49d0-90c6-00cc6dfb1a9c",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/c2ab274a-c3b7-4bea-8bd8-b0a3769829c4",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "920ac7d9-7dae-4640-8db2-341f5e716d35",
+          "currentParseAttemptId": "f2e1a445-b823-4099-b095-83e29e53652a",
+          "contentHash": "5e660bbe60e992239fee50a2fc86548cd01646e79c09a23111eba1247fe76723",
+          "captureRunId": "606c2679-a81b-428f-88a9-b830d819a6cd",
+          "attemptIngestionRunId": "606c2679-a81b-428f-88a9-b830d819a6cd",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:3aabfc97-2605-4ac9-8269-358a7d964bdc",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "FAILED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "62c912d4-da32-4fd1-b416-a2fd5af65085",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 78340209",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:59.396Z",
+      "publishedAt": "2026-08-15T11:45:59.402Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "9a69930d-3496-42e8-9ad5-b23f2a5bf5d5",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/78340209-8e75-4e2f-b586-640b832534e8",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "2364f58a-1847-4412-bab2-b2ea4470f4c0",
+          "currentParseAttemptId": "56144b3c-ddf2-417f-bb6e-c55dcbe0e8ba",
+          "contentHash": "827d7f2a0aac9664e9f87fafe8a8b757dc1dd913f0c2d0fd8bb53d3c123dd423",
+          "captureRunId": "f9ea17d6-546b-416a-a41a-0459e2bad815",
+          "attemptIngestionRunId": "f9ea17d6-546b-416a-a41a-0459e2bad815",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:b0e05fd7-11d7-479a-a0a0-cc2055943911",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "63fef8df-9eb2-467c-af78-a5f93b83b55b",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event db5bb579",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:58.494Z",
+      "publishedAt": "2026-08-15T11:45:58.521Z",
+      "searchDocument": {
+        "id": "9145d520-3ca0-49cd-a302-bb3ee9862ad5",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "a1d748fe-d72d-4b28-862a-92b4def1d406",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/db5bb579-df01-4bc6-9692-3f55fad1d6d6",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "c1279921-1007-429a-a451-f1df5b826783",
+          "currentParseAttemptId": "0a00ae7c-a2b5-42ea-9b70-c5a4743fa3f8",
+          "contentHash": "c91095ea428535b8a1db9567d9378ae68eb1c7eb966622a90b1abef8e7dd5575",
+          "captureRunId": "c1b483d8-cd67-4654-a19b-9ab27c0fb65d",
+          "attemptIngestionRunId": "c1b483d8-cd67-4654-a19b-9ab27c0fb65d",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:75b5c57c-2ee2-4c61-9b32-d3b6369756a2",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "812d6f6d-2ccf-452a-b78f-b01c140173c3",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event b9ce54c1",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:58.742Z",
+      "publishedAt": "2026-08-15T11:45:58.748Z",
+      "searchDocument": {
+        "id": "38423ba8-7206-4cbd-9afa-d9dbf72ce9ac",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "72b69632-4db8-45da-8ef7-e1519bd9ea57",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/b9ce54c1-5ad7-45eb-8162-8818928b655a",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "becab1ad-c90e-4d52-96eb-43068a351e5c",
+          "currentParseAttemptId": "b57fbe5e-362d-4b28-be7a-46db3a34d4c1",
+          "contentHash": "1374ab3262c4aee2bb142bda3ab505f384fac50806392e3551e700bb0d33913a",
+          "captureRunId": "ea729d7d-d37e-4d04-b011-7e5dc60f3be3",
+          "attemptIngestionRunId": "ea729d7d-d37e-4d04-b011-7e5dc60f3be3",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:39d54a9e-fc43-4d4d-981f-5f1fbd95655c",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "904f7b9e-bdbb-4374-8a39-68f3799a64bb",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 53ec0876",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.887Z",
+      "publishedAt": "2026-08-15T12:05:14.893Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "12e2ff58-a1f1-4c5e-9336-14b4af95cabc",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/53ec0876-4cc3-4853-a4b1-7d152f6b3cb0",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "2c8dfdfc-79a7-441e-80db-26b2783940b5",
+          "currentParseAttemptId": "d08c23a1-55bb-4a57-b945-82cd76ebf02b",
+          "contentHash": "ca0ca74ce0787740fd0949d625ffdfdccf332ccb52436a0d4761ba8cfaf5fcc1",
+          "captureRunId": "9260e9f2-1b20-412c-92ff-0a6fd193a6df",
+          "attemptIngestionRunId": "9260e9f2-1b20-412c-92ff-0a6fd193a6df",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:93422d6a-338a-4ef1-9025-6582c92d6187",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "a144190b-0c57-4f25-8129-744025b521bb",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event e1e9e88f",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.645Z",
+      "publishedAt": "2026-08-15T12:05:14.651Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "bfffed72-b3c0-4998-8cfc-8ba395296fad",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/e1e9e88f-1eb3-48bf-8faa-60527ea7ff30",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "e78c7f95-5ecd-42c8-9ac5-c5bb534d5fa4",
+          "currentParseAttemptId": "e7b96d03-46b1-4b57-b261-7c1b67fae5df",
+          "contentHash": "586252fb7de37168b6ae0ce099564f979a24fe86703f13b56f7a6d595a537dd1",
+          "captureRunId": "353df5ca-3f5d-4021-b4ea-f3bbd5d6b620",
+          "attemptIngestionRunId": "353df5ca-3f5d-4021-b4ea-f3bbd5d6b620",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:64d7f530-7396-417c-a252-fa8bb79af51e",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "a3211a3c-c4cb-4406-b016-19bebe014e17",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event b4040d6b",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:58.660Z",
+      "publishedAt": "2026-08-15T11:45:58.665Z",
+      "searchDocument": {
+        "id": "a2ac30c4-d52e-4908-bcd6-b288462e95b2",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "b663d243-6249-4abf-959d-94fa3b1b53c6",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/b4040d6b-5b68-4f47-8576-7074b1d3acfd",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "186e4783-edf5-4983-adc7-044bf608d7aa",
+          "currentParseAttemptId": "3b41817f-77aa-4ac1-82c2-64f9e1654070",
+          "contentHash": "abb170a7e8374a099ffedfc5c08cfdd16b4668867fee4738bd90957304fbdcbe",
+          "captureRunId": "65854c94-8520-44c9-bb0d-78195c9b0d9a",
+          "attemptIngestionRunId": "65854c94-8520-44c9-bb0d-78195c9b0d9a",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:766207e1-b66f-4ae3-a9f0-fbc522f763a1",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "a52a7610-7538-4be3-bddd-1fc6f6361e0a",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 57831c7d",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:58.845Z",
+      "publishedAt": "2026-08-15T11:45:58.851Z",
+      "searchDocument": {
+        "id": "bac23052-67ca-463b-bb1c-84af6ac8ffb1",
+        "state": "ACTIVE"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "5aaf3258-b621-4a58-80a5-53060bf55a7e",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/57831c7d-dbc6-44a5-9f01-768cc766e1a8",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "926c0bec-8178-4328-be92-d354c7c9f933",
+          "currentParseAttemptId": "24f02d45-9359-4d6d-8eea-df04524ec775",
+          "contentHash": "20b2dc1d4742bd9a1b7e06b9aee80ca6b2697d92a13b6e5d1cd08eeab7a96ef9",
+          "captureRunId": "852bbad7-22d6-4131-8660-5a2be0374fbb",
+          "attemptIngestionRunId": "48051d73-2aa2-4cf9-9b64-3f0348dca7ef",
+          "attemptParserVersion": "event-parser-replay-a2",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:event-parser-replay-a1:887c13d8-ce42-4028-9e31-85df97e3c11e",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "event-parser-replay-a1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "PARTIAL"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "af1008ba-5846-4c77-80d4-d8c1619e63d4",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 5c9fdb2f",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.401Z",
+      "publishedAt": "2026-08-15T12:05:14.407Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "621f870c-7b49-4ee9-859b-7f2507139328",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/5c9fdb2f-b77a-4076-89c0-b30b8a2f54da",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "02c0bb17-6797-454e-a638-47cc092c7f27",
+          "currentParseAttemptId": "e484d53e-34ed-42ad-af31-9c757cdc37b3",
+          "contentHash": "8d547aa2d740a717a7addd2c4d3858f071ae1f2c2a4300906f826586e02848cf",
+          "captureRunId": "79b5f425-6483-40f6-b7a0-e81086f1b5ef",
+          "attemptIngestionRunId": "47e97578-e3b8-45bb-a0e4-e3f23b631872",
+          "attemptParserVersion": "event-parser-replay-a2",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:event-parser-replay-a1:8a8f88ee-1d97-4e69-9376-bd972f0e8919",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "event-parser-replay-a1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "PARTIAL"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "b29dd35d-ebb5-48bc-b8e8-74290bd02b7d",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 46748e67",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.448Z",
+      "publishedAt": "2026-08-15T12:05:14.454Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "630ee6dd-b01a-43f3-85e0-2baa99dc42ad",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/46748e67-4451-4099-b426-77ee351b6901",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "b8dbbf37-3f7d-4ca0-a0c1-c3e58ba4a978",
+          "currentParseAttemptId": "d5ab701c-5adf-40e9-8bdb-c0df13491031",
+          "contentHash": "0b2c397f85631649dfb2aac5898df76eba0c5a795f41a5f192f99a78c74c46d0",
+          "captureRunId": "b740fa1e-2e2c-48a7-9ef1-f8654e4058ef",
+          "attemptIngestionRunId": "b740fa1e-2e2c-48a7-9ef1-f8654e4058ef",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:95a7b052-9a35-40ab-a7bb-bb86346f6d98",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "FAILED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "be20eafd-0baa-41c7-9641-e2a9ebb76fde",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 3f8b6ddf",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.208Z",
+      "publishedAt": "2026-08-15T12:05:14.214Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "812e36e2-83c7-4b87-84fa-18022fecb08e",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/3f8b6ddf-53b6-4a13-a743-48bdd293f8e6",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "f37abe0a-5e15-4f77-9585-06e446239be5",
+          "currentParseAttemptId": "56a66cdd-0902-431d-b818-936378f8d5d4",
+          "contentHash": "b6649f8ce20f68db42fc22928f6a27aaf951647b56cdf4c448bd6fc5e409a8ed",
+          "captureRunId": "0aaf94d8-b1b7-464d-b5fb-2c1880c45b0a",
+          "attemptIngestionRunId": "0aaf94d8-b1b7-464d-b5fb-2c1880c45b0a",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:968a584d-2f92-404f-b36b-3da16383f519",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "c60501f1-95d9-4f92-9095-071f1978f316",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event b86c56f1",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.662Z",
+      "publishedAt": "2026-08-15T12:05:14.667Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "a85fdcc8-3250-4ad3-bfd0-142a7ca3a353",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/b86c56f1-bd13-49d1-8cb8-9e144908b394",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "2bba0da5-571b-4518-b495-7e54b277a77d",
+          "currentParseAttemptId": "a6dc65f4-ced2-45d4-a3db-ffdcc0744975",
+          "contentHash": "e8c0613f0dabaa74d4115d1be51bfe4ce4d3fb634db919a4e9c030ce5069fbf7",
+          "captureRunId": "4aba6bbb-6b47-4b74-962b-6abcfe24f09f",
+          "attemptIngestionRunId": "4aba6bbb-6b47-4b74-962b-6abcfe24f09f",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:00f1ab06-4521-4421-aa0e-30719d9555e1",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "d1c1796c-ac21-467f-aeec-8739d678ff15",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 72f3e98e",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T11:45:59.245Z",
+      "publishedAt": "2026-08-15T11:45:59.251Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "6de7ade2-bd99-466f-99c4-edd42947a377",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/72f3e98e-915b-4179-87a4-41dded0d21f3",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "9bffda6a-970c-4b07-b266-051bd2f026ae",
+          "currentParseAttemptId": "4b254d06-97d7-4607-822f-2615eb37d7f9",
+          "contentHash": "e3407d2436e3a121b0460ff7602c8af868a10a9fbc341a4319f86f69a239b652",
+          "captureRunId": "62582c1b-e3e2-495e-8e47-e58a37ad9bf3",
+          "attemptIngestionRunId": "62582c1b-e3e2-495e-8e47-e58a37ad9bf3",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:c2487486-5516-4127-845c-7ded71a82dd9",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "dde7d4aa-4b7f-496a-b3bf-cdd031052b72",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event bbc96215",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.731Z",
+      "publishedAt": "2026-08-15T12:05:14.737Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "3f71b098-e7a8-4d6a-a330-14c007bd4e7b",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/bbc96215-5acd-42f3-ae7d-0a23821f2812",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "1fe62644-f834-4327-b5b5-f6d56b44bda2",
+          "currentParseAttemptId": "5a69c864-e2aa-4ac3-9893-89e9985ef415",
+          "contentHash": "8e4f53d796723575cace58776d0b45779d61ffa7c33dbbe95362ea79856510d3",
+          "captureRunId": "ecb64aff-a656-4f84-878c-341aa7247205",
+          "attemptIngestionRunId": "ecb64aff-a656-4f84-878c-341aa7247205",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:df9e7afc-19b3-4942-bc5a-93862415a9e8",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "f7b573e9-7d95-4849-9beb-dc195984fbf7",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 64175fc4",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.312Z",
+      "publishedAt": "2026-08-15T12:05:14.318Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "f2c2d0c4-ffe7-457b-ba86-30af2bbe1386",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/64175fc4-3a66-4f75-a4b2-70affa1f9057",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "779a1761-eb42-4a9d-9497-073e985ddd5c",
+          "currentParseAttemptId": "04d8f2ee-d018-47d1-a6a9-e8be0161063c",
+          "contentHash": "5eac65df7334a5a296e5c526201e8a855b8933e5dd5b673cb9edc2474fc1c215",
+          "captureRunId": "f3feaa17-1c15-4205-9273-8f27a390eab1",
+          "attemptIngestionRunId": "f3feaa17-1c15-4205-9273-8f27a390eab1",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:dba62394-da13-4976-92c6-e125b54ce999",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    },
+    {
+      "canonicalEntityId": "fc30b0cf-ba52-4921-a626-ee1048e4bffd",
+      "entityType": "EVENT",
+      "canonicalName": "Municipal Event 18b27ec3",
+      "publicationStatus": "PUBLISHED",
+      "canonicalCreatedAt": "2026-08-15T12:05:14.113Z",
+      "publishedAt": "2026-08-15T12:05:14.149Z",
+      "searchDocument": {
+        "id": null,
+        "state": "NO_ACTIVE_DOCUMENT"
+      },
+      "sourceEvidence": [
+        {
+          "sourceRecordId": "aecb5c65-21c2-4520-8c45-851112e1607f",
+          "sourceKey": "JONKOPING_EVENT_CALENDAR",
+          "externalKey": "event/18b27ec3-894d-4dbc-a3e7-44f7e18ab6fd",
+          "resolutionMethod": "NEW_CANONICAL",
+          "currentVersionId": "8c1dc7f9-4357-4654-93ac-d6eae9b44bd7",
+          "currentParseAttemptId": "a762377a-4f7c-4385-b0ec-d9c66e315ee0",
+          "contentHash": "a511a4efc1d6c72a20322df1fece13b0ee81a8f2acd5df942d1372f17654c461",
+          "captureRunId": "6998f90a-b3b9-4145-9da4-6a9bd29f53ac",
+          "attemptIngestionRunId": "6998f90a-b3b9-4145-9da4-6a9bd29f53ac",
+          "attemptParserVersion": "jonkoping-event-parser-v1",
+          "attemptStatus": "SUCCEEDED",
+          "runIdempotencyKey": "JONKOPING_EVENT_CALENDAR:jonkoping-municipality:jonkoping-event-v1:jonkoping-event-parser-v1:e85e8fbc-48bf-4759-9c40-ff4906197fed",
+          "adapterVersion": "jonkoping-event-v1",
+          "runParserVersion": "jonkoping-event-parser-v1",
+          "mappingVersion": "source-taxonomy.v1",
+          "runStatus": "SUCCEEDED"
+        }
+      ],
+      "canonicalFactProvenance": {
+        "createdBy": [
+          "SRC-03B",
+          "SRC-03B-HUMAN-EVENT-FACT-REVIEW"
+        ],
+        "notes": [
+          "Engineer-approved bounded trial interpretation of an official current future occurrence.",
+          "Explicit municipal Event address.",
+          "Explicit municipal Event coordinates.",
+          "Explicit municipal Event end.",
+          "Explicit municipal Event start.",
+          "Official municipal Event title."
+        ]
+      },
+      "origin": {
+        "classification": "PGTAP_UNIT_INTEGRATION_FIXTURE",
+        "proof": [
+          "Canonical title prefix matches SourceRecord UUID prefix",
+          "Exact title/UUID generator in jonkoping-event-ingestion.test.ts"
+        ]
+      }
+    }
+  ]
+}
