@@ -64,7 +64,7 @@ No:
 - LLM reranker
 - learned ranking
 
-Search paths eventually include:
+Final search paths:
 
 - protected canonical exact
 - qualified verified alias exact
@@ -79,40 +79,50 @@ Search paths eventually include:
 - bounded broad-discovery non-collapse
 
 Semantic is additive and fail-open.
-Deterministic search must always work.
+
+Deterministic search must always work even if the embedding provider or semantic
+path fails.
 
 ---
 
 # 3. Current milestone
 
 DAY 1: COMPLETE
+
 DAY 2: COMPLETE
+
+DAY 3 EVENT BRANCH:
+COMPLETE THROUGH EVENT-01
+
+Completed Day-3 Event branch:
+
+SRC-03B
+→ EVENT-01
 
 Current next task:
 
-SRC-03B — bounded real Event ingestion/canonicalization
+EMBED-01B — selected multilingual embedding generation
 
-Do NOT automatically begin later packages.
-
-After SRC-03B:
-
-EVENT-01
-
-Independent semantic branch:
+Then:
 
 EMBED-01B
 → SEM-01
 
-RANK-01 final completion requires:
+Once semantic branch is complete:
 
 EVENT-01 + SEM-01
-
-Then:
-
-RANK-01
+→ RANK-01
 → NONCOLLAPSE-01
 → MOB-03
 → EVAL-03
+
+RANK-01 final completion requires both:
+
+EVENT-01
++
+SEM-01
+
+Do NOT automatically begin later packages.
 
 ---
 
@@ -224,7 +234,15 @@ EVAL-02
 `4b4a20c`
 feat(eval): add deterministic dev runner
 
-Working tree after EVAL-02:
+SRC-03B
+`22f9fc1`
+feat(events): add bounded municipal ingestion
+
+EVENT-01
+`80715b9`
+feat(search): add event time retrieval
+
+Current working tree after EVENT-01 provenance audit:
 
 CLEAN
 
@@ -275,7 +293,7 @@ Duplicate decisions pin exact H+A evidence.
 
 Any pinned H+A change makes a finalized decision stale and forces:
 
-OPEN_REVIEW
+`OPEN_REVIEW`
 
 Type A:
 
@@ -314,6 +332,10 @@ Compliance:
 
 Source revocation may rebuild/withhold canonical/search truth according to
 accepted PROV-01 behavior.
+
+Manual/human Event status resolution must still pin exact supporting H+A.
+
+Do not falsely record a human interpretation as SOURCE_FACT.
 
 ---
 
@@ -371,20 +393,25 @@ Only active taxonomy is valid.
 
 No legacy taxonomy.
 
-Membership methods include evidence-backed deterministic source mapping /
-SOURCE_FACT / controlled manual paths according to TAX-01.
+Membership methods include:
+
+- evidence-backed deterministic source mapping
+- SOURCE_FACT
+- controlled manual paths according to TAX-01
 
 Do not stretch taxonomy to hit quotas.
 
-Coverage currently remains truthful; unsupported scarcity claims are prohibited.
+Coverage must remain truthful.
+
+Unsupported scarcity claims are prohibited.
 
 ---
 
-# 10. Search status after Day 2
+# 10. Search status after EVENT-01
 
 Implemented deterministic retrieval:
 
-- eligibility
+- authoritative eligibility
 - protected accent-preserving canonical exact
 - qualified verified alias exact
 - accentless ordinary exact
@@ -395,14 +422,20 @@ Implemented deterministic retrieval:
 - descendant expansion
 - category browse
 - bilingual lexical behavior
+- deterministic EN/SV time parsing
+- Event/time eligibility
+- Event horizon filtering
+- Event critical-fact freshness
+- Event candidate retrieval
+- linked/standalone Event venue support
+- Event expiry predicate
 - restricted diagnostics
 
 Not yet implemented:
 
-- Event candidates
 - semantic retrieval
 - RRF
-- non-collapse
+- broad-discovery non-collapse
 
 Exact protection:
 
@@ -414,6 +447,8 @@ Exact protection:
 5. discovery → ordinary
 
 Eligibility is applied before every retriever/protection decision.
+
+Event eligibility is also authoritative before Event candidate participation.
 
 ---
 
@@ -445,9 +480,26 @@ ancestor/context
 D:
 description
 
-Invalidation already exists for relevant canonical/provenance/taxonomy changes.
+Invalidation exists for relevant:
+
+- canonical changes
+- provenance changes
+- taxonomy changes
+- withheld/merged state
+- document replacement
+
+Event SearchDocuments now support factual Event context including:
+
+- Event title
+- factual taxonomy
+- linked Place venue context when deterministic
+- standalone venue/location context
 
 Do not put unsupported editorial text into embedding/search documents.
+
+Do not generate a second embedding-specific representation.
+
+Use existing `embedding_text`.
 
 ---
 
@@ -504,7 +556,7 @@ Identity explicitly excludes:
 - hashes
 - generated UUID
 
-Schedule changes must preserve source identity.
+Schedule changes preserve source identity.
 
 Multi-occurrence rule:
 
@@ -565,7 +617,7 @@ ends_at = NULL
 
 ---
 
-# 14. Human Event-status decision for SRC-03B
+# 14. Human Event-status decision
 
 The municipality source does NOT expose a reliable literal status field.
 
@@ -573,7 +625,7 @@ Engineer-approved bounded trial interpretation:
 
 A concrete source occurrence may become canonical:
 
-SCHEDULED
+`SCHEDULED`
 
 when all are true:
 
@@ -585,15 +637,17 @@ when all are true:
 
 This is NOT a literal source `status=SCHEDULED` fact.
 
-Record provenance using the actual approved manual/human resolution method
-available in the frozen provenance model.
-
-Do NOT mislabel this as SOURCE_FACT if the schema distinguishes manual
-interpretation.
+SRC-03B implements this as MANUAL provenance with exact supporting H+A evidence.
 
 Cancellation requires explicit evidence.
 
-Never infer CANCELLED/COMPLETED/POSTPONED from:
+Never infer:
+
+- CANCELLED
+- COMPLETED
+- POSTPONED
+
+from:
 
 - disappearance
 - DELTA absence
@@ -601,56 +655,353 @@ Never infer CANCELLED/COMPLETED/POSTPONED from:
 - source outage
 - partial response
 
-If current provenance schema cannot represent this approved resolution cleanly:
+This decision is already accepted.
 
-STOP with `SPEC_CHANGE_REQUIRED`.
+Do not reopen it during later packages.
 
 ---
 
-# 15. Event domain invariants
+# 15. SRC-03B accepted Event ingestion state
 
-Event is separate from Place.
+Commit:
 
-Event may have:
+`22f9fc1`
 
-- deterministic linked Place; OR
-- sufficient standalone venue/location.
+Source:
 
-Do not heuristic-link Place by:
+`JONKOPING_EVENT_CALENDAR`
 
-- similar venue name
-- proximity
-- similar address
+SRC-03B established:
 
-Standalone Event venue is valid when sufficient evidence exists.
+bounded Event source
+→ immutable source evidence
+→ selected H+A
+→ CanonicalEntity EVENT
+→ Event
+→ provenance
+→ taxonomy
+→ publication
 
-Later linking to a Place must not change Event identity.
+SRC-03B completion run reported:
 
-Canonical Event status domain includes frozen lifecycle values.
+- 18 source records fetched/run;
+- 4 invalid retained visibly;
+- 2 canonical Events published;
+- 2 accepted single-occurrence;
+- 2 multi-occurrence skipped;
+- 0 identity-ambiguous;
+- live venue mode: 0 linked / 2 standalone;
+- status = SCHEDULED;
+- status provenance = MANUAL + exact H+A;
+- rerun idempotent;
+- zero duplicate entities/events/documents.
 
-Only EVENT-01 later decides Event search eligibility/time overlap.
+Stable Event identity survives schedule updates.
 
-SRC-03B must NOT implement Event search.
+Prior provenance history is retained.
 
-Event time intervals are half-open.
+Cancellation remains explicit-evidence only.
 
-Known-end overlap later:
+Refresh mode remains:
+
+`DELTA_ONLY`
+
+---
+
+# 16. Current Event inventory after reconstruction
+
+EVENT-01 reconstruction legitimately changed the live DELTA inventory.
+
+Provenance audit classification:
+
+`LEGITIMATE_RECONSTRUCTION_CHANGE`
+
+This was NOT:
+
+- fixture contamination;
+- EVENT-01 source acquisition expansion;
+- EVENT-01 canonicalization expansion.
+
+Existing accepted SRC-03B behavior was rerun and the public DELTA source had
+changed.
+
+Current legitimate source-backed canonical Events:
+
+1. `ac712ce7-982e-46d7-b99e-a1f72acbff76`
+   - title: Grenna Bluegrass Festival
+   - external key:
+     `event/ceca15b4-8ecb-4e90-81f1-a35a6c6269fc`
+   - SearchDocument:
+     `4ddca9fb-a343-481b-a97d-c53710668588`
+   - SearchDocument status: ACTIVE
+
+2. `b1dc351c-0321-4764-9f12-122d69bf0848`
+   - title: Jönköpings Kanotklubb 90 år
+   - external key:
+     `event/f2f70042-e9b2-478b-8a48-201376fb693d`
+   - SearchDocument:
+     `e93bb0bd-b2bd-4cf7-8d76-4fd8d84e09f7`
+   - SearchDocument status: ACTIVE
+
+3. `192c5ebb-0cb2-476b-b8ab-69216fb027b3`
+   - title: Grenna Bluegrassfestival
+   - external key:
+     `event/f630fa46-e3bf-4c35-9a60-22553ffbc219`
+   - SearchDocument:
+     `1c21b8b6-837b-4015-8c45-90e78e897751`
+   - SearchDocument status: ACTIVE
+
+All three:
+
+- originate from `JONKOPING_EVENT_CALENDAR`;
+- are legitimate source-backed inventory;
+- have exact valid selected H+A;
+- are not fixture-only entities;
+- were created through existing `jonkoping-event-v1` /
+  `jonkoping-event-parser-v1` behavior.
+
+Current active Event SearchDocuments:
+
+3
+
+Important:
+
+The overall active SearchDocument corpus must be discovered mechanically by
+EMBED-01B.
+
+Do NOT assume total corpus size from this handoff.
+
+---
+
+# 17. EVENT-01 accepted behavior
+
+Commit:
+
+`80715b9`
+
+EVENT-01 implements Event retrieval/time eligibility.
+
+Real inspected Events:
+
+3 / 3 eligible at completion.
+
+All were:
+
+- EVENT
+- PUBLISHED
+- SCHEDULED
+- fresh
+- in-scope
+- within applicable horizon
+- valid standalone venue/location
+
+Live venue mode:
+
+0 linked
+/
+3 standalone
+
+Linked Place Event behavior is fixture-tested.
+
+## Event horizon
+
+30 days.
+
+Exclusive start boundary:
+
+starts_at < horizon_end
+
+Event starting exactly at horizon_end is excluded.
+
+## Source freshness
+
+Initial accepted Jönköping Event freshness tolerance:
+
+48 hours
+
+Freshness is based on current critical provenance + SourceRecord observations.
+
+Do NOT substitute:
+
+Source.last_successful_refresh
+
+for per-Event critical fact freshness.
+
+Critical freshness uses the conservative minimum of applicable:
+
+- event_start evidence observation
+- event_end evidence observation when present
+- event_status evidence observation
+
+A successful DELTA source run does NOT refresh an absent Event's evidence.
+
+## Event status eligibility
+
+Searchable:
+
+SCHEDULED only
+
+Excluded:
+
+- CANCELLED
+- POSTPONED
+- COMPLETED
+- UNKNOWN
+
+Explicit cancellation becomes immediately ineligible.
+
+DELTA absence never changes Event status.
+
+## Known-end interval
+
+Query interval is half-open:
+
+[query_start, query_end)
+
+Known-end Event overlaps iff:
 
 starts_at < query_end
 AND
 ends_at > query_start
 
-Missing end uses the frozen point-Event semantics owned by EVENT-01.
+Current/upcoming iff:
+
+ends_at > now
+AND
+starts_at < horizon_end
+
+Equality rules:
+
+ends_at = query_start
+→ no overlap
+
+starts_at = query_end
+→ no overlap
+
+ends_at = now
+→ expired/ineligible
+
+## Point Event
+
+If:
+
+ends_at IS NULL
+
+query match iff:
+
+query_start <= starts_at
+AND
+starts_at < query_end
+
+Current/upcoming iff:
+
+starts_at >= now
+AND
+starts_at < horizon_end
+
+Equality:
+
+starts_at = query_start
+→ match
+
+starts_at = query_end
+→ no match
+
+starts_at = now
+→ current
+
+starts_at < now
+→ expired
+
+Never invent duration.
 
 ---
 
-# 16. Time parser
+# 18. Event candidates / expiry / diagnostics
+
+EVENT-01 added explicit:
+
+`event_candidates`
+
+Properties:
+
+- authoritative Event eligibility first;
+- bounded;
+- deterministic;
+- CanonicalEntity ID unique in union;
+- supports title evidence;
+- factual venue evidence;
+- taxonomy/category evidence;
+- deterministic time evidence;
+- time-only Event discovery;
+- no RRF;
+- no semantic ranking;
+- no popularity score.
+
+Event candidates participate in the existing canonical union.
+
+## Expiry
+
+Command:
+
+`pnpm expire:events`
+
+Search-time expiry is authoritative even if the command is delayed.
+
+Known-end:
+
+ends_at <= now
+→ expired
+
+Point:
+
+starts_at < now
+→ expired
+
+Expiry command:
+
+- uses same predicate as search;
+- withholds expired publication;
+- preserves canonical Event;
+- preserves source-backed/manual status;
+- preserves provenance/history;
+- is idempotent.
+
+Expired Events are absent from search BEFORE the command runs.
+
+Do NOT infer COMPLETED solely from time passage.
+
+## Diagnostics
+
+Restricted diagnostics now expose bounded Event information including:
+
+- status eligibility
+- start/end
+- point/known-end mode
+- query interval
+- interval match
+- horizon eligibility
+- schedule freshness
+- status freshness
+- effective freshness
+- freshness tolerance
+- scope/taxonomy/radius eligibility
+- venue mode
+- event_candidates presence/rank
+- candidate-union presence
+
+Do not expose internal Event diagnostics publicly.
+
+---
+
+# 19. Time parser
 
 TIME-01 is accepted.
 
 Supports required EN/SV deterministic expressions including:
 
 EN:
+
 - tonight / this evening
 - tomorrow
 - weekday
@@ -659,6 +1010,7 @@ EN:
 - next weekend
 
 SV:
+
 - ikväll
 - imorgon
 - weekday equivalents
@@ -680,23 +1032,34 @@ Properties:
 - conservative unsupported/ambiguous results
 - machine-timezone independent
 
+EVENT-01 wires TIME-01 through:
+
+Edge
+→ one `api.search_v1` RPC
+
+Recognized ambiguous time remains safe 422.
+
 Do not replace with LLM time parsing.
 
 ---
 
-# 17. Embedding preflight
+# 20. Embedding lifecycle / preflight
 
 EMBED-01A accepted.
 
-Provider preflight:
+Commit:
+
+`779cef6`
+
+Provider:
 
 Voyage
 
-Candidate model:
+Validated model:
 
 `voyage-4`
 
-Requested/validated dimension:
+Validated dimension:
 
 1024
 
@@ -707,6 +1070,7 @@ PASS
 Input types:
 
 document → `document`
+
 query → `query`
 
 Lifecycle:
@@ -717,23 +1081,177 @@ STALE
 
 Rules:
 
-- READY only with valid vector
-- FAILED terminal immutable
-- READY → STALE retains vector/history
-- retries use distinct attempt identity
-- SearchDocument replacement stales READY embedding
-- no ANN
+READY:
+- valid compatible vector only;
+- exact SearchDocument/hash pinned;
+- provider/model/config/dimension pinned;
+- finite;
+- non-zero;
+- generated_at present.
 
-This is PRE-FLIGHT ONLY.
+FAILED:
+- terminal immutable;
+- vector NULL;
+- generated_at NULL;
+- safe error identity retained.
 
-EMBED-01B must later perform bounded final human model selection and active
-SearchDocument generation.
+FAILED → READY:
+rejected
 
-Do not begin EMBED-01B during SRC-03B.
+FAILED → STALE:
+rejected
+
+Retry:
+new attempt identity
+
+READY → STALE:
+allowed
+
+STALE:
+- original vector retained;
+- generated_at retained;
+- history retained;
+- no longer retrievable.
+
+SearchDocument replacement stales old compatible READY embeddings.
+
+No ANN.
 
 ---
 
-# 18. Evaluation state
+# 21. Selected embedding contract for EMBED-01B
+
+The engineer has completed the bounded human model-selection decision.
+
+Final four-day trial embedding contract:
+
+provider:
+
+Voyage
+
+model:
+
+`voyage-4`
+
+dimension:
+
+1024
+
+document input type:
+
+`document`
+
+query input type:
+
+`query`
+
+This is the ONE selected semantic contract for the trial.
+
+Rationale:
+
+- primary frozen architecture candidate;
+- EMBED-01A real provider smoke passed;
+- document embedding passed;
+- query embedding passed;
+- requested/returned 1024 dimensions passed;
+- vectors finite/non-zero;
+- lifecycle compatibility exists;
+- no evidence justifies spending constrained trial time on a broad
+  multi-provider bake-off.
+
+Do NOT compare more providers during EMBED-01B unless this selected contract
+fails a mandatory correctness/compatibility gate.
+
+Do NOT silently switch model/provider.
+
+If selected provider/model contract is no longer usable:
+
+`EMBED_PROVIDER_CONTRACT_BLOCKED`
+
+or:
+
+`MODEL_SELECTION_REOPEN_REQUIRED`
+
+as applicable.
+
+---
+
+# 22. Current next task: EMBED-01B
+
+Objective:
+
+generate compatible selected-model vectors for the CURRENT active eligible
+SearchDocument corpus.
+
+Expected path:
+
+active eligible SearchDocument
+→ deterministic `embedding_text`
+→ bounded offline Voyage request
+→ response validation
+→ READY or explicit FAILED attempt
+
+Selected contract:
+
+Voyage
+/
+voyage-4
+/
+1024 dimensions
+/
+document input type
+
+EMBED-01B must mechanically discover:
+
+- active Place SearchDocuments;
+- active Event SearchDocuments;
+- total active eligible documents;
+- existing compatible READY;
+- FAILED;
+- STALE;
+- missing compatible embeddings.
+
+Current Event subset contains 3 legitimate active Event SearchDocuments.
+
+Do not hardcode overall corpus count.
+
+Required EMBED-01B properties:
+
+- deterministic batching/order;
+- bounded provider calls;
+- partial success preservation;
+- retry with new attempt identity;
+- rerun skips compatible READY;
+- no duplicate compatible READY;
+- in-flight SearchDocument hash change cannot attach wrong vector;
+- contract/hash change stales old READY;
+- exact selected contract compatibility;
+- state/coverage report;
+- no raw vectors in logs;
+- API key never logged;
+- no ANN.
+
+EMBED-01B does NOT implement:
+
+- production query embedding
+- shouldEmbed
+- semantic_candidates
+- cosine retrieval
+- semantic fail-open
+- RRF
+- non-collapse
+
+Those belong to SEM-01 or later.
+
+Expected commit:
+
+`feat(embedding): generate selected model vectors`
+
+Stop after EMBED-01B.
+
+---
+
+# 23. Evaluation state
 
 Frozen corpus:
 
@@ -780,9 +1298,14 @@ Judgment version:
 
 `judgments.day2.v1`
 
+Judgment checksum prefix/suffix:
+
+`0b4df5f2…b83f`
+
 Judgments:
 
 84 total
+
 - grade 0: 60
 - grade 1: 15
 - grade 2: 6
@@ -792,26 +1315,32 @@ Judgments:
 
 Baseline:
 
-- 6 inventory-unavailable known-item queries
-- Hit@1/Hit@3/MRR: NOT_EVALUATED for those absent targets
-- Recall@20: 0.2333
-- Recall@50: NOT_REQUIRED
-- Precision@5: 0.1600
-- NDCG@5: 0.2832
-- EN P@5: 0.1000
-- SV P@5: 0.2000
-- EN NDCG@5: 0.2080
-- SV NDCG@5: 0.3333
-- zero-result: 12/14 = 85.71%
-- failures: INVENTORY 6; CANDIDATE_RETRIEVAL 4
+- 6 inventory-unavailable known-item queries;
+- Hit@1: NOT_EVALUATED for absent intended targets;
+- Hit@3: NOT_EVALUATED;
+- MRR: NOT_EVALUATED;
+- Recall@20: 0.2333;
+- Recall@50: NOT_REQUIRED;
+- Precision@5: 0.1600;
+- NDCG@5: 0.2832;
+- EN P@5: 0.1000;
+- SV P@5: 0.2000;
+- EN NDCG@5: 0.2080;
+- SV NDCG@5: 0.3333;
+- zero-result: 12/14 = 85.71%;
+- failure attribution:
+  - INVENTORY 6
+  - CANDIDATE_RETRIEVAL 4
 
-Rerun deterministic byte-identical.
+Rerun:
+
+byte-identical
 
 Report content checksum:
 
 `bae1ad69…34f7`
 
-This is a PRE-DAY-3 baseline.
+This is the PRE-DAY-3 baseline.
 
 Do NOT tune against SEALED.
 
@@ -819,105 +1348,165 @@ Do not rewrite inspected judgment versions.
 
 ---
 
-# 19. Current inventory note
+# 24. Inventory / evaluation interpretation
 
 The deterministic Day-2 evaluation reconstruction contained:
 
 6 published entities
 6 active SearchDocuments
 
-This is not intended to represent final Jönköping coverage.
+That was a snapshot, not intended final Jönköping coverage.
 
-Current sparse inventory is explicitly diagnosed by EVAL-02.
+Later legitimate source reconstruction/acquisition may change inventory.
+
+Current Event branch alone now has:
+
+3 legitimate active Event SearchDocuments.
+
+Do not infer the current overall active SearchDocument count from the old
+Day-2 snapshot.
+
+EMBED-01B must discover it mechanically.
+
+Important evaluation distinction:
+
+user query unsatisfied because intended real entity is absent
+→ END-TO-END PRODUCT FAILURE
+
+but engineering attribution:
+
+→ INVENTORY
+
+not automatically:
+
+→ RANKING
 
 Do not hand-insert frozen DEV target entities merely to improve metrics.
 
-Later legitimate source acquisition may naturally bring them into inventory.
+Legitimate source acquisition may naturally bring them into inventory.
 
 Never inspect SEALED targets to drive acquisition.
 
 ---
 
-# 20. Next task: SRC-03B
+# 25. Remaining Day-3 sequence
 
-SRC-03B objective:
-
-take the already-proven municipal Event source through the accepted ingestion
-and canonicalization contracts.
-
-Expected path:
-
-bounded fetch
-→ immutable capture/version
-→ ParseAttempt
-→ selected source-current H+A
-→ deterministic canonical Event resolution
-→ targeted provenance
-→ taxonomy/location
-→ reproducible publication
-
-Real bounded sample should use legitimate upcoming single-occurrence Events.
-
-Run real ingest twice.
-
-Prove:
-
-- stable source keys
-- stable Lemon Event IDs
-- no duplicate canonical Events
-- exact H+A evidence
-- factual schedule
-- status provenance
-- location/venue
-- taxonomy
-- DELTA_ONLY semantics
-- idempotent rerun
-
-Do NOT implement:
-
-- `event_candidates`
-- Event search
-- expiry search behavior
-- semantic retrieval
-- RRF
-- non-collapse
-- MOB-03
-- recurrence engine
-- second Event source
-
-Expected commit subject:
-
-`feat(events): add bounded municipal ingestion`
-
-Stop after SRC-03B.
-
----
-
-# 21. Remaining Day-3 sequence
-
-Recommended sequential execution:
+Completed:
 
 SRC-03B
 → EVENT-01
 
+Current:
+
 EMBED-01B
-→ SEM-01
 
 Then:
 
-EVENT-01 + SEM-01
+EMBED-01B
+→ SEM-01
+
+After both branches:
+
+EVENT-01
++
+SEM-01
 → RANK-01
+
+Then:
+
+RANK-01
 → NONCOLLAPSE-01
 → MOB-03
 → EVAL-03
 
-Event and semantic branches are independent until RANK-01.
+## SEM-01
 
-RANK-01 final DoD requires both branches.
+Will own:
+
+- deterministic shouldEmbed;
+- query-time Voyage embedding;
+- exact compatible READY vector universe;
+- exact cosine scan;
+- `semantic_candidates`;
+- safe timeout/failure behavior;
+- deterministic fallback;
+- `semanticDegraded`;
+- no LLM router/rewriter/reranker.
+
+## RANK-01
+
+Will own:
+
+- fixed/simple RRF;
+- protected exact preservation;
+- canonical exactly-once;
+- deterministic ties;
+- integration of lexical/taxonomy/Event/semantic stages.
+
+No learned fusion.
+
+## NONCOLLAPSE-01
+
+Will own:
+
+- broad-discovery only;
+- post-ranking deterministic concentration reduction;
+- relevance primary;
+- no weak-result promotion;
+- no effect on known-item/narrow taxonomy queries.
+
+## MOB-03
+
+Will own:
+
+- Event cards/time presentation;
+- semantic/degraded UX;
+- EN/SV presentation;
+- no client reranking/provider calls.
+
+## EVAL-03
+
+Will own:
+
+- full 60 DEV pass;
+- bounded tuning;
+- reasoned candidate configs;
+- final DEV freeze;
+- no SEALED access.
 
 ---
 
-# 22. Usage / execution discipline
+# 26. Security / public-path invariants
+
+Production search path remains:
+
+Mobile
+→ Edge
+→ one `api.search_v1`
+→ private PostgreSQL internals
+
+Mobile never gets:
+
+- DB/service credentials
+- Voyage key
+- direct RPC access
+- private diagnostics
+
+Edge holds required server-side secrets.
+
+Restricted diagnostics remain restricted.
+
+Embedding provider credentials must never enter:
+
+- mobile bundle
+- public response
+- DB payload
+- logs
+- committed files
+
+---
+
+# 27. Usage / execution discipline
 
 The user is operating under tight Codex usage limits.
 
@@ -961,34 +1550,87 @@ Do not rewrite accepted commits/history.
 
 One task = one commit for current clean package history.
 
+Prefer fresh Codex threads at major branch/package boundaries.
+
+Current semantic branch:
+
+EMBED-01B
+→ SEM-01
+
+may stay in one fresh thread because the packages are tightly coupled.
+
+Start another fresh thread before RANK-01 if usage/context size warrants it.
+
 ---
 
-# 23. Model guidance
+# 28. Model guidance
 
 Bounded/mechanical mobile/docs:
+
 Medium
 
 Normal source adapters/time/provider:
+
 Sol Medium
 
 Contract-sensitive Event/search/provenance/semantic:
+
 Sol High
 
-Use strongest reasoning only when justified, especially:
+Use strongest reasoning when justified, especially:
 
 - DEDUP
 - RANK
 - NONCOLLAPSE
 - final evaluation
 
-Current SRC-03B recommendation:
+Current EMBED-01B recommendation:
 
 GPT-5.6 Sol
 High reasoning
 
+SEM-01 recommendation:
+
+GPT-5.6 Sol
+High reasoning
+
+RANK-01:
+
+High / strongest justified reasoning
+
+NONCOLLAPSE-01:
+
+High / strongest justified reasoning
+
 ---
 
-# 24. Completion-report format
+# 29. Current fresh-thread startup
+
+For the next fresh Codex session:
+
+1. read `AGENTS.md`;
+2. read this `CODEX_HANDOFF.md`;
+3. inspect Git status/history only as needed;
+4. search only EMBED-01B-relevant frozen sections;
+5. use the explicit EMBED-01B package prompt;
+6. do not reread all accepted history;
+7. do not begin SEM-01 automatically.
+
+Current task:
+
+`EMBED-01B`
+
+Current accepted HEAD must contain at least:
+
+`80715b9 — feat(search): add event time retrieval`
+
+plus any later docs-only handoff commit.
+
+Working tree should be clean before implementation.
+
+---
+
+# 30. Completion-report format
 
 Keep successful reports <=20 lines.
 
@@ -1004,5 +1646,29 @@ Unexpected issues:
 Blockers:
 Working tree:
 Next task:
+
+For EMBED-01B specifically prefer:
+
+Task:
+Commit:
+Selected contract:
+Active corpus Place/Event/total:
+Real documents attempted:
+Compatible READY:
+FAILED:
+STALE:
+Coverage:
+Dimension/finite/non-zero:
+Document hash compatibility:
+Partial-run recovery:
+Rerun idempotency:
+Contract-change stale:
+Event document coverage:
+No ANN:
+Provider/key safety:
+Tests:
+Scope audit:
+Working tree:
+Next task: SEM-01
 
 Do not automatically begin the next task.
