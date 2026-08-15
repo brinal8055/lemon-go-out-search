@@ -14,6 +14,7 @@ export type SourceObservation = {
 
 export type FetchResult = {
   observations: SourceObservation[];
+  invalidCount?: number;
   refreshUnitComplete: boolean;
   snapshotComplete: boolean | null;
   fetchMeta: Record<string, string | number | null>;
@@ -35,17 +36,42 @@ export type PlaceCandidate = {
   resolution: 'NEW' | 'UNRESOLVED';
 };
 
-export type NormalizedSourceRecord = {
+export type EventCandidate = {
+  entityType: 'EVENT';
+  canonicalName: string;
+  startsAt: string;
+  endsAt?: string;
+  timezone: string;
+  status: 'SCHEDULED' | 'CANCELLED' | 'POSTPONED' | 'COMPLETED' | 'UNKNOWN';
+  statusSelectionMethod: 'SOURCE_PRECEDENCE' | 'MANUAL';
+  venuePlaceId?: string;
+  venueName?: string;
+  latitude?: number;
+  longitude?: number;
+  streetAddress?: string;
+  postalCode?: string;
+  locality?: string;
+  countryCode?: string;
+  informationUrl?: string;
+  taxonomySlug?: string;
+  taxonomyMappingRef?: string;
+  resolution: 'NEW' | 'UNRESOLVED';
+};
+
+type NormalizedSourceRecordBase = {
   sourceKey: string;
   externalKey: string;
-  entityType: 'PLACE';
   observedAt: string;
   names: Array<{ value: string; language: 'en' | 'sv' | 'und'; kind: 'OFFICIAL' }>;
-  place: PlaceCandidate;
   sourceCategories: string[];
   explicitFacts: Record<string, unknown>;
   permittedEvidenceRefs: string[];
 };
+
+export type NormalizedSourceRecord = NormalizedSourceRecordBase & (
+  | { entityType: 'PLACE'; place: PlaceCandidate; event?: never }
+  | { entityType: 'EVENT'; event: EventCandidate; place?: never }
+);
 
 export type AdapterConfig = {
   sourceKey: string;
@@ -167,6 +193,7 @@ export interface IngestionStore {
   }): Promise<{
     canonicalEntityId: string;
     canonicalChanged: boolean;
+    published: boolean;
     projection: ProjectionOutcome | null;
   }>;
   finishRun(input: FinishRunInput): Promise<number>;

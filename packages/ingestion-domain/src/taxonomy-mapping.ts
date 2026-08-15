@@ -16,7 +16,7 @@ export type AutomaticMembershipMethod = 'SOURCE_FACT' | 'DETERMINISTIC_MAP';
 
 export type SourceMappingRule = {
   id: string;
-  source_key: 'OSM_OVERPASS' | 'JONKOPING_MUNICIPAL_UTEGYM';
+  source_key: 'OSM_OVERPASS' | 'JONKOPING_MUNICIPAL_UTEGYM' | 'JONKOPING_EVENT_CALENDAR';
   source_field: 'sourceCategories';
   source_tag: string;
   source_value: string;
@@ -245,7 +245,7 @@ async function controlledTransaction<T>(
 function readMappingRule(value: unknown): SourceMappingRule {
   if (!isObject(value)
     || typeof value.id !== 'string' || value.id.trim() === ''
-    || !['OSM_OVERPASS', 'JONKOPING_MUNICIPAL_UTEGYM'].includes(String(value.source_key))
+    || !['OSM_OVERPASS', 'JONKOPING_MUNICIPAL_UTEGYM', 'JONKOPING_EVENT_CALENDAR'].includes(String(value.source_key))
     || value.source_field !== 'sourceCategories'
     || typeof value.source_tag !== 'string' || value.source_tag.trim() === ''
     || typeof value.source_value !== 'string' || value.source_value.trim() === ''

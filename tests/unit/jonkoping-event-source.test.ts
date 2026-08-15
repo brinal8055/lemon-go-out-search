@@ -6,6 +6,7 @@ import {
   compareRepeatedProbe,
   EventSourceProbeError,
   JONKOPING_EVENT_REFRESH_MODE,
+  JonkopingEventAdapter,
   JonkopingEventProbe,
   type EventProbeResult,
   type PermittedEventOccurrence,
@@ -60,6 +61,7 @@ function result(events: PermittedEventOccurrence[]): EventProbeResult {
     outsideHorizon: 0,
     invalid: 0,
     multiOccurrenceSkipped: 0,
+    identityAmbiguous: 0,
     accepted: events,
   };
 }
@@ -166,7 +168,39 @@ describe('SRC-03A bounded Jönköping Event source', () => {
     await expect(oversized.fetch(new AbortController().signal)).rejects.toMatchObject({ code: 'RESPONSE_TOO_LARGE' });
   });
 
-  it('records DELTA_ONLY absence semantics and a disabled production source contract', async () => {
+  it('filters ongoing records before detail fetch because manual SCHEDULED requires a future start', async () => {
+    const ongoing = {
+      ...hit,
+      structuredStartDate: '2026-08-14T18:00:00+02:00',
+      structuredEndDate: '2026-08-20T20:00:00+02:00',
+    };
+    const fetchMock = vi.fn(async (input: string | URL | Request) => {
+      if (String(input).includes('sv.target=')) return searchResponse([ongoing, hit]);
+      return new Response(detail([startMs], [endMs]));
+    });
+    const probe = new JonkopingEventProbe({
+      fetchImpl: fetchMock as typeof fetch,
+      now: () => new Date('2026-08-15T00:00:00Z'),
+    });
+    const fetched = await probe.fetch(new AbortController().signal);
+    expect(fetched).toMatchObject({ outsideHorizon: 1, detailRequests: 1 });
+    expect(fetched.accepted).toHaveLength(1);
+  });
+
+  it('reports bounded acquisition failures into the ingestion run contract', async () => {
+    const fetchMock = vi.fn(async (input: string | URL | Request) => {
+      if (String(input).includes('sv.target=')) return searchResponse([hit]);
+      return new Response('<p>missing permitted Event metadata</p>');
+    });
+    const adapter = new JonkopingEventAdapter({
+      fetchImpl: fetchMock as typeof fetch,
+      now: () => new Date('2026-08-15T00:00:00Z'),
+    });
+    const fetched = await adapter.fetch({ signal: new AbortController().signal });
+    expect(fetched).toMatchObject({ observations: [], invalidCount: 1, snapshotComplete: null });
+  });
+
+  it('records DELTA_ONLY absence semantics and the enabled production source contract', async () => {
     expect(JONKOPING_EVENT_REFRESH_MODE).toBe('DELTA_ONLY');
     expect(absenceHasMeaning()).toBe(false);
     const policyUrl = new URL('../../reference/sources/jonkoping-event-calendar.v1.json', import.meta.url);
@@ -177,7 +211,7 @@ describe('SRC-03A bounded Jönköping Event source', () => {
       multiOccurrencePolicy: 'UNSUPPORTED_MULTI_OCCURRENCE_IDENTITY',
       cardinalityChangePolicy: 'IDENTITY_BECAME_AMBIGUOUS',
       enabledForSmoke: true,
-      enabledForIngestion: false,
+      enabledForIngestion: true,
     });
   });
 
@@ -198,6 +232,79 @@ describe('SRC-03A bounded Jönköping Event source', () => {
       expect(event.timeZone).toBe('Europe/Stockholm');
     }
     expect(JSON.stringify(fixture)).not.toMatch(/description|image|applicant|organizer|email|phone/i);
+  });
+
+  it('normalizes the captured permitted envelope only after capture', () => {
+    const occurrence = classifyEventDetail(hit, detail([startMs], [endMs])).event!;
+    const adapter = new JonkopingEventAdapter({ now: () => new Date('2026-08-15T00:00:00Z') });
+    const observation = {
+      externalKey: occurrence.externalKey,
+      sourceUrl: occurrence.sourceUrl,
+      fetchedAt: '2026-08-15T00:00:00.000Z',
+      observedAt: '2026-08-15T00:00:00.000Z',
+      envelope: { ...occurrence },
+    };
+    const captured = adapter.captureEnvelope(observation);
+    const normalized = adapter.parse(captured, observation);
+    expect(normalized).toMatchObject({
+      entityType: 'EVENT',
+      externalKey: `event/${eventUuid}`,
+      event: {
+        startsAt: '2026-08-20T16:00:00.000Z',
+        endsAt: '2026-08-20T18:00:00.000Z',
+        timezone: 'Europe/Stockholm',
+        status: 'SCHEDULED',
+        statusSelectionMethod: 'MANUAL',
+        taxonomySlug: 'events',
+      },
+    });
+    expect(normalized.sourceCategories).toContain('source_type=official_event_calendar_occurrence');
+  });
+
+  it('keeps missing end as a point Event and accepts only explicit cancellation truth', () => {
+    const occurrence = classifyEventDetail(
+      { ...hit, structuredEndDate: undefined },
+      detail([startMs]),
+    ).event!;
+    const adapter = new JonkopingEventAdapter({ now: () => new Date('2026-08-15T00:00:00Z') });
+    const observation = {
+      externalKey: occurrence.externalKey,
+      sourceUrl: occurrence.sourceUrl,
+      fetchedAt: '2026-08-15T00:00:00.000Z',
+      observedAt: '2026-08-15T00:00:00.000Z',
+      envelope: { ...occurrence, status: 'CANCELLED' as const },
+    };
+    const normalized = adapter.parse(observation.envelope, observation);
+    expect(normalized.event).toMatchObject({
+      status: 'CANCELLED', statusSelectionMethod: 'SOURCE_PRECEDENCE',
+    });
+    expect(normalized.event.endsAt).toBeUndefined();
+  });
+
+  it('does not manually interpret an explicit cancellation/postponement indication as SCHEDULED', () => {
+    const occurrence = classifyEventDetail(hit, detail([startMs], [endMs])).event!;
+    const adapter = new JonkopingEventAdapter({ now: () => new Date('2026-08-15T00:00:00Z') });
+    const observation = {
+      externalKey: occurrence.externalKey,
+      sourceUrl: occurrence.sourceUrl,
+      fetchedAt: '2026-08-15T00:00:00.000Z',
+      observedAt: '2026-08-15T00:00:00.000Z',
+      envelope: { ...occurrence, title: 'Inställt: Bounded Event' },
+    };
+    expect(() => adapter.parse(observation.envelope, observation)).toThrowError(/blocked by a cancellation/);
+  });
+
+  it('rejects prohibited fields instead of persisting editorial or personal data', () => {
+    const occurrence = classifyEventDetail(hit, detail([startMs], [endMs])).event!;
+    const adapter = new JonkopingEventAdapter({ now: () => new Date('2026-08-15T00:00:00Z') });
+    const observation = {
+      externalKey: occurrence.externalKey,
+      sourceUrl: occurrence.sourceUrl,
+      fetchedAt: '2026-08-15T00:00:00.000Z',
+      observedAt: '2026-08-15T00:00:00.000Z',
+      envelope: { ...occurrence, description: 'prohibited' },
+    };
+    expect(() => adapter.parse(observation.envelope, observation)).toThrowError(/prohibited fields/);
   });
 
   it('contains no ingestion, canonical Event, or publication write path', async () => {

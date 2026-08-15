@@ -225,7 +225,10 @@ export class PostgresIngestionStore implements IngestionStore {
       if (record.canonical_entity_id) {
         return { kind: 'EXISTING', canonicalEntityId: record.canonical_entity_id };
       }
-      return candidate.place.resolution === 'UNRESOLVED' ? { kind: 'UNRESOLVED' } : { kind: 'NEW' };
+      const resolution = candidate.entityType === 'PLACE'
+        ? candidate.place.resolution
+        : candidate.event.resolution;
+      return resolution === 'UNRESOLVED' ? { kind: 'UNRESOLVED' } : { kind: 'NEW' };
     });
   }
 
@@ -250,6 +253,7 @@ export class PostgresIngestionStore implements IngestionStore {
   }): Promise<{
     canonicalEntityId: string;
     canonicalChanged: boolean;
+    published: boolean;
     projection: ProjectionOutcome | null;
   }> {
     return this.#transaction(async (client) => {
@@ -272,6 +276,10 @@ export class PostgresIngestionStore implements IngestionStore {
         where record.id = $1
         for update of record
       `, [input.evidence.sourceRecordId, input.evidence.sourceRecordParseAttemptId]);
+
+      if (input.candidate.entityType === 'EVENT') {
+        return applyEventCanonical(client, input, assignment);
+      }
 
       const covered = await one<{ covered: boolean }>(client, `
         select extensions.st_covers(
@@ -394,7 +402,7 @@ export class PostgresIngestionStore implements IngestionStore {
 
       await client.query('set constraints all immediate');
       const projection = canonicalChanged ? await input.beforeCommit() : null;
-      return { canonicalEntityId, canonicalChanged, projection };
+      return { canonicalEntityId, canonicalChanged, published: false, projection };
     });
   }
 
@@ -500,6 +508,312 @@ export class PostgresIngestionStore implements IngestionStore {
   }
 }
 
+async function applyEventCanonical(
+  client: PoolClient,
+  input: {
+    evidence: SourceEvidenceExecution;
+    candidate: NormalizedSourceRecord;
+    mappingVersion: string;
+    beforeCommit: () => Promise<ProjectionOutcome>;
+  },
+  assignment: { canonical_entity_id: string | null; scope_id: string; boundary_id: string },
+): Promise<{
+  canonicalEntityId: string;
+  canonicalChanged: boolean;
+  published: boolean;
+  projection: ProjectionOutcome | null;
+}> {
+  if (input.candidate.entityType !== 'EVENT') throw new Error('Event canonicalization requires an Event candidate');
+  const event = input.candidate.event;
+  const hasPoint = event.latitude !== undefined && event.longitude !== undefined;
+  if ((event.latitude === undefined) !== (event.longitude === undefined)) {
+    throw new Error('Event coordinates must be supplied as a pair');
+  }
+  if (!event.venuePlaceId && (!hasPoint || !event.venueName?.trim())) {
+    throw new Error('standalone Event requires an explicit venue name and point');
+  }
+
+  if (hasPoint) {
+    const sourcePoint = await one<{ covered: boolean }>(client, `
+      select extensions.st_covers(
+        boundary,
+        extensions.st_setsrid(extensions.st_makepoint($2, $1), 4326)
+      ) as covered
+      from app.geographic_scope_boundaries where id = $3
+    `, [event.latitude, event.longitude, assignment.boundary_id]);
+    if (!sourcePoint.covered) throw new Error('Event source point is outside the configured active boundary');
+  }
+
+  if (event.venuePlaceId) {
+    const venue = await maybeOne<{ scope_id: string; covered: boolean }>(client, `
+      select canonical.scope_id,
+             extensions.st_covers(boundary.boundary, place.location::extensions.geometry) as covered
+      from app.places as place
+      join app.canonical_entities as canonical
+        on canonical.id = place.entity_id and canonical.entity_type = 'PLACE'
+      join app.geographic_scope_boundaries as boundary
+        on boundary.id = $3 and boundary.scope_id = $2 and boundary.is_active
+      where place.entity_id = $1 and place.location is not null
+    `, [event.venuePlaceId, assignment.scope_id, assignment.boundary_id]);
+    if (!venue || venue.scope_id !== assignment.scope_id || !venue.covered) {
+      throw new Error('deterministically linked Event venue must be a covered Place in the same scope');
+    }
+  }
+
+  const normalizedName = normalizeForSearch(event.canonicalName);
+  let canonicalEntityId = assignment.canonical_entity_id;
+  let canonicalChanged: boolean;
+
+  if (canonicalEntityId === null) {
+    canonicalEntityId = (await one<{ id: string }>(client, `
+      insert into app.canonical_entities (
+        entity_type, canonical_name, canonical_name_norm, canonical_name_ascii,
+        scope_id, scope_boundary_id
+      ) values ('EVENT', $1, $2, $3, $4, $5)
+      returning id
+    `, [
+      event.canonicalName,
+      normalizedName.preserving,
+      normalizedName.accentless,
+      assignment.scope_id,
+      assignment.boundary_id,
+    ])).id;
+
+    await client.query(`
+      insert into app.events (
+        entity_id, venue_place_id, standalone_venue_name, location,
+        standalone_street_address, standalone_postal_code, standalone_locality,
+        standalone_country_code, starts_at, ends_at, source_timezone, status,
+        status_observed_at, event_start_source_record_id,
+        event_end_source_record_id, event_status_source_record_id, information_url
+      ) values (
+        $1, $2, $3,
+        case when $4::double precision is null then null else
+          extensions.st_setsrid(extensions.st_makepoint($5, $4), 4326)::extensions.geography end,
+        $6, $7, $8, $9, $10, $11, $12, $13, $14, $15,
+        case when $11::timestamptz is null then null else $15::uuid end,
+        $15, $16
+      )
+    `, [
+      canonicalEntityId,
+      event.venuePlaceId ?? null,
+      event.venuePlaceId ? null : event.venueName ?? null,
+      event.latitude ?? null,
+      event.longitude ?? null,
+      event.streetAddress ?? null,
+      event.postalCode ?? null,
+      event.locality ?? null,
+      event.countryCode ?? null,
+      event.startsAt,
+      event.endsAt ?? null,
+      event.timezone,
+      event.status,
+      input.candidate.observedAt,
+      input.evidence.sourceRecordId,
+      event.informationUrl ?? null,
+    ]);
+    await client.query(`
+      update app.source_records
+      set canonical_entity_id = $2, resolution_method = 'NEW_CANONICAL'
+      where id = $1
+    `, [input.evidence.sourceRecordId, canonicalEntityId]);
+    canonicalChanged = true;
+  } else {
+    const entity = await one<{ entity_type: string }>(client, `
+      select entity_type::text from app.canonical_entities where id = $1 for update
+    `, [canonicalEntityId]);
+    if (entity.entity_type !== 'EVENT') throw new Error('Event source identity resolved to a non-Event canonical entity');
+
+    const canonicalUpdate = await client.query(`
+      update app.canonical_entities
+      set canonical_name = $2, canonical_name_norm = $3, canonical_name_ascii = $4,
+          scope_id = $5, scope_boundary_id = $6
+      where id = $1
+        and (canonical_name, canonical_name_norm, canonical_name_ascii, scope_id, scope_boundary_id)
+          is distinct from ($2, $3, $4, $5::uuid, $6::uuid)
+    `, [
+      canonicalEntityId,
+      event.canonicalName,
+      normalizedName.preserving,
+      normalizedName.accentless,
+      assignment.scope_id,
+      assignment.boundary_id,
+    ]);
+    const eventUpdate = await client.query(`
+      update app.events
+      set venue_place_id = $2, standalone_venue_name = $3,
+          location = case when $4::double precision is null then null else
+            extensions.st_setsrid(extensions.st_makepoint($5, $4), 4326)::extensions.geography end,
+          standalone_street_address = $6, standalone_postal_code = $7,
+          standalone_locality = $8, standalone_country_code = $9,
+          starts_at = $10, ends_at = $11, source_timezone = $12, status = $13,
+          status_observed_at = $14, event_start_source_record_id = $15,
+          event_end_source_record_id = case when $11::timestamptz is null then null else $15 end,
+          event_status_source_record_id = $15, information_url = $16
+      where entity_id = $1
+        and (
+          venue_place_id, standalone_venue_name, location,
+          standalone_street_address, standalone_postal_code, standalone_locality,
+          standalone_country_code, starts_at, ends_at, source_timezone, status,
+          event_start_source_record_id, event_end_source_record_id,
+          event_status_source_record_id, information_url
+        ) is distinct from (
+          $2::uuid, $3,
+          case when $4::double precision is null then null else
+            extensions.st_setsrid(extensions.st_makepoint($5, $4), 4326)::extensions.geography end,
+          $6, $7, $8, $9, $10::timestamptz, $11::timestamptz, $12, $13::app.event_status,
+          $15::uuid, case when $11::timestamptz is null then null else $15::uuid end,
+          $15::uuid, $16
+        )
+    `, [
+      canonicalEntityId,
+      event.venuePlaceId ?? null,
+      event.venuePlaceId ? null : event.venueName ?? null,
+      event.latitude ?? null,
+      event.longitude ?? null,
+      event.streetAddress ?? null,
+      event.postalCode ?? null,
+      event.locality ?? null,
+      event.countryCode ?? null,
+      event.startsAt,
+      event.endsAt ?? null,
+      event.timezone,
+      event.status,
+      input.candidate.observedAt,
+      input.evidence.sourceRecordId,
+      event.informationUrl ?? null,
+    ]);
+    if (eventUpdate.rowCount !== 1 && !(await maybeOne(client, 'select entity_id from app.events where entity_id = $1', [canonicalEntityId]))) {
+      throw new Error('resolved Event canonical entity lacks its Event subtype row');
+    }
+    canonicalChanged = canonicalUpdate.rowCount === 1 || eventUpdate.rowCount === 1;
+  }
+
+  const requiredFacts: Array<{
+    key: 'canonical_name' | 'location' | 'address' | 'event_start' | 'event_end' | 'event_status';
+    value: unknown;
+    method: 'SOURCE_PRECEDENCE' | 'MANUAL';
+    note: string;
+  }> = [
+    { key: 'canonical_name', value: event.canonicalName, method: 'SOURCE_PRECEDENCE', note: 'Official municipal Event title.' },
+    { key: 'event_start', value: event.startsAt, method: 'SOURCE_PRECEDENCE', note: 'Explicit municipal Event start.' },
+    {
+      key: 'event_status',
+      value: event.status,
+      method: event.statusSelectionMethod,
+      note: event.statusSelectionMethod === 'MANUAL'
+        ? 'Engineer-approved bounded trial interpretation of an official current future occurrence.'
+        : 'Explicit municipal Event status evidence.',
+    },
+  ];
+  if (hasPoint) {
+    requiredFacts.push({
+      key: 'location',
+      value: { latitude: event.latitude, longitude: event.longitude },
+      method: 'SOURCE_PRECEDENCE',
+      note: 'Explicit municipal Event coordinates.',
+    });
+  } else {
+    canonicalChanged = await supersedeCurrentFact(client, canonicalEntityId, 'location') || canonicalChanged;
+  }
+  const address = Object.fromEntries(Object.entries({
+    streetAddress: event.streetAddress,
+    postalCode: event.postalCode,
+    locality: event.locality,
+    countryCode: event.countryCode,
+  }).filter(([, value]) => value !== undefined));
+  if (Object.keys(address).length > 0) {
+    requiredFacts.push({
+      key: 'address', value: address, method: 'SOURCE_PRECEDENCE', note: 'Explicit municipal Event address.',
+    });
+  } else {
+    canonicalChanged = await supersedeCurrentFact(client, canonicalEntityId, 'address') || canonicalChanged;
+  }
+  if (event.endsAt) {
+    requiredFacts.push({
+      key: 'event_end', value: event.endsAt, method: 'SOURCE_PRECEDENCE', note: 'Explicit municipal Event end.',
+    });
+  } else {
+    canonicalChanged = await supersedeCurrentFact(client, canonicalEntityId, 'event_end') || canonicalChanged;
+  }
+
+  for (const fact of requiredFacts) {
+    const current = await maybeOne<{ id: string }>(client, `
+      select id from app.canonical_fact_provenance
+      where entity_id = $1 and fact_key = $2::app.fact_key and is_current
+      for update
+    `, [canonicalEntityId, fact.key]);
+    const selected = await one<{ id: string }>(client, `
+      select app.replace_targeted_canonical_fact(
+        $1, $2::app.fact_key, $3::jsonb, $4, $5, $6, $7
+      ) as id
+    `, [
+      canonicalEntityId,
+      fact.key,
+      JSON.stringify(fact.value),
+      input.evidence.sourceRecordVersionId,
+      fact.method,
+      fact.method === 'MANUAL' ? 'SRC-03B-HUMAN-EVENT-FACT-REVIEW' : 'SRC-03B',
+      fact.note,
+    ]);
+    if (selected.id !== current?.id) canonicalChanged = true;
+  }
+
+  if (event.taxonomySlug) {
+    if (!event.taxonomyMappingRef) throw new Error('Event taxonomy mapping requires an exact mapping reference');
+    const node = await one<{ id: string }>(client, `
+      select id from app.taxonomy_nodes
+      where taxonomy_version = 'active-going-out.v1' and slug = $1 and active
+    `, [event.taxonomySlug]);
+    const currentMembership = await maybeOne<{ id: string; source_record_version_id: string | null; mapping_ref: string | null }>(client, `
+      select id, source_record_version_id, mapping_ref
+      from app.entity_taxonomy_memberships
+      where entity_id = $1 and taxonomy_node_id = $2 and active
+      for update
+    `, [canonicalEntityId, node.id]);
+    if (currentMembership?.source_record_version_id !== input.evidence.sourceRecordVersionId
+      || currentMembership.mapping_ref !== event.taxonomyMappingRef) {
+      if (currentMembership) {
+        await client.query('update app.entity_taxonomy_memberships set active = false where id = $1', [currentMembership.id]);
+      }
+      await client.query(`
+        insert into app.entity_taxonomy_memberships (
+          entity_id, taxonomy_node_id, method, source_record_version_id, mapping_ref
+        ) values ($1, $2, 'DETERMINISTIC_MAP', $3, $4)
+      `, [canonicalEntityId, node.id, input.evidence.sourceRecordVersionId, event.taxonomyMappingRef]);
+      canonicalChanged = true;
+    }
+  }
+
+  const publication = await client.query(`
+    update app.canonical_entities
+    set publication_status = $2::app.publication_status,
+        published_at = case when $2 = 'PUBLISHED' then coalesce(published_at, statement_timestamp()) else null end
+    where id = $1
+      and (publication_status, published_at is not null)
+        is distinct from ($2::app.publication_status, $2 = 'PUBLISHED')
+  `, [canonicalEntityId, event.status === 'SCHEDULED' ? 'PUBLISHED' : 'WITHHELD']);
+  const published = publication.rowCount === 1 && event.status === 'SCHEDULED';
+  canonicalChanged = publication.rowCount === 1 || canonicalChanged;
+
+  await client.query('set constraints all immediate');
+  const projection = canonicalChanged ? await input.beforeCommit() : null;
+  return { canonicalEntityId, canonicalChanged, published, projection };
+}
+
+async function supersedeCurrentFact(
+  client: PoolClient,
+  entityId: string,
+  factKey: 'location' | 'address' | 'event_end',
+): Promise<boolean> {
+  const result = await client.query(`
+    update app.canonical_fact_provenance
+    set is_current = false, superseded_at = statement_timestamp()
+    where entity_id = $1 and fact_key = $2::app.fact_key and is_current
+  `, [entityId, factKey]);
+  return result.rowCount === 1;
+}
+
 export async function ensureFixtureSource(
   connectionString: string,
   config: AdapterConfig,
@@ -578,10 +892,14 @@ function payloadStorageMode(permission: string): string {
 function isNormalizedSourceRecord(value: unknown): value is NormalizedSourceRecord {
   if (value === null || typeof value !== 'object') return false;
   const candidate = value as Partial<NormalizedSourceRecord>;
-  return candidate.entityType === 'PLACE'
-    && typeof candidate.externalKey === 'string'
-    && candidate.place?.entityType === 'PLACE'
-    && typeof candidate.place.canonicalName === 'string';
+  if (typeof candidate.externalKey !== 'string') return false;
+  if (candidate.entityType === 'PLACE') {
+    return candidate.place?.entityType === 'PLACE'
+      && typeof candidate.place.canonicalName === 'string';
+  }
+  return candidate.entityType === 'EVENT'
+    && candidate.event?.entityType === 'EVENT'
+    && typeof candidate.event.canonicalName === 'string';
 }
 
 async function assertCurrentEvidence(client: PoolClient, evidence: SourceEvidenceExecution): Promise<void> {

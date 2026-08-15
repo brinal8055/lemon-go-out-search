@@ -37,11 +37,15 @@
   "refreshMode": "DELTA_ONLY",
   "absenceSemantics": "Absence does not imply cancellation, deletion, expiry, or disappearance.",
   "targetRefresh": "DAILY",
+  "adapterVersion": "jonkoping-event-v1",
+  "parserVersion": "jonkoping-event-parser-v1",
   "upcomingHorizonDays": 30,
   "externalKey": "event/<lowercase source Event UUID>, only when occurrence_count == 1",
   "multiOccurrencePolicy": "UNSUPPORTED_MULTI_OCCURRENCE_IDENTITY",
   "cardinalityChangePolicy": "IDENTITY_BECAME_AMBIGUOUS",
+  "scheduledInterpretation": "Official current single occurrence with explicit future start, sufficient location, and no explicit cancellation/postponement indication",
+  "scheduledSelectionMethod": "MANUAL",
   "enabledForSmoke": true,
-  "enabledForIngestion": false,
+  "enabledForIngestion": true,
   "reviewedAt": "2026-08-15"
 }

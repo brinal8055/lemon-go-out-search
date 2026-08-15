@@ -152,6 +152,16 @@
       "target_slug": "sports",
       "method": "DETERMINISTIC_MAP",
       "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "jonkoping-event-calendar-occurrence-events",
+      "source_key": "JONKOPING_EVENT_CALENDAR",
+      "source_field": "sourceCategories",
+      "source_tag": "source_type",
+      "source_value": "official_event_calendar_occurrence",
+      "target_slug": "events",
+      "method": "DETERMINISTIC_MAP",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
     }
   ]
 }

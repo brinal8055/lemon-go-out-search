@@ -28,13 +28,15 @@ snapshot contract.
 pnpm ingest:municipal --layer utegym --scope a4b19b09-b272-5748-80ef-2c91d9d33ca6 --bounded
 ```
 
-`jonkoping-events.ts` is the SRC-03A viability probe only. It reads the bounded
+`jonkoping-events.ts` is the promoted SRC-03B bounded adapter. It reads the bounded
 public municipality calendar route and official Event pages, retains factual
 extracted fields, and accepts `event/<source-event-uuid>` only when exactly one
 source schedule exists. Multi-occurrence records are skipped because the source
-does not expose durable occurrence IDs. It performs no Event ingestion or DB
-writes.
+does not expose durable occurrence IDs. Accepted future occurrences flow through
+the shared immutable evidence pipeline and the approved manual SCHEDULED
+interpretation; absence remains meaningless under `DELTA_ONLY`.
 
 ```sh
 pnpm source:smoke:event
+pnpm ingest:event
 ```

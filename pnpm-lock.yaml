@@ -116,6 +116,16 @@ importers:
       '@lemon/ingestion-domain':
         specifier: workspace:*
         version: link:../ingestion-domain
+      '@lemon/search-documents':
+        specifier: workspace:*
+        version: link:../search-documents
+      pg:
+        specifier: ^8.23.0
+        version: 8.23.0
+    devDependencies:
+      '@types/pg':
+        specifier: ^8.21.0
+        version: 8.21.0
 
   packages/time-parser: {}
 

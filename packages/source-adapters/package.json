@@ -10,6 +10,11 @@
   },
   "types": "./src/osm.ts",
   "dependencies": {
-    "@lemon/ingestion-domain": "workspace:*"
+    "@lemon/ingestion-domain": "workspace:*",
+    "@lemon/search-documents": "workspace:*",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.21.0"
   }
 }

@@ -653,7 +653,7 @@ select throws_ok(
     where id = '10000000-0000-0000-0000-000000000801'
   $$,
   '23514',
-  'canonical fact provenance history must retain exactly one current selection',
+  'visible targeted fact must retain exactly one current provenance selection',
   'provenance history cannot commit without a current selection'
 );
 

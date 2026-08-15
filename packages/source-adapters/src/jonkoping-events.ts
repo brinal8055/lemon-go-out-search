@@ -1,9 +1,21 @@
+import type {
+  FetchResult,
+  NormalizedSourceRecord,
+  SourceAdapter,
+  SourceObservation,
+} from '@lemon/ingestion-domain';
+import { FixtureParseError } from '@lemon/ingestion-domain';
+
 export const JONKOPING_EVENT_SOURCE_KEY = 'JONKOPING_EVENT_CALENDAR';
 export const JONKOPING_EVENT_SOURCE_URL = 'https://www.jonkoping.se/evenemangskalender';
 export const JONKOPING_EVENT_POLICY = 'EXTRACTED_FIELDS_ONLY';
 export const JONKOPING_EVENT_REFRESH_MODE = 'DELTA_ONLY';
 export const JONKOPING_EVENT_TIME_ZONE = 'Europe/Stockholm';
-export const JONKOPING_EVENT_ADAPTER_VERSION = 'jonkoping-event-smoke-v1';
+export const JONKOPING_EVENT_ADAPTER_VERSION = 'jonkoping-event-v1';
+export const JONKOPING_EVENT_PARSER_VERSION = 'jonkoping-event-parser-v1';
+export const JONKOPING_EVENT_MAPPING_VERSION = 'source-taxonomy.v1';
+export const JONKOPING_EVENT_MAPPING_REF =
+  'source-taxonomy.v1:jonkoping-event-calendar-occurrence-events:events';
 
 const SEARCH_TARGET = '12.76dae31e19adea1251f4cb88';
 const SEARCH_PAGE_SIZE = 9;
@@ -35,7 +47,7 @@ export type PermittedEventOccurrence = {
   longitude: number | null;
   categories: string[];
   sourceUrl: string;
-  status: null;
+  status: 'CANCELLED' | 'POSTPONED' | null;
 };
 
 export type EventDetailClassification = {
@@ -54,6 +66,7 @@ export type EventProbeResult = {
   outsideHorizon: number;
   invalid: number;
   multiOccurrenceSkipped: number;
+  identityAmbiguous: number;
   accepted: PermittedEventOccurrence[];
 };
 
@@ -88,15 +101,18 @@ export class EventSourceProbeError extends Error {
 export type JonkopingEventProbeOptions = {
   fetchImpl?: typeof fetch;
   now?: () => Date;
+  previouslyAcceptedExternalKeys?: ReadonlySet<string>;
 };
 
 export class JonkopingEventProbe {
   readonly #fetch: typeof fetch;
   readonly #now: () => Date;
+  readonly #previouslyAcceptedExternalKeys: ReadonlySet<string>;
 
   constructor(options: JonkopingEventProbeOptions = {}) {
     this.#fetch = options.fetchImpl ?? fetch;
     this.#now = options.now ?? (() => new Date());
+    this.#previouslyAcceptedExternalKeys = options.previouslyAcceptedExternalKeys ?? new Set();
   }
 
   async fetch(signal: AbortSignal): Promise<EventProbeResult> {
@@ -110,6 +126,7 @@ export class JonkopingEventProbe {
     let outsideHorizon = 0;
     let invalid = 0;
     let multiOccurrenceSkipped = 0;
+    let identityAmbiguous = 0;
 
     for (let page = 1; page <= MAX_SEARCH_PAGES && accepted.length < MAX_ACCEPTED; page += 1) {
       const payload = parseSearchPage(await this.#request(buildSearchUrl(page, now), signal));
@@ -125,8 +142,15 @@ export class JonkopingEventProbe {
         seenUrls.add(hit.url);
         detailRequests += 1;
         try {
-          const classification = classifyEventDetail(hit, await this.#request(hit.url, signal));
+          const detailHtml = await this.#request(hit.url, signal);
+          const sourceUuid = sourceEventUuidFromDetail(detailHtml);
+          const classification = classifyEventDetail(
+            hit,
+            detailHtml,
+            this.#previouslyAcceptedExternalKeys.has(`event/${sourceUuid}`),
+          );
           if (classification.event) accepted.push(classification.event);
+          else if (classification.classification === 'IDENTITY_BECAME_AMBIGUOUS') identityAmbiguous += 1;
           else multiOccurrenceSkipped += 1;
         } catch (error) {
           if (error instanceof EventSourceProbeError && error.code === 'INVALID_EVENT_RECORD') invalid += 1;
@@ -146,6 +170,7 @@ export class JonkopingEventProbe {
       outsideHorizon,
       invalid,
       multiOccurrenceSkipped,
+      identityAmbiguous,
       accepted,
     };
   }
@@ -157,7 +182,7 @@ export class JonkopingEventProbe {
       response = await this.#fetch(url, {
         headers: {
           accept: url.includes('sv.target=') ? 'application/json' : 'text/html',
-          'user-agent': 'Lemon-Going-Out-Search/0.1 (bounded SRC-03A trial)',
+          'user-agent': 'Lemon-Going-Out-Search/0.1 (bounded SRC-03B trial)',
           'x-requested-with': 'XMLHttpRequest',
         },
         signal: AbortSignal.any([signal, timeout]),
@@ -184,6 +209,142 @@ export class JonkopingEventProbe {
       throw new EventSourceProbeError('RESPONSE_TOO_LARGE', 'municipal Event response exceeds the size limit');
     }
     return text;
+  }
+}
+
+export type JonkopingEventAdapterOptions = JonkopingEventProbeOptions & {
+  deterministicVenueLinks?: ReadonlyMap<string, string>;
+};
+
+export class JonkopingEventAdapter implements SourceAdapter {
+  readonly config = {
+    sourceKey: JONKOPING_EVENT_SOURCE_KEY,
+    sourceName: 'Jönköping municipality Event Calendar',
+    scopeSlug: 'jonkoping-municipality',
+    adapterVersion: JONKOPING_EVENT_ADAPTER_VERSION,
+    parserVersion: JONKOPING_EVENT_PARSER_VERSION,
+    mappingVersion: JONKOPING_EVENT_MAPPING_VERSION,
+    refreshMode: JONKOPING_EVENT_REFRESH_MODE as typeof JONKOPING_EVENT_REFRESH_MODE,
+  };
+
+  readonly #probe: JonkopingEventProbe;
+  readonly #now: () => Date;
+  readonly #deterministicVenueLinks: ReadonlyMap<string, string>;
+  lastFetchReport: EventProbeResult | null = null;
+
+  constructor(options: JonkopingEventAdapterOptions = {}) {
+    this.#probe = new JonkopingEventProbe(options);
+    this.#now = options.now ?? (() => new Date());
+    this.#deterministicVenueLinks = options.deterministicVenueLinks ?? new Map();
+  }
+
+  async fetch({ signal }: { signal: AbortSignal }): Promise<FetchResult> {
+    const fetchedAt = this.#now().toISOString();
+    const report = await this.#probe.fetch(signal);
+    this.lastFetchReport = report;
+    return {
+      observations: report.accepted.map((event): SourceObservation => ({
+        externalKey: event.externalKey,
+        sourceUrl: event.sourceUrl,
+        fetchedAt,
+        observedAt: fetchedAt,
+        envelope: { ...event },
+      })),
+      invalidCount: report.invalid,
+      refreshUnitComplete: true,
+      snapshotComplete: null,
+      fetchMeta: {
+        searchRequests: report.searchRequests,
+        detailRequests: report.detailRequests,
+        fetchedHits: report.fetchedHits,
+        accepted: report.accepted.length,
+        multiOccurrenceSkipped: report.multiOccurrenceSkipped,
+        identityAmbiguous: report.identityAmbiguous,
+      },
+    };
+  }
+
+  externalStableId(raw: SourceObservation): string {
+    if (!/^event\/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(raw.externalKey)) {
+      throw new FixtureParseError('EVENT_IDENTITY_INVALID', 'Event external key must be event/<source Event UUID>');
+    }
+    return raw.externalKey;
+  }
+
+  captureEnvelope(raw: SourceObservation): Record<string, unknown> {
+    return raw.envelope;
+  }
+
+  parse(captured: Record<string, unknown>, observation: SourceObservation): NormalizedSourceRecord {
+    const occurrence = readPermittedOccurrence(captured);
+    if (occurrence.externalKey !== observation.externalKey
+      || occurrence.externalKey !== `event/${occurrence.sourceEventUuid}`) {
+      throw new FixtureParseError('EVENT_IDENTITY_CONFLICT', 'captured Event UUID and external key disagree');
+    }
+    const startsAt = new Date(occurrence.start);
+    const endsAt = occurrence.end ? new Date(occurrence.end) : null;
+    if (!Number.isFinite(startsAt.getTime())
+      || (endsAt && (!Number.isFinite(endsAt.getTime()) || endsAt <= startsAt))) {
+      throw new FixtureParseError('EVENT_SCHEDULE_INVALID', 'Event requires a valid explicit start and optional later end');
+    }
+    if (occurrence.status === null && startsAt <= this.#now()) {
+      throw new FixtureParseError('EVENT_NOT_FUTURE', 'manual SCHEDULED interpretation requires an explicit future start');
+    }
+    if (occurrence.status === null
+      && /\b(inställd|inställt|framflyttad|framflyttat|cancelled|canceled|postponed)\b/iu.test(occurrence.title)) {
+      throw new FixtureParseError(
+        'EVENT_STATUS_INDICATION_REQUIRES_REVIEW',
+        'manual SCHEDULED interpretation is blocked by a cancellation/postponement indication',
+      );
+    }
+    const hasPoint = occurrence.latitude !== null && occurrence.longitude !== null;
+    if ((occurrence.latitude === null) !== (occurrence.longitude === null)
+      || (hasPoint && (Math.abs(occurrence.latitude!) > 90 || Math.abs(occurrence.longitude!) > 180))) {
+      throw new FixtureParseError('EVENT_LOCATION_INVALID', 'Event coordinates must be a valid complete pair');
+    }
+    const venuePlaceId = this.#deterministicVenueLinks.get(occurrence.externalKey);
+    if (!venuePlaceId && (!hasPoint || !occurrence.venueName?.trim())) {
+      throw new FixtureParseError('EVENT_LOCATION_MISSING', 'standalone Event requires an explicit venue name and point');
+    }
+    const status = occurrence.status ?? 'SCHEDULED';
+    const sourceCategories = [
+      'source_type=official_event_calendar_occurrence',
+      ...occurrence.categories.map((category) => `source_category=${category}`),
+    ].sort();
+
+    return {
+      sourceKey: JONKOPING_EVENT_SOURCE_KEY,
+      externalKey: occurrence.externalKey,
+      entityType: 'EVENT',
+      observedAt: observation.observedAt,
+      names: [{ value: occurrence.title, language: 'sv', kind: 'OFFICIAL' }],
+      event: {
+        entityType: 'EVENT',
+        canonicalName: occurrence.title,
+        startsAt: startsAt.toISOString(),
+        ...(endsAt ? { endsAt: endsAt.toISOString() } : {}),
+        timezone: JONKOPING_EVENT_TIME_ZONE,
+        status,
+        statusSelectionMethod: occurrence.status === null ? 'MANUAL' : 'SOURCE_PRECEDENCE',
+        ...(venuePlaceId ? { venuePlaceId } : {}),
+        ...(occurrence.venueName ? { venueName: occurrence.venueName } : {}),
+        ...(hasPoint ? { latitude: occurrence.latitude!, longitude: occurrence.longitude! } : {}),
+        ...(occurrence.address ? { streetAddress: occurrence.address } : {}),
+        ...(occurrence.city ? { locality: occurrence.city } : {}),
+        countryCode: 'SE',
+        informationUrl: occurrence.sourceUrl,
+        taxonomySlug: 'events',
+        taxonomyMappingRef: JONKOPING_EVENT_MAPPING_REF,
+        resolution: 'NEW',
+      },
+      sourceCategories,
+      explicitFacts: {
+        sourceEventUuid: occurrence.sourceEventUuid,
+        sourceStatus: occurrence.status,
+        sourceCategories: occurrence.categories,
+      },
+      permittedEvidenceRefs: [occurrence.sourceUrl],
+    };
   }
 }
 
@@ -322,6 +483,10 @@ function permittedMetadataUrl(html: string): URL {
   return url;
 }
 
+function sourceEventUuidFromDetail(html: string): string {
+  return requiredUuid(permittedMetadataUrl(html).searchParams.get('event.id'));
+}
+
 function epochList(value: string | null, required: boolean): number[] {
   if (!value?.trim()) {
     if (required) throw new EventSourceProbeError('INVALID_EVENT_RECORD', 'event lacks a source start schedule');
@@ -344,8 +509,7 @@ function requiredUuid(value: string | null): string {
 
 function insideUpcomingHorizon(hit: SearchHit, now: Date, horizonEnd: Date): boolean {
   const start = Date.parse(hit.structuredStartDate);
-  const end = hit.structuredEndDate ? Date.parse(hit.structuredEndDate) : start;
-  return Number.isFinite(start) && Number.isFinite(end) && end >= now.getTime() && start < horizonEnd.getTime();
+  return Number.isFinite(start) && start > now.getTime() && start < horizonEnd.getTime();
 }
 
 function coordinatesFromHit(value: string | undefined): { latitude: number; longitude: number } | null {
@@ -390,4 +554,30 @@ function nonEmpty(value: string | null): string | null {
 
 function isObject(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function readPermittedOccurrence(value: Record<string, unknown>): PermittedEventOccurrence {
+  const allowed = new Set([
+    'sourceEventUuid', 'externalKey', 'title', 'start', 'end', 'timeZone', 'venueName', 'city',
+    'address', 'latitude', 'longitude', 'categories', 'sourceUrl', 'status',
+  ]);
+  if (Object.keys(value).some((key) => !allowed.has(key))
+    || typeof value.sourceEventUuid !== 'string'
+    || typeof value.externalKey !== 'string'
+    || typeof value.title !== 'string' || value.title.trim() === ''
+    || typeof value.start !== 'string'
+    || (value.end !== null && typeof value.end !== 'string')
+    || value.timeZone !== JONKOPING_EVENT_TIME_ZONE
+    || (value.venueName !== null && typeof value.venueName !== 'string')
+    || (value.city !== null && typeof value.city !== 'string')
+    || (value.address !== null && typeof value.address !== 'string')
+    || (value.latitude !== null && typeof value.latitude !== 'number')
+    || (value.longitude !== null && typeof value.longitude !== 'number')
+    || !Array.isArray(value.categories) || value.categories.some((category) => typeof category !== 'string')
+    || typeof value.sourceUrl !== 'string'
+    || ![null, 'CANCELLED', 'POSTPONED'].includes(value.status as string | null)
+  ) {
+    throw new FixtureParseError('EVENT_ENVELOPE_INVALID', 'captured Event contains invalid or prohibited fields');
+  }
+  return value as PermittedEventOccurrence;
 }

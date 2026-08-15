@@ -52,6 +52,7 @@ export async function runIngestion(
     fetchResult = await adapter.fetch({ signal });
     validateFetchResult(adapter, fetchResult);
     counters.fetched = fetchResult.observations.length;
+    counters.invalid = fetchResult.invalidCount ?? 0;
     stageTrace.push({ stage: 'fetch', externalKey: null, outcome: fetchResult.refreshUnitComplete ? 'COMPLETE' : 'PARTIAL' });
 
     for (const rawObservation of fetchResult.observations) {
@@ -119,6 +120,7 @@ export async function runIngestion(
         beforeCommit: options.projectionOrchestrator ?? (async () => PENDING_PROJECTION),
       });
       if (applied.canonicalChanged) counters.canonicalApplied += 1;
+      if (applied.published) counters.published += 1;
       if (applied.projection) projectionOutcomes.push(applied.projection);
       stageTrace.push({
         stage: 'canonical/taxonomy',
@@ -179,6 +181,10 @@ function validateFetchResult(
     throw new Error('snapshot adapter must declare snapshot completeness');
   }
   const keys = result.observations.map((observation) => adapter.externalStableId(observation));
+  if (result.invalidCount !== undefined
+    && (!Number.isInteger(result.invalidCount) || result.invalidCount < 0)) {
+    throw new Error('fetch invalidCount must be a non-negative integer');
+  }
   if (new Set(keys).size !== keys.length || keys.some((key) => key.trim() === '')) {
     throw new Error('fetch result must contain unique non-empty external stable keys');
   }

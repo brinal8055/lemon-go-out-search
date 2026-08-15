@@ -275,7 +275,14 @@ async function loadEntity(client: pg.Client, entityId: string): Promise<EntityRo
                  boundary.boundary, coalesce(venue.location, event.location)::extensions.geometry
                )
            end as subtype_eligible,
-           place.street_address, place.postal_code, place.locality, place.country_code,
+           case when entity.entity_type = 'EVENT' then event.standalone_street_address else place.street_address end
+             as street_address,
+           case when entity.entity_type = 'EVENT' then event.standalone_postal_code else place.postal_code end
+             as postal_code,
+           case when entity.entity_type = 'EVENT' then event.standalone_locality else place.locality end
+             as locality,
+           case when entity.entity_type = 'EVENT' then event.standalone_country_code else place.country_code end
+             as country_code,
            place.opening_hours,
            event.starts_at, event.ends_at, event.status::text as event_status,
            event.venue_place_id, event.standalone_venue_name
@@ -310,7 +317,12 @@ async function loadTruth(client: pg.Client, entity: EntityRow): Promise<SearchDo
     for share of provenance
   `, [entity.id])).rows.map(({ fact_key }) => fact_key));
   const requiredFacts = entity.entity_type === 'EVENT'
-    ? ['canonical_name', 'location', 'event_start', 'event_status']
+    ? [
+      'canonical_name',
+      ...(entity.venue_place_id ? [] : ['location']),
+      'event_start',
+      'event_status',
+    ]
     : ['canonical_name', 'location'];
   if (requiredFacts.some((fact) => !permittedFacts.has(fact))) {
     throw new Error(`published entity ${entity.id} lacks permitted required provenance`);
