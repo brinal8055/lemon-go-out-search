@@ -114,8 +114,10 @@ describe('TAX-01 source mapping catalogue', () => {
 
   it('maps exact OSM facts and supports legitimate multi-label evidence', async () => {
     const catalog = await loadSourceMappingCatalog();
-    const matches = matchTaxonomyRules(catalog, 'OSM_OVERPASS', ['amenity=restaurant', 'cuisine=indian']);
-    expect(matches.map(({ target_slug }) => target_slug).sort()).toEqual(['dining', 'indian']);
+    const matches = matchTaxonomyRules(catalog, 'OSM_OVERPASS', [
+      'amenity=restaurant', 'cuisine=indian', 'cuisine=italian', 'cuisine=pizza',
+    ]);
+    expect(matches.map(({ target_slug }) => target_slug).sort()).toEqual(['dining', 'indian', 'italian', 'pizza']);
   });
 
   it('does not invent a mapping for unknown source values', async () => {
@@ -273,8 +275,9 @@ describe('TAX-01 truthful coverage', () => {
     ingestion_run_ids: [successfulRun.id],
   });
 
-  it('marks COMPLETE only for reviewed target-range inventory', () => {
+  it('marks COMPLETE for reviewed inventory meeting the minimum without hiding legitimate excess supply', () => {
     expect(classifyCoverageStatus(5, reviewed('COMPLETE'), [successfulRun])).toBe('COMPLETE');
+    expect(classifyCoverageStatus(11, reviewed('COMPLETE'), [successfulRun])).toBe('COMPLETE');
     expect(classifyCoverageStatus(4, reviewed('COMPLETE'), [successfulRun])).toBe('NEEDS_VALIDATION');
   });
 

@@ -1,0 +1,1742 @@
+{
+  "reportVersion": "coverage-01-audit.v1",
+  "label": "post-coverage.v1",
+  "generatedAt": "2026-08-15T14:09:24.528Z",
+  "frozenClockUtc": "2026-10-15T12:00:00Z",
+  "coverageIdentity": {
+    "version": "taxonomy-coverage.v1",
+    "taxonomyVersion": "active-going-out.v1",
+    "taxonomyChecksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+    "boundaryVersion": "lm-current-2026-08-14",
+    "contentChecksum": "b75632fba61dc6221cd6e60dcd81229fd03fd66ea23aec8f64cf41f628cefa13"
+  },
+  "overall": {
+    "sourceRecords": 411,
+    "currentSuccessfulEvidencePairs": 411,
+    "canonicalPlaces": 407,
+    "canonicalEvents": 3,
+    "publishedPlaces": 392,
+    "publishedEvents": 3,
+    "searchablePlaces": 392,
+    "searchableEvents": 3,
+    "activeSearchDocuments": 395,
+    "compatibleReadyEmbeddings": 0
+  },
+  "stageFunnel": [
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "discovered": 3,
+      "parsed": 3,
+      "canonicalized": 3,
+      "published": 3,
+      "searchable": 3
+    },
+    {
+      "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+      "discovered": 28,
+      "parsed": 28,
+      "canonicalized": 28,
+      "published": 26,
+      "searchable": 26
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "discovered": 380,
+      "parsed": 380,
+      "canonicalized": 379,
+      "published": 366,
+      "searchable": 366
+    }
+  ],
+  "taxonomyNodes": [
+    {
+      "id": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "slug": "food-and-dining",
+      "parentId": null,
+      "parentSlug": null,
+      "isLeaf": false,
+      "discoveredPlaceCount": 185,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 185,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 185,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 185
+      },
+      "supplyStatus": null,
+      "supplyStopReason": null,
+      "supplyNotes": null
+    },
+    {
+      "id": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "slug": "casual",
+      "parentId": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "parentSlug": "food-and-dining",
+      "isLeaf": false,
+      "discoveredPlaceCount": 54,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 54,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 54,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 54
+      },
+      "supplyStatus": null,
+      "supplyStopReason": null,
+      "supplyNotes": null
+    },
+    {
+      "id": "4516fcf5-4c53-5f7e-8d47-bbd7a93542bf",
+      "slug": "chicken",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 2,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 2,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 2,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "5a61890b-e633-5ea0-93eb-f1a18863f0cd",
+      "slug": "poke",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "63d2b4df-0fd9-5296-bab2-1cf5fd457cbc",
+      "slug": "pizza",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 29,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 29,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 29,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 29
+      },
+      "supplyStatus": "COMPLETE",
+      "supplyStopReason": null,
+      "supplyNotes": "29 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "6ab10ddc-f9ef-5743-b44f-433d2d4884bf",
+      "slug": "food-truck",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "6aea79ed-2599-5748-b2fe-a78e1aaeb78d",
+      "slug": "sushi",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 2,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 2,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 2,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "acda530f-d654-5027-97b8-a5a912e4b752",
+      "slug": "burgers",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 23,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 23,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 23,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 23
+      },
+      "supplyStatus": "COMPLETE",
+      "supplyStopReason": null,
+      "supplyNotes": "23 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "b48854d0-1ed6-5e1b-a101-83f74ad048c1",
+      "slug": "sandwiches",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 1,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 1,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 1,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "c519a006-ea39-509b-bde4-8dd92cf9505a",
+      "slug": "bowls",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "f734c4f1-8cfa-5a5a-b4ee-4e65022cf21b",
+      "slug": "tacos",
+      "parentId": "12aab5bf-b624-5e76-b306-38cf4daa8ea3",
+      "parentSlug": "casual",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "slug": "dining",
+      "parentId": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "parentSlug": "food-and-dining",
+      "isLeaf": false,
+      "discoveredPlaceCount": 121,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 121,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 121,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 121
+      },
+      "supplyStatus": null,
+      "supplyStopReason": null,
+      "supplyNotes": null
+    },
+    {
+      "id": "18a33f0c-8408-59ce-9927-cceae1a4e4c1",
+      "slug": "greek",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 1,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 1,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 1,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "27693ef7-a722-551d-ac89-bb8a7b1d5c97",
+      "slug": "spanish",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "3a51d1cf-31c9-529f-b585-1102253dc735",
+      "slug": "japanese",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 1,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 1,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 1,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "3ae33c42-f401-5989-be69-5ab9223aded2",
+      "slug": "seafood",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "3dd38a02-124b-5b4e-aa96-3566ed575340",
+      "slug": "mediterranean",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "3e7336f3-5dbc-51d8-884e-e677e7e1108c",
+      "slug": "french",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "493d4231-5caf-5300-a489-bdc6cf98de6c",
+      "slug": "indian",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 2,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 2,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 2,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "65c34f92-d992-50e7-aff2-f31fd1871345",
+      "slug": "african",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "6ab01ce5-750f-51f3-b0a5-39b3398c66cd",
+      "slug": "mexican",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 1,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 1,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 1,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "a1c93f96-63bb-5f5b-b929-bac7b2f133dd",
+      "slug": "american",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "a4e93169-34db-52d0-a474-f42045679a81",
+      "slug": "chinese",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 1,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 1,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 1,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "a7d01142-e735-51c9-bf56-b20250c527f1",
+      "slug": "cuban",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "d43e33db-0ad3-575c-8514-d01ccf700587",
+      "slug": "italian",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 3,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 3,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 3,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 3
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "dcdb5cb7-4ebf-5b55-a867-f1f86b164c8c",
+      "slug": "steakhouse",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 2,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 2,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 2,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "de848fba-6b54-551a-9fcb-e3b3c25b1d3b",
+      "slug": "thai",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 4,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 4,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 4,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 4
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8",
+      "slug": "vegan-vegetarian",
+      "parentId": "15904283-fd01-5fc3-ac00-c42e62e8422e",
+      "parentSlug": "dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "slug": "cafes",
+      "parentId": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "parentSlug": "food-and-dining",
+      "isLeaf": false,
+      "discoveredPlaceCount": 34,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 34,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 34,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 34
+      },
+      "supplyStatus": null,
+      "supplyStopReason": null,
+      "supplyNotes": null
+    },
+    {
+      "id": "8187ab7f-f040-5594-9a14-b01871086788",
+      "slug": "tea-house",
+      "parentId": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "parentSlug": "cafes",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "92167dc5-bf32-5014-9d07-46f7c4f902dd",
+      "slug": "coffee-shop",
+      "parentId": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "parentSlug": "cafes",
+      "isLeaf": true,
+      "discoveredPlaceCount": 3,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 3,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 3,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 3
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "9bd7d2c9-205f-5bc3-8321-ab9c63a14294",
+      "slug": "bubble-tea",
+      "parentId": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "parentSlug": "cafes",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "9d3578bc-0108-5a05-90f0-ef1b717013c4",
+      "slug": "dessert-cafe",
+      "parentId": "89cc433a-423a-5eba-9d6a-17c9745d66d8",
+      "parentSlug": "cafes",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "b4176896-4ce9-5815-a445-30a1bd3272e9",
+      "slug": "bakeries",
+      "parentId": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "parentSlug": "food-and-dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 4,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 4,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 4,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 4
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "dc6dafd8-bb60-5989-a4f4-2b2ba86329ef",
+      "slug": "desserts",
+      "parentId": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "parentSlug": "food-and-dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 3,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 3,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 3,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 3
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "fa1b8735-3c31-5c2c-9762-036a4c74fa06",
+      "slug": "brunch",
+      "parentId": "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1",
+      "parentSlug": "food-and-dining",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "slug": "drinks-and-nightlife",
+      "parentId": null,
+      "parentSlug": null,
+      "isLeaf": false,
+      "discoveredPlaceCount": 12,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 12,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 12,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 12
+      },
+      "supplyStatus": null,
+      "supplyStopReason": null,
+      "supplyNotes": null
+    },
+    {
+      "id": "14257b1c-8bed-5909-97c1-8f2fc6936135",
+      "slug": "bars",
+      "parentId": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "parentSlug": "drinks-and-nightlife",
+      "isLeaf": true,
+      "discoveredPlaceCount": 10,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 10,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 10,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 10
+      },
+      "supplyStatus": "COMPLETE",
+      "supplyStopReason": null,
+      "supplyNotes": "10 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "1a48f9c0-9247-554e-9fcf-07ea8707c8cd",
+      "slug": "breweries",
+      "parentId": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "parentSlug": "drinks-and-nightlife",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "20c64458-9996-56ad-a8a6-0cad74c82506",
+      "slug": "nightlife",
+      "parentId": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "parentSlug": "drinks-and-nightlife",
+      "isLeaf": true,
+      "discoveredPlaceCount": 2,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 2,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 2,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "687fb02d-72a2-55a7-af0f-aea3b992aff3",
+      "slug": "cocktails",
+      "parentId": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "parentSlug": "drinks-and-nightlife",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "d5056f41-1b30-5f6f-8eb0-d65cac76f86b",
+      "slug": "wine",
+      "parentId": "2a046d43-20d8-5bb1-9378-e0f66c7d86c1",
+      "parentSlug": "drinks-and-nightlife",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "slug": "activities-and-experiences",
+      "parentId": null,
+      "parentSlug": null,
+      "isLeaf": false,
+      "discoveredPlaceCount": 199,
+      "discoveredEventCount": 3,
+      "eligiblePlaceCount": 195,
+      "eligibleEventCount": 3,
+      "activeSearchDocumentCount": 198,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 169,
+        "JONKOPING_EVENT_CALENDAR": 3,
+        "JONKOPING_MUNICIPAL_UTEGYM": 26
+      },
+      "supplyStatus": null,
+      "supplyStopReason": null,
+      "supplyNotes": null
+    },
+    {
+      "id": "231bbce4-ee4e-552e-a34c-d5a08f0debb1",
+      "slug": "classes",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "445e443a-1dcc-5479-8da2-fddaa1032c50",
+      "slug": "malls-and-shopping-centers",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 4,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 4,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 4,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 4
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "4b839f2a-5da8-5aff-b66b-2c34e9715b26",
+      "slug": "attractions",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 7,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 7,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 7,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 7
+      },
+      "supplyStatus": "COMPLETE",
+      "supplyStopReason": null,
+      "supplyNotes": "7 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "6432bde9-17e2-5a04-92b3-9bf6f4589cf2",
+      "slug": "culture",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 24,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 24,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 24,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 24
+      },
+      "supplyStatus": "COMPLETE",
+      "supplyStopReason": null,
+      "supplyNotes": "24 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "90f47852-7a14-50d0-a8d0-a9440b62fee0",
+      "slug": "tours",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 0,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {},
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "ab9ee0ec-2e7e-5f14-b2bb-15c66aaf979f",
+      "slug": "sports",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 66,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 64,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 64,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 38,
+        "JONKOPING_MUNICIPAL_UTEGYM": 26
+      },
+      "supplyStatus": "COMPLETE",
+      "supplyStopReason": null,
+      "supplyNotes": "64 legitimate published entities meet the coverage minimum after approved full-scope acquisition. JONKOPING_MUNICIPAL_UTEGYM run 827ea9be-19fc-4c55-bfe1-14c575d87055: fetched=28, valid=28, invalid=0; OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "e0aa09ec-717d-5e2e-8552-4dd33ba5b5fe",
+      "slug": "games",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 2,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 2,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 2,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "supplyStatus": "SUPPLY_CONSTRAINED",
+      "supplyStopReason": "SOURCES_EXHAUSTED",
+      "supplyNotes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "id": "e1a9cc86-214f-5967-b0a5-6925694b01d5",
+      "slug": "events",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 0,
+      "discoveredEventCount": 3,
+      "eligiblePlaceCount": 0,
+      "eligibleEventCount": 3,
+      "activeSearchDocumentCount": 3,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "JONKOPING_EVENT_CALENDAR": 3
+      },
+      "supplyStatus": "NEEDS_VALIDATION",
+      "supplyStopReason": null,
+      "supplyNotes": "3 legitimate published entities remain searchable, but the bounded source run completed PARTIAL because unsupported or invalid source observations were skipped. JONKOPING_EVENT_CALENDAR run 7f3cca4e-6108-4b58-9f01-24a39d93c3d8: fetched=3, valid=3, invalid=1."
+    },
+    {
+      "id": "f5978b3b-3c95-52fe-8c9c-bf5b6fae9d77",
+      "slug": "nature-and-public-places",
+      "parentId": "3751ea70-17c8-5ef0-ae44-d9dea192d29f",
+      "parentSlug": "activities-and-experiences",
+      "isLeaf": true,
+      "discoveredPlaceCount": 96,
+      "discoveredEventCount": 0,
+      "eligiblePlaceCount": 94,
+      "eligibleEventCount": 0,
+      "activeSearchDocumentCount": 94,
+      "compatibleReadyEmbeddingCount": 0,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 94
+      },
+      "supplyStatus": "COMPLETE",
+      "supplyStopReason": null,
+      "supplyNotes": "94 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    }
+  ],
+  "leaves": [
+    {
+      "slug": "chicken",
+      "discovered": 2,
+      "publishedSearchable": 2,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "poke",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "pizza",
+      "discovered": 29,
+      "publishedSearchable": 29,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 29
+      },
+      "status": "COMPLETE",
+      "stopReason": null,
+      "reason": "29 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "food-truck",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "sushi",
+      "discovered": 2,
+      "publishedSearchable": 2,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "burgers",
+      "discovered": 23,
+      "publishedSearchable": 23,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 23
+      },
+      "status": "COMPLETE",
+      "stopReason": null,
+      "reason": "23 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "sandwiches",
+      "discovered": 1,
+      "publishedSearchable": 1,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "bowls",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "tacos",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "greek",
+      "discovered": 1,
+      "publishedSearchable": 1,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "spanish",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "japanese",
+      "discovered": 1,
+      "publishedSearchable": 1,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "seafood",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "mediterranean",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "french",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "indian",
+      "discovered": 2,
+      "publishedSearchable": 2,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "african",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "mexican",
+      "discovered": 1,
+      "publishedSearchable": 1,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "american",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "chinese",
+      "discovered": 1,
+      "publishedSearchable": 1,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 1
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "cuban",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "italian",
+      "discovered": 3,
+      "publishedSearchable": 3,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 3
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "steakhouse",
+      "discovered": 2,
+      "publishedSearchable": 2,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "thai",
+      "discovered": 4,
+      "publishedSearchable": 4,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 4
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "vegan-vegetarian",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "tea-house",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "coffee-shop",
+      "discovered": 3,
+      "publishedSearchable": 3,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 3
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "bubble-tea",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "dessert-cafe",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "bakeries",
+      "discovered": 4,
+      "publishedSearchable": 4,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 4
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "desserts",
+      "discovered": 3,
+      "publishedSearchable": 3,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 3
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "brunch",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "bars",
+      "discovered": 10,
+      "publishedSearchable": 10,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 10
+      },
+      "status": "COMPLETE",
+      "stopReason": null,
+      "reason": "10 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "breweries",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "nightlife",
+      "discovered": 2,
+      "publishedSearchable": 2,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "cocktails",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "wine",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "classes",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "malls-and-shopping-centers",
+      "discovered": 4,
+      "publishedSearchable": 4,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 4
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "attractions",
+      "discovered": 7,
+      "publishedSearchable": 7,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 7
+      },
+      "status": "COMPLETE",
+      "stopReason": null,
+      "reason": "7 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "culture",
+      "discovered": 24,
+      "publishedSearchable": 24,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 24
+      },
+      "status": "COMPLETE",
+      "stopReason": null,
+      "reason": "24 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "tours",
+      "discovered": 0,
+      "publishedSearchable": 0,
+      "sourceBreakdown": {},
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "sports",
+      "discovered": 66,
+      "publishedSearchable": 64,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 38,
+        "JONKOPING_MUNICIPAL_UTEGYM": 26
+      },
+      "status": "COMPLETE",
+      "stopReason": null,
+      "reason": "64 legitimate published entities meet the coverage minimum after approved full-scope acquisition. JONKOPING_MUNICIPAL_UTEGYM run 827ea9be-19fc-4c55-bfe1-14c575d87055: fetched=28, valid=28, invalid=0; OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "games",
+      "discovered": 2,
+      "publishedSearchable": 2,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 2
+      },
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "reason": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    },
+    {
+      "slug": "events",
+      "discovered": 3,
+      "publishedSearchable": 3,
+      "sourceBreakdown": {
+        "JONKOPING_EVENT_CALENDAR": 3
+      },
+      "status": "NEEDS_VALIDATION",
+      "stopReason": null,
+      "reason": "3 legitimate published entities remain searchable, but the bounded source run completed PARTIAL because unsupported or invalid source observations were skipped. JONKOPING_EVENT_CALENDAR run 7f3cca4e-6108-4b58-9f01-24a39d93c3d8: fetched=3, valid=3, invalid=1."
+    },
+    {
+      "slug": "nature-and-public-places",
+      "discovered": 96,
+      "publishedSearchable": 94,
+      "sourceBreakdown": {
+        "OSM_OVERPASS": 94
+      },
+      "status": "COMPLETE",
+      "stopReason": null,
+      "reason": "94 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0."
+    }
+  ],
+  "leafBands": {
+    "atLeastFive": 7,
+    "oneToFour": 18,
+    "zero": 21
+  },
+  "duplicateCandidatesByState": [
+    {
+      "state": "OPEN",
+      "count": 3
+    }
+  ],
+  "publicationBlockers": [
+    {
+      "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+      "externalKey": "layer-41/globalid/36055578-9494-4cbd-a1f8-58c0c4eb364a",
+      "sourceRecordId": "a93b1c0a-8b9c-4f62-a0b9-1dc509dbe3e3",
+      "canonicalEntityId": "e6ea4401-d433-476e-91f4-b77d6a001837",
+      "canonicalName": "Friaredalen*",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "UNRESOLVED_DUPLICATE_REVIEW",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+      "externalKey": "layer-41/globalid/e9d68ebb-1b52-4d11-a9a7-60a5e5e23693",
+      "sourceRecordId": "79aab5ff-269d-41d8-93ba-662e52b1d66a",
+      "canonicalEntityId": "b966bb85-003f-4efc-b0a4-2442271b45c5",
+      "canonicalName": "Esplanaden *",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "UNRESOLVED_DUPLICATE_REVIEW",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/1002552143",
+      "sourceRecordId": "c2b8a386-ff1b-4e5d-8e41-7427e6eeb87b",
+      "canonicalEntityId": "e74f1431-45e9-461e-b7ea-773e7e04e166",
+      "canonicalName": "Pizzeria Dalvik",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/1198637316",
+      "sourceRecordId": "d3a178fa-52d5-45d7-9e3e-367386715d1c",
+      "canonicalEntityId": "82564729-445b-475f-8d2e-c764bb891bb1",
+      "canonicalName": "Solåsgrillen",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/1759562302",
+      "sourceRecordId": "4e313146-a73f-47e9-942b-f9ed8f20f87f",
+      "canonicalEntityId": "e0fac739-5554-4500-9f0b-eec87bd534f4",
+      "canonicalName": "Pizzeria Happy Time",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/1819358547",
+      "sourceRecordId": "52d6ea3b-d6e0-4d89-9a8c-c1ed58d1ab82",
+      "canonicalEntityId": "511f6593-699e-4bb7-b3f5-5fd9cf6b46b1",
+      "canonicalName": "Bergströms",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/1819358587",
+      "sourceRecordId": "b6811c4e-e507-43ab-855f-d86a48792afd",
+      "canonicalEntityId": "68a1d0f3-7d0e-4d1e-a69e-49153af7872a",
+      "canonicalName": "Amalias Glasscafé",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/1819358605",
+      "sourceRecordId": "fae6dd13-1789-41d9-af86-61bd4de24434",
+      "canonicalEntityId": "cb6526f1-b672-4fc7-8f05-1599b6b1d46f",
+      "canonicalName": "Pir Kro",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/2271776523",
+      "sourceRecordId": "99733640-1018-48a0-ad32-7c749fdbea0e",
+      "canonicalEntityId": "6b55cf54-236e-48c5-9210-166ddfbf3a3f",
+      "canonicalName": "Ali Baba Döner",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/2311060962",
+      "sourceRecordId": "f665cda0-3b51-4a89-be46-390a98267591",
+      "canonicalEntityId": "4f6b50ea-5938-44ae-adcd-34aba6b7efe8",
+      "canonicalName": "Pastabageriet",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/4382208596",
+      "sourceRecordId": "dea8405e-f5a0-4050-b046-bdd3532025ae",
+      "canonicalEntityId": "cc5d2b76-0eef-47d8-afe5-19b7c7682161",
+      "canonicalName": "Chop Chop Asian Express",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "node/560928398",
+      "sourceRecordId": "b3aa842a-1fbb-4d9a-b8b9-e4632daf9549",
+      "canonicalEntityId": "74f8b096-b6a2-473c-8b16-6073b88b77c5",
+      "canonicalName": "Sushi bar",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "relation/10599711",
+      "sourceRecordId": "c2c8755d-b09d-42e1-a9b3-b02c9771cc83",
+      "canonicalEntityId": "7ea49e39-a579-4053-a9fb-f7925c25f538",
+      "canonicalName": "Friaredalen",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "UNRESOLVED_DUPLICATE_REVIEW",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "relation/7369244",
+      "sourceRecordId": "25ae5e5c-ef01-4d7b-9bf3-c341a1921d6d",
+      "canonicalEntityId": "b1675bd1-d222-4dac-9e67-2d6415e386a4",
+      "canonicalName": "Esplanaden",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "UNRESOLVED_DUPLICATE_REVIEW",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "way/270350313",
+      "sourceRecordId": "7600acf0-dbf7-4b92-9974-4b8a9014cba7",
+      "canonicalEntityId": "66507cfe-047d-46f4-811f-1ad787c15993",
+      "canonicalName": "Ohio Burger",
+      "entityType": "PLACE",
+      "publicationStatus": "DRAFT",
+      "reasons": [
+        "MISSING_SUPPORTED_TAXONOMY",
+        "MISSING_CANONICAL_NAME_PROVENANCE",
+        "MISSING_LOCATION_PROVENANCE",
+        "NO_ACTIVE_SEARCH_DOCUMENT"
+      ]
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "externalKey": "way/99536325",
+      "sourceRecordId": "6000fb9e-a227-4edc-ad6f-15d81a75a454",
+      "canonicalEntityId": null,
+      "canonicalName": null,
+      "entityType": null,
+      "publicationStatus": null,
+      "reasons": [
+        "NOT_CANONICALIZED"
+      ]
+    }
+  ],
+  "eventCoverage": {
+    "fetchedSourceEventCount": 27,
+    "acceptedSingleOccurrenceCount": 3,
+    "invalidOrUnsupportedCountAcrossRuns": 3,
+    "publishedEventCount": 3,
+    "linkedEventPlaceCount": 0,
+    "standaloneEventCount": 3,
+    "activeEventSearchDocumentCount": 3,
+    "eligibleAtFrozenDevClock": 0,
+    "retainedSourceEventRecordCount": 3,
+    "unsupportedMultiOccurrenceCount": 4,
+    "invalidCount": 1,
+    "invalidOrUnsupportedCount": 5,
+    "sourceRunId": "7f3cca4e-6108-4b58-9f01-24a39d93c3d8"
+  },
+  "embeddingStates": [],
+  "dataQualityAudit": {
+    "fixtureShapedCanonicalNames": 0,
+    "fixtureSources": 0,
+    "sameNameSameLocationCanonicalGroups": 0,
+    "sameSourceIdentityDuplicateGroups": 0
+  },
+  "reportChecksum": "d05ee77d5dfc6843bc1e34a0bc5a2743687a1c1019f7fbac4323b7de729dfba3"
+}

@@ -10,6 +10,7 @@ import {
 } from '../../packages/ingestion-domain/src/index.ts';
 import { fixtureQuery } from '../../packages/ingestion-domain/src/testing.ts';
 import {
+  BOUNDED_OSM_QUERY,
   JONKOPING_SCOPE_ID,
   OSM_SOURCE_KEY,
   OsmOverpassAdapter,
@@ -145,12 +146,31 @@ describe('SRC-01 bounded OSM adapter', () => {
       code: 'SERVER_OVERLOAD', status: 503,
     });
 
+    const runtimeError = adapter([], {
+      responses: [jsonResponse({ elements: [], remark: 'runtime error' })],
+    });
+    await expect(runtimeError.fetch({ signal: new AbortController().signal })).rejects.toMatchObject({
+      code: 'QUERY_RUNTIME_ERROR', status: 200,
+    });
+
     const oversized = adapter([], {
-      responses: [new Response('x'.repeat(524_289), { status: 200 })],
+      responses: [new Response('x'.repeat(2_097_153), { status: 200 })],
     });
     await expect(oversized.fetch({ signal: new AbortController().signal })).rejects.toMatchObject({
       code: 'RESPONSE_TOO_LARGE',
     });
+  });
+
+  it('covers the full municipality and preserves semicolon-delimited source facts separately', async () => {
+    const [record] = await observations([element(7, {
+      tags: { name: 'Evidence-backed multi-label venue', amenity: 'restaurant', cuisine: 'italian;pizza' },
+    })]);
+    const candidate = adapter([]).parse(record.envelope, record);
+
+    expect(BOUNDED_OSM_QUERY).toContain('["admin_level"="7"]["ref"="0680"]');
+    expect(BOUNDED_OSM_QUERY).toContain('0680');
+    expect(BOUNDED_OSM_QUERY).not.toContain('(57.775,14.145,57.795,14.185)');
+    expect(candidate.sourceCategories).toEqual(['amenity=restaurant', 'cuisine=italian', 'cuisine=pizza']);
   });
 
   it('keeps type plus ID identity stable and content versions deterministic', async () => {

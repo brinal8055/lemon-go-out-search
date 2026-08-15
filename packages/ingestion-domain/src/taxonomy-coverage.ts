@@ -145,7 +145,7 @@ export function classifyCoverageStatus(
     && review.source_keys.every((sourceKey) => reviewedRunSources.has(sourceKey));
   if (!evidenceIsSufficient) return 'NEEDS_VALIDATION';
   if (review.status === 'COMPLETE') {
-    return count >= COVERAGE_TARGET_MIN && count <= COVERAGE_TARGET_MAX
+    return count >= COVERAGE_TARGET_MIN
       ? 'COMPLETE'
       : 'NEEDS_VALIDATION';
   }

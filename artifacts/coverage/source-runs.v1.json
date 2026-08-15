@@ -1,0 +1,58 @@
+{
+  "reportVersion": "coverage-01-source-runs.v1",
+  "scope": "FULL_JONKOPING_MUNICIPALITY",
+  "acquisitionPolicy": "APPROVED_BOUNDED_SOURCE_ADAPTERS_ONLY",
+  "sources": [
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "runId": "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+      "status": "SUCCEEDED",
+      "refreshMode": "DELTA_ONLY",
+      "remoteFetched": 385,
+      "insideAuthoritativeBoundary": 379,
+      "outsideAuthoritativeBoundary": 6,
+      "valid": 379,
+      "invalid": 0,
+      "new": 77,
+      "unchanged": 302
+    },
+    {
+      "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+      "runId": "827ea9be-19fc-4c55-bfe1-14c575d87055",
+      "status": "SUCCEEDED",
+      "refreshMode": "DELTA_ONLY",
+      "remoteFetched": 28,
+      "insideAuthoritativeBoundary": 28,
+      "outsideAuthoritativeBoundary": 0,
+      "valid": 28,
+      "invalid": 0,
+      "new": 28,
+      "unchanged": 0
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "runId": "7f3cca4e-6108-4b58-9f01-24a39d93c3d8",
+      "status": "PARTIAL",
+      "refreshMode": "DELTA_ONLY",
+      "persistenceMode": "EXTRACTED_FIELDS_ONLY",
+      "remoteFetched": 27,
+      "acceptedSingleOccurrence": 3,
+      "unsupportedMultiOccurrence": 4,
+      "invalid": 1,
+      "published": 3,
+      "linkedToPlace": 0,
+      "standalone": 3,
+      "eligibleAtFrozenDevClock": 0,
+      "frozenDevClockStatus": "EVENT_DEV_REAL_INVENTORY_UNAVAILABLE_AT_FROZEN_CLOCK"
+    }
+  ],
+  "embeddingCoverage": {
+    "status": "EMBEDDING_COVERAGE_PARTIAL",
+    "ready": 0,
+    "failed": 0,
+    "stale": 0,
+    "eligibleActiveSearchDocuments": 395,
+    "reason": "External provider payload egress was not approved, so no embedding attempt rows were created or mutated."
+  },
+  "tuningPerformed": false
+}

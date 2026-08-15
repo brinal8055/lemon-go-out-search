@@ -14,22 +14,38 @@ export const OSM_PARSER_VERSION = 'osm-place-parser-v1';
 export const OSM_MAPPING_VERSION = 'source-taxonomy.v1';
 export const JONKOPING_SCOPE_ID = 'a4b19b09-b272-5748-80ef-2c91d9d33ca6';
 export const JONKOPING_SCOPE_SLUG = 'jonkoping-municipality';
-export const BOUNDED_OSM_QUERY = `[out:json][timeout:15][maxsize:524288];
+export const BOUNDED_OSM_QUERY = `[out:json][timeout:30][maxsize:33554432];
+relation["boundary"="administrative"]["admin_level"="7"]["ref"="0680"]->.municipality;
+.municipality map_to_area->.searchArea;
 (
-  nwr["name"]["amenity"~"^(restaurant|cafe|bar|pub|fast_food|ice_cream|cinema|theatre)$"](57.775,14.145,57.795,14.185);
-  nwr["name"]["tourism"~"^(museum|attraction|gallery)$"](57.775,14.145,57.795,14.185);
-  nwr["name"]["leisure"~"^(sports_centre|bowling_alley|escape_game|park)$"](57.775,14.145,57.795,14.185);
+  nwr["name"]["amenity"~"^(restaurant|cafe|bar|pub|fast_food|ice_cream|cinema|theatre|nightclub|arts_centre)$"](area.searchArea);
+  nwr["name"]["tourism"~"^(museum|attraction|gallery|aquarium|zoo|theme_park|viewpoint|picnic_site)$"](area.searchArea);
+  nwr["name"]["leisure"~"^(sports_centre|fitness_centre|stadium|swimming_pool|bowling_alley|escape_game|amusement_arcade|miniature_golf|park|nature_reserve)$"](area.searchArea);
+  nwr["name"]["shop"~"^(bakery|mall)$"](area.searchArea);
+  nwr["name"]["craft"="brewery"](area.searchArea);
 );
-out meta center qt 20;`;
+out meta center qt;`;
 
-const MAX_RESPONSE_BYTES = 524_288;
-const REQUEST_TIMEOUT_MS = 20_000;
+const BOUNDED_QUERY_HEADER = `[out:json][timeout:30][maxsize:33554432];
+relation["boundary"="administrative"]["admin_level"="7"]["ref"="0680"]->.municipality;
+.municipality map_to_area->.searchArea;`;
+const BOUNDED_QUERY_FOOTER = 'out meta center qt;';
+export const BOUNDED_OSM_QUERIES = [
+  'nwr["name"]["amenity"~"^(restaurant|cafe|bar|pub|fast_food|ice_cream|cinema|theatre|nightclub|arts_centre)$"](area.searchArea);',
+  'nwr["name"]["tourism"~"^(museum|attraction|gallery|aquarium|zoo|theme_park|viewpoint|picnic_site)$"](area.searchArea);',
+  'nwr["name"]["leisure"~"^(sports_centre|fitness_centre|stadium|swimming_pool|bowling_alley|escape_game|amusement_arcade|miniature_golf|park|nature_reserve)$"](area.searchArea);',
+  'nwr["name"]["shop"~"^(bakery|mall)$"](area.searchArea);',
+  'nwr["name"]["craft"="brewery"](area.searchArea);',
+].map((filter) => `${BOUNDED_QUERY_HEADER}\n${filter}\n${BOUNDED_QUERY_FOOTER}`);
+
+const MAX_RESPONSE_BYTES = 2_097_152;
+const REQUEST_TIMEOUT_MS = 60_000;
 const RETRY_DELAY_MS = 5_000;
 const TRANSIENT_STATUS = new Set([429, 502, 503, 504]);
 const ELEMENT_TYPES = new Set(['node', 'way', 'relation']);
 const TAG_KEYS = new Set([
   'name', 'name:en', 'name:sv', 'amenity', 'cuisine', 'leisure', 'tourism',
-  'shop', 'sport', 'brand', 'operator', 'website', 'contact:website', 'phone',
+  'shop', 'sport', 'craft', 'brand', 'operator', 'website', 'contact:website', 'phone',
   'contact:phone', 'opening_hours', 'wheelchair', 'access',
 ]);
 
@@ -71,6 +87,7 @@ export type OsmAdapterOptions = {
   fetchImpl?: typeof fetch;
   sleep?: (milliseconds: number) => Promise<void>;
   now?: () => Date;
+  queries?: string[];
 };
 
 export class OsmOverpassAdapter implements SourceAdapter {
@@ -88,6 +105,7 @@ export class OsmOverpassAdapter implements SourceAdapter {
   readonly #fetch: typeof fetch;
   readonly #sleep: (milliseconds: number) => Promise<void>;
   readonly #now: () => Date;
+  readonly #queries: string[];
   #inFlight = false;
 
   constructor(options: OsmAdapterOptions = {}) {
@@ -95,6 +113,11 @@ export class OsmOverpassAdapter implements SourceAdapter {
     this.#fetch = options.fetchImpl ?? fetch;
     this.#sleep = options.sleep ?? ((milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)));
     this.#now = options.now ?? (() => new Date());
+    this.#queries = options.queries ?? [BOUNDED_OSM_QUERY];
+    if (this.#queries.length < 1 || this.#queries.length > BOUNDED_OSM_QUERIES.length
+      || this.#queries.some((query) => !query.trim())) {
+      throw new Error('OSM acquisition requires between one and five non-empty bounded queries');
+    }
   }
 
   async fetch({ signal }: { signal: AbortSignal }): Promise<FetchResult> {
@@ -102,15 +125,25 @@ export class OsmOverpassAdapter implements SourceAdapter {
     this.#inFlight = true;
     try {
       const fetchedAt = this.#now().toISOString();
-      const payload = await this.#request(signal);
-      const observations = payload.elements.map((element) => this.#observation(element, fetchedAt));
+      const elements = new Map<string, OsmElement>();
+      for (let index = 0; index < this.#queries.length; index += 1) {
+        if (index > 0) await this.#sleep(RETRY_DELAY_MS);
+        const payload = await this.#request(signal, this.#queries[index]);
+        for (const element of payload.elements) {
+          elements.set(`${String(element.type)}/${String(element.id)}`, element);
+        }
+      }
+      const observations = [...elements.values()]
+        .map((element) => this.#observation(element, fetchedAt))
+        .sort((left, right) => left.externalKey.localeCompare(right.externalKey));
       return {
         observations,
         refreshUnitComplete: true,
         snapshotComplete: null,
         fetchMeta: {
           endpoint: this.#endpoint,
-          querySha256: createHash('sha256').update(BOUNDED_OSM_QUERY).digest('hex'),
+          querySha256: createHash('sha256').update(JSON.stringify(this.#queries)).digest('hex'),
+          requestCount: this.#queries.length,
           recordCount: observations.length,
         },
       };
@@ -140,8 +173,13 @@ export class OsmOverpassAdapter implements SourceAdapter {
     const website = firstNonEmpty(envelope.tags.website, envelope.tags['contact:website']);
     const phone = firstNonEmpty(envelope.tags.phone, envelope.tags['contact:phone']);
     const streetAddress = joinAddress(envelope.tags['addr:street'], envelope.tags['addr:housenumber']);
-    const sourceCategories = ['amenity', 'cuisine', 'leisure', 'tourism', 'shop', 'sport']
-      .flatMap((key) => envelope.tags[key] ? [`${key}=${envelope.tags[key]}`] : []);
+    const sourceCategories = ['amenity', 'cuisine', 'leisure', 'tourism', 'shop', 'sport', 'craft']
+      .flatMap((key) => envelope.tags[key]?.split(';')
+        .map((value) => value.trim().toLowerCase())
+        .filter(Boolean)
+        .map((value) => `${key}=${value}`) ?? [])
+      .filter((value, index, values) => values.indexOf(value) === index)
+      .sort();
 
     return {
       sourceKey: OSM_SOURCE_KEY,
@@ -172,7 +210,7 @@ export class OsmOverpassAdapter implements SourceAdapter {
     };
   }
 
-  async #request(signal: AbortSignal): Promise<{ elements: OsmElement[] }> {
+  async #request(signal: AbortSignal, query: string): Promise<{ elements: OsmElement[] }> {
     for (let attempt = 0; attempt < 2; attempt += 1) {
       const timeoutSignal = AbortSignal.timeout(REQUEST_TIMEOUT_MS);
       const combinedSignal = AbortSignal.any([signal, timeoutSignal]);
@@ -184,7 +222,7 @@ export class OsmOverpassAdapter implements SourceAdapter {
             'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
             'user-agent': 'Lemon-Going-Out-Search/0.1 (bounded SRC-01 trial)',
           },
-          body: new URLSearchParams({ data: BOUNDED_OSM_QUERY }),
+          body: new URLSearchParams({ data: query }),
           signal: combinedSignal,
         });
       } catch (error) {
@@ -222,6 +260,9 @@ export class OsmOverpassAdapter implements SourceAdapter {
         value = JSON.parse(text);
       } catch (error) {
         throw new OverpassFetchError('INVALID_RESPONSE', 'Overpass response is not JSON', response.status, { cause: error });
+      }
+      if (hasOverpassRemark(value)) {
+        throw new OverpassFetchError('QUERY_RUNTIME_ERROR', 'Overpass reported a query runtime error', response.status);
       }
       if (!isOverpassPayload(value)) {
         throw new OverpassFetchError('INVALID_RESPONSE', 'Overpass response lacks an elements array', response.status);
@@ -346,6 +387,11 @@ function retryDelay(value: string | null): number {
 function isOverpassPayload(value: unknown): value is { elements: OsmElement[] } {
   return value !== null && typeof value === 'object'
     && Array.isArray((value as { elements?: unknown }).elements);
+}
+
+function hasOverpassRemark(value: unknown): boolean {
+  return value !== null && typeof value === 'object'
+    && typeof (value as { remark?: unknown }).remark === 'string';
 }
 
 async function readBoundedText(response: Response): Promise<string> {

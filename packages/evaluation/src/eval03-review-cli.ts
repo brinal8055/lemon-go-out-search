@@ -9,10 +9,17 @@ import type { EvalCorpusRecordV1 } from './index.ts';
 import { stableJson } from './dev-runner.ts';
 
 const root = new URL('../../../', import.meta.url);
+const phase = argumentValue(process.argv.slice(2), '--phase') ?? 'day3';
+if (!['day3', 'day4-postcoverage'].includes(phase)) throw new Error('ARTIFACT_PHASE_UNSUPPORTED');
 const artifactVersion = argumentValue(process.argv.slice(2), '--artifact-version') ?? '1';
 if (!['1', '2'].includes(artifactVersion)) throw new Error('ARTIFACT_VERSION_UNSUPPORTED');
-const manifestVersion = `dataset-manifest.day3-current.v${artifactVersion}`;
-const packetVersion = `dev-review-packet.day3.v${artifactVersion}`;
+if (phase === 'day4-postcoverage' && artifactVersion !== '1') throw new Error('POST_COVERAGE_VERSION_MUST_START_AT_1');
+const manifestVersion = phase === 'day3'
+  ? `dataset-manifest.day3-current.v${artifactVersion}`
+  : `dataset-manifest.day4-postcoverage.v${artifactVersion}`;
+const packetVersion = phase === 'day3'
+  ? `dev-review-packet.day3.v${artifactVersion}`
+  : `dev-review-packet.day4-postcoverage.v${artifactVersion}`;
 const evaluationClockUtc = '2026-10-15T12:00:00Z';
 const outputRoot = resolve(argumentValue(process.argv.slice(2), '--output-root') ?? root.pathname);
 const connectionString = process.env.LEMON_LOCAL_DATABASE_URL
@@ -85,11 +92,17 @@ type CurrentMetadata = {
   entities: InventoryEntity[];
 };
 
+const priorJudgmentsPath = phase === 'day3'
+  ? 'evaluation/judgments/judgments.day2.v1.json'
+  : 'evaluation/judgments/judgments.day3.v1.json';
+const priorManifestPath = phase === 'day3'
+  ? 'evaluation/manifests/dataset-manifest.day2.v1.json'
+  : 'evaluation/manifests/dataset-manifest.day3-current.v2.json';
 const [corpusText, corpusChecksumText, priorJudgmentsText, priorManifestText] = await Promise.all([
   readFile(new URL('evaluation/corpus/corpus.v1.jsonl', root), 'utf8'),
   readFile(new URL('evaluation/corpus/checksum.v1.txt', root), 'utf8'),
-  readFile(new URL('evaluation/judgments/judgments.day2.v1.json', root), 'utf8'),
-  readFile(new URL('evaluation/manifests/dataset-manifest.day2.v1.json', root), 'utf8'),
+  readFile(new URL(priorJudgmentsPath, root), 'utf8'),
+  readFile(new URL(priorManifestPath, root), 'utf8'),
 ]);
 const corpusChecksum = corpusChecksumText.trim();
 if (sha256(corpusText) !== corpusChecksum) throw new Error('CORPUS_CHECKSUM_MISMATCH');
@@ -127,7 +140,8 @@ const priorManifest = JSON.parse(priorManifestText) as {
   manifest_version: string;
   dataset_inventory?: { checksum?: string };
 };
-const currentJudgedCount = priorJudgments.dataset_inventory_checksum === inventoryChecksum
+const currentJudgedCount = phase === 'day3'
+  && priorJudgments.dataset_inventory_checksum === inventoryChecksum
   && priorManifest.dataset_inventory?.checksum === inventoryChecksum
   ? priorJudgments.records.length
   : 0;
@@ -147,7 +161,7 @@ const fixtureFingerprintCount = metadata.entities.filter(({ canonicalName, sourc
   || sourceEvidence.some(({ sourceKey }) => sourceKey.startsWith('src03b-place-'))
 )).length + fixtureShapedEventCount;
 const missingActiveDocumentCount = metadata.entities.filter(({ searchDocument }) => searchDocument === null).length;
-if (artifactVersion === '2' && (
+if ((artifactVersion === '2' || phase === 'day4-postcoverage') && (
   metadata.entities.length === 0 || fixtureFingerprintCount > 0 || missingActiveDocumentCount > 0
 )) {
   throw new Error('V2_CLEAN_DATASET_ACCEPTANCE_FAILED');
@@ -157,10 +171,16 @@ const activeSearchDocumentCount = metadata.searchDocuments.length;
 const codeGitCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 const manifest = {
   manifest_version: manifestVersion,
-  ...(artifactVersion === '2' ? { supersedes: 'dataset-manifest.day3-current.v1' } : {}),
+  ...(phase === 'day4-postcoverage'
+    ? { supersedes: 'dataset-manifest.day3-current.v2' }
+    : artifactVersion === '2' ? { supersedes: 'dataset-manifest.day3-current.v1' } : {}),
   status: 'FROZEN_FOR_HUMAN_REVIEW',
-  purpose: 'EVAL_03_DEV_JUDGMENT_PREPARATION_ONLY',
-  canonical_dataset_version: `day3-current.v${artifactVersion}-${inventoryChecksum.slice(0, 12)}`,
+  purpose: phase === 'day4-postcoverage'
+    ? 'COVERAGE_01_POST_COVERAGE_DEV_JUDGMENT_PREPARATION_ONLY'
+    : 'EVAL_03_DEV_JUDGMENT_PREPARATION_ONLY',
+  canonical_dataset_version: phase === 'day4-postcoverage'
+    ? `day4-postcoverage.v${artifactVersion}-${inventoryChecksum.slice(0, 12)}`
+    : `day3-current.v${artifactVersion}-${inventoryChecksum.slice(0, 12)}`,
   source_record_ingestion_runs: sourceRuns,
   boundary: metadata.boundary,
   taxonomy: metadata.taxonomy,
@@ -229,7 +249,9 @@ const manifestChecksum = sha256(manifestText);
 const queries = devRecords.map((record) => buildReviewQuery(record, metadata.entities));
 const packet = {
   packet_version: packetVersion,
-  ...(artifactVersion === '2' ? { supersedes: 'dev-review-packet.day3.v1' } : {}),
+  ...(phase === 'day4-postcoverage'
+    ? { supersedes: 'dev-review-packet.day3.v2' }
+    : artifactVersion === '2' ? { supersedes: 'dev-review-packet.day3.v1' } : {}),
   status: 'HUMAN_DEV_JUDGMENT_REQUIRED',
   dataset_manifest: { version: manifestVersion, checksum: manifestChecksum },
   dataset_inventory_checksum: inventoryChecksum,
@@ -554,7 +576,7 @@ function renderMarkdown(packet: {
       + `|---|---|---|---|\n${candidates}\n\n`
       + `- Human rationale: __\n- Judged by: __\n- Judged at: __\n`;
   }).join('\n\n');
-  return `# EVAL-03 full DEV human judgment packet\n\n`
+  return `# ${phase === 'day4-postcoverage' ? 'Post-coverage' : 'EVAL-03'} full DEV human judgment packet\n\n`
     + `- Split: DEV only\n`
     + `- Dataset manifest: ${packet.dataset_manifest.version}\n`
     + `- Dataset manifest checksum: ${packet.dataset_manifest.checksum}\n`

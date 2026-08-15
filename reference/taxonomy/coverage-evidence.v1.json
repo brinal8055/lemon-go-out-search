@@ -2,5 +2,644 @@
   "coverage_version": "taxonomy-coverage.v1",
   "taxonomy_version": "active-going-out.v1",
   "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
-  "leaf_reviews": []
+  "leaf_reviews": [
+    {
+      "leaf_slug": "american",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "mexican",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "italian",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "japanese",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "chinese",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "thai",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "indian",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "greek",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "african",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "seafood",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "steakhouse",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "vegan-vegetarian",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "cuban",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "french",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "spanish",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "mediterranean",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "burgers",
+      "status": "COMPLETE",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "23 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ]
+    },
+    {
+      "leaf_slug": "pizza",
+      "status": "COMPLETE",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "29 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ]
+    },
+    {
+      "leaf_slug": "tacos",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "sushi",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "poke",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "chicken",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "sandwiches",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "food-truck",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "bowls",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "coffee-shop",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "tea-house",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "bubble-tea",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "dessert-cafe",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "bakeries",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "desserts",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "brunch",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "bars",
+      "status": "COMPLETE",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "10 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ]
+    },
+    {
+      "leaf_slug": "cocktails",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "wine",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "breweries",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "nightlife",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "sports",
+      "status": "COMPLETE",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "64 legitimate published entities meet the coverage minimum after approved full-scope acquisition. JONKOPING_MUNICIPAL_UTEGYM run 827ea9be-19fc-4c55-bfe1-14c575d87055: fetched=28, valid=28, invalid=0; OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "JONKOPING_MUNICIPAL_UTEGYM",
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "827ea9be-19fc-4c55-bfe1-14c575d87055",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ]
+    },
+    {
+      "leaf_slug": "games",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "tours",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "culture",
+      "status": "COMPLETE",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "24 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ]
+    },
+    {
+      "leaf_slug": "events",
+      "status": "NEEDS_VALIDATION",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "3 legitimate published entities remain searchable, but the bounded source run completed PARTIAL because unsupported or invalid source observations were skipped. JONKOPING_EVENT_CALENDAR run 7f3cca4e-6108-4b58-9f01-24a39d93c3d8: fetched=3, valid=3, invalid=1.",
+      "source_keys": [
+        "JONKOPING_EVENT_CALENDAR"
+      ],
+      "ingestion_run_ids": [
+        "7f3cca4e-6108-4b58-9f01-24a39d93c3d8"
+      ]
+    },
+    {
+      "leaf_slug": "classes",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    },
+    {
+      "leaf_slug": "nature-and-public-places",
+      "status": "COMPLETE",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "94 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ]
+    },
+    {
+      "leaf_slug": "attractions",
+      "status": "COMPLETE",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "7 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ]
+    },
+    {
+      "leaf_slug": "malls-and-shopping-centers",
+      "status": "SUPPLY_CONSTRAINED",
+      "reviewed_by": "COVERAGE-01-BOUNDED-STOPPING-RULE",
+      "reviewed_at": "2026-08-15T14:02:50.634Z",
+      "notes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "source_keys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestion_run_ids": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
+      "stop_reason": "SOURCES_EXHAUSTED"
+    }
+  ]
 }

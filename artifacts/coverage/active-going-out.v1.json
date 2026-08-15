@@ -3,16 +3,16 @@
   "taxonomyVersion": "active-going-out.v1",
   "taxonomyChecksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
   "boundaryVersion": "lm-current-2026-08-14",
-  "generatedAt": "2026-08-14T11:23:13.642Z",
-  "contentChecksum": "4469f48a49021fb361c2756c07a712072941110f50ab1fca06b33f315217b5db",
+  "generatedAt": "2026-08-15T14:02:51.037Z",
+  "contentChecksum": "b75632fba61dc6221cd6e60dcd81229fd03fd66ea23aec8f64cf41f628cefa13",
   "target": {
     "min": 5,
     "max": 10
   },
   "statusCounts": {
-    "COMPLETE": 0,
-    "SUPPLY_CONSTRAINED": 0,
-    "NEEDS_VALIDATION": 46
+    "COMPLETE": 7,
+    "SUPPLY_CONSTRAINED": 38,
+    "NEEDS_VALIDATION": 1
   },
   "leaves": [
     {
@@ -25,15 +25,30 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 2,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-chicken"
+      ],
+      "supportingEntityIds": [
+        "42bc47c1-cfc5-4dab-b76e-d8727f801a0d",
+        "43a7ce71-65db-41db-b536-5140921a3d8d"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "5a61890b-e633-5ea0-93eb-f1a18863f0cd",
@@ -46,14 +61,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-poke"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "63d2b4df-0fd9-5296-bab2-1cf5fd457cbc",
@@ -65,15 +92,57 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
+      "canonicalPublishedCount": 29,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-pizza"
+      ],
+      "supportingEntityIds": [
+        "0eba8c45-55b9-44fe-8a98-041599592080",
+        "14efd472-ffcd-42ac-95e1-c2e936d988d2",
+        "201e2e86-40e4-40a2-b5ea-4d01bf4382ae",
+        "29c9c9cb-cb2e-41f3-b663-61624d9eec31",
+        "2d364e39-25d1-48dd-9b61-3127d9ca55c3",
+        "3e5adfbc-c074-44e0-8554-621345fe8fe2",
+        "41a467c9-d444-4d2e-8229-a55fb92efa4d",
+        "4ac4ec26-3fbd-4657-a0f7-d303130d918d",
+        "5b5daa81-b086-4060-a818-e69996829542",
+        "699f9013-535f-44b1-a353-0e5ba8b3b0e4",
+        "6a3ccb75-987d-4b5e-917d-e7ebe6e41886",
+        "81209b2a-9f41-4f5e-ba2b-5de6a431b254",
+        "856acd57-6a0e-4d91-93e6-7728155a92d5",
+        "8a20b6ac-e9ba-4fae-a610-c17ef9802aa6",
+        "911b60be-c244-4c7f-b6f6-d0cd482d2b45",
+        "95a3af9b-95e8-417c-857d-d28eae6986bc",
+        "96bdf0fd-9f0f-4851-88b3-7b915fe0a7cd",
+        "9e757af5-66ee-44ce-9474-bad9fe9090a6",
+        "9f224264-671d-41fa-be10-3382c845ba4a",
+        "a33c87e3-51c4-4ce8-b3fe-714f0a8cd321",
+        "a5597c46-d0de-436c-b78e-8ac5f694771c",
+        "a7cbbcc3-0f2b-45b5-9e33-5d5e89226164",
+        "b063232e-0f3d-4e7c-8d27-a9286993dcd8",
+        "c45ae50d-aacb-462a-93e4-a3f0c26eaa25",
+        "c4650563-8583-4f78-a882-4e48bf8c0778",
+        "cd7b57d9-f98b-416c-acf8-f592fc558c3a",
+        "cf772963-ab32-41dc-98a9-eaa07e10033d",
+        "e6d23b22-2edc-4162-91ea-2d5fae78a948",
+        "fef29218-0e1b-4735-9020-b3800d1aadd8"
+      ],
+      "status": "COMPLETE",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "29 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "6ab10ddc-f9ef-5743-b44f-433d2d4884bf",
@@ -86,14 +155,18 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
       "mappingRuleIds": [],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "6aea79ed-2599-5748-b2fe-a78e1aaeb78d",
@@ -105,15 +178,30 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 2,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-sushi"
+      ],
+      "supportingEntityIds": [
+        "600cfd79-eaa1-4fda-bdd0-e325422f3d08",
+        "86b37f8a-a27e-4ab2-91a9-82ccd6b2c13d"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "acda530f-d654-5027-97b8-a5a912e4b752",
@@ -125,15 +213,51 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
+      "canonicalPublishedCount": 23,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-burger"
+      ],
+      "supportingEntityIds": [
+        "06c8ddcd-8f63-49d2-8165-1a145c6fb81a",
+        "11244c7c-6c3c-4ba0-98cc-be97d2a680ca",
+        "29ae413c-a698-4b32-adde-3ff685c3fd94",
+        "33a6b3c1-f112-48f6-9781-24e1d69aade3",
+        "699f9013-535f-44b1-a353-0e5ba8b3b0e4",
+        "7a614f7c-cdde-42da-8c73-7747f9704c38",
+        "8c0fbcc5-429f-4cae-8cc1-346376c90521",
+        "926a13b4-a5b6-4200-a777-d371132c4a38",
+        "975ab873-db97-4b8d-9179-79c778094126",
+        "9d177d77-8478-4b30-aec9-d1d0a8e94780",
+        "a5597c46-d0de-436c-b78e-8ac5f694771c",
+        "a77aed91-c785-44be-8c2c-43ae11ab0936",
+        "aa4540d9-1b48-4afc-af66-748605fa70e8",
+        "b0478480-a578-446b-bb51-f47d145352e8",
+        "b9e8159c-b61e-41a1-95c5-c20060b56003",
+        "cd7b57d9-f98b-416c-acf8-f592fc558c3a",
+        "d4b5323a-d8be-45bd-846a-9e84f9743e5d",
+        "d625dc1a-5c5f-4404-881a-a64ea08cdcbb",
+        "dd3b2f93-11bb-4069-ad06-2d58b82f36a3",
+        "dff0fb34-ba92-495c-be5b-d96c37f418d4",
+        "e08ac11f-b78e-49a2-86a8-e7772dbbf6c6",
+        "f705f550-1275-4ebb-ab6c-fbbfbb605963",
+        "ff5b3144-508a-4f4b-86f8-441a5d071b74"
+      ],
+      "status": "COMPLETE",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "23 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "b48854d0-1ed6-5e1b-a101-83f74ad048c1",
@@ -145,15 +269,29 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 1,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-sandwich"
+      ],
+      "supportingEntityIds": [
+        "b7b752ac-f6be-479e-abe3-51363e4e31f3"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "c519a006-ea39-509b-bde4-8dd92cf9505a",
@@ -166,14 +304,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-bowl"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "f734c4f1-8cfa-5a5a-b4ee-4e65022cf21b",
@@ -186,14 +336,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-tacos"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "18a33f0c-8408-59ce-9927-cceae1a4e4c1",
@@ -205,15 +367,29 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 1,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-greek"
+      ],
+      "supportingEntityIds": [
+        "f29a8130-9ba4-4183-b5f8-d2483db1f693"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "27693ef7-a722-551d-ac89-bb8a7b1d5c97",
@@ -226,14 +402,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-spanish"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "3a51d1cf-31c9-529f-b585-1102253dc735",
@@ -245,15 +433,29 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 1,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-japanese"
+      ],
+      "supportingEntityIds": [
+        "dd00df80-ed36-4389-a74c-da8cabfa5deb"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "3ae33c42-f401-5989-be69-5ab9223aded2",
@@ -266,14 +468,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-seafood"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "3dd38a02-124b-5b4e-aa96-3566ed575340",
@@ -286,14 +500,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-mediterranean"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "3e7336f3-5dbc-51d8-884e-e677e7e1108c",
@@ -306,14 +532,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-french"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "493d4231-5caf-5300-a489-bdc6cf98de6c",
@@ -325,17 +563,30 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "canonicalPublishedCount": 2,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
       "mappingRuleIds": [
         "osm-cuisine-indian"
       ],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "supportingEntityIds": [
+        "350ddcd0-89e2-4c5d-abbb-4c1df3454952",
+        "46d8ef55-f4fd-4eba-9a34-2f62a13a07de"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "65c34f92-d992-50e7-aff2-f31fd1871345",
@@ -348,14 +599,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-african"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "6ab01ce5-750f-51f3-b0a5-39b3398c66cd",
@@ -367,15 +630,29 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 1,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-mexican"
+      ],
+      "supportingEntityIds": [
+        "486789b1-8826-4f84-8667-895bf123021a"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "a1c93f96-63bb-5f5b-b929-bac7b2f133dd",
@@ -388,14 +665,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-american"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "a4e93169-34db-52d0-a474-f42045679a81",
@@ -407,15 +696,29 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 1,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-chinese"
+      ],
+      "supportingEntityIds": [
+        "48ff5241-aa65-4fe7-b1da-62109fb13196"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "1 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "a7d01142-e735-51c9-bf56-b20250c527f1",
@@ -428,14 +731,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-cuban"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "d43e33db-0ad3-575c-8514-d01ccf700587",
@@ -447,15 +762,31 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 3,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-italian"
+      ],
+      "supportingEntityIds": [
+        "44402e8b-5680-4557-9f01-7048d3793615",
+        "49570193-65e2-49d2-8426-c7cf0fc86c8a",
+        "ff3a3cb4-1b75-457b-927b-464601a89e4d"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "dcdb5cb7-4ebf-5b55-a867-f1f86b164c8c",
@@ -467,15 +798,30 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 2,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-steak-house"
+      ],
+      "supportingEntityIds": [
+        "43cf8a8b-91e2-4ddc-ae3c-615da82cbd8d",
+        "85cf82de-a73d-4acf-ae85-9b9f28405b4a"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "de848fba-6b54-551a-9fcb-e3b3c25b1d3b",
@@ -487,15 +833,32 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 4,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-thai"
+      ],
+      "supportingEntityIds": [
+        "0848a424-45d9-4f16-af61-8a268ecd92f9",
+        "66a567f5-b381-43fe-b4c3-264d63c08029",
+        "87982d99-60f7-4cea-ae2c-605f7d602d53",
+        "925ed8a2-1358-4205-9a24-c018c43eff3a"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8",
@@ -508,14 +871,27 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-vegan",
+        "osm-cuisine-vegetarian"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "8187ab7f-f040-5594-9a14-b01871086788",
@@ -528,14 +904,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-tea"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "92167dc5-bf32-5014-9d07-46f7c4f902dd",
@@ -547,15 +935,31 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 3,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-coffee-shop"
+      ],
+      "supportingEntityIds": [
+        "ae872fb2-216e-4934-b25c-17b82d1fc99a",
+        "b5247d05-eef8-464c-a8f7-d56098abb30a",
+        "f6c76712-253c-4ef0-a7db-149175eb2b20"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "9bd7d2c9-205f-5bc3-8321-ab9c63a14294",
@@ -568,14 +972,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-bubble-tea"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "9d3578bc-0108-5a05-90f0-ef1b717013c4",
@@ -588,14 +1004,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-dessert"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "b4176896-4ce9-5815-a445-30a1bd3272e9",
@@ -607,15 +1035,32 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 4,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-shop-bakery"
+      ],
+      "supportingEntityIds": [
+        "4abafe90-c601-4ae6-8ae4-3bd9927d4c79",
+        "58a013ce-84bd-4f29-adc0-441ae6531660",
+        "a599e9f1-f378-4deb-acc3-9ef3834db82c",
+        "d04f44ef-e7b4-4af1-be28-30724c2c5c38"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "dc6dafd8-bb60-5989-a4f4-2b2ba86329ef",
@@ -627,15 +1072,31 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 3,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-amenity-ice-cream-desserts"
+      ],
+      "supportingEntityIds": [
+        "0064924b-5b8d-4727-a0f4-c4addf642824",
+        "16a61ec3-a721-4fa9-9694-87579dfb4a21",
+        "49fce935-e953-4f14-bbf7-e83c33239a85"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "3 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "fa1b8735-3c31-5c2c-9762-036a4c74fa06",
@@ -648,14 +1109,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-cuisine-brunch"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "14257b1c-8bed-5909-97c1-8f2fc6936135",
@@ -667,18 +1140,39 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "canonicalPublishedCount": 10,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
       "mappingRuleIds": [
         "osm-amenity-bar-bars",
         "osm-amenity-pub-bars"
       ],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
+      "supportingEntityIds": [
+        "0a0f551c-93b0-4e6e-a146-fa81e9b78788",
+        "11d2b9b7-2377-454f-a281-458d45b41634",
+        "1953b8cb-51a7-49b0-b2fe-da7f4f9313bd",
+        "29b6c712-b6b5-4172-b54d-04ad3e28db38",
+        "2c31f9a0-4866-4ca6-bfac-fff25c178833",
+        "5715a666-6600-43ab-9a0b-375d9bc363ed",
+        "705153c2-5432-401f-8847-350ffed2be75",
+        "9d63f521-3462-46f5-8798-a3b9d8ef9559",
+        "b08658c1-92bf-42f1-857d-8c5ee43d5ef8",
+        "b4bf0aab-fed1-4e49-ab67-b876be6b7781"
+      ],
+      "status": "COMPLETE",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "10 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "1a48f9c0-9247-554e-9fcf-07ea8707c8cd",
@@ -691,14 +1185,26 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-craft-brewery"
+      ],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "20c64458-9996-56ad-a8a6-0cad74c82506",
@@ -710,15 +1216,30 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 2,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-amenity-nightclub"
+      ],
+      "supportingEntityIds": [
+        "d7849f7d-483e-49c3-a8b7-5bbe6ab4e0d5",
+        "e3c6c3fe-4af2-43e8-979f-c6091b17106d"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "687fb02d-72a2-55a7-af0f-aea3b992aff3",
@@ -731,14 +1252,18 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
       "mappingRuleIds": [],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "d5056f41-1b30-5f6f-8eb0-d65cac76f86b",
@@ -751,14 +1276,18 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
       "mappingRuleIds": [],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "231bbce4-ee4e-552e-a34c-d5a08f0debb1",
@@ -771,14 +1300,18 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
       "mappingRuleIds": [],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "445e443a-1dcc-5479-8da2-fddaa1032c50",
@@ -790,15 +1323,32 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "canonicalPublishedCount": 4,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-shop-mall"
+      ],
+      "supportingEntityIds": [
+        "2eff2d1d-b623-41b3-a05f-cf661add257e",
+        "55c04b6c-e7d9-4159-a745-6dee871946c7",
+        "b366773a-953f-4f9d-9bcf-cbbd3bb47423",
+        "d47cbd52-caa3-4732-9648-8e5b9d605122"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "4 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "4b839f2a-5da8-5aff-b66b-2c34e9715b26",
@@ -810,17 +1360,38 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [
-        "osm-tourism-attraction-attractions"
+      "canonicalPublishedCount": 7,
+      "sourceKeys": [
+        "OSM_OVERPASS"
       ],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-tourism-aquarium-attractions",
+        "osm-tourism-attraction-attractions",
+        "osm-tourism-theme-park-attractions",
+        "osm-tourism-zoo-attractions"
+      ],
+      "supportingEntityIds": [
+        "09922c67-4f66-4b44-847e-db26feac3451",
+        "27aa52e2-d9c5-429a-80a8-e8c26798139b",
+        "5bcf264f-1142-4975-be4e-ea1c1c5e93c0",
+        "8407cb71-c097-4746-b010-9384a58a30c2",
+        "840c22cb-77b2-4a0f-b1f8-77044c555c5a",
+        "8666acb4-799d-4218-8d55-647440e0d242",
+        "b9bb71e5-c2b9-4ec0-bf12-4262ddad87e3"
+      ],
+      "status": "COMPLETE",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "7 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "6432bde9-17e2-5a04-92b3-9bf6f4589cf2",
@@ -832,20 +1403,56 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "canonicalPublishedCount": 24,
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
       "mappingRuleIds": [
+        "osm-amenity-arts-centre-culture",
         "osm-amenity-cinema-culture",
         "osm-amenity-theatre-culture",
         "osm-tourism-gallery-culture",
         "osm-tourism-museum-culture"
       ],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
+      "supportingEntityIds": [
+        "1816820d-36ca-4daa-ab5d-2a4725da79af",
+        "1c22824e-28ca-432a-8062-5c401238cfaa",
+        "1e9d3dc1-e54c-4600-97a6-163ccfe34cd2",
+        "279682fe-3f3d-491b-86a2-a7be9cc2e6d9",
+        "309f8cde-d141-444e-aa85-fb375abf21f6",
+        "44935570-5307-4c78-bc5f-57b6b2813249",
+        "4c53abdf-5747-41f8-aa83-2b5318e00f29",
+        "4f716335-268c-4940-afba-9f9f5502cd67",
+        "52b2b9b4-0f24-4080-884f-814e05bbc0ee",
+        "5af41afd-db91-40a2-8215-cf36c9edaae1",
+        "5d00fa06-255b-4381-ab3e-887ab335f970",
+        "6925494f-229f-411b-bd42-be17f7731195",
+        "7875fd4c-9980-4a3d-adc0-2c32c9006d3f",
+        "8b0a1c96-ff36-4a65-ac0e-da5dc5c824c6",
+        "8dbf61a1-730d-4e15-a193-7b8c3d2be54c",
+        "99650aee-4ee1-4366-8419-695e5ced768f",
+        "a3517031-1d71-4b17-b08e-badc9601bd83",
+        "bde9c013-8772-40de-9f88-f0f27dc06cd0",
+        "c9b5eef5-e67f-495f-94f1-6a2661b0c9e4",
+        "ddbe4cb5-0268-47a4-8483-30a13ba864fa",
+        "de5b7cc9-b1c2-4f6d-bb80-6356acdb31e8",
+        "e543e2bf-fccf-4b34-bf97-0e19a8165f27",
+        "e689a531-f6db-4b3d-bf66-e0e9fd6918ca",
+        "f9c37f0e-da28-4314-8dcf-f4e1f2df2026"
+      ],
+      "status": "COMPLETE",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "24 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "90f47852-7a14-50d0-a8d0-a9440b62fee0",
@@ -858,14 +1465,18 @@
       "targetMin": 5,
       "targetMax": 10,
       "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "sourceKeys": [
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc"
+      ],
       "mappingRuleIds": [],
       "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "0 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "ab9ee0ec-2e7e-5f14-b2bb-15c66aaf979f",
@@ -877,18 +1488,98 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
+      "canonicalPublishedCount": 64,
+      "sourceKeys": [
+        "JONKOPING_MUNICIPAL_UTEGYM",
+        "OSM_OVERPASS"
+      ],
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e",
+        "827ea9be-19fc-4c55-bfe1-14c575d87055"
+      ],
       "mappingRuleIds": [
         "jonkoping-layer-41-utegym-sports",
-        "osm-leisure-sports-centre-sports"
+        "osm-leisure-fitness-centre-sports",
+        "osm-leisure-sports-centre-sports",
+        "osm-leisure-stadium-sports",
+        "osm-leisure-swimming-pool-sports"
       ],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
+      "supportingEntityIds": [
+        "045efd6b-25d5-46a8-82f5-1e3eabef5a88",
+        "04b6902a-1447-461d-bd79-a6adef0e85e5",
+        "0a92bb0b-5cd8-43c3-a341-cf9cb46c66eb",
+        "0e8cf956-379c-4b0c-88e8-b1e8a625a2ab",
+        "151929f2-9393-4cac-8502-5a84aee8f481",
+        "168b5b04-bd53-4c8e-af0d-86a3a76e58b7",
+        "1a47ca9d-6202-4afe-98ed-582e3e8078f1",
+        "2bf0cba6-77b8-4e41-9ac5-5e62e7c6143d",
+        "2f403c2e-5de9-4995-8225-eb27f070592e",
+        "314b1a17-52ff-46c6-ab85-abe8aab5922a",
+        "35307a3c-17c5-42cc-aadf-3fca6d1ca6f2",
+        "3aeb3a68-f4f1-4bcd-b60a-395511ac1362",
+        "3e6c68f7-a29a-4596-8b36-0bf2437a8635",
+        "3fc17658-218b-4aa5-9b82-a31d89c72976",
+        "47929c82-bf5e-4da6-aab2-e3d9ef2d47e0",
+        "4f3b975b-c2e6-4ef5-9b69-ba3db77ddb4b",
+        "4f8e06b4-01b2-41d7-a629-a6df22624d37",
+        "503bbaa9-77d2-4b31-b294-8d7702e2e450",
+        "535b94df-a724-4012-974c-04a58b4398b2",
+        "55fb8fdd-a8d4-4e26-bb15-50e42f48e83e",
+        "587ed48b-3bb0-488b-8461-a693accc5122",
+        "59ccdcd2-9c44-4f13-b9a5-b555c4254541",
+        "5a756394-deb6-41dd-be57-7042c953fd27",
+        "5b58d0fb-a63f-47e6-8b69-0c2a5f2363e2",
+        "5c5f3807-7358-4f91-8ad1-eaa42504819d",
+        "60ba29cd-a95f-4914-ac9e-8cb950f41841",
+        "6344c15d-f9fb-4ba2-885e-e08659e8c452",
+        "67475075-cf09-4666-a494-cc75018b45b6",
+        "678e6bde-4321-4639-8eee-1ebc70ce3f68",
+        "67e58e51-7719-4f80-a3df-b867fb6d3864",
+        "6a67d22b-2a42-4f20-90ef-5664030ba5b9",
+        "717a1bed-49d1-4361-a7b9-37ca5a67920a",
+        "72123245-836e-4f5a-bad5-d375c7477ef3",
+        "74b205e2-52af-478c-b95a-6b8af4f14f61",
+        "7aa7d8f8-9014-4f4f-bcfe-c9db1e190a49",
+        "80ee65ca-be6b-468f-b704-8ca9c5926837",
+        "810076cc-5383-4990-846a-3f374ebe10c1",
+        "89265c41-573c-4975-a820-98135cb33a84",
+        "8aae5246-44f6-420f-9e8c-c74d529a1d31",
+        "8b4aca7b-ae5f-4977-a2a4-310f60b2e36b",
+        "8fe00eb4-c314-4395-9274-9222b533c589",
+        "9ec272e3-fe58-4744-ba07-ac9d00eab1e4",
+        "a2d481cf-d49e-4f53-bb78-197166034eaa",
+        "a4eb1e4d-7d72-45a4-99e2-83b3b0737494",
+        "a65ebeb8-7659-4f03-9cd7-86bc9d873575",
+        "b8e71c42-f5c1-4502-87dc-7d0977dc5bc8",
+        "bac27153-35de-4ec1-9a9e-317b055875db",
+        "bd097061-4d3b-4a9f-b1f7-06b60868b40b",
+        "bda6cfa5-0829-4e90-841d-91235699da50",
+        "cf021821-d8db-45b9-bdc5-e36f9a029a6c",
+        "d2f9828f-d88f-4dcf-a9a7-13e2f04ff517",
+        "d5aff7df-3065-497f-a527-3193863540df",
+        "dccc2ab5-32f0-474e-8ff8-4ef401de06eb",
+        "dcec46c2-e337-41ae-9436-71cc2278f3ff",
+        "dd6e3e80-b68b-4e48-a821-854450ba5a3e",
+        "ded30529-e89a-4912-ad6d-1493ac3723ba",
+        "e1b51384-f108-4da6-815c-d065c74c90e5",
+        "e2531d9d-8e93-48cf-8268-038d2b3f500a",
+        "e3619977-3f2a-4174-93f2-57ea7d4ea41c",
+        "ebc11a62-4fcc-42f6-9f49-728e32c0639c",
+        "f123f7f1-15bd-43b3-8555-442440c9a97c",
+        "f2354909-639e-4ce6-be7a-546bb86e260e",
+        "faf61318-d915-48d6-8fea-5c347f2a6735",
+        "fd6f0e23-ef6f-4ac7-9bcc-7b81fe07b4ae"
+      ],
+      "status": "COMPLETE",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "64 legitimate published entities meet the coverage minimum after approved full-scope acquisition. JONKOPING_MUNICIPAL_UTEGYM run 827ea9be-19fc-4c55-bfe1-14c575d87055: fetched=28, valid=28, invalid=0; OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "e0aa09ec-717d-5e2e-8552-4dd33ba5b5fe",
@@ -900,18 +1591,33 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [
-        "osm-leisure-bowling-alley-games",
-        "osm-leisure-escape-game-games"
+      "canonicalPublishedCount": 2,
+      "sourceKeys": [
+        "OSM_OVERPASS"
       ],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
-      "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-leisure-amusement-arcade-games",
+        "osm-leisure-bowling-alley-games",
+        "osm-leisure-escape-game-games",
+        "osm-leisure-miniature-golf-games"
+      ],
+      "supportingEntityIds": [
+        "5b6838ff-dbaa-493d-b23d-c958093d27b4",
+        "9496d2f4-e506-4f15-b0ca-84d2e85c828f"
+      ],
+      "status": "SUPPLY_CONSTRAINED",
+      "stopReason": "SOURCES_EXHAUSTED",
+      "notes": "2 legitimate published entities remained after approved full-scope acquisition; existing bounded source classes were exhausted without stretching taxonomy truth. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "e1a9cc86-214f-5967-b0a5-6925694b01d5",
@@ -923,15 +1629,25 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [],
-      "supportingEntityIds": [],
+      "canonicalPublishedCount": 3,
+      "sourceKeys": [
+        "JONKOPING_EVENT_CALENDAR"
+      ],
+      "ingestionRunIds": [
+        "7f3cca4e-6108-4b58-9f01-24a39d93c3d8"
+      ],
+      "mappingRuleIds": [
+        "jonkoping-event-calendar-occurrence-events"
+      ],
+      "supportingEntityIds": [
+        "2251b704-d6ff-4306-95ed-7402c0f8ce29",
+        "6cea63b7-9f56-4bb5-87bc-bed1218b5228",
+        "cc2d21c8-0e66-416c-98aa-9f68b7e899c3"
+      ],
       "status": "NEEDS_VALIDATION",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "3 legitimate published entities remain searchable, but the bounded source run completed PARTIAL because unsupported or invalid source observations were skipped. JONKOPING_EVENT_CALENDAR run 7f3cca4e-6108-4b58-9f01-24a39d93c3d8: fetched=3, valid=3, invalid=1.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     },
     {
       "taxonomyLeafId": "f5978b3b-3c95-52fe-8c9c-bf5b6fae9d77",
@@ -943,17 +1659,125 @@
       "boundaryVersion": "lm-current-2026-08-14",
       "targetMin": 5,
       "targetMax": 10,
-      "canonicalPublishedCount": 0,
-      "sourceKeys": [],
-      "ingestionRunIds": [],
-      "mappingRuleIds": [
-        "osm-leisure-park-nature-public-places"
+      "canonicalPublishedCount": 94,
+      "sourceKeys": [
+        "OSM_OVERPASS"
       ],
-      "supportingEntityIds": [],
-      "status": "NEEDS_VALIDATION",
+      "ingestionRunIds": [
+        "02df3e7a-c0af-4f58-90af-2802e1b61ba4",
+        "073c399c-1d49-4215-b1f0-b349004c98fe",
+        "0897b4e5-3469-41b9-a0f3-78480d736ae1",
+        "107fde8f-3bba-4abf-99c2-d6384b10edcc",
+        "26da16fe-b18e-44cb-990e-dbf3feb14ef7",
+        "2d352338-454c-4eef-a4e5-515cde8f1c32",
+        "4e446d38-0385-46c0-901e-3858270ff75e"
+      ],
+      "mappingRuleIds": [
+        "osm-leisure-nature-reserve",
+        "osm-leisure-park-nature-public-places",
+        "osm-tourism-picnic-site-nature",
+        "osm-tourism-viewpoint-nature"
+      ],
+      "supportingEntityIds": [
+        "02c66e02-95bd-4bf5-94bb-71719fe8b337",
+        "07754db0-9a1e-45bf-bef3-72913224c276",
+        "08f00d26-c360-4dd8-bedd-04c339820ad3",
+        "0da88647-5735-40ce-8154-e78323db7f59",
+        "0e7a3f70-e47f-48bc-be2a-ec6672302693",
+        "0ef096bf-7221-4d50-b38e-4f87de7cd948",
+        "0f8b30be-9a3f-4278-a21c-69c13a172848",
+        "11c5824b-96a5-4696-9941-ef1a443d5fde",
+        "13d0ca81-9d6a-4a35-8cc2-f4621e2b8962",
+        "147bed25-9163-45dd-8294-e390c55b2694",
+        "1ba7bf03-af43-4ec0-b9d1-644d8bfcfd94",
+        "1bd6af95-e81f-4fab-8116-126d13289074",
+        "1d18c4a7-e187-4e59-a1dd-12883a3276df",
+        "1fed498c-1b7c-4992-aab2-569a943e5bdb",
+        "2306bccd-fc6b-43cb-96d7-701f60e3a647",
+        "245a1e2f-8dc9-46a7-b35f-0ca86def9613",
+        "24c09f45-1824-4437-baf6-c5a070a0e064",
+        "271ad109-1852-414a-a31b-b9e17760a625",
+        "2a1fa438-d308-4f4c-aa6f-28003717c46f",
+        "2e5a6858-7233-4cf5-8522-173e34ff8931",
+        "2f16ee1d-a343-4049-9926-f000c7a8b0c3",
+        "2f5680e0-3c98-4e28-bfc4-0a6cf4738573",
+        "35a6faa0-1448-476b-91d4-bc7473f582ce",
+        "3725fcac-2196-4ac2-a2b3-8ebc76d7e3e5",
+        "37cd5064-b0a5-46da-8d60-38507cf29141",
+        "397eb583-98ca-4a01-9229-7189bbae80bd",
+        "40df486d-e02a-470d-a22e-da9895faaf3a",
+        "49df5051-64d9-4fd4-b3cb-2470a86bd685",
+        "4afdd23d-b0e2-454f-9965-7e3ae78db52e",
+        "4e649099-4252-4f8b-a381-979044c884d8",
+        "4ece0d85-7be5-4ad8-8f87-bb6e21980b54",
+        "539fd5da-85e9-414a-8a53-a80fde313dce",
+        "55970eb5-d131-46bd-9187-9254544c3823",
+        "57f5cec2-920e-4d4b-8472-a7c686fd1d7d",
+        "5c0a90bf-af4b-4ee5-9ea9-73f4faa93b6f",
+        "5c70a31c-2aa7-4427-af4f-27996d379d13",
+        "622c778e-11af-4fa8-8731-7b3caac70380",
+        "63e3bd08-7452-44cc-8d46-0660cdb61dbd",
+        "6782d339-b387-436b-8d5c-767bef3b31a2",
+        "67b81fa0-ccf9-4201-8d00-6231a615cda9",
+        "6a4424cb-9800-46b1-b252-aedc599e01f7",
+        "6af59d7b-e4eb-426f-940e-e38cac310d61",
+        "73d62aad-a976-4c57-baab-9a4f7aacce9e",
+        "759b7de5-faaf-4965-a194-7590eb3e464e",
+        "764618a3-a6e8-4c25-a304-1693ccf25d80",
+        "76f2be2f-0b87-4153-aac5-c52ec1bccf61",
+        "784f71a9-53ab-4e6a-9a2d-ea1c01da809d",
+        "7c1a70e3-d313-4e8d-8571-ad622ce1e9d2",
+        "80e3e763-fc67-41a0-8866-92550b5515e7",
+        "85a0a6c4-124d-4adf-8cc4-6ed184f758a2",
+        "89e1894a-0864-4e8a-bff4-b6ee6c45aa19",
+        "8d6957f7-bd2b-485f-8305-b83914c5c0be",
+        "932ff764-7a97-4a64-9dfd-84cf02220e0f",
+        "934df8c9-6e4a-4202-8144-b6bcce0180a9",
+        "95f331ca-15cf-43d7-96c2-f378372e16d3",
+        "96d32c45-c216-4eed-87e8-a102b40d4c4f",
+        "9cb9dbb6-aeb4-4ad5-b682-43de25e237b4",
+        "9f28adc2-5884-47fb-b78d-82e4952335de",
+        "9f323d3b-0635-49a5-8f98-c5c3a5e73c45",
+        "a6d1a083-f89f-49f5-bfb5-5dc1e1076a55",
+        "a81d014b-4a2a-4bd7-8dbc-a7badaa6474b",
+        "ab57735c-8125-459b-acf7-4ddc002aa0a4",
+        "ad5032c9-9957-4e32-825d-2ab53338985c",
+        "ad7415f4-102b-4ca2-94a7-513789a0ca93",
+        "af499320-24de-47fc-a143-7c7f0bbc2b20",
+        "b22f7301-3cde-474e-980f-b6bac95b426c",
+        "b35a633f-2e51-42ce-a586-0fb13068291c",
+        "b9cd19b8-2046-4203-9552-7e09c518920c",
+        "bbe23b67-3b23-4a78-b860-a446fef0b3b2",
+        "beab2b0e-3dc1-4bdb-8d48-1014629da5db",
+        "c0297e64-06d2-4a53-8fc8-98c92bd3842c",
+        "c6759592-4d09-4375-b9b3-56e494e16422",
+        "c93bb59f-ff2f-46cf-9a36-be18f833979e",
+        "c9956a5e-be84-4cf8-ad07-b62d9cd18d00",
+        "cbfcc3e3-ae4c-46dc-838b-f6e7dab8d703",
+        "cf8a4db0-2b3e-481f-9c7c-31ca614bcf81",
+        "d7c0a1c8-f0fd-475d-b1f7-4ac07e7d242d",
+        "d9886bb1-19f5-442a-ac30-0bc6a446e174",
+        "dfa678b1-2e2e-4211-b81b-eca08d14a5fd",
+        "e0c93dc3-ef41-4a3a-abdd-f05e738eedbd",
+        "e28fae27-183b-4356-9a24-d04193986845",
+        "e45e0f1c-7924-4762-9f00-ef7c61201782",
+        "e6141308-0a3f-4666-8ff6-87c6ae9dccb7",
+        "e6c8f32c-6e7c-4da3-bfa1-17761be58193",
+        "eaf631ba-7cdc-43b5-8dbb-15ac7eba59d7",
+        "ebaecdb7-f8a2-4243-9379-38e3916f1bc9",
+        "ecbda25f-ca9c-4247-950b-3da5ab464262",
+        "f04d9e07-5420-4f6c-8178-5d0347b79ff4",
+        "f2da67be-52ed-4ed7-842b-5f4ef343ba10",
+        "f82fdc1a-5d20-45be-a62b-4676778098a5",
+        "f86894f6-5b9c-4680-b7bf-c9eefbc564ea",
+        "f87902df-5267-4108-b102-25a339ee26fc",
+        "fb29a819-09d1-4034-9699-eead9040bb65",
+        "fdabfa57-917e-4d1b-a509-d8a6bded6b44"
+      ],
+      "status": "COMPLETE",
       "stopReason": null,
-      "notes": "Insufficient reviewed source/run evidence; further validation required.",
-      "generatedAt": "2026-08-14T11:23:13.642Z"
+      "notes": "94 legitimate published entities meet the coverage minimum after approved full-scope acquisition. OSM_OVERPASS run 107fde8f-3bba-4abf-99c2-d6384b10edcc: fetched=379, valid=379, invalid=0.",
+      "generatedAt": "2026-08-15T14:02:51.037Z"
     }
   ]
 }

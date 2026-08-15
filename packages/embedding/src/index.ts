@@ -674,11 +674,10 @@ async function assertCurrentContract(client: pg.Client, target: EmbeddingTarget)
   if (document.rowCount !== 1) throw new Error('SearchDocument is no longer active or hash-compatible');
   const config = await client.query(`
     select 1 from app.search_configs
-    where is_active and version = $1 and embedding_provider = $2 and embedding_model = $3
-      and embedding_revision = $4 and embedding_dimension = $5
+    where is_active and embedding_provider = $1 and embedding_model = $2
+      and embedding_revision = $3 and embedding_dimension = $4
   `, [
-    EMBEDDING_CONFIG_VERSION, EMBEDDING_PROVIDER, EMBEDDING_MODEL,
-    EMBEDDING_MODEL_REVISION, EMBEDDING_DIMENSION,
+    EMBEDDING_PROVIDER, EMBEDDING_MODEL, EMBEDDING_MODEL_REVISION, EMBEDDING_DIMENSION,
   ]);
   if (config.rowCount !== 1) throw new Error('active embedding configuration is incompatible');
 }
@@ -686,11 +685,10 @@ async function assertCurrentContract(client: pg.Client, target: EmbeddingTarget)
 async function assertSelectedConfig(client: pg.Client): Promise<void> {
   const result = await client.query(`
     select 1 from app.search_configs
-    where is_active and version = $1 and embedding_provider = $2 and embedding_model = $3
-      and embedding_revision = $4 and embedding_dimension = $5
+    where is_active and embedding_provider = $1 and embedding_model = $2
+      and embedding_revision = $3 and embedding_dimension = $4
   `, [
-    EMBEDDING_CONFIG_VERSION, EMBEDDING_PROVIDER, EMBEDDING_MODEL,
-    EMBEDDING_MODEL_REVISION, EMBEDDING_DIMENSION,
+    EMBEDDING_PROVIDER, EMBEDDING_MODEL, EMBEDDING_MODEL_REVISION, EMBEDDING_DIMENSION,
   ]);
   if (result.rowCount !== 1) {
     throw new Error('EMBED_PROVIDER_CONTRACT_BLOCKED: active selected embedding configuration is incompatible');

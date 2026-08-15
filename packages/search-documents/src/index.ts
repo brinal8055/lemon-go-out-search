@@ -64,6 +64,21 @@ export type SearchDocumentRebuildReport = {
   contentChanges: number;
 };
 
+export type PlacePublicationEvidence = {
+  entityId: string;
+  sourceRecordId: string;
+  sourceRecordVersionId: string;
+  sourceRecordParseAttemptId: string;
+};
+
+export type PlacePublicationProjectionReport = {
+  entityId: string;
+  searchDocumentId: string;
+  contentHash: string;
+  documentOutcome: 'created' | 'reactivated' | 'unchanged';
+  embeddingsStaled: number;
+};
+
 type EntityRow = {
   id: string;
   entity_type: 'PLACE' | 'EVENT';
@@ -254,6 +269,60 @@ export async function rebuildSearchDocuments(
       select count(*) from app.search_documents where is_active
     `)).rows[0]?.count ?? 0);
     return report;
+  } finally {
+    await client.end();
+  }
+}
+
+export async function publishPlaceWithSearchDocument(
+  connectionString: string,
+  evidence: PlacePublicationEvidence,
+): Promise<PlacePublicationProjectionReport> {
+  const client = new Client({ connectionString });
+  await client.connect();
+  try {
+    await client.query('set role lemon_ingestion');
+    await client.query('begin');
+    try {
+      await client.query('set transaction isolation level repeatable read');
+      const entity = await loadEntity(client, evidence.entityId);
+      if (entity.entity_type !== 'PLACE'
+        || !['DRAFT', 'PUBLISHED'].includes(entity.publication_status)
+        || entity.merged_into_id !== null
+        || entity.boundary_active !== true
+        || !entity.subtype_eligible) {
+        throw new Error(`Place ${evidence.entityId} is not an eligible publication candidate`);
+      }
+      const document = buildSearchDocument(await loadTruth(client, entity));
+      const outcome = await activateDocument(client, document, evidence.entityId);
+      const active = await client.query<{ id: string }>(`
+        select id from app.search_documents
+        where entity_id = $1 and template_version = $2 and content_hash = $3 and is_active
+      `, [evidence.entityId, document.templateVersion, document.contentHash]);
+      if (active.rowCount !== 1) throw new Error('publication SearchDocument was not activated uniquely');
+      await client.query(
+        'select app.publish_place_from_current_evidence($1, $2, $3, $4, $5, $6)',
+        [
+          evidence.entityId,
+          evidence.sourceRecordId,
+          evidence.sourceRecordVersionId,
+          evidence.sourceRecordParseAttemptId,
+          document.templateVersion,
+          document.contentHash,
+        ],
+      );
+      await client.query('commit');
+      return {
+        entityId: evidence.entityId,
+        searchDocumentId: active.rows[0].id,
+        contentHash: document.contentHash,
+        documentOutcome: outcome.kind,
+        embeddingsStaled: outcome.embeddingsStaled,
+      };
+    } catch (error) {
+      await client.query('rollback');
+      throw error;
+    }
   } finally {
     await client.end();
   }

@@ -24,6 +24,282 @@
       "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
     },
     {
+      "id": "osm-cuisine-american",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "american",
+      "target_slug": "american", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-mexican",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "mexican",
+      "target_slug": "mexican", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-italian",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "italian",
+      "target_slug": "italian", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-japanese",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "japanese",
+      "target_slug": "japanese", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-chinese",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "chinese",
+      "target_slug": "chinese", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-thai",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "thai",
+      "target_slug": "thai", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-greek",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "greek",
+      "target_slug": "greek", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-african",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "african",
+      "target_slug": "african", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-seafood",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "seafood",
+      "target_slug": "seafood", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-steak-house",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "steak_house",
+      "target_slug": "steakhouse", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-vegan",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "vegan",
+      "target_slug": "vegan-vegetarian", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-vegetarian",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "vegetarian",
+      "target_slug": "vegan-vegetarian", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-cuban",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "cuban",
+      "target_slug": "cuban", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-french",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "french",
+      "target_slug": "french", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-spanish",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "spanish",
+      "target_slug": "spanish", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-mediterranean",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "mediterranean",
+      "target_slug": "mediterranean", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-burger",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "burger",
+      "target_slug": "burgers", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-pizza",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "pizza",
+      "target_slug": "pizza", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-tacos",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "tacos",
+      "target_slug": "tacos", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-sushi",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "sushi",
+      "target_slug": "sushi", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-poke",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "poke",
+      "target_slug": "poke", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-chicken",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "chicken",
+      "target_slug": "chicken", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-sandwich",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "sandwich",
+      "target_slug": "sandwiches", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-bowl",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "bowl",
+      "target_slug": "bowls", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-coffee-shop",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "coffee_shop",
+      "target_slug": "coffee-shop", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-tea",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "tea",
+      "target_slug": "tea-house", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-bubble-tea",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "bubble_tea",
+      "target_slug": "bubble-tea", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-dessert",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "dessert",
+      "target_slug": "dessert-cafe", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-shop-bakery",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "shop", "source_value": "bakery",
+      "target_slug": "bakeries", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-amenity-ice-cream-desserts",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "amenity", "source_value": "ice_cream",
+      "target_slug": "desserts", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-cuisine-brunch",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "cuisine", "source_value": "brunch",
+      "target_slug": "brunch", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-craft-brewery",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "craft", "source_value": "brewery",
+      "target_slug": "breweries", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-amenity-nightclub",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "amenity", "source_value": "nightclub",
+      "target_slug": "nightlife", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-leisure-fitness-centre-sports",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "leisure", "source_value": "fitness_centre",
+      "target_slug": "sports", "method": "DETERMINISTIC_MAP",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-leisure-stadium-sports",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "leisure", "source_value": "stadium",
+      "target_slug": "sports", "method": "DETERMINISTIC_MAP",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-leisure-swimming-pool-sports",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "leisure", "source_value": "swimming_pool",
+      "target_slug": "sports", "method": "DETERMINISTIC_MAP",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-leisure-amusement-arcade-games",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "leisure", "source_value": "amusement_arcade",
+      "target_slug": "games", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-leisure-miniature-golf-games",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "leisure", "source_value": "miniature_golf",
+      "target_slug": "games", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-amenity-arts-centre-culture",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "amenity", "source_value": "arts_centre",
+      "target_slug": "culture", "method": "DETERMINISTIC_MAP",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-tourism-zoo-attractions",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "tourism", "source_value": "zoo",
+      "target_slug": "attractions", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-tourism-aquarium-attractions",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "tourism", "source_value": "aquarium",
+      "target_slug": "attractions", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-tourism-theme-park-attractions",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "tourism", "source_value": "theme_park",
+      "target_slug": "attractions", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-tourism-viewpoint-nature",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "tourism", "source_value": "viewpoint",
+      "target_slug": "nature-and-public-places", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-tourism-picnic-site-nature",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "tourism", "source_value": "picnic_site",
+      "target_slug": "nature-and-public-places", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-leisure-nature-reserve",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "leisure", "source_value": "nature_reserve",
+      "target_slug": "nature-and-public-places", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
+      "id": "osm-shop-mall",
+      "source_key": "OSM_OVERPASS", "source_field": "sourceCategories", "source_tag": "shop", "source_value": "mall",
+      "target_slug": "malls-and-shopping-centers", "method": "SOURCE_FACT",
+      "evidence_requirements": ["current_version", "current_successful_parse_attempt", "exact_source_category", "resolved_canonical_entity"]
+    },
+    {
       "id": "osm-amenity-cafe-cafes",
       "source_key": "OSM_OVERPASS",
       "source_field": "sourceCategories",
