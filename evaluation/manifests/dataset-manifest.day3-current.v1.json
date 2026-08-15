@@ -1,0 +1,329 @@
+{
+  "manifest_version": "dataset-manifest.day3-current.v1",
+  "status": "FROZEN_FOR_HUMAN_REVIEW",
+  "purpose": "EVAL_03_DEV_JUDGMENT_PREPARATION_ONLY",
+  "canonical_dataset_version": "day3-current.v1-1af323658af3",
+  "source_record_ingestion_runs": [
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "0aaf94d8-b1b7-464d-b5fb-2c1880c45b0a"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "353df5ca-3f5d-4021-b4ea-f3bbd5d6b620"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "4aba6bbb-6b47-4b74-962b-6abcfe24f09f"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "606c2679-a81b-428f-88a9-b830d819a6cd"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "62582c1b-e3e2-495e-8e47-e58a37ad9bf3"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "65854c94-8520-44c9-bb0d-78195c9b0d9a"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "6998f90a-b3b9-4145-9da4-6a9bd29f53ac"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "79b5f425-6483-40f6-b7a0-e81086f1b5ef"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "852bbad7-22d6-4131-8660-5a2be0374fbb"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "9260e9f2-1b20-412c-92ff-0a6fd193a6df"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "b740fa1e-2e2c-48a7-9ef1-f8654e4058ef"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "c1b483d8-cd67-4654-a19b-9ab27c0fb65d"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "ea729d7d-d37e-4d04-b011-7e5dc60f3be3"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "ecb64aff-a656-4f84-878c-341aa7247205"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "f3feaa17-1c15-4205-9273-8f27a390eab1"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "f552b79e-755d-4c6e-a3e0-a179454b35d5"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "f9ea17d6-546b-416a-a41a-0459e2bad815"
+    },
+    {
+      "sourceKey": "JONKOPING_EVENT_CALENDAR",
+      "captureRunId": "fc040bb1-1252-4246-8d77-d54804639338"
+    },
+    {
+      "sourceKey": "JONKOPING_MUNICIPAL_UTEGYM",
+      "captureRunId": "0672d285-8d6e-4806-9eff-5baf4447ffb5"
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "captureRunId": "5e225d31-019c-41e2-8365-07f61124b62c"
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "captureRunId": "e2dadc48-a428-4825-96b8-70bc9fabed48"
+    },
+    {
+      "sourceKey": "OSM_OVERPASS",
+      "captureRunId": "ff024bac-22c8-4e47-b5bd-cd9d4e8ccf54"
+    },
+    {
+      "sourceKey": "src03b-place-2d473b76-4bd4-4edc-9412-17fff789abc6",
+      "captureRunId": "04b29b95-69a6-4c3d-8622-b0b67a10a794"
+    },
+    {
+      "sourceKey": "src03b-place-40df9c32-b1d6-4a21-bc7a-b3b7d6bb73b4",
+      "captureRunId": "00e43270-38d4-436b-87eb-acde3d5d2378"
+    }
+  ],
+  "boundary": {
+    "id": "0a39b199-4cd5-5358-85de-2c1a5f91a347",
+    "version": "lm-current-2026-08-14",
+    "checksum": "257a277667cde164bcb70eae16ca6985578fe34666df92ff289af519a262df1d"
+  },
+  "taxonomy": {
+    "version": "active-going-out.v1",
+    "checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+    "nodeCount": 52
+  },
+  "normalization_version": "norm-v1",
+  "search_documents": {
+    "template_version": "lexical-embedding-template-v1",
+    "document_version": "search-document-v1",
+    "hashes": [
+      "012b25d8a68db278d75a528e667cb51ebf6b146f64614976c6ce49e29ae7b7d6",
+      "039f154c737255fbe260928c5aad40cfe50c9d69a3091e758c482da32bdcf44f",
+      "48d2f551c56de4627575c96bdb4840ce679780fcf947644b304f9fd2cade51df",
+      "6347d92c5e05a7eb1fbcafac6030ddd7ae5bee9f0a57eb259530633ee381268b",
+      "8d279d48d70a86cd1f3730f4824207a86378dbbef0220f638e0114834d0395db",
+      "a62735db50caee08f6c042432bb4d56df5d13ca4f4201526d7f463ced78782ac",
+      "aae8fb153ed1ad8597d359223ae9250e89df1cc2c0d38d65970925ca12884999",
+      "add216dc134b11439344f44fb48ed37c2e48c9ce2b636ed8dd67206c075e30f2",
+      "db9d1b77a6e845a9e014219ea8a473b9fc682746a34ce0c44ad07755f3842dff",
+      "e8fafd636407317b298c81da5fb5fe98532ad551927a89c02e78b63ff4e5c598",
+      "eea8ade2bdfa1ae35b78573097857129cf069d45b7e16ff9030a5a5891f6903d",
+      "f3863ee9049c1b61b2c43b59ed5a870a0bbb19ecbc70b433f10c2b86dcbce899"
+    ]
+  },
+  "embedding": {
+    "provider": "voyage",
+    "model": "voyage-4",
+    "revision": "voyage-4-preflight-v1",
+    "dimension": 1024,
+    "query_template_version": "semantic-query-template-v1",
+    "current_rows_by_status": [],
+    "compatible_ready_count": 0
+  },
+  "search_config": {
+    "active_database_version": "noncollapse-v1",
+    "config_checksum": "cf017f94090c80c905be8868dd0239740726f0a9b2df929ef010b04a8675a624",
+    "baseline_candidate_version": "eval-03-baseline.v1",
+    "values": {
+      "version": "noncollapse-v1",
+      "config_checksum": "cf017f94090c80c905be8868dd0239740726f0a9b2df929ef010b04a8675a624",
+      "is_active": true,
+      "prefix_min_length": 3,
+      "trigram_min_length": 4,
+      "trigram_threshold": 0.3,
+      "exact_cap": 20,
+      "prefix_cap": 20,
+      "trigram_cap": 20,
+      "fts_cap": 20,
+      "taxonomy_cap": 20,
+      "event_cap": 20,
+      "semantic_cap": 30,
+      "rrf_k": 60,
+      "semantic_enabled": true,
+      "embedding_provider": "voyage",
+      "embedding_model": "voyage-4",
+      "embedding_revision": "voyage-4-preflight-v1",
+      "embedding_dimension": 1024,
+      "embedding_timeout_ms": 700,
+      "semantic_trigger_terms": [
+        "things to do",
+        "what to do",
+        "something to do",
+        "places to go",
+        "saker att göra",
+        "vad kan man göra",
+        "något att göra",
+        "ställen att gå",
+        "date night",
+        "family outing",
+        "with friends",
+        "birthday",
+        "celebrate",
+        "dejt",
+        "familjeutflykt",
+        "med vänner",
+        "födelsedag",
+        "fira",
+        "nearby",
+        "near me",
+        "within",
+        "outdoor",
+        "open now",
+        "i närheten",
+        "nära mig",
+        "inom",
+        "utomhus",
+        "öppet nu"
+      ],
+      "event_horizon_days": 30,
+      "event_freshness_by_source": {
+        "JONKOPING_EVENT_CALENDAR": {
+          "nearTermHours": 720,
+          "toleranceHours": 48,
+          "refreshTargetHours": 24
+        }
+      },
+      "radius_cap_m": 50000,
+      "noncollapse_enabled": true,
+      "broad_terms": [
+        "things to do",
+        "what to do",
+        "what should we do",
+        "something to do",
+        "something fun",
+        "fun things",
+        "places to go",
+        "places to eat",
+        "saker att göra",
+        "vad kan man göra",
+        "vad ska vi göra",
+        "något att göra",
+        "något roligt",
+        "något kul",
+        "ställen att gå",
+        "ställen att äta"
+      ],
+      "taxonomy_group_depth": 1,
+      "comparable_rrf_ratio": 0.9,
+      "top_k_group_cap": 2,
+      "chain_repetition_cap": 2,
+      "event_venue_repetition_cap": 2,
+      "created_at": "2026-08-15T11:44:02.664Z",
+      "activated_at": "2026-08-15T11:44:02.668Z",
+      "created_by": "NONCOLLAPSE-01",
+      "note": "Broad EN/SV only; top-5 cap 2; base-RRF ratio 0.90; active taxonomy depth 1; explicit chain and linked Event venue keys.",
+      "rrf_enabled": true,
+      "rrf_version": "RRF_V1",
+      "rrf_stages": [
+        "ASCII_EXACT",
+        "PREFIX",
+        "TRIGRAM",
+        "FTS",
+        "TAXONOMY",
+        "EVENT",
+        "SEMANTIC"
+      ],
+      "rrf_tie_policy": "PROTECTED_CONTEXT_RRF_DIRECT_TAXONOMY_UUID_ASC_V1",
+      "rrf_max_results": 20,
+      "noncollapse_version": "NONCOLLAPSE_V1",
+      "noncollapse_top_k": 5,
+      "noncollapse_group_priority": [
+        "TAXONOMY",
+        "CHAIN",
+        "EVENT_VENUE"
+      ],
+      "noncollapse_grouping_rules": [
+        "TAXONOMY:ACTIVE_MEMBERSHIP_PATH_DEPTH",
+        "CHAIN:EXPLICIT_CHAIN_KEY",
+        "EVENT_VENUE:LINKED_PLACE_ID"
+      ],
+      "noncollapse_tie_policy": "BASE_RRF_ORDER_EARLIEST_COMPARABLE_V1"
+    },
+    "semantic_runtime": {
+      "timeout_ms": 700,
+      "circuit_failures": 3,
+      "cooldown_seconds": 30
+    }
+  },
+  "evaluation_clock_utc": "2026-10-15T12:00:00Z",
+  "corpus": {
+    "version": "corpus.v1",
+    "checksum": "bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c",
+    "dev_query_count": 60
+  },
+  "judgment": {
+    "version": null,
+    "checksum": null,
+    "current_dataset_complete_count": 0,
+    "current_dataset_missing_count": 60,
+    "prior_version": "judgments.day2.v1",
+    "prior_manifest_version": "dataset-manifest.day2.v1",
+    "prior_dataset_inventory_checksum": "ef89e8fb98246b4418a2094addc861ee5a85e2e842a3409c0e5c761f4ab0a1f2",
+    "prior_version_compatible_with_current_inventory": false
+  },
+  "code_git_commit": "6d1ed9ce1dcfc2bda6cd9a46dd472669c95bb69d",
+  "dataset_inventory": {
+    "published_unmerged_entities": 26,
+    "active_search_documents": 12,
+    "checksum": "1af323658af3bdb1d20495bc3449ca0a5bd80aafa1f44439ce5aefaf43a9b972",
+    "canonical_state_counts": [
+      {
+        "entityType": "PLACE",
+        "publicationStatus": "DRAFT",
+        "count": 56
+      },
+      {
+        "entityType": "PLACE",
+        "publicationStatus": "PUBLISHED",
+        "count": 8
+      },
+      {
+        "entityType": "PLACE",
+        "publicationStatus": "WITHHELD",
+        "count": 1
+      },
+      {
+        "entityType": "EVENT",
+        "publicationStatus": "PUBLISHED",
+        "count": 18
+      },
+      {
+        "entityType": "EVENT",
+        "publicationStatus": "WITHHELD",
+        "count": 2
+      }
+    ]
+  },
+  "current_state_observations_requiring_human_inventory_confirmation": {
+    "active_ready_embeddings": 0,
+    "fixture_shaped_event_names": 18,
+    "instruction": "Confirm this is the intended legitimate inventory before approving judgments. If inventory changes, create v2; never edit this manifest or packet in place."
+  },
+  "held_out_access": {
+    "parsed_splits": [
+      "DEV"
+    ],
+    "sealed_queries_executed": 0,
+    "adversarial_queries_executed": 0,
+    "sealed_or_adversarial_judgments_loaded": false
+  }
+}

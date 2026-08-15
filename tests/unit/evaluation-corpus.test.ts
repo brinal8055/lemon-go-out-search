@@ -97,6 +97,40 @@ describe('EVAL-01 corpus foundation', () => {
     ))).toBe(true);
   });
 
+  it('freezes a DEV-only EVAL-03 review packet without assigning human grades', async () => {
+    const root = new URL('../../', import.meta.url);
+    const [manifestText, manifestChecksum, packetText, packetChecksum] = await Promise.all([
+      readFile(new URL('evaluation/manifests/dataset-manifest.day3-current.v1.json', root), 'utf8'),
+      readFile(new URL('evaluation/manifests/dataset-manifest.day3-current.v1.sha256', root), 'utf8'),
+      readFile(new URL('evaluation/judgments/dev-review-packet.day3.v1.json', root), 'utf8'),
+      readFile(new URL('evaluation/judgments/dev-review-packet.day3.v1.sha256', root), 'utf8'),
+    ]);
+    const manifest = JSON.parse(manifestText);
+    const packet = JSON.parse(packetText);
+    expect(sha256(manifestText)).toBe(manifestChecksum.trim());
+    expect(sha256(packetText)).toBe(packetChecksum.trim());
+    expect(packet.dataset_manifest).toEqual({
+      version: manifest.manifest_version,
+      checksum: sha256(manifestText),
+    });
+    expect(packet.split).toBe('DEV');
+    expect(packet.queries).toHaveLength(60);
+    expect(packet.current_dataset_judgments_complete).toBe(0);
+    expect(packet.current_dataset_judgments_missing).toBe(60);
+    expect(packet.queries.flatMap((query: { candidatePool: Array<{ grade: unknown }> }) => query.candidatePool)
+      .every(({ grade }: { grade: unknown }) => grade === null)).toBe(true);
+    expect(packet.held_out_guard).toEqual({
+      parsed_splits: ['DEV'],
+      sealed_queries_executed: 0,
+      adversarial_queries_executed: 0,
+      sealed_or_adversarial_judgments_loaded: false,
+    });
+    expect(manifest.judgment).toMatchObject({
+      prior_version: 'judgments.day2.v1',
+      prior_version_compatible_with_current_inventory: false,
+    });
+  });
+
   it('rejects SEALED, ADVERSARIAL, and generic all tuning access', async () => {
     await expect(loadTuningJudgments('SEALED')).rejects.toThrow('access denied');
     await expect(loadTuningJudgments('ADVERSARIAL')).rejects.toThrow('access denied');

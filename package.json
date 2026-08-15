@@ -15,6 +15,7 @@
     "eval:dev": "node --experimental-strip-types packages/evaluation/src/evaluate-dev-cli.ts",
     "eval:review-packet": "node --experimental-strip-types packages/evaluation/src/day2-review-cli.ts",
     "eval:review-packet-v1.1": "node --experimental-strip-types packages/evaluation/src/day2-review-v1-1-cli.ts",
+    "eval:review-full-dev": "node --experimental-strip-types packages/evaluation/src/eval03-review-cli.ts",
     "eval:freeze-day2-judgments": "node --experimental-strip-types packages/evaluation/src/freeze-day2-judgments.ts",
     "ingest:fixture": "node --experimental-strip-types packages/ingestion-domain/src/cli.ts",
     "ingest:municipal": "node --experimental-strip-types packages/source-adapters/src/jonkoping-utegym-cli.ts",
