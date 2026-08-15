@@ -1,0 +1,323 @@
+{
+  "reportVersion": "eval-03-operational.v1",
+  "mode": "LEXICAL_ONLY",
+  "timingFieldsNonDeterministic": true,
+  "providerConfigured": false,
+  "providerDegradationCount": 0,
+  "providerAttemptCount": 0,
+  "providerSuccessCount": 0,
+  "databaseLatencyMs": {
+    "count": 60,
+    "p50": 6.567666999999972,
+    "p95": 11.850792000000013,
+    "max": 82.98904199999998
+  },
+  "requestLatencyMs": {
+    "count": 60,
+    "p50": 7.212499999999977,
+    "p95": 16.191874999999982,
+    "max": 116.89933300000001
+  },
+  "queries": [
+    {
+      "queryId": "eval-v1-dev-broad-concentration-01",
+      "dbLatencyMs": 82.98904199999998,
+      "requestLatencyMs": 116.89933300000001
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-02",
+      "dbLatencyMs": 10.808500000000038,
+      "requestLatencyMs": 19.894042000000013
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-03",
+      "dbLatencyMs": 5.202374999999961,
+      "requestLatencyMs": 13.369665999999995
+    },
+    {
+      "queryId": "eval-v1-dev-broad-concentration-04",
+      "dbLatencyMs": 10.020000000000039,
+      "requestLatencyMs": 10.320291999999995
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-01",
+      "dbLatencyMs": 9.896875000000023,
+      "requestLatencyMs": 10.228083000000026
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-02",
+      "dbLatencyMs": 11.850792000000013,
+      "requestLatencyMs": 12.142041000000006
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-03",
+      "dbLatencyMs": 15.903665999999987,
+      "requestLatencyMs": 16.191874999999982
+    },
+    {
+      "queryId": "eval-v1-dev-broad-discovery-04",
+      "dbLatencyMs": 6.901207999999997,
+      "requestLatencyMs": 7.158333000000027
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-01",
+      "dbLatencyMs": 6.543083999999965,
+      "requestLatencyMs": 6.7856669999999895
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-02",
+      "dbLatencyMs": 6.465833000000032,
+      "requestLatencyMs": 6.727082999999993
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-03",
+      "dbLatencyMs": 6.388375000000053,
+      "requestLatencyMs": 6.544624999999996
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-04",
+      "dbLatencyMs": 6.354416000000015,
+      "requestLatencyMs": 6.511625000000038
+    },
+    {
+      "queryId": "eval-v1-dev-canonical-exact-same-name-05",
+      "dbLatencyMs": 6.516832999999963,
+      "requestLatencyMs": 6.6880840000000035
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-01",
+      "dbLatencyMs": 4.696374999999989,
+      "requestLatencyMs": 8.496958000000006
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-02",
+      "dbLatencyMs": 4.415374999999983,
+      "requestLatencyMs": 7.613249999999994
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-03",
+      "dbLatencyMs": 4.813625000000002,
+      "requestLatencyMs": 8.754791000000012
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-04",
+      "dbLatencyMs": 4.446292000000028,
+      "requestLatencyMs": 7.7929169999999885
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-05",
+      "dbLatencyMs": 5.453666999999996,
+      "requestLatencyMs": 9.115250000000003
+    },
+    {
+      "queryId": "eval-v1-dev-event-time-06",
+      "dbLatencyMs": 4.497458999999992,
+      "requestLatencyMs": 7.8633330000000115
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-01",
+      "dbLatencyMs": 6.020040999999992,
+      "requestLatencyMs": 6.158665999999982
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-02",
+      "dbLatencyMs": 6.462166999999965,
+      "requestLatencyMs": 6.622834000000012
+    },
+    {
+      "queryId": "eval-v1-dev-geo-scope-radius-03",
+      "dbLatencyMs": 6.470459000000005,
+      "requestLatencyMs": 6.617750000000001
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-01",
+      "dbLatencyMs": 6.338250000000016,
+      "requestLatencyMs": 6.477458000000013
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-02",
+      "dbLatencyMs": 6.266207999999949,
+      "requestLatencyMs": 6.3993750000000205
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-03",
+      "dbLatencyMs": 6.406541000000004,
+      "requestLatencyMs": 6.5901250000000005
+    },
+    {
+      "queryId": "eval-v1-dev-prefix-04",
+      "dbLatencyMs": 6.655582999999979,
+      "requestLatencyMs": 7.066250000000025
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-01",
+      "dbLatencyMs": 6.349333999999999,
+      "requestLatencyMs": 6.739832999999976
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-02",
+      "dbLatencyMs": 6.548874999999953,
+      "requestLatencyMs": 6.959874999999954
+    },
+    {
+      "queryId": "eval-v1-dev-scarcity-duplicate-state-03",
+      "dbLatencyMs": 4.763666999999998,
+      "requestLatencyMs": 5.269624999999962
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-01",
+      "dbLatencyMs": 6.567666999999972,
+      "requestLatencyMs": 6.977374999999995
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-02",
+      "dbLatencyMs": 6.590709000000061,
+      "requestLatencyMs": 7.006999999999948
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-03",
+      "dbLatencyMs": 6.69175000000007,
+      "requestLatencyMs": 7.119833000000085
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-04",
+      "dbLatencyMs": 6.493249999999989,
+      "requestLatencyMs": 6.9170409999999265
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-05",
+      "dbLatencyMs": 6.711665999999923,
+      "requestLatencyMs": 7.238708000000088
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-06",
+      "dbLatencyMs": 6.7413329999999405,
+      "requestLatencyMs": 7.275375000000054
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-07",
+      "dbLatencyMs": 6.476625000000013,
+      "requestLatencyMs": 7.001250000000027
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-08",
+      "dbLatencyMs": 6.630833999999936,
+      "requestLatencyMs": 7.292082999999934
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-09",
+      "dbLatencyMs": 6.612249999999904,
+      "requestLatencyMs": 7.206874999999968
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-10",
+      "dbLatencyMs": 6.7393749999999955,
+      "requestLatencyMs": 7.3856250000000045
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-11",
+      "dbLatencyMs": 6.966499999999996,
+      "requestLatencyMs": 7.922125000000051
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-12",
+      "dbLatencyMs": 6.655375000000049,
+      "requestLatencyMs": 7.381834000000026
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-13",
+      "dbLatencyMs": 7.0453750000000355,
+      "requestLatencyMs": 7.962792000000036
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-14",
+      "dbLatencyMs": 7.5912080000000515,
+      "requestLatencyMs": 8.595416
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-15",
+      "dbLatencyMs": 8.247874999999908,
+      "requestLatencyMs": 8.71387500000003
+    },
+    {
+      "queryId": "eval-v1-dev-semantic-occasion-language-16",
+      "dbLatencyMs": 6.657708000000071,
+      "requestLatencyMs": 7.212499999999977
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-01",
+      "dbLatencyMs": 6.185959000000025,
+      "requestLatencyMs": 6.696042000000034
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-02",
+      "dbLatencyMs": 6.551375000000007,
+      "requestLatencyMs": 6.863582999999949
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-03",
+      "dbLatencyMs": 11.028999999999996,
+      "requestLatencyMs": 11.699499999999944
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-04",
+      "dbLatencyMs": 9.578583000000094,
+      "requestLatencyMs": 10.08933300000001
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-05",
+      "dbLatencyMs": 6.408709000000044,
+      "requestLatencyMs": 6.9623750000000655
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-06",
+      "dbLatencyMs": 6.4610830000000306,
+      "requestLatencyMs": 7.163125000000036
+    },
+    {
+      "queryId": "eval-v1-dev-taxonomy-parent-leaf-07",
+      "dbLatencyMs": 6.3347499999999854,
+      "requestLatencyMs": 7.06579099999999
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-01",
+      "dbLatencyMs": 6.544499999999971,
+      "requestLatencyMs": 7.147874999999999
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-02",
+      "dbLatencyMs": 6.601374999999962,
+      "requestLatencyMs": 7.233541999999943
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-03",
+      "dbLatencyMs": 6.727749999999901,
+      "requestLatencyMs": 7.434542000000079
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-04",
+      "dbLatencyMs": 6.631416999999942,
+      "requestLatencyMs": 7.482457999999951
+    },
+    {
+      "queryId": "eval-v1-dev-typo-transposition-accent-spacing-05",
+      "dbLatencyMs": 6.691791999999964,
+      "requestLatencyMs": 7.5669169999999895
+    },
+    {
+      "queryId": "eval-v1-dev-verified-colliding-aliases-01",
+      "dbLatencyMs": 6.571957999999995,
+      "requestLatencyMs": 7.261041999999975
+    },
+    {
+      "queryId": "eval-v1-dev-verified-colliding-aliases-02",
+      "dbLatencyMs": 6.579083000000082,
+      "requestLatencyMs": 7.1607910000000174
+    },
+    {
+      "queryId": "eval-v1-dev-verified-colliding-aliases-03",
+      "dbLatencyMs": 6.512625000000071,
+      "requestLatencyMs": 7.142291999999998
+    }
+  ]
+}

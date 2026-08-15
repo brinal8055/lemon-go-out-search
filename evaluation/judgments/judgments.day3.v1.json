@@ -1,0 +1,1662 @@
+{
+  "judgment_version": "judgments.day3.v1",
+  "status": "FROZEN",
+  "split": "DEV",
+  "corpus_version": "corpus.v1",
+  "corpus_checksum": "bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c",
+  "dataset_version": "day3-current.v2-aab903847c5f",
+  "dataset_manifest_version": "dataset-manifest.day3-current.v2",
+  "dataset_manifest_checksum": "11a1a73e37bd2af71b7948823c6509dfb98edd86c6629834e2fc54d8a2afe4f1",
+  "dataset_inventory_checksum": "aab903847c5fcfd840fe3285601d8da44d7596b5b985a2200de4f0a886b2e1fb",
+  "selected_query_ids": [
+    "eval-v1-dev-broad-concentration-01",
+    "eval-v1-dev-broad-concentration-02",
+    "eval-v1-dev-broad-concentration-03",
+    "eval-v1-dev-broad-concentration-04",
+    "eval-v1-dev-broad-discovery-01",
+    "eval-v1-dev-broad-discovery-02",
+    "eval-v1-dev-broad-discovery-03",
+    "eval-v1-dev-broad-discovery-04",
+    "eval-v1-dev-canonical-exact-same-name-01",
+    "eval-v1-dev-canonical-exact-same-name-02",
+    "eval-v1-dev-canonical-exact-same-name-03",
+    "eval-v1-dev-canonical-exact-same-name-04",
+    "eval-v1-dev-canonical-exact-same-name-05",
+    "eval-v1-dev-event-time-01",
+    "eval-v1-dev-event-time-02",
+    "eval-v1-dev-event-time-03",
+    "eval-v1-dev-event-time-04",
+    "eval-v1-dev-event-time-05",
+    "eval-v1-dev-event-time-06",
+    "eval-v1-dev-geo-scope-radius-01",
+    "eval-v1-dev-geo-scope-radius-02",
+    "eval-v1-dev-geo-scope-radius-03",
+    "eval-v1-dev-prefix-01",
+    "eval-v1-dev-prefix-02",
+    "eval-v1-dev-prefix-03",
+    "eval-v1-dev-prefix-04",
+    "eval-v1-dev-scarcity-duplicate-state-01",
+    "eval-v1-dev-scarcity-duplicate-state-02",
+    "eval-v1-dev-scarcity-duplicate-state-03",
+    "eval-v1-dev-semantic-occasion-language-01",
+    "eval-v1-dev-semantic-occasion-language-02",
+    "eval-v1-dev-semantic-occasion-language-03",
+    "eval-v1-dev-semantic-occasion-language-04",
+    "eval-v1-dev-semantic-occasion-language-05",
+    "eval-v1-dev-semantic-occasion-language-06",
+    "eval-v1-dev-semantic-occasion-language-07",
+    "eval-v1-dev-semantic-occasion-language-08",
+    "eval-v1-dev-semantic-occasion-language-09",
+    "eval-v1-dev-semantic-occasion-language-10",
+    "eval-v1-dev-semantic-occasion-language-11",
+    "eval-v1-dev-semantic-occasion-language-12",
+    "eval-v1-dev-semantic-occasion-language-13",
+    "eval-v1-dev-semantic-occasion-language-14",
+    "eval-v1-dev-semantic-occasion-language-15",
+    "eval-v1-dev-semantic-occasion-language-16",
+    "eval-v1-dev-taxonomy-parent-leaf-01",
+    "eval-v1-dev-taxonomy-parent-leaf-02",
+    "eval-v1-dev-taxonomy-parent-leaf-03",
+    "eval-v1-dev-taxonomy-parent-leaf-04",
+    "eval-v1-dev-taxonomy-parent-leaf-05",
+    "eval-v1-dev-taxonomy-parent-leaf-06",
+    "eval-v1-dev-taxonomy-parent-leaf-07",
+    "eval-v1-dev-typo-transposition-accent-spacing-01",
+    "eval-v1-dev-typo-transposition-accent-spacing-02",
+    "eval-v1-dev-typo-transposition-accent-spacing-03",
+    "eval-v1-dev-typo-transposition-accent-spacing-04",
+    "eval-v1-dev-typo-transposition-accent-spacing-05",
+    "eval-v1-dev-verified-colliding-aliases-01",
+    "eval-v1-dev-verified-colliding-aliases-02",
+    "eval-v1-dev-verified-colliding-aliases-03"
+  ],
+  "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+  "boundary_version": "lm-current-2026-08-14",
+  "hard_constraint_policy": "GRADE_0_REGARDLESS_OF_TEXT_SIMILARITY",
+  "approval": {
+    "authority": "ENGINEER",
+    "provenance": "HUMAN_APPROVED_EVAL_03_TASK_PROMPT"
+  },
+  "records": [
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-concentration-01",
+      "query_text": "places to eat",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 3
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is factually a restaurant/dining entity and directly satisfies the request.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-concentration-02",
+      "query_text": "coffee around Jönköping",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "92167dc5-bf32-5014-9d07-46f7c4f902dd"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-concentration-03",
+      "query_text": "events this weekend",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:ENTITY_TYPE_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-concentration-04",
+      "query_text": "något kul i stan",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-discovery-01",
+      "query_text": "things to do in Jönköping",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-discovery-02",
+      "query_text": "saker att göra i Jönköping",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-discovery-03",
+      "query_text": "somewhere nice nearby",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-broad-discovery-04",
+      "query_text": "något roligt att göra",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-canonical-exact-same-name-01",
+      "query_text": "Rosenlunds rosarium",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-canonical-exact-same-name-02",
+      "query_text": "Kulturhuset Spira",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-canonical-exact-same-name-03",
+      "query_text": "Stadsbiblioteket",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-canonical-exact-same-name-04",
+      "query_text": "Espresso House",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-canonical-exact-same-name-05",
+      "query_text": "Espresso House Jönköping Central",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-event-time-01",
+      "query_text": "events tonight",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:ENTITY_TYPE_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-event-time-02",
+      "query_text": "evenemang ikväll",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:ENTITY_TYPE_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-event-time-03",
+      "query_text": "what is happening tomorrow",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:ENTITY_TYPE_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-event-time-04",
+      "query_text": "vad händer imorgon",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:ENTITY_TYPE_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-event-time-05",
+      "query_text": "events on Saturday",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:ENTITY_TYPE_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-event-time-06",
+      "query_text": "evenemang på Kulturhuset Spira i helgen",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-geo-scope-radius-01",
+      "query_text": "cafés in Jönköping municipality",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "89cc433a-423a-5eba-9d6a-17c9745d66d8"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-geo-scope-radius-02",
+      "query_text": "things to do within 1 km",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-geo-scope-radius-03",
+      "query_text": "restauranger nära mig",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 2
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Direct restaurant-category match; proximity is not fully established without an explicit request coordinate.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-prefix-01",
+      "query_text": "Rosenlunds rosa",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-prefix-02",
+      "query_text": "Kulturhuset Spi",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-prefix-03",
+      "query_text": "Stadsbibliot",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-prefix-04",
+      "query_text": "Espresso House Jönköping C",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-scarcity-duplicate-state-01",
+      "query_text": "Cuban restaurants in Jönköping",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "a7d01142-e735-51c9-bf56-b20250c527f1"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-scarcity-duplicate-state-02",
+      "query_text": "Espresso House",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-scarcity-duplicate-state-03",
+      "query_text": "events happening yesterday",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:ENTITY_TYPE_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-01",
+      "query_text": "a romantic place for two",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-02",
+      "query_text": "ett romantiskt ställe för två",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-03",
+      "query_text": "a fun family activity with children",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Human determined Evergreen is not relevant; the requested facts are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-04",
+      "query_text": "en rolig familjeaktivitet med barn",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Human determined Evergreen is not relevant; the requested facts are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-05",
+      "query_text": "somewhere cozy to talk with friends",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-06",
+      "query_text": "någonstans mysigt att prata med vänner",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-07",
+      "query_text": "an inexpensive evening out",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-08",
+      "query_text": "en billig kväll ute",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-09",
+      "query_text": "an indoor activity for a rainy day",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Human determined Evergreen is not relevant; the requested facts are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-10",
+      "query_text": "en inomhusaktivitet för en regnig dag",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Human determined Evergreen is not relevant; the requested facts are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-11",
+      "query_text": "a peaceful outdoor place to unwind",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Human determined Evergreen is not relevant; the requested facts are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-12",
+      "query_text": "en lugn plats utomhus för att koppla av",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Human determined Evergreen is not relevant; the requested facts are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-13",
+      "query_text": "vegan food for a relaxed dinner with friends",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-14",
+      "query_text": "vegansk mat för en avslappnad middag med vänner",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "f2acebc7-8b7e-5c22-9bb5-36a0e29ba4b8"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-15",
+      "query_text": "drinks somewhere with a pleasant atmosphere",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-semantic-occasion-language-16",
+      "query_text": "något att dricka på ett ställe med trevlig stämning",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 1
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is a plausible general going-out/social venue; subjective requested attributes are not established by frozen evidence.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-taxonomy-parent-leaf-01",
+      "query_text": "Japanese restaurants",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "3a51d1cf-31c9-529f-b585-1102253dc735"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-taxonomy-parent-leaf-02",
+      "query_text": "japanska restauranger",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "3a51d1cf-31c9-529f-b585-1102253dc735"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-taxonomy-parent-leaf-03",
+      "query_text": "Food and dining",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 3
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is factually a restaurant/dining entity and directly satisfies the request.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-taxonomy-parent-leaf-04",
+      "query_text": "mat och restauranger",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 3
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "27ae3159-554d-5ebe-9aa1-45ef0cbf1fa1"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [],
+      "rationale": "Evergreen is factually a restaurant/dining entity and directly satisfies the request.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-taxonomy-parent-leaf-05",
+      "query_text": "coffee shops",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "92167dc5-bf32-5014-9d07-46f7c4f902dd"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-taxonomy-parent-leaf-06",
+      "query_text": "natur och offentliga platser",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "f5978b3b-3c95-52fe-8c9c-bf5b6fae9d77"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-taxonomy-parent-leaf-07",
+      "query_text": "culture och events",
+      "relevant": [],
+      "known_item_target": null,
+      "known_item_inventory_status": "NOT_APPLICABLE",
+      "primary_failure_attribution": null,
+      "search_ranking_assessment": "EVALUATED",
+      "acceptable_taxonomy_node_ids": [
+        "6432bde9-17e2-5a04-92b3-9bf6f4589cf2"
+      ],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "NO_HARD_ELIGIBLE_CANDIDATE",
+        "EVERGREEN:TAXONOMY_FILTER"
+      ],
+      "rationale": "Human reviewed: no hard-eligible candidate exists in the frozen v2 inventory.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-typo-transposition-accent-spacing-01",
+      "query_text": "Rosenlunds rosairum",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-typo-transposition-accent-spacing-02",
+      "query_text": "Kulturhuset Spra",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-typo-transposition-accent-spacing-03",
+      "query_text": "Jonkopings stadsbibliotek",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-typo-transposition-accent-spacing-04",
+      "query_text": "EspressoHouse Jönköping Central",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-typo-transposition-accent-spacing-05",
+      "query_text": "Rosenlunds-rosarium",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-verified-colliding-aliases-01",
+      "query_text": "Spira",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-verified-colliding-aliases-02",
+      "query_text": "Rosenlund",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    },
+    {
+      "judgment_version": "judgments.day3.v1",
+      "query_id": "eval-v1-dev-verified-colliding-aliases-03",
+      "query_text": "Jönköpings bibliotek",
+      "relevant": [
+        {
+          "entity_id": "ddcca624-5540-47b3-8309-ca771e5e29b7",
+          "grade": 0
+        }
+      ],
+      "known_item_target": null,
+      "known_item_inventory_status": "TARGET_NOT_IN_FROZEN_DATASET",
+      "primary_failure_attribution": "INVENTORY",
+      "search_ranking_assessment": "NOT_EVALUATED",
+      "acceptable_taxonomy_node_ids": [],
+      "acceptable_group_keys": [],
+      "expected_protected_behavior": [],
+      "expected_ineligible_behavior": [
+        "TARGET_NOT_IN_FROZEN_DATASET",
+        "PRODUCT_OUTCOME:QUERY_UNSATISFIED",
+        "PRIMARY_FAILURE:INVENTORY",
+        "SEARCH_RANKING:NOT_EVALUATED"
+      ],
+      "rationale": "Human confirmed the stable named target is absent; Evergreen is not the target.",
+      "judged_by": "engineer-approved",
+      "judged_at": "2026-08-15T13:07:51.956Z",
+      "dataset_version": "day3-current.v2-aab903847c5f",
+      "taxonomy_checksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+      "boundary_version": "lm-current-2026-08-14"
+    }
+  ]
+}

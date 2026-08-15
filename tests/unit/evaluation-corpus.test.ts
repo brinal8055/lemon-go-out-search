@@ -172,6 +172,90 @@ describe('EVAL-01 corpus foundation', () => {
     });
   });
 
+  it('freezes all 60 engineer-approved Day-3 judgments against the exact v2 inventory', async () => {
+    const root = new URL('../../', import.meta.url);
+    const [manifestText, judgmentText, judgmentChecksum] = await Promise.all([
+      readFile(new URL('evaluation/manifests/dataset-manifest.day3-current.v2.json', root), 'utf8'),
+      readFile(new URL('evaluation/judgments/judgments.day3.v1.json', root), 'utf8'),
+      readFile(new URL('evaluation/judgments/judgments.day3.v1.sha256', root), 'utf8'),
+    ]);
+    const judgments = JSON.parse(judgmentText);
+    expect(sha256(judgmentText)).toBe(judgmentChecksum.trim());
+    expect(judgments).toMatchObject({
+      judgment_version: 'judgments.day3.v1',
+      status: 'FROZEN',
+      split: 'DEV',
+      dataset_manifest_version: 'dataset-manifest.day3-current.v2',
+      dataset_manifest_checksum: sha256(manifestText),
+      dataset_inventory_checksum: 'aab903847c5fcfd840fe3285601d8da44d7596b5b985a2200de4f0a886b2e1fb',
+      approval: { authority: 'ENGINEER', provenance: 'HUMAN_APPROVED_EVAL_03_TASK_PROMPT' },
+    });
+    expect(judgments.records).toHaveLength(60);
+    expect(judgments.selected_query_ids).toHaveLength(60);
+    expect(judgments.records.every((record: { judged_by: string }) => record.judged_by === 'engineer-approved'))
+      .toBe(true);
+    expect([0, 1, 2, 3].map((grade) => judgments.records.filter((record: {
+      relevant: Array<{ grade: number }>;
+    }) => record.relevant[0]?.grade === grade).length)).toEqual([24, 14, 1, 3]);
+    expect(judgments.records.filter((record: { relevant: unknown[] }) => record.relevant.length === 0))
+      .toHaveLength(18);
+    const unavailable = judgments.records.filter((record: { known_item_inventory_status: string }) => (
+      record.known_item_inventory_status === 'TARGET_NOT_IN_FROZEN_DATASET'
+    ));
+    expect(unavailable).toHaveLength(19);
+    expect(unavailable.every((record: {
+      known_item_target: unknown;
+      primary_failure_attribution: string;
+      search_ranking_assessment: string;
+      expected_ineligible_behavior: string[];
+    }) => record.known_item_target === null
+      && record.primary_failure_attribution === 'INVENTORY'
+      && record.search_ranking_assessment === 'NOT_EVALUATED'
+      && record.expected_ineligible_behavior.includes('PRODUCT_OUTCOME:QUERY_UNSATISFIED'))).toBe(true);
+  });
+
+  it('preserves the completed EVAL-03 report, baseline-only decision, and held-out guards', async () => {
+    const root = new URL('../../', import.meta.url);
+    const base = 'evaluation/reports/eval-03-baseline.v1/';
+    const [reportText, reportChecksum, hybridText, rerunText] = await Promise.all([
+      readFile(new URL(`${base}eval-03-report.v1.json`, root), 'utf8'),
+      readFile(new URL(`${base}eval-03-report.v1.sha256`, root), 'utf8'),
+      readFile(new URL(`${base}hybrid-run-2/dev-result.v1.json`, root), 'utf8'),
+      readFile(new URL(`${base}hybrid-run-3/dev-result.v1.json`, root), 'utf8'),
+    ]);
+    const report = JSON.parse(reportText);
+    expect(sha256(reportText)).toBe(reportChecksum.trim());
+    expect(hybridText).toBe(rerunText);
+    expect(report).toMatchObject({
+      status: 'COMPLETE',
+      task: 'EVAL-03',
+      configSelection: {
+        evaluated: ['eval-03-baseline.v1'],
+        selected: 'eval-03-baseline.v1',
+        rejected: [],
+        tuningPerformed: false,
+        decision: 'DEV_TUNING_NOT_MEANINGFUL_DUE_TO_INSUFFICIENT_INVENTORY',
+        finalEval04Freeze: false,
+      },
+      searchQuality: {
+        confidence: 'LOW_NOT_YET_ESTABLISHED',
+        deferredValidation: 'SEARCH_QUALITY_CONFIDENCE_DEFERRED_TO_POST_COVERAGE_DEV_REVALIDATION',
+      },
+      determinism: {
+        rankedIdsAndMetricsMatch: true,
+        byteIdenticalDeterministicResult: true,
+      },
+      guards: { sealedAccess: 'NO_ACCESS', adversarialAccess: 'NO_ACCESS', parsedSplits: ['DEV'] },
+      scopeAudit: { coverage01Work: false, specChangeRequired: 'NONE' },
+    });
+    expect(report.fullDevHybrid.overall).toMatchObject({ queryCount: 60, zeroResultCount: 58 });
+    expect(report.lexicalOnlyVsHybrid).toMatchObject({
+      rankedIdsMatchAll60: true,
+      overallAndLanguageMetricsMatch: true,
+      measuredSemanticLift: 0,
+    });
+  });
+
   it('rejects SEALED, ADVERSARIAL, and generic all tuning access', async () => {
     await expect(loadTuningJudgments('SEALED')).rejects.toThrow('access denied');
     await expect(loadTuningJudgments('ADVERSARIAL')).rejects.toThrow('access denied');

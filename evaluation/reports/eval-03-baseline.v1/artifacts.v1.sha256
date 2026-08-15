@@ -1,0 +1,14 @@
+11a1a73e37bd2af71b7948823c6509dfb98edd86c6629834e2fc54d8a2afe4f1  evaluation/manifests/dataset-manifest.day3-current.v2.json
+23b53afded0ec2ad1f2c14297f7709a064f0eb22f19220a4773c7a461d25b6f1  evaluation/reports/eval-03-baseline.v1/lexical-run-2/operational.v1.json
+2d62bea42d49bb5ccde4e90e8a38e7b3d0c6d78b617f54b950665c553554c852  evaluation/judgments/judgments.day3.v1.sha256
+834a8ed31414c6ad91f1251f61e239d02da38480f4256ccdf02597f2437607b1  evaluation/reports/eval-03-baseline.v1/hybrid-run-1/dev-result.v1.json
+a6799687e742c5761cf2a486ae47ec4d489676681034073b6fd986d6acb81fdc  evaluation/reports/eval-03-baseline.v1/lexical-run-1/dev-result.v1.json
+aad9b621d51061b3294ff9494584a61f68b5af2b95fb69220ca6224a2f413b4c  evaluation/manifests/dataset-manifest.day3-current.v2.sha256
+b42aaf83fb8c3b9bb546fa8dfedfb7eec059e2020ad7a7ec7d242acadb8dbc81  evaluation/reports/eval-03-baseline.v1/lexical-run-1/operational.v1.json
+bda1a2e71d55dc06b536a106ec8e5c04facc3040e76cdf9bc9c4a5953b760284  evaluation/reports/eval-03-baseline.v1/lexical-run-2/dev-result.v1.json
+cbd8cbf0c995cb0175f1b6b118a68a7722c384e8397e39ad4af667cb312373bd  evaluation/reports/eval-03-baseline.v1/hybrid-run-2/operational.v1.json
+e2c3a0be59a57b4e3dcd46a9e91ab1d67f0d003df3d8825accdb4ebaef88d754  evaluation/judgments/judgments.day3.v1.json
+ed79b59ab709ec0f25b6724df41f567a46ed47add5fa3a780aae586dbf29f8f1  evaluation/reports/eval-03-baseline.v1/hybrid-run-1/operational.v1.json
+ef6fdb4eec3897a34509716e525aa82e883fd4019ae3eeb069959c8eb520f47e  evaluation/reports/eval-03-baseline.v1/hybrid-run-2/dev-result.v1.json
+ef6fdb4eec3897a34509716e525aa82e883fd4019ae3eeb069959c8eb520f47e  evaluation/reports/eval-03-baseline.v1/hybrid-run-3/dev-result.v1.json
+f95da85567a2bfa41607dbaf5fc58506707d8a8a4591e172fb4aa0552aff26b6  evaluation/reports/eval-03-baseline.v1/hybrid-run-3/operational.v1.json
