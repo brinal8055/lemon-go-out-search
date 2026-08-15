@@ -21,6 +21,7 @@
     "ingest:osm": "node --experimental-strip-types packages/source-adapters/src/osm-cli.ts",
     "source:smoke:event": "node --experimental-strip-types packages/source-adapters/src/jonkoping-events-cli.ts",
     "ingest:event": "node --experimental-strip-types packages/source-adapters/src/jonkoping-event-ingest-cli.ts",
+    "expire:events": "node --experimental-strip-types packages/source-adapters/src/expire-events-cli.ts",
     "dedup:review": "node --experimental-strip-types packages/ingestion-domain/src/duplicate-review-cli.ts",
     "dedup:smoke": "node --experimental-strip-types packages/ingestion-domain/src/duplicate-review-smoke.ts",
     "provenance:revocation": "node --experimental-strip-types packages/ingestion-domain/src/provenance-revocation-cli.ts",

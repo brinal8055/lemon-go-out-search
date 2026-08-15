@@ -12,6 +12,7 @@ export type TimeParseResult =
       parserVersion: typeof TIME_PARSER_VERSION;
       timeZone: typeof STOCKHOLM_TIME_ZONE;
       matchedExpressions: string[];
+      lexicalText: string;
       interval: TimeInterval;
     }
   | {
@@ -92,8 +93,19 @@ export function parseTimeExpression(
     parserVersion: TIME_PARSER_VERSION,
     timeZone: options.timeZone,
     matchedExpressions: [...new Set(recognitions.map(({ text }) => text))].sort(),
+    lexicalText: removeRecognitions(normalized, recognitions),
     interval: intervals[0].interval,
   };
+}
+
+function removeRecognitions(expression: string, recognitions: Recognition[]): string {
+  let result = '';
+  let cursor = 0;
+  for (const recognition of [...recognitions].sort((left, right) => left.start - right.start)) {
+    result += `${expression.slice(cursor, recognition.start)} `;
+    cursor = recognition.end;
+  }
+  return `${result}${expression.slice(cursor)}`.replace(/\s+/g, ' ').trim();
 }
 
 function recognize(expression: string): Recognition[] {

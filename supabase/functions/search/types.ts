@@ -18,7 +18,7 @@ export type SearchRpcParams = {
   p_embedding_revision: 'voyage-4-preflight-v1';
   p_embedding_dimension: 1024;
   p_limit: number;
-  p_search_config_version: 'embed-01a-preflight-v1';
+  p_search_config_version: 'event-01-time-v1';
 };
 
 export type SearchRpcRow = {

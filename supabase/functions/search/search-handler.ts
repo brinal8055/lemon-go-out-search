@@ -1,5 +1,9 @@
 import { normalizeForEdgeSearch } from './normalization.ts';
 import type { SearchRpcClient, SearchRpcParams, SearchRpcRow } from './types.ts';
+import {
+  parseTimeExpression,
+  STOCKHOLM_TIME_ZONE,
+} from '../../../packages/time-parser/src/index.ts';
 
 type UiLocale = 'en' | 'sv';
 type EntityType = 'PLACE' | 'EVENT';
@@ -66,20 +70,34 @@ const MAX_RADIUS_METERS = 50_000;
 type HandlerDependencies = {
   client: SearchRpcClient;
   randomUUID?: () => string;
+  clock?: () => Date;
 };
 
 class PublicRequestError extends Error {
+  readonly status: number;
+  readonly code: string;
+  readonly publicMessage: string;
+  readonly retryable: boolean;
+
   constructor(
-    readonly status: number,
-    readonly code: string,
-    readonly publicMessage: string,
-    readonly retryable = false,
+    status: number,
+    code: string,
+    publicMessage: string,
+    retryable = false,
   ) {
     super(publicMessage);
+    this.status = status;
+    this.code = code;
+    this.publicMessage = publicMessage;
+    this.retryable = retryable;
   }
 }
 
-export function createSearchHandler({ client, randomUUID = () => crypto.randomUUID() }: HandlerDependencies) {
+export function createSearchHandler({
+  client,
+  randomUUID = () => crypto.randomUUID(),
+  clock = () => new Date(),
+}: HandlerDependencies) {
   return async (request: Request): Promise<Response> => {
     const suppliedRequestId = request.headers.get('x-request-id');
     const requestId = suppliedRequestId && UUID_PATTERN.test(suppliedRequestId)
@@ -105,15 +123,31 @@ export function createSearchHandler({ client, randomUUID = () => crypto.randomUU
       } catch {
         throw new PublicRequestError(400, 'MALFORMED_JSON', 'Request body must be valid JSON.');
       }
-      const searchRequest = validateRequest(body);
+      let searchRequest = validateRequest(body);
+      if (!searchRequest.time) {
+        const parsedTime = parseTimeExpression(searchRequest.query, {
+          now: clock(),
+          timeZone: STOCKHOLM_TIME_ZONE,
+        });
+        if (parsedTime?.status === 'AMBIGUOUS') {
+          throw new PublicRequestError(422, 'AMBIGUOUS_TIME', 'Time expression is ambiguous.');
+        }
+        if (parsedTime?.status === 'PARSED') {
+          searchRequest = {
+            ...searchRequest,
+            query: parsedTime.lexicalText,
+            time: parsedTime.interval,
+          };
+        }
+      }
       let normalized: { preserving: string; accentless: string };
       try {
         normalized = normalizeForEdgeSearch(searchRequest.query);
       } catch {
         invalidRequest();
       }
-      if (!normalized.preserving && !searchRequest.taxonomyNodeId) {
-        throw new PublicRequestError(400, 'QUERY_REQUIRED', 'A query or taxonomy filter is required.');
+      if (!normalized.preserving && !searchRequest.taxonomyNodeId && !searchRequest.time) {
+        throw new PublicRequestError(400, 'QUERY_REQUIRED', 'A query, taxonomy filter, or time is required.');
       }
 
       const params = toRpcParams(searchRequest, requestId, normalized);
@@ -243,7 +277,7 @@ function toRpcParams(
     p_embedding_revision: 'voyage-4-preflight-v1',
     p_embedding_dimension: 1024,
     p_limit: request.limit ?? 10,
-    p_search_config_version: 'embed-01a-preflight-v1',
+    p_search_config_version: 'event-01-time-v1',
   };
 }
 

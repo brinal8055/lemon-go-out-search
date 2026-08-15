@@ -42,6 +42,20 @@ const placeRow: SearchRpcRow = {
   semantic_degraded: false,
 };
 
+const eventRow: SearchRpcRow = {
+  ...placeRow,
+  entity_id: 'f94d8c23-055a-4db3-9d78-7b0ea329e370',
+  entity_type: 'EVENT',
+  display_name: 'Friluftsmuseets dag',
+  factual_summary: null,
+  place_status: null,
+  event_starts_at: '2026-08-15T08:00:00.000Z',
+  event_ends_at: '2026-08-15T12:00:00.000Z',
+  event_timezone: 'Europe/Stockholm',
+  event_status: 'SCHEDULED',
+  venue: { name: 'Stadsparken Jönköping' },
+};
+
 function mockClient(result: { data: SearchRpcRow[] | null; error: { code?: string; message?: string } | null }) {
   const rpc = vi.fn(async () => result);
   const schema = vi.fn(() => ({ rpc }));
@@ -82,7 +96,7 @@ describe('EDGE-01 search handler', () => {
       p_query_norm: 'evergreen restaurang pizzeria',
       p_query_ascii: 'evergreen restaurang pizzeria',
       p_query_vector: null,
-      p_search_config_version: 'embed-01a-preflight-v1',
+      p_search_config_version: 'event-01-time-v1',
     }));
     expect(body).toEqual({
       requestId: REQUEST_ID,
@@ -98,6 +112,68 @@ describe('EDGE-01 search handler', () => {
       }],
     });
     expect(JSON.stringify(body)).not.toMatch(/client-credential|result_position|semantic_used|diagnostic|score|payload/i);
+  });
+
+  it('uses TIME-01 for mixed and time-only queries while keeping exactly one RPC', async () => {
+    const mocked = mockClient({ data: [eventRow], error: null });
+    const handler = createSearchHandler({
+      client: mocked.client,
+      randomUUID: () => REQUEST_ID,
+      clock: () => new Date('2026-08-15T07:00:00.000Z'),
+    });
+
+    const mixed = await handler(post({
+      query: 'Friluftsmuseets dag tonight', uiLocale: 'en', scopeId: SCOPE_ID,
+      entityTypes: ['EVENT'],
+    }));
+    expect(mixed.status).toBe(200);
+    const mixedBody = await mixed.json();
+    expect(mocked.rpc).toHaveBeenLastCalledWith('search_v1', expect.objectContaining({
+      p_query: 'friluftsmuseets dag',
+      p_query_norm: 'friluftsmuseets dag',
+      p_time_start: '2026-08-15T16:00:00.000Z',
+      p_time_end: '2026-08-16T00:00:00.000Z',
+    }));
+    expect(mixedBody.results[0]).toEqual(expect.objectContaining({
+      type: 'EVENT', title: 'Friluftsmuseets dag', status: 'SCHEDULED',
+    }));
+    expect(JSON.stringify(mixedBody)).not.toMatch(
+      /freshness|provenance|source_record|stageRank|contextMatch|manual/i,
+    );
+
+    const timeOnly = await handler(post({
+      query: 'ikväll', uiLocale: 'sv', scopeId: SCOPE_ID, entityTypes: ['EVENT'],
+    }));
+    expect(timeOnly.status).toBe(200);
+    expect(mocked.rpc).toHaveBeenCalledTimes(2);
+    expect(mocked.rpc).toHaveBeenLastCalledWith('search_v1', expect.objectContaining({
+      p_query: '', p_query_norm: '', p_query_ascii: '',
+      p_time_start: '2026-08-15T16:00:00.000Z',
+      p_time_end: '2026-08-16T00:00:00.000Z',
+    }));
+  });
+
+  it('keeps unsupported temporal text lexical and rejects ambiguous time with safe 422', async () => {
+    const mocked = mockClient({ data: [], error: null });
+    const handler = createSearchHandler({
+      client: mocked.client,
+      randomUUID: () => REQUEST_ID,
+      clock: () => new Date('2026-08-15T07:00:00.000Z'),
+    });
+    const unsupported = await handler(post({
+      query: 'sometime soon', uiLocale: 'en', scopeId: SCOPE_ID,
+    }));
+    expect(unsupported.status).toBe(200);
+    expect(mocked.rpc).toHaveBeenCalledWith('search_v1', expect.objectContaining({
+      p_query: 'sometime soon', p_time_start: null, p_time_end: null,
+    }));
+
+    const ambiguous = await handler(post({
+      query: 'tomorrow next weekend', uiLocale: 'en', scopeId: SCOPE_ID,
+    }));
+    expect(ambiguous.status).toBe(422);
+    expect((await ambiguous.json()).error.code).toBe('AMBIGUOUS_TIME');
+    expect(mocked.rpc).toHaveBeenCalledOnce();
   });
 
   it('propagates a valid request ID and generates one for an invalid value', async () => {
@@ -240,7 +316,7 @@ describe('EDGE-01 server RPC client', () => {
       p_embedding_revision: 'voyage-4-preflight-v1',
       p_embedding_dimension: 1024,
       p_limit: 10,
-      p_search_config_version: 'embed-01a-preflight-v1',
+      p_search_config_version: 'event-01-time-v1',
     } satisfies SearchRpcParams;
 
     await client.schema('api').rpc('search_v1', params);

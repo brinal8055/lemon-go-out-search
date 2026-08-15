@@ -149,6 +149,20 @@ describe('TIME-01 deterministic EN/SV parser', () => {
     }
   });
 
+  it('returns only the non-temporal lexical text for the shared Edge search path', () => {
+    const mixed = parseTimeExpression('Live music this Friday in Jönköping', {
+      now: mondayNoon,
+      timeZone: STOCKHOLM_TIME_ZONE,
+    });
+    const timeOnly = parseTimeExpression('ikväll', {
+      now: mondayNoon,
+      timeZone: STOCKHOLM_TIME_ZONE,
+    });
+    expect(mixed?.status).toBe('PARSED');
+    expect(mixed?.status === 'PARSED' ? mixed.lexicalText : null).toBe('live music in jönköping');
+    expect(timeOnly?.status === 'PARSED' ? timeOnly.lexicalText : null).toBe('');
+  });
+
   it('rejects a non-frozen timezone and an invalid injected clock', () => {
     expect(() => parseTimeExpression('tomorrow', {
       now: mondayNoon,

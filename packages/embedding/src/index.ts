@@ -8,7 +8,7 @@ export const EMBEDDING_MODEL = 'voyage-4';
 export const EMBEDDING_MODEL_REVISION = 'voyage-4-preflight-v1';
 export const EMBEDDING_DIMENSION = 1024;
 export const EMBEDDING_TIMEOUT_MS = 10_000;
-export const EMBEDDING_CONFIG_VERSION = 'embed-01a-preflight-v1';
+export const EMBEDDING_CONFIG_VERSION = 'event-01-time-v1';
 export const VOYAGE_ENDPOINT = 'https://api.voyageai.com/v1/embeddings';
 const MAX_RESPONSE_BYTES = 256 * 1024;
 

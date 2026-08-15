@@ -39,4 +39,9 @@ interpretation; absence remains meaningless under `DELTA_ONLY`.
 ```sh
 pnpm source:smoke:event
 pnpm ingest:event
+pnpm expire:events
 ```
+
+The expiry command uses the same known-end/point predicate as authoritative
+search. It withholds expired publication and invalidates active documents while
+preserving the Event row, status, and provenance; no scheduler is installed.

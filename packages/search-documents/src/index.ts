@@ -275,13 +275,21 @@ async function loadEntity(client: pg.Client, entityId: string): Promise<EntityRo
                  boundary.boundary, coalesce(venue.location, event.location)::extensions.geometry
                )
            end as subtype_eligible,
-           case when entity.entity_type = 'EVENT' then event.standalone_street_address else place.street_address end
+           case when entity.entity_type = 'EVENT'
+             then coalesce(venue.street_address, event.standalone_street_address)
+             else place.street_address end
              as street_address,
-           case when entity.entity_type = 'EVENT' then event.standalone_postal_code else place.postal_code end
+           case when entity.entity_type = 'EVENT'
+             then coalesce(venue.postal_code, event.standalone_postal_code)
+             else place.postal_code end
              as postal_code,
-           case when entity.entity_type = 'EVENT' then event.standalone_locality else place.locality end
+           case when entity.entity_type = 'EVENT'
+             then coalesce(venue.locality, event.standalone_locality)
+             else place.locality end
              as locality,
-           case when entity.entity_type = 'EVENT' then event.standalone_country_code else place.country_code end
+           case when entity.entity_type = 'EVENT'
+             then coalesce(venue.country_code, event.standalone_country_code)
+             else place.country_code end
              as country_code,
            place.opening_hours,
            event.starts_at, event.ends_at, event.status::text as event_status,

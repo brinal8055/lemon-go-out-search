@@ -312,12 +312,22 @@ describe('SRC-03B bounded Event canonicalization', () => {
     await rebuildSearchDocuments(connectionString);
     const standaloneState = await eventState(standalone.externalKey);
     const linkedState = await eventState(linked.externalKey);
+    const [linkedDocument] = await fixtureQuery<{
+      event_context_text: string;
+      facts_text: string;
+    }>(connectionString, `
+      select event_context_text, facts_text
+      from app.search_documents
+      where entity_id = $1 and is_active
+    `, [linkedState.canonical_entity_id]);
 
     expect(standaloneState.venue_place_id).toBeNull();
     expect(linkedState.venue_place_id).toBe(place.id);
     expect(linkedState.location_present).toBe(false);
     expect(linkedState.boundary_covered).toBe(true);
     expect(linkedState.active_documents).toBe(1);
+    expect(linkedDocument.event_context_text).toContain('Venue: Rådhusparken');
+    expect(linkedDocument.facts_text).toContain('Jönköping');
   });
 
   it('blocks standalone publication without effective location and does not invent duration', async () => {
