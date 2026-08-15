@@ -2,17 +2,16 @@
 
 Last updated: 2026-08-15
 
-Purpose: minimum durable context required to start a fresh Codex thread safely.
+Purpose: minimum durable context required to safely start a fresh Codex thread.
 
-Do not use this file instead of the frozen sources.
-Do not expand this file with detailed package specifications already present
-elsewhere.
+Do NOT duplicate detailed package specifications here.
+Use frozen docs + explicit current task prompt for package details.
 
 ---
 
 # 1. Authority
 
-Frozen source hierarchy:
+Frozen hierarchy:
 
 1. `docs/requirements/Requirements_Baseline_v1_1.md`
 2. `docs/architecture/Final_Architecture_v1_0.md`
@@ -23,7 +22,7 @@ Manifest:
 
 `docs/FROZEN_SOURCES.md`
 
-Authority rule:
+Authority:
 
 Requirements > Architecture > Technical Specification > Implementation Plan
 
@@ -31,20 +30,20 @@ True conflict:
 
 `SPEC_CHANGE_REQUIRED`
 
-Other rules:
+Rules:
 
 - Git history is authoritative for accepted implementation state.
-- Explicit current task prompt defines the package boundary.
+- Explicit task prompt defines the active package boundary.
 - Read only task-relevant frozen sections.
-- Do not reread all frozen documents/history.
+- Do not reread full frozen docs/history.
 - `CODEX_START_HERE.md` is deprecated/deleted; never recreate it.
 - Never rewrite accepted commits/history.
 
 ---
 
-# 2. Architecture in one screen
+# 2. Architecture
 
-Trial scope:
+Scope:
 
 full Jönköping municipality, Sweden
 
@@ -52,8 +51,8 @@ Production path:
 
 Expo / React Native
 → Supabase Edge
-→ one public `api.search_v1` PostgreSQL RPC
-→ private PostgreSQL/PostGIS/pgvector stages
+→ one public `api.search_v1`
+→ PostgreSQL / PostGIS / pgvector
 
 Postgres is the sole canonical/search datastore.
 
@@ -63,14 +62,14 @@ No:
 - Redis search
 - secondary search datastore
 - request-time scraping
-- ANN/HNSW/IVFFlat
+- ANN / HNSW / IVFFlat
 - LLM router/rewriter/reranker
 - learned ranking
 
 Search stack:
 
 protected exact
-+ ordinary lexical/taxonomy
++ lexical/taxonomy
 + Event/time
 + semantic exact-pgvector
 → fixed RRF
@@ -86,25 +85,20 @@ Deterministic search must always work without Voyage.
 DAY 1: COMPLETE
 DAY 2: COMPLETE
 
-DAY 3 completed:
+DAY 3 backend/search stack: COMPLETE
 
-SRC-03B
-→ EVENT-01
-
-EMBED-01B
-→ SEM-01
-
-EVENT-01 + SEM-01
-→ RANK-01
+SRC-03B → EVENT-01
+EMBED-01B → SEM-01
+RANK-01
+NONCOLLAPSE-01
 
 Current task:
 
-`NONCOLLAPSE-01`
+`MOB-03`
 
 Remaining Day 3:
 
-NONCOLLAPSE-01
-→ MOB-03
+MOB-03
 → EVAL-03
 
 Then Day 4:
@@ -121,8 +115,6 @@ Do not automatically begin the next package.
 ---
 
 # 4. Accepted commit ledger
-
-Accepted package history:
 
 BOOT-01      `4e5ab768`
 DB-01A       `18653d2e`
@@ -155,8 +147,9 @@ EVENT-01     `80715b9`
 EMBED-01B    `0e39010749d244286900877df745a46123a6e790`
 SEM-01       `febdb189c5a9a36e16a7d30c8fce67f29f586695`
 RANK-01      `e7e13033e6c8765fe818faed1f34d4b566077713`
+NONCOLLAPSE  `1609514041779866a70a881d43b14bfa7f88b954`
 
-Expected working tree at package boundary:
+Expected package-boundary working tree:
 
 CLEAN
 
@@ -171,7 +164,7 @@ Source
 → immutable SourceRecordVersion H
 → ParseAttempt A
 
-Source-current evidence is exact:
+Source-current evidence:
 
 current_version_id H
 +
@@ -181,7 +174,7 @@ Rules:
 
 - capture before parse;
 - H immutable;
-- parser replay = same H + new A;
+- replay = same H + new A;
 - failed newer parse never destroys last-good H+A;
 - source-current evidence != canonical-current truth.
 
@@ -191,13 +184,13 @@ No heuristic cross-source auto-merge.
 
 Duplicate decisions pin exact H+A.
 
-Changed pinned evidence reopens finalized duplicate decisions through:
+Changed pinned evidence reopens finalized decisions through:
 
 `OPEN_REVIEW`
 
-Targeted provenance/history is retained.
+Provenance/history retained.
 
-Compliance invariant:
+Compliance:
 
 `redacted_by = session_user`
 
@@ -229,7 +222,7 @@ Timezone:
 
 Europe/Stockholm
 
-Geometry eligibility:
+Spatial eligibility:
 
 `ST_Covers`
 
@@ -241,12 +234,13 @@ Nodes:
 
 52
 
-Taxonomy checksum:
+Checksum:
 
 `ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2`
 
 No legacy taxonomy.
-Do not stretch taxonomy to satisfy supply targets.
+
+Do not stretch taxonomy to satisfy inventory targets.
 
 ---
 
@@ -260,18 +254,18 @@ Protected only:
 
 Not protected:
 
-- accentless/ASCII exact
+- ASCII/accentless exact
 - prefix
 - typo
 - trigram
 - FTS
 - taxonomy
-- Event evidence
-- semantic evidence
+- Event
+- semantic
 
-Eligibility always precedes protection/retrieval/ranking.
+Eligibility precedes retrieval/protection/ranking.
 
-Every final CanonicalEntity appears exactly once.
+Final CanonicalEntity IDs are exactly once.
 
 Hard filters can never be bypassed by semantic, RRF or non-collapse.
 
@@ -279,7 +273,7 @@ Hard filters can never be bypassed by semantic, RRF or non-collapse.
 
 # 8. Event branch — accepted
 
-Event source:
+Source:
 
 `JONKOPING_EVENT_CALENDAR`
 
@@ -291,11 +285,11 @@ Refresh:
 
 `DELTA_ONLY`
 
-Stable key:
+Stable source key:
 
 `event/<source-event-uuid>`
 
-Only accepted source records:
+Accepted only when:
 
 `occurrence_count == 1`
 
@@ -307,55 +301,45 @@ Multi-occurrence:
 
 `IDENTITY_BECAME_AMBIGUOUS`
 
-Never infer identity from title/date/start/venue/index/hash.
+Never infer Event identity from title/date/start/venue/index/hash.
 
-Source does not provide reliable literal SCHEDULED status.
+Source lacks reliable literal SCHEDULED status.
 
-Accepted bounded interpretation:
+Accepted bounded canonical interpretation:
 
 `SCHEDULED`
 
-with provenance method:
+with:
 
 `MANUAL`
 
-backed by exact H+A.
+provenance backed by exact H+A.
 
-Never infer cancellation/completion/postponement from DELTA absence/outage/time.
+Never infer cancellation/completion/postponement from absence/outage/time.
 
-EVENT-01 accepted config:
+EVENT-01 config:
 
 - horizon: 30 days
-- source critical-fact freshness: 48h
-- only SCHEDULED Events participate
+- critical-fact freshness: 48h
+- only SCHEDULED participates
 
 Known-end overlap:
 
 `starts_at < query_end AND ends_at > query_start`
 
-Known-end current:
-
-`ends_at > now`
-
 Point Event:
 
 `query_start <= starts_at AND starts_at < query_end`
-
-Point current:
-
-`starts_at >= now`
 
 Never invent duration.
 
 `event_candidates` and `pnpm expire:events` are accepted.
 
-Do not recompute/redefine Event eligibility in later ranking packages.
-
 ---
 
-# 9. SearchDocuments / embeddings
+# 9. SearchDocuments / semantic contract
 
-SearchDocument version:
+SearchDocument:
 
 `search-document-v1`
 
@@ -363,9 +347,9 @@ Embedding template:
 
 `lexical-embedding-template-v1`
 
-Use existing deterministic `embedding_text`.
+Use deterministic `embedding_text`.
 
-Selected semantic contract:
+Semantic contract:
 
 provider:
 Voyage
@@ -392,15 +376,15 @@ Embedding lifecycle:
 
 READY / FAILED / STALE
 
-Important:
+Rules:
 
 - FAILED terminal immutable;
-- retry = new attempt row/key;
+- retry = new attempt identity;
 - READY→STALE retains vector/history;
-- old document hash/model/config never considered compatible;
+- incompatible hash/model/config never retrievable;
 - no ANN.
 
-A historical provider-rate-limit FAILED attempt exists and must remain preserved:
+Historical FAILED attempt retained:
 
 `b721e3e9-bb58-4313-ba0c-9421d3ed0602`
 
@@ -408,58 +392,58 @@ Its later retry succeeded.
 
 At SEM-01 completion:
 
-4 compatible READY embeddings
+4 compatible READY
 +
-1 historical FAILED attempt
+1 historical FAILED
 +
 0 STALE
 
-Runtime corpus counts are dynamic; never hardcode them.
+Runtime counts are dynamic; never hardcode them.
 
 ---
 
-# 10. Semantic branch — accepted
+# 10. SEM-01 — accepted
 
-SEM-01:
+Commit:
 
 `febdb189c5a9a36e16a7d30c8fce67f29f586695`
 
-Accepted runtime config:
+Runtime config:
 
 - query timeout: 700 ms
-- circuit open after 3 qualifying failures
+- circuit: 3 qualifying failures
 - cooldown: 30 s
 - one half-open probe
 - semantic candidate cap: 30
 
-`shouldEmbed` is deterministic EN/SV.
+`shouldEmbed` is deterministic EN/SV and controls provider invocation only.
 
-It controls provider invocation ONLY and never suppresses deterministic search.
+It must never suppress deterministic search.
 
-`semantic_candidates` uses exact pgvector cosine over compatible READY
-SearchDocuments only.
+`semantic_candidates`:
 
-Provider/circuit failure:
+exact pgvector cosine over compatible READY docs only.
 
-query vector = NULL
-→ one `api.search_v1` call still happens
-→ deterministic search proceeds
+Provider/circuit degradation:
+
+query_vector = NULL
+→ one `api.search_v1`
+→ deterministic search continues
 → HTTP 200
 → `semanticDegraded=true`
 
 No request-time retry.
-
 No ANN.
 
 Real EN semantic smoke passed.
 
-Formal semantic DEV lift remains:
+Formal lift:
 
 `SEMANTIC_DEV_LIFT_NOT_ASSESSABLE_DUE_TO_CURRENT_INVENTORY`
 
 ---
 
-# 11. RANK-01 — accepted base ranking
+# 11. RANK-01 — accepted
 
 Commit:
 
@@ -467,19 +451,15 @@ Commit:
 
 Config:
 
-`rank-01-rrf-v1`
-
-Algorithm:
-
-`RRF_V1`
+`rank-01-rrf-v1 / RRF_V1`
 
 Formula:
 
 `Σ 1/(60 + stage_rank)`
 
-Equal-weight, rank-only.
+Equal-weight rank-only RRF.
 
-Participating ordinary stages:
+Ordinary stages:
 
 - ASCII/accentless exact
 - prefix
@@ -489,8 +469,7 @@ Participating ordinary stages:
 - Event
 - semantic
 
-No raw lexical/cosine magnitude in fusion.
-
+No raw lexical/cosine magnitude.
 No stage weights.
 No learned ranking.
 No reranker.
@@ -499,51 +478,105 @@ Protected exact precedes ordinary RRF.
 
 Canonical IDs exactly once.
 
-Semantic NULL/degraded path simply fuses remaining stages.
+Semantic NULL/degraded path fuses remaining stages only.
 
-Accepted final deterministic tie context:
+Tie context:
 
 1. protected context;
 2. direct taxonomy context;
 3. CanonicalEntity UUID ascending.
 
-NONCOLLAPSE-01 must consume this base order and must NOT modify RRF.
+Do not reopen RANK-01 outside explicit EVAL-03 config tuning.
 
 ---
 
-# 12. Local DB / test caveat
+# 12. NONCOLLAPSE-01 — accepted
 
-During EMBED-01B the primary local DB was accidentally reset.
+Commit:
 
-Recovery used only approved seeded reset + accepted ingestion/reconstruction
-paths.
+`1609514041779866a70a881d43b14bfa7f88b954`
 
-No manual canonical/SearchDocument reconstruction occurred.
+Config:
 
-Historical evaluation snapshots and historical local UUIDs must NOT be forced
-back into the current runtime DB.
+`noncollapse-v1 / NONCOLLAPSE_V1`
 
-Last reported reconstructed runtime snapshot:
+Initial rule:
+
+- deterministic broad EN/SV/time/geo/parent-browse applicability;
+- top-K window: 5;
+- concentration cap: 2;
+- comparable promotion requires:
+  `candidate_base_rrf >= displaced_base_rrf * 0.90`.
+
+Grouping:
+
+taxonomy:
+active membership path depth 1 using stable UUIDs; multi-label supported
+
+chain:
+explicit `chain_key` only
+
+Event venue:
+linked `Event.venue_place_id` only
+
+Never infer chain or venue grouping heuristically.
+
+Non-collapse:
+
+- runs after RRF;
+- changes order only;
+- preserves same exactly-once eligible candidate set;
+- does not change RRF values;
+- protected/known-item queries are immune;
+- leaf/narrow taxonomy queries abstain;
+- weak alternatives are never promoted merely for diversity;
+- no comparable alternative → abstain.
+
+Real broad smoke:
+
+applicable, but `NO_CONCENTRATION`; no movement.
+
+DEV result:
+
+`NONCOLLAPSE_DEV_EFFECT_NOT_ASSESSABLE_DUE_TO_CURRENT_INVENTORY`
+
+This is accepted because deterministic fixtures prove behavior.
+
+Do not reopen during MOB-03.
+
+---
+
+# 13. Local DB / test caveat
+
+Primary local DB was accidentally reset during EMBED-01B.
+
+Recovery used only approved seeded reset + accepted reconstruction paths.
+
+No manual canonical/SearchDocument recreation occurred.
+
+Do not force historical local IDs/counts into runtime state.
+
+Last reported runtime snapshot:
 
 1 Place
 3 Events
 4 active SearchDocuments
 4 compatible READY embeddings
 
-This snapshot is dynamic, not normative.
+This is dynamic, not normative.
 
-Known unrelated local-state test noise after RANK-01:
+Latest known unrelated test noise:
 
-- 2 provenance fixture conflicts;
-- 1 pre-existing EVENT diagnostic lint warning.
+- state-sensitive provenance fixture conflicts from reconstructed DB;
+- one pre-existing Event diagnostic DB-lint warning.
 
-Do not modify accepted packages merely to hide unchanged state-sensitive noise.
+NONCOLLAPSE-01 reported the diagnostic warning unchanged.
 
-Fix only failures genuinely caused by the active package.
+Do not mutate accepted history merely to hide unchanged unrelated noise.
 
 ---
 
-# 13. Evaluation guardrails
+# 14. Evaluation guardrails
 
 Frozen corpus:
 
@@ -553,32 +586,30 @@ Frozen corpus:
 - SEALED: 30
 - adversarial: 20
 
-Semantic:
+Semantic allocation:
 
 16 / 8 / 6
 
 At least 12 EN/SV semantic pairs.
 
-EVAL-02 historical baseline:
+Historical EVAL-02 artifacts:
 
 `dataset-manifest.day2.v1`
 
-judgments:
-
 `judgments.day2.v1`
 
-Do NOT mutate viewed judgment/inventory versions.
+Do not mutate viewed judgment/inventory versions.
 
 SEALED is inaccessible during tuning.
 
 Do not:
 
 - inspect SEALED;
-- tune acquisition around evaluation targets;
-- hand-insert missing DEV entities;
-- treat current runtime inventory as the historical EVAL-02 inventory.
+- hand-insert DEV targets;
+- tune source acquisition around evaluation cases;
+- force current runtime inventory to historical EVAL-02 state.
 
-Inventory absence may legitimately be attributed to:
+Inventory absence may legitimately be:
 
 `INVENTORY`
 
@@ -588,79 +619,78 @@ EVAL-03 owns full 60-DEV tuning/freeze.
 
 ---
 
-# 14. Current task — NONCOLLAPSE-01
+# 15. Current task — MOB-03
 
 Current task:
 
-`NONCOLLAPSE-01 — broad-only relevance-primary non-collapse`
+`MOB-03 — Event + semantic/degraded mobile UX`
 
-Input:
+Backend ranking is complete through:
 
-accepted completed RRF base rank.
+RRF
+→ NONCOLLAPSE
 
-Purpose:
+MOB-03 owns presentation only.
 
-prevent pathological concentration on clearly broad discovery queries only when
-sufficiently comparable already-retrieved alternatives exist.
+Preserve:
 
-Allowed concentration dimensions:
+- EN/SV language switch;
+- UI language independent of query language;
+- direct name search;
+- category browse;
+- broad/NL search;
+- loading / empty / error;
+- same Edge endpoint.
 
-- active taxonomy grouping;
-- explicit/stable chain grouping only;
-- deterministic Event→Place venue grouping only.
+Add/complete:
 
-Never infer:
+- Event cards;
+- known-end and point-Event time presentation;
+- linked/standalone venue presentation;
+- localized semantic-degraded state;
+- mixed Place/Event rendering.
 
-- chain from similar names;
-- Event venue relation from fuzzy strings;
-- taxonomy from AI/semantic similarity.
+Critical invariant:
 
-Must NOT affect:
+render server results in received order.
 
-- known-item/navigation;
-- protected exact;
-- short name-shaped queries;
-- explicit narrow taxonomy requests.
+No client:
 
-Rules:
+- reranking
+- Event sorting
+- semantic sorting
+- diversity pass
+- Voyage call
+- direct PostgreSQL call
+- second Event endpoint
 
-- runs AFTER RRF;
-- reorder only already-eligible candidates;
-- relevance remains primary;
-- weak candidate must not jump stronger result merely for variety;
-- if no comparable alternative exists: ABSTAIN;
-- same canonical candidate set;
-- no truth mutation;
-- deterministic;
-- diagnostics restricted.
+`semanticDegraded=true` is successful deterministic fallback, NOT an error.
 
-Do NOT implement:
+Mobile must not expose:
 
-- MMR
-- generalized diversity framework
-- new retriever
-- weighted/learned diversity
-- RRF changes
-- client reranking
-- source/taxonomy mutation
+- provenance/H+A
+- RRF/non-collapse internals
+- semantic cosine
+- Voyage/model details
+- private diagnostics
 
-Exact NONCOLLAPSE implementation tunables belong in the explicit package prompt,
-not this handoff.
+If frozen-required Event presentation data is genuinely missing from the public
+SearchResponse, STOP and report the contract gap rather than expanding backend
+scope silently.
 
-Stop before MOB-03.
+Stop before EVAL-03.
 
 ---
 
-# 15. Remaining sequence
+# 16. Remaining sequence
 
 Current:
 
-NONCOLLAPSE-01
+MOB-03
 
 Then:
 
-MOB-03
-→ EVAL-03
+EVAL-03
 
 Then Day 4:
 
@@ -675,9 +705,9 @@ Do not work ahead.
 
 ---
 
-# 16. Codex execution discipline
+# 17. Codex execution discipline
 
-Usage is constrained. Optimize context.
+Usage is constrained.
 
 For each package:
 
@@ -696,8 +726,8 @@ For each package:
 
 Avoid:
 
-- rereading full frozen docs;
-- rereading accepted package history;
+- full frozen-doc rereads;
+- accepted-history rereads;
 - huge successful logs;
 - unnecessary questions;
 - speculative cleanup.
@@ -716,63 +746,61 @@ One package = one implementation commit.
 
 ---
 
-# 17. Fresh-thread startup
+# 18. Fresh-thread startup
 
 Current task:
 
-`NONCOLLAPSE-01`
+`MOB-03`
 
 Recommended model:
 
 GPT-5.6 Sol
-High reasoning
+Medium reasoning
 
-Fresh thread startup:
+Fresh thread:
 
 1. confirm clean working tree;
 2. read `AGENTS.md`;
 3. read this file;
 4. confirm accepted history contains:
-   `e7e13033e6c8765fe818faed1f34d4b566077713`
+   `1609514041779866a70a881d43b14bfa7f88b954`
    plus any later docs-only handoff commit;
-5. search only NONCOLLAPSE-relevant frozen sections;
-6. execute explicit NONCOLLAPSE-01 prompt;
-7. do not reopen RANK-01;
+5. read only MOB-03-relevant frozen sections;
+6. execute explicit MOB-03 prompt;
+7. do not change backend ranking;
 8. do not inspect SEALED;
-9. do not begin MOB-03 automatically.
+9. stop before EVAL-03.
 
-Expected implementation commit:
+Expected commit:
 
-`feat(search): add broad non-collapse ranking`
+`feat(mobile): add event and semantic search UX`
 
 ---
 
-# 18. Completion report
+# 19. MOB-03 completion report
 
-Keep successful package report <=20 lines.
+Return <=20 lines:
 
-For NONCOLLAPSE-01:
-
-Task:
+Task: MOB-03
 Commit:
-Config/version:
-Applicability:
-Top-K / concentration cap:
-Relevance cohort:
-Taxonomy grouping:
-Chain grouping:
-Event-venue grouping:
-Protected / known-item immunity:
-Narrow taxonomy immunity:
-Canonical uniqueness / eligibility:
-Determinism:
-Diagnostics:
-Broad DEV assertions:
-Real broad smoke:
-Direct-name immunity:
-Tests / known unrelated noise:
-Scope audit / SPEC_CHANGE_REQUIRED:
+Event card:
+Point/known-end display:
+Linked/standalone venue:
+EN/SV:
+semanticDegraded UX:
+Loading/empty/error:
+Server-order preservation:
+Query-language independence:
+Direct Place smoke:
+Event smoke:
+Broad smoke:
+Accessibility/responsive:
+Mobile security:
+Tests:
+Backend changes:
+Scope audit:
+SPEC_CHANGE_REQUIRED:
 Working tree:
-Next task: MOB-03
+Next task: EVAL-03
 
 STOP.
