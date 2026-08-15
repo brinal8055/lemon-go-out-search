@@ -9,6 +9,7 @@ import {
   EMBEDDING_PROVIDER,
   EMBEDDING_QUERY_INPUT_TYPE,
   requestVoyageEmbedding,
+  requestVoyageEmbeddings,
   type EmbeddingTarget,
   validateSelectedEmbeddingConfig,
   validateEmbeddingVector,
@@ -30,6 +31,15 @@ function voyageResponse(embedding: unknown = vector, model = EMBEDDING_MODEL): R
     data: [{ object: 'embedding', embedding, index: 0 }],
     model,
     usage: { total_tokens: 4 },
+  }), { status: 200, headers: { 'content-type': 'application/json' } });
+}
+
+function voyageBatchResponse(embeddings: unknown[]): Response {
+  return new Response(JSON.stringify({
+    object: 'list',
+    data: embeddings.map((embedding, index) => ({ object: 'embedding', embedding, index })),
+    model: EMBEDDING_MODEL,
+    usage: { total_tokens: 12 },
   }), { status: 200, headers: { 'content-type': 'application/json' } });
 }
 
@@ -77,6 +87,17 @@ describe('EMBED-01A Voyage client', () => {
     expect(fetchMock).toHaveBeenCalledOnce();
   });
 
+  it('sends multiple document inputs in one request and returns provider token usage', async () => {
+    const fetchMock = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
+      expect(JSON.parse(String(init?.body))).toMatchObject({ input: ['first', 'second'] });
+      return voyageBatchResponse([vector, vector]);
+    });
+    await expect(requestVoyageEmbeddings(['first', 'second'], 'document', 'test-key', {
+      fetch: fetchMock as typeof fetch,
+    })).resolves.toEqual({ embeddings: [vector, vector], totalTokens: 12 });
+    expect(fetchMock).toHaveBeenCalledOnce();
+  });
+
   it('rejects wrong dimension, non-finite values, and zero norm', () => {
     expect(() => validateEmbeddingVector([1], EMBEDDING_DIMENSION)).toThrowError(/dimension/);
     expect(() => validateEmbeddingVector([...vector.slice(0, -1), Number.NaN], EMBEDDING_DIMENSION))
@@ -95,6 +116,13 @@ describe('EMBED-01A Voyage client', () => {
     await expect(requestVoyageEmbedding('input', 'document', 'test-key', {
       fetch: fetchMock as typeof fetch,
     })).rejects.toMatchObject({ errorCode: code });
+  });
+
+  it('captures bounded Retry-After metadata on HTTP 429', async () => {
+    const fetchMock = vi.fn(async () => new Response('', { status: 429, headers: { 'retry-after': '45' } }));
+    await expect(requestVoyageEmbedding('input', 'document', 'test-key', {
+      fetch: fetchMock as typeof fetch,
+    })).rejects.toMatchObject({ errorCode: 'PROVIDER_RATE_LIMIT', retryAfterMs: 45_000 });
   });
 
   it('classifies timeout and transport failures safely', async () => {

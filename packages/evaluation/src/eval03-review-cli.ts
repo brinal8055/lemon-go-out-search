@@ -13,7 +13,6 @@ const phase = argumentValue(process.argv.slice(2), '--phase') ?? 'day3';
 if (!['day3', 'day4-postcoverage'].includes(phase)) throw new Error('ARTIFACT_PHASE_UNSUPPORTED');
 const artifactVersion = argumentValue(process.argv.slice(2), '--artifact-version') ?? '1';
 if (!['1', '2'].includes(artifactVersion)) throw new Error('ARTIFACT_VERSION_UNSUPPORTED');
-if (phase === 'day4-postcoverage' && artifactVersion !== '1') throw new Error('POST_COVERAGE_VERSION_MUST_START_AT_1');
 const manifestVersion = phase === 'day3'
   ? `dataset-manifest.day3-current.v${artifactVersion}`
   : `dataset-manifest.day4-postcoverage.v${artifactVersion}`;
@@ -88,6 +87,42 @@ type CurrentMetadata = {
     status: string;
     count: number;
   }>;
+  embeddingAttempts: Array<{
+    id: string;
+    searchDocumentId: string;
+    entityId: string;
+    provider: string;
+    model: string;
+    revision: string;
+    dimension: number;
+    documentHash: string;
+    status: string;
+    attemptKey: string;
+    attemptedAt: string;
+    generatedAt: string | null;
+    errorClass: string | null;
+    errorCode: string | null;
+    staleReason: string | null;
+  }>;
+  compatibleReadyEmbeddings: Array<{
+    id: string;
+    searchDocumentId: string;
+    entityId: string;
+    documentHash: string;
+    attemptKey: string;
+    generatedAt: string;
+  }>;
+  sourceRunState: Array<{
+    sourceKey: string;
+    runId: string;
+    status: string;
+    refreshUnitComplete: boolean;
+    fetched: number;
+    valid: number;
+    invalid: number;
+    finishedAt: string;
+  }>;
+  fixtureAudit: { fixtureSources: number; fixtureSourceRecords: number };
   canonicalStateCounts: Array<{ entityType: string; publicationStatus: string; count: number }>;
   entities: InventoryEntity[];
 };
@@ -97,7 +132,9 @@ const priorJudgmentsPath = phase === 'day3'
   : 'evaluation/judgments/judgments.day3.v1.json';
 const priorManifestPath = phase === 'day3'
   ? 'evaluation/manifests/dataset-manifest.day2.v1.json'
-  : 'evaluation/manifests/dataset-manifest.day3-current.v2.json';
+  : artifactVersion === '2'
+    ? 'evaluation/manifests/dataset-manifest.day4-postcoverage.v1.json'
+    : 'evaluation/manifests/dataset-manifest.day3-current.v2.json';
 const [corpusText, corpusChecksumText, priorJudgmentsText, priorManifestText] = await Promise.all([
   readFile(new URL('evaluation/corpus/corpus.v1.jsonl', root), 'utf8'),
   readFile(new URL('evaluation/corpus/checksum.v1.txt', root), 'utf8'),
@@ -150,9 +187,9 @@ const sourceRuns = [...new Map(metadata.entities.flatMap(({ sourceEvidence }) =>
   .sort((left, right) => left.sourceKey.localeCompare(right.sourceKey)
     || left.captureRunId.localeCompare(right.captureRunId));
 const activeConfig = metadata.searchConfig;
-const activeReadyEmbeddings = metadata.embeddingCounts
-  .filter(({ status }) => status === 'READY')
-  .reduce((sum, { count }) => sum + count, 0);
+const activeReadyEmbeddings = metadata.compatibleReadyEmbeddings.length;
+const embeddingStateChecksum = sha256(stableJson(metadata.embeddingAttempts));
+const compatibleReadyChecksum = sha256(stableJson(metadata.compatibleReadyEmbeddings));
 const fixtureShapedEventCount = metadata.entities.filter(({ entityType, canonicalName }) => (
   entityType === 'EVENT' && /^Municipal Event [0-9a-f]{8}$/.test(canonicalName)
 )).length;
@@ -160,28 +197,44 @@ const fixtureFingerprintCount = metadata.entities.filter(({ canonicalName, sourc
   canonicalName === 'Explicit Indian Restaurant'
   || sourceEvidence.some(({ sourceKey }) => sourceKey.startsWith('src03b-place-'))
 )).length + fixtureShapedEventCount;
+const duplicateCanonicalIdCount = metadata.entities.length
+  - new Set(metadata.entities.map(({ canonicalEntityId }) => canonicalEntityId)).size;
 const missingActiveDocumentCount = metadata.entities.filter(({ searchDocument }) => searchDocument === null).length;
 if ((artifactVersion === '2' || phase === 'day4-postcoverage') && (
-  metadata.entities.length === 0 || fixtureFingerprintCount > 0 || missingActiveDocumentCount > 0
+  metadata.entities.length === 0
+  || fixtureFingerprintCount > 0
+  || metadata.fixtureAudit.fixtureSources > 0
+  || metadata.fixtureAudit.fixtureSourceRecords > 0
+  || duplicateCanonicalIdCount > 0
+  || missingActiveDocumentCount > 0
 )) {
   throw new Error('V2_CLEAN_DATASET_ACCEPTANCE_FAILED');
 }
 const publishedEntityCount = metadata.entities.length;
 const activeSearchDocumentCount = metadata.searchDocuments.length;
+if (phase === 'day4-postcoverage' && artifactVersion === '2'
+  && activeReadyEmbeddings !== activeSearchDocumentCount) {
+  throw new Error('POST_COVERAGE_HYBRID_READINESS_INCOMPLETE');
+}
 const codeGitCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
 const manifest = {
   manifest_version: manifestVersion,
   ...(phase === 'day4-postcoverage'
-    ? { supersedes: 'dataset-manifest.day3-current.v2' }
+    ? { supersedes: artifactVersion === '2'
+      ? 'dataset-manifest.day4-postcoverage.v1'
+      : 'dataset-manifest.day3-current.v2' }
     : artifactVersion === '2' ? { supersedes: 'dataset-manifest.day3-current.v1' } : {}),
   status: 'FROZEN_FOR_HUMAN_REVIEW',
   purpose: phase === 'day4-postcoverage'
-    ? 'COVERAGE_01_POST_COVERAGE_DEV_JUDGMENT_PREPARATION_ONLY'
+    ? artifactVersion === '2'
+      ? 'POSTCOV_READY_01_HYBRID_DEV_JUDGMENT_PREPARATION_ONLY'
+      : 'COVERAGE_01_POST_COVERAGE_DEV_JUDGMENT_PREPARATION_ONLY'
     : 'EVAL_03_DEV_JUDGMENT_PREPARATION_ONLY',
   canonical_dataset_version: phase === 'day4-postcoverage'
     ? `day4-postcoverage.v${artifactVersion}-${inventoryChecksum.slice(0, 12)}`
     : `day3-current.v${artifactVersion}-${inventoryChecksum.slice(0, 12)}`,
   source_record_ingestion_runs: sourceRuns,
+  source_run_state: metadata.sourceRunState,
   boundary: metadata.boundary,
   taxonomy: metadata.taxonomy,
   normalization_version: 'norm-v1',
@@ -198,6 +251,9 @@ const manifest = {
     query_template_version: 'semantic-query-template-v1',
     current_rows_by_status: metadata.embeddingCounts,
     compatible_ready_count: activeReadyEmbeddings,
+    embedding_state_checksum: embeddingStateChecksum,
+    compatible_ready_checksum: compatibleReadyChecksum,
+    compatible_selected_vectors: metadata.compatibleReadyEmbeddings,
   },
   search_config: {
     active_database_version: activeConfig.version,
@@ -233,6 +289,9 @@ const manifest = {
     active_ready_embeddings: activeReadyEmbeddings,
     fixture_shaped_event_names: fixtureShapedEventCount,
     fixture_fingerprints: fixtureFingerprintCount,
+    fixture_sources: metadata.fixtureAudit.fixtureSources,
+    fixture_source_records: metadata.fixtureAudit.fixtureSourceRecords,
+    duplicate_canonical_ids: duplicateCanonicalIdCount,
     no_active_document_entities: missingActiveDocumentCount,
     instruction: 'Confirm this is the intended legitimate inventory before approving judgments. If inventory changes, create a new version; never edit this manifest or packet in place.',
   },
@@ -250,7 +309,9 @@ const queries = devRecords.map((record) => buildReviewQuery(record, metadata.ent
 const packet = {
   packet_version: packetVersion,
   ...(phase === 'day4-postcoverage'
-    ? { supersedes: 'dev-review-packet.day3.v2' }
+    ? { supersedes: artifactVersion === '2'
+      ? 'dev-review-packet.day4-postcoverage.v1'
+      : 'dev-review-packet.day3.v2' }
     : artifactVersion === '2' ? { supersedes: 'dev-review-packet.day3.v1' } : {}),
   status: 'HUMAN_DEV_JUDGMENT_REQUIRED',
   dataset_manifest: { version: manifestVersion, checksum: manifestChecksum },
@@ -299,6 +360,8 @@ console.log(JSON.stringify({
   manifestVersion,
   manifestChecksum,
   inventoryChecksum,
+  embeddingStateChecksum,
+  compatibleReadyChecksum,
   publishedEntityCount,
   activeSearchDocumentCount,
   activeReadyEmbeddings,
@@ -327,6 +390,51 @@ async function readCurrentMetadata(database: pg.Client): Promise<CurrentMetadata
   }>(
     'select provider, model, model_revision, dimension, status, count(*)::int from app.embeddings group by provider, model, model_revision, dimension, status order by provider, model, model_revision, dimension, status',
   );
+  const embeddingAttempts = await database.query<{
+    id: string; search_document_id: string; entity_id: string; provider: string; model: string;
+    model_revision: string; dimension: number; document_hash: string; status: string;
+    attempt_key: string; attempted_at: Date; generated_at: Date | null; error_class: string | null;
+    error_code: string | null; stale_reason: string | null;
+  }>(`
+    select id, search_document_id, entity_id, provider, model, model_revision, dimension,
+           document_hash, status, attempt_key, attempted_at, generated_at,
+           error_class, error_code, stale_reason
+      from app.embeddings
+     order by search_document_id, attempted_at, id
+  `);
+  const compatibleReadyEmbeddings = await database.query<{
+    id: string; search_document_id: string; entity_id: string; document_hash: string;
+    attempt_key: string; generated_at: Date;
+  }>(`
+    select compatible.id, compatible.search_document_id, compatible.entity_id,
+           compatible.document_hash, embedding.attempt_key, compatible.generated_at
+      from app.compatible_ready_embeddings_v as compatible
+      join app.embeddings as embedding on embedding.id = compatible.id
+     order by compatible.search_document_id, compatible.id
+  `);
+  const sourceRunState = await database.query<{
+    source_key: string; run_id: string; status: string; refresh_unit_complete: boolean;
+    fetched: number; valid: number; invalid: number; finished_at: Date;
+  }>(`
+    select distinct on (source.key) source.key as source_key, run.id as run_id,
+           run.status::text, run.refresh_unit_complete, run.fetched, run.valid,
+           run.invalid, run.finished_at
+      from app.ingestion_runs as run
+      join app.sources as source on source.id = run.source_id
+     where source.key in ('OSM_OVERPASS', 'JONKOPING_MUNICIPAL_UTEGYM', 'JONKOPING_EVENT_CALENDAR')
+       and run.status <> 'STARTED'
+     order by source.key, run.finished_at desc, run.id
+  `);
+  const fixtureAudit = await database.query<{ fixture_sources: number; fixture_source_records: number }>(`
+    select
+      (select count(*)::int from app.sources
+        where key like 'src03b-place-%' or licence = 'TEST-FIXTURE-ONLY') as fixture_sources,
+      (select count(*)::int
+         from app.source_records as record
+         join app.sources as source on source.id = record.source_id
+        where source.key like 'src03b-place-%' or source.licence = 'TEST-FIXTURE-ONLY')
+        as fixture_source_records
+  `);
   const canonicalStateCounts = await database.query<{
     entity_type: string; publication_status: string; count: number;
   }>(
@@ -449,6 +557,45 @@ async function readCurrentMetadata(database: pg.Client): Promise<CurrentMetadata
       entityId, contentHash, templateVersion, documentVersion,
     })),
     embeddingCounts: embeddingCounts.rows.map(({ model_revision: revision, ...row }) => ({ ...row, revision })),
+    embeddingAttempts: embeddingAttempts.rows.map((row) => ({
+      id: row.id,
+      searchDocumentId: row.search_document_id,
+      entityId: row.entity_id,
+      provider: row.provider,
+      model: row.model,
+      revision: row.model_revision,
+      dimension: row.dimension,
+      documentHash: row.document_hash,
+      status: row.status,
+      attemptKey: row.attempt_key,
+      attemptedAt: row.attempted_at.toISOString(),
+      generatedAt: row.generated_at?.toISOString() ?? null,
+      errorClass: row.error_class,
+      errorCode: row.error_code,
+      staleReason: row.stale_reason,
+    })),
+    compatibleReadyEmbeddings: compatibleReadyEmbeddings.rows.map((row) => ({
+      id: row.id,
+      searchDocumentId: row.search_document_id,
+      entityId: row.entity_id,
+      documentHash: row.document_hash,
+      attemptKey: row.attempt_key,
+      generatedAt: row.generated_at.toISOString(),
+    })),
+    sourceRunState: sourceRunState.rows.map((row) => ({
+      sourceKey: row.source_key,
+      runId: row.run_id,
+      status: row.status,
+      refreshUnitComplete: row.refresh_unit_complete,
+      fetched: row.fetched,
+      valid: row.valid,
+      invalid: row.invalid,
+      finishedAt: row.finished_at.toISOString(),
+    })),
+    fixtureAudit: {
+      fixtureSources: fixtureAudit.rows[0].fixture_sources,
+      fixtureSourceRecords: fixtureAudit.rows[0].fixture_source_records,
+    },
     canonicalStateCounts: canonicalStateCounts.rows.map(({ entity_type: entityType, publication_status: publicationStatus, count }) => ({
       entityType, publicationStatus, count,
     })),

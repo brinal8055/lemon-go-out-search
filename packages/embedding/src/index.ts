@@ -8,7 +8,7 @@ import {
   EMBEDDING_PROVIDER,
   EMBEDDING_QUERY_INPUT_TYPE,
   EmbeddingRequestError,
-  requestVoyageEmbedding,
+  requestVoyageEmbeddings,
   validateEmbeddingVector,
 } from './voyage-client.ts';
 
@@ -22,6 +22,10 @@ export const EMBEDDING_DOCUMENT_VERSION = 'search-document-v1';
 export const EMBEDDING_DOCUMENT_TEMPLATE_VERSION = 'lexical-embedding-template-v1';
 export const EMBEDDING_BATCH_SIZE = 8;
 export const EMBEDDING_CORPUS_LIMIT = 500;
+export const EMBEDDING_BACKFILL_REQUEST_SPACING_MS = 31_000;
+export const EMBEDDING_BACKFILL_TOKEN_TARGET = 4_000;
+export const EMBEDDING_BACKFILL_TPM_TARGET = 8_000;
+export const EMBEDDING_BACKFILL_MAX_CONSECUTIVE_429 = 3;
 const MAX_ERROR_IDENTITY_LENGTH = 80;
 
 export type EmbeddingContract = {
@@ -68,6 +72,7 @@ export type EmbeddingGenerationReport = {
   ready: number;
   failed: number;
   staleIncompatible: number;
+  rateLimit: EmbeddingRateLimitReport;
 };
 export type EmbeddingTargetOperations = {
   requestEmbedding: (text: string) => Promise<number[]>;
@@ -81,6 +86,33 @@ export type EmbeddingTargetOperations = {
     failure: EmbeddingFailure,
     attempt: { attemptId: string; attemptedAt: Date },
   ) => Promise<void>;
+};
+export type EmbeddingBatchOperations = Omit<EmbeddingTargetOperations, 'requestEmbedding'> & {
+  requestEmbeddings: (texts: string[]) => Promise<{ embeddings: unknown[]; totalTokens: number | null }>;
+  sleep?: (milliseconds: number) => Promise<void>;
+  now?: () => number;
+  onProviderRequest?: (request: EmbeddingProviderRequestProgress) => void;
+};
+export type EmbeddingProviderRequestProgress = {
+  requestNumber: number;
+  documentCount: number;
+  estimatedInputTokens: number;
+  reportedInputTokens: number | null;
+  outcome: 'READY' | 'FAILED' | 'RATE_LIMITED';
+  retryAfterMs: number | null;
+  observedMaxRpm: number;
+  observedMaxTpm: number;
+};
+export type EmbeddingRateLimitReport = {
+  providerRequests: number;
+  estimatedInputTokens: number;
+  reportedInputTokens: number;
+  observedMaxRpm: number;
+  observedMaxTpm: number;
+  rateLimitedResponses: number;
+  successfulBatches: number;
+  failedBatches: number;
+  retryAfterMs: number[];
 };
 export type EmbeddingCoverageReport = {
   selectedContract: {
@@ -325,6 +357,7 @@ export async function selectEmbeddingTargets(
   connectionString: string,
   limit: number,
   retryFailed = false,
+  retryRateLimited = false,
 ): Promise<EmbeddingTarget[]> {
   if (!Number.isInteger(limit) || limit < 1 || limit > EMBEDDING_CORPUS_LIMIT) {
     throw new Error(`limit must be an integer between 1 and ${EMBEDDING_CORPUS_LIMIT}`);
@@ -395,20 +428,41 @@ export async function selectEmbeddingTargets(
             and ready.model_revision = $5 and ready.dimension = $6
             and ready.status = 'READY'
         )
-        and ($7::boolean or not exists (
-          select 1 from app.embeddings as failed
-          where failed.search_document_id = document.id
-            and failed.document_hash = document.content_hash
-            and failed.provider = $3 and failed.model = $4
-            and failed.model_revision = $5 and failed.dimension = $6
-            and failed.status = 'FAILED'
-        ))
-      order by entity.entity_type, entity.id, document.id
-      limit $8
+        and (
+          not exists (
+            select 1 from app.embeddings as failed
+            where failed.search_document_id = document.id
+              and failed.document_hash = document.content_hash
+              and failed.provider = $3 and failed.model = $4
+              and failed.model_revision = $5 and failed.dimension = $6
+              and failed.status = 'FAILED'
+          )
+          or $7::boolean
+          or ($8::boolean and (
+            select failed.error_code
+            from app.embeddings as failed
+            where failed.search_document_id = document.id
+              and failed.document_hash = document.content_hash
+              and failed.provider = $3 and failed.model = $4
+              and failed.model_revision = $5 and failed.dimension = $6
+              and failed.status = 'FAILED'
+            order by failed.attempted_at desc, failed.id desc
+            limit 1
+          ) = 'PROVIDER_RATE_LIMIT')
+        )
+      order by exists (
+        select 1 from app.embeddings as failed
+        where failed.search_document_id = document.id
+          and failed.document_hash = document.content_hash
+          and failed.provider = $3 and failed.model = $4
+          and failed.model_revision = $5 and failed.dimension = $6
+          and failed.status = 'FAILED'
+      ), entity.entity_type, entity.id, document.id
+      limit $9
     `, [
       EMBEDDING_DOCUMENT_VERSION, EMBEDDING_DOCUMENT_TEMPLATE_VERSION,
       EMBEDDING_PROVIDER, EMBEDDING_MODEL, EMBEDDING_MODEL_REVISION,
-      EMBEDDING_DIMENSION, retryFailed, limit,
+      EMBEDDING_DIMENSION, retryFailed, retryRateLimited, limit,
     ]);
     return result.rows.map((row) => ({
       documentId: row.document_id,
@@ -429,28 +483,228 @@ export async function generateSelectedModelEmbeddings(
   config: SelectedEmbeddingConfig,
   options: {
     retryFailed?: boolean;
-    requestEmbedding?: (text: string) => Promise<number[]>;
+    retryRateLimited?: boolean;
+    requestEmbeddings?: (texts: string[]) => Promise<{ embeddings: unknown[]; totalTokens: number | null }>;
     onProgress?: (progress: EmbeddingGenerationProgress) => void;
+    onProviderRequest?: (request: EmbeddingProviderRequestProgress) => void;
+    sleep?: (milliseconds: number) => Promise<void>;
+    now?: () => number;
   } = {},
 ): Promise<EmbeddingGenerationReport> {
   validateSelectedEmbeddingConfig(config);
   const staleIncompatible = await staleIncompatibleReadyEmbeddings(connectionString);
-  const targets = await selectEmbeddingTargets(connectionString, config.corpusLimit, options.retryFailed);
+  const targets = await selectEmbeddingTargets(
+    connectionString,
+    config.corpusLimit,
+    options.retryFailed,
+    options.retryRateLimited,
+  );
   const report: EmbeddingGenerationReport = {
     selected: targets.length,
-    ...(await processEmbeddingTargets(targets, config.batchSize, {
-      requestEmbedding: options.requestEmbedding
-        ?? ((text: string) => requestVoyageEmbedding(text, EMBEDDING_DOCUMENT_INPUT_TYPE, apiKey)),
+    ...(await processEmbeddingTargetsControlled(targets, config.batchSize, {
+      requestEmbeddings: options.requestEmbeddings
+        ?? ((texts: string[]) => requestVoyageEmbeddings(texts, EMBEDDING_DOCUMENT_INPUT_TYPE, apiKey)),
       persistReady: async (target, vector, attempt) => {
         await persistReadyEmbedding(connectionString, target, vector, attempt);
       },
       persistFailed: async (target, failure, attempt) => {
         await persistFailedEmbedding(connectionString, target, failure, attempt);
       },
+      onProviderRequest: options.onProviderRequest,
+      sleep: options.sleep,
+      now: options.now,
     }, options.onProgress)),
     staleIncompatible,
   };
   return report;
+}
+
+export async function processEmbeddingTargetsControlled(
+  targets: EmbeddingTarget[],
+  batchSize: number,
+  operations: EmbeddingBatchOperations,
+  onProgress?: (progress: EmbeddingGenerationProgress) => void,
+): Promise<Pick<EmbeddingGenerationReport, 'attempted' | 'ready' | 'failed' | 'rateLimit'>> {
+  if (!Number.isInteger(batchSize) || batchSize < 1 || batchSize > EMBEDDING_BATCH_SIZE) {
+    throw new Error(`batchSize must be between 1 and ${EMBEDDING_BATCH_SIZE}`);
+  }
+  const sleep = operations.sleep ?? ((milliseconds: number) => new Promise((resolve) => setTimeout(resolve, milliseconds)));
+  const now = operations.now ?? Date.now;
+  const report = {
+    attempted: 0,
+    ready: 0,
+    failed: 0,
+    rateLimit: {
+      providerRequests: 0,
+      estimatedInputTokens: 0,
+      reportedInputTokens: 0,
+      observedMaxRpm: 0,
+      observedMaxTpm: 0,
+      rateLimitedResponses: 0,
+      successfulBatches: 0,
+      failedBatches: 0,
+      retryAfterMs: [] as number[],
+    },
+  };
+  const requestWindow: Array<{ startedAt: number; tokens: number }> = [];
+  let lastRequestStartedAt: number | null = null;
+  let consecutive429 = 0;
+
+  for (const batch of buildEmbeddingBatches(targets, batchSize, EMBEDDING_BACKFILL_TOKEN_TARGET)) {
+    let completed = false;
+    while (!completed) {
+      await waitForProviderBudget(
+        estimateEmbeddingInputTokens(batch.map(({ embeddingText }) => embeddingText)),
+        requestWindow,
+        lastRequestStartedAt,
+        now,
+        sleep,
+      );
+      const startedAt = now();
+      lastRequestStartedAt = startedAt;
+      const estimatedTokens = estimateEmbeddingInputTokens(batch.map(({ embeddingText }) => embeddingText));
+      requestWindow.push({ startedAt, tokens: estimatedTokens });
+      trimRequestWindow(requestWindow, startedAt);
+      report.rateLimit.providerRequests += 1;
+      report.rateLimit.estimatedInputTokens += estimatedTokens;
+      report.rateLimit.observedMaxRpm = Math.max(report.rateLimit.observedMaxRpm, requestWindow.length);
+      report.rateLimit.observedMaxTpm = Math.max(
+        report.rateLimit.observedMaxTpm,
+        requestWindow.reduce((sum, request) => sum + request.tokens, 0),
+      );
+      try {
+        const response = await operations.requestEmbeddings(batch.map(({ embeddingText }) => embeddingText));
+        if (response.embeddings.length !== batch.length) {
+          throw new EmbeddingRequestError(
+            'Voyage response contract did not match the request',
+            'PROVIDER_RESPONSE',
+            'INVALID_RESPONSE',
+          );
+        }
+        report.rateLimit.reportedInputTokens += response.totalTokens ?? 0;
+        consecutive429 = 0;
+        report.rateLimit.successfulBatches += 1;
+        for (let index = 0; index < batch.length; index += 1) {
+          const target = batch[index];
+          const attemptId = randomUUID();
+          const attemptedAt = new Date(startedAt);
+          report.attempted += 1;
+          try {
+            const vector = validateEmbeddingVector(response.embeddings[index], EMBEDDING_DIMENSION);
+            await operations.persistReady(target, vector, { attemptId, attemptedAt });
+            report.ready += 1;
+            onProgress?.({
+              processed: report.attempted,
+              total: targets.length,
+              documentId: target.documentId,
+              entityType: target.entityType,
+              outcome: 'READY',
+            });
+          } catch (error) {
+            const failure = embeddingFailureFromError(error);
+            await operations.persistFailed(target, failure, { attemptId, attemptedAt });
+            report.failed += 1;
+            onProgress?.({
+              processed: report.attempted,
+              total: targets.length,
+              documentId: target.documentId,
+              entityType: target.entityType,
+              outcome: 'FAILED',
+            });
+          }
+        }
+        completed = true;
+        operations.onProviderRequest?.({
+          requestNumber: report.rateLimit.providerRequests,
+          documentCount: batch.length,
+          estimatedInputTokens: estimatedTokens,
+          reportedInputTokens: response.totalTokens,
+          outcome: 'READY',
+          retryAfterMs: null,
+          observedMaxRpm: report.rateLimit.observedMaxRpm,
+          observedMaxTpm: report.rateLimit.observedMaxTpm,
+        });
+      } catch (error) {
+        const failure = embeddingFailureFromError(error);
+        const isRateLimited = failure.errorCode === 'PROVIDER_RATE_LIMIT';
+        const retryAfterMs = error instanceof EmbeddingRequestError ? error.retryAfterMs : null;
+        report.rateLimit.failedBatches += 1;
+        if (isRateLimited) {
+          consecutive429 += 1;
+          report.rateLimit.rateLimitedResponses += 1;
+          if (retryAfterMs !== null) report.rateLimit.retryAfterMs.push(retryAfterMs);
+        } else {
+          consecutive429 = 0;
+        }
+        for (const target of batch) {
+          const attemptId = randomUUID();
+          const attemptedAt = new Date(startedAt);
+          await operations.persistFailed(target, failure, { attemptId, attemptedAt });
+          report.attempted += 1;
+          report.failed += 1;
+          onProgress?.({
+            processed: report.attempted,
+            total: targets.length,
+            documentId: target.documentId,
+            entityType: target.entityType,
+            outcome: 'FAILED',
+          });
+        }
+        operations.onProviderRequest?.({
+          requestNumber: report.rateLimit.providerRequests,
+          documentCount: batch.length,
+          estimatedInputTokens: estimatedTokens,
+          reportedInputTokens: null,
+          outcome: isRateLimited ? 'RATE_LIMITED' : 'FAILED',
+          retryAfterMs,
+          observedMaxRpm: report.rateLimit.observedMaxRpm,
+          observedMaxTpm: report.rateLimit.observedMaxTpm,
+        });
+        if (!isRateLimited) {
+          completed = true;
+          continue;
+        }
+        if (consecutive429 >= EMBEDDING_BACKFILL_MAX_CONSECUTIVE_429) {
+          throw new EmbeddingRequestError(
+            'Voyage rate limit remained unavailable after compliant backoff',
+            'RATE_LIMIT',
+            'VOYAGE_RATE_LIMIT_CAPACITY_REQUIRED',
+            retryAfterMs,
+          );
+        }
+        const fallbackBackoff = [30_000, 60_000, 120_000][consecutive429 - 1];
+        await sleep(retryAfterMs ?? fallbackBackoff);
+      }
+    }
+  }
+  return report;
+}
+
+export function estimateEmbeddingInputTokens(texts: string[]): number {
+  return texts.reduce((sum, text) => sum + new TextEncoder().encode(text).byteLength, 0);
+}
+
+export function buildEmbeddingBatches(
+  targets: EmbeddingTarget[],
+  batchSize: number,
+  tokenTarget: number,
+): EmbeddingTarget[][] {
+  const batches: EmbeddingTarget[][] = [];
+  let batch: EmbeddingTarget[] = [];
+  let tokens = 0;
+  for (const target of targets) {
+    const targetTokens = estimateEmbeddingInputTokens([target.embeddingText]);
+    if (targetTokens > tokenTarget) throw new Error('SearchDocument exceeds the embedding request token target');
+    if (batch.length > 0 && (batch.length >= batchSize || tokens + targetTokens > tokenTarget)) {
+      batches.push(batch);
+      batch = [];
+      tokens = 0;
+    }
+    batch.push(target);
+    tokens += targetTokens;
+  }
+  if (batch.length > 0) batches.push(batch);
+  return batches;
 }
 
 export async function processEmbeddingTargets(
@@ -710,6 +964,33 @@ function boundedFailure(failure: EmbeddingFailure): EmbeddingFailure {
   const errorCode = failure.errorCode.trim().slice(0, MAX_ERROR_IDENTITY_LENGTH);
   if (!errorClass || !errorCode) throw new Error('embedding failure identity is required');
   return { errorClass, errorCode };
+}
+
+async function waitForProviderBudget(
+  inputTokens: number,
+  requestWindow: Array<{ startedAt: number; tokens: number }>,
+  lastRequestStartedAt: number | null,
+  now: () => number,
+  sleep: (milliseconds: number) => Promise<void>,
+): Promise<void> {
+  while (true) {
+    const current = now();
+    trimRequestWindow(requestWindow, current);
+    const spacingWait = lastRequestStartedAt === null
+      ? 0
+      : Math.max(0, lastRequestStartedAt + EMBEDDING_BACKFILL_REQUEST_SPACING_MS - current);
+    const currentTokens = requestWindow.reduce((sum, request) => sum + request.tokens, 0);
+    const tokenWait = currentTokens + inputTokens <= EMBEDDING_BACKFILL_TPM_TARGET
+      ? 0
+      : Math.max(0, requestWindow[0].startedAt + 60_001 - current);
+    const wait = Math.max(spacingWait, tokenWait);
+    if (wait === 0) return;
+    await sleep(wait);
+  }
+}
+
+function trimRequestWindow(requestWindow: Array<{ startedAt: number; tokens: number }>, now: number): void {
+  while (requestWindow.length > 0 && requestWindow[0].startedAt <= now - 60_000) requestWindow.shift();
 }
 
 function vectorLiteral(vector: number[]): string {

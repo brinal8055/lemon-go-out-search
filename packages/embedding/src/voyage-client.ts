@@ -13,11 +13,13 @@ export type EmbeddingInputType = 'document' | 'query';
 export class EmbeddingRequestError extends Error {
   readonly errorClass: string;
   readonly errorCode: string;
+  readonly retryAfterMs: number | null;
 
-  constructor(message: string, errorClass: string, errorCode: string) {
+  constructor(message: string, errorClass: string, errorCode: string, retryAfterMs: number | null = null) {
     super(message);
     this.errorClass = errorClass;
     this.errorCode = errorCode;
+    this.retryAfterMs = retryAfterMs;
   }
 }
 
@@ -27,8 +29,20 @@ export async function requestVoyageEmbedding(
   apiKey: string,
   options: { fetch?: typeof fetch; timeoutMs?: number } = {},
 ): Promise<number[]> {
+  const result = await requestVoyageEmbeddings([text], inputType, apiKey, options);
+  return validateEmbeddingVector(result.embeddings[0], EMBEDDING_DIMENSION);
+}
+
+export async function requestVoyageEmbeddings(
+  texts: string[],
+  inputType: EmbeddingInputType,
+  apiKey: string,
+  options: { fetch?: typeof fetch; timeoutMs?: number } = {},
+): Promise<{ embeddings: unknown[]; totalTokens: number | null }> {
   if (!apiKey) throw new EmbeddingRequestError('Voyage credential is unavailable', 'AUTH', 'MISSING_CREDENTIAL');
-  if (!text.trim()) throw new EmbeddingRequestError('Embedding input is empty', 'REQUEST', 'EMPTY_INPUT');
+  if (texts.length === 0 || texts.some((text) => !text.trim())) {
+    throw new EmbeddingRequestError('Embedding input is empty', 'REQUEST', 'EMPTY_INPUT');
+  }
   const fetchImpl = options.fetch ?? fetch;
   const timeout = AbortSignal.timeout(options.timeoutMs ?? 10_000);
   let response: Response;
@@ -40,7 +54,7 @@ export async function requestVoyageEmbedding(
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        input: [text],
+        input: texts,
         model: EMBEDDING_MODEL,
         input_type: inputType,
         output_dimension: EMBEDDING_DIMENSION,
@@ -57,7 +71,12 @@ export async function requestVoyageEmbedding(
   }
   if (!response.ok) {
     const classification = classifyHttpStatus(response.status);
-    throw new EmbeddingRequestError('Voyage returned a non-success status', classification.errorClass, classification.errorCode);
+    throw new EmbeddingRequestError(
+      'Voyage returned a non-success status',
+      classification.errorClass,
+      classification.errorCode,
+      response.status === 429 ? retryAfterMilliseconds(response.headers.get('retry-after')) : null,
+    );
   }
   const contentLength = Number(response.headers.get('content-length') ?? 0);
   if (contentLength > MAX_RESPONSE_BYTES) {
@@ -75,11 +94,16 @@ export async function requestVoyageEmbedding(
   }
   const model = objectValue(payload, 'model');
   const data = objectValue(payload, 'data');
-  if (model !== EMBEDDING_MODEL || !Array.isArray(data) || data.length !== 1
-    || objectValue(data[0], 'index') !== 0) {
+  if (model !== EMBEDDING_MODEL || !Array.isArray(data) || data.length !== texts.length
+    || data.some((item, index) => objectValue(item, 'index') !== index)) {
     throw new EmbeddingRequestError('Voyage response contract did not match the request', 'PROVIDER_RESPONSE', 'INVALID_RESPONSE');
   }
-  return validateEmbeddingVector(objectValue(data[0], 'embedding'), EMBEDDING_DIMENSION);
+  const usage = objectValue(payload, 'usage');
+  const totalTokens = objectValue(usage, 'total_tokens');
+  return {
+    embeddings: data.map((item) => objectValue(item, 'embedding')),
+    totalTokens: typeof totalTokens === 'number' && Number.isFinite(totalTokens) ? totalTokens : null,
+  };
 }
 
 export function validateEmbeddingVector(value: unknown, dimension: number): number[] {
@@ -108,4 +132,12 @@ function classifyHttpStatus(status: number): { errorClass: string; errorCode: st
 
 function objectValue(value: unknown, key: string): unknown {
   return value !== null && typeof value === 'object' ? (value as Record<string, unknown>)[key] : undefined;
+}
+
+function retryAfterMilliseconds(value: string | null): number | null {
+  if (value === null) return null;
+  const seconds = Number(value);
+  if (Number.isFinite(seconds) && seconds >= 0) return Math.ceil(seconds * 1_000);
+  const at = Date.parse(value);
+  return Number.isFinite(at) ? Math.max(0, at - Date.now()) : null;
 }
