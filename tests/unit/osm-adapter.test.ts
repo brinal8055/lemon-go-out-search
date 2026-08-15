@@ -92,8 +92,10 @@ describe('SRC-01 bounded OSM adapter', () => {
       element(1, { type: 'way', center: { lat: 57.78, lon: 14.16 } }),
       element(2, { type: 'relation', center: { lat: 57.79, lon: 14.17 } }),
     ]);
-    expect(adapter([]).parse(records[0].envelope, records[0]).place.latitude).toBe(57.78);
-    expect(adapter([]).parse(records[1].envelope, records[1]).place.longitude).toBe(14.17);
+    const way = records.find(({ externalKey }) => externalKey.startsWith('way/'))!;
+    const relation = records.find(({ externalKey }) => externalKey.startsWith('relation/'))!;
+    expect(adapter([]).parse(way.envelope, way).place.latitude).toBe(57.78);
+    expect(adapter([]).parse(relation.envelope, relation).place.longitude).toBe(14.17);
   });
 
   it('retains only permitted extracted fields and excludes contributor identity', () => {

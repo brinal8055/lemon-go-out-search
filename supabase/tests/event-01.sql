@@ -372,6 +372,11 @@ set publication_status = 'PUBLISHED',
     published_at = statement_timestamp()
 where id = 'e2000000-0000-4000-8000-000000000001';
 
+select pg_temp.make_event(
+  'e1000000-0000-4000-8000-000000000009', 'Linked Rådhusparken',
+  '2026-08-15T11:00Z', clock_timestamp() + interval '1 hour', clock_timestamp()
+);
+
 set local role service_role;
 select is((select count(distinct entity_type) from api.search_v1(
   gen_random_uuid(), 'Linked Rådhusparken', 'linked rådhusparken', 'linked radhusparken', 'en',
@@ -479,6 +484,11 @@ select ok((select stage_evidence @> '{"stage":"EVENT","timeFiltered":true}'::jso
   ) where canonical_entity_id = 'e1000000-0000-4000-8000-000000000001'),
   'Event stage retains bounded factual evidence');
 
+select pg_temp.make_event(
+  'e1000000-0000-4000-8000-000000000010', 'Fresh Concert',
+  clock_timestamp() + interval '1 hour', clock_timestamp() + interval '2 hours', clock_timestamp()
+);
+
 set local role service_role;
 select is((select count(*) from api.search_v1(
   gen_random_uuid(), 'Fresh Concert', 'fresh concert', 'fresh concert', 'en',
@@ -486,7 +496,7 @@ select is((select count(*) from api.search_v1(
   array['EVENT']::app.entity_type[], null, null, null::extensions.vector,
   'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
   10::smallint, 'noncollapse-v1'
-) where entity_id = 'e1000000-0000-4000-8000-000000000001'), 1::bigint,
+) where entity_id = 'e1000000-0000-4000-8000-000000000010'), 1::bigint,
   'production API uses its server clock and returns the current Event');
 reset role;
 

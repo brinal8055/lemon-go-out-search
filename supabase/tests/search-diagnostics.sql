@@ -169,15 +169,15 @@ select pg_temp.add_diagnostic_document(
   'd1000000-0000-4000-8000-000000000005', 'Lexical Target', facts => 'hidden garden'
 );
 select pg_temp.make_diagnostic_place(
-  'd1000000-0000-4000-8000-000000000006', 'Pizza Diagnostic'
+  '01000000-0000-4000-8000-000000000006', 'Pizza Diagnostic'
 );
 select pg_temp.add_diagnostic_document(
-  'd1000000-0000-4000-8000-000000000006', 'Pizza Diagnostic', direct_taxonomy => 'Pizza'
+  '01000000-0000-4000-8000-000000000006', 'Pizza Diagnostic', direct_taxonomy => 'Pizza'
 );
 insert into app.entity_taxonomy_memberships (
   entity_id, taxonomy_node_id, method, manual_evidence, reviewed_by
 ) values (
-  'd1000000-0000-4000-8000-000000000006',
+  '01000000-0000-4000-8000-000000000006',
   '63d2b4df-0fd9-5296-bab2-1cf5fd457cbc',
   'MANUAL', 'DIAG-01 deterministic fixture', 'DIAG-01-TEST'
 );
@@ -276,22 +276,22 @@ select ok(
 );
 select ok(
   (diagnostic.explain_search_v1(
-    '{"query":"Pizza","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
-    'd1000000-0000-4000-8000-000000000006'
+    '{"query":"Pizza","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6","taxonomyNodeId":"63d2b4df-0fd9-5296-bab2-1cf5fd457cbc"}',
+    '01000000-0000-4000-8000-000000000006'
   )#>>'{stages,taxonomy,direct}')::boolean,
   'taxonomy stage presence includes directness'
 );
 select ok(
   jsonb_array_length(diagnostic.explain_search_v1(
-    '{"query":"Pizza","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
-    'd1000000-0000-4000-8000-000000000006'
+    '{"query":"Pizza","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6","taxonomyNodeId":"63d2b4df-0fd9-5296-bab2-1cf5fd457cbc"}',
+    '01000000-0000-4000-8000-000000000006'
   )#>'{candidateUnion,stageEvidence}') >= 2,
   'multiple participating stages remain visible at the union'
 );
 select ok(
   (diagnostic.explain_search_v1(
-    '{"query":"Pizza","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
-    'd1000000-0000-4000-8000-000000000006'
+    '{"query":"Pizza","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6","taxonomyNodeId":"63d2b4df-0fd9-5296-bab2-1cf5fd457cbc"}',
+    '01000000-0000-4000-8000-000000000006'
   )#>>'{candidateUnion,stagePresenceImpliesUnion}')::boolean,
   'a present implemented stage always reaches the canonical union'
 );

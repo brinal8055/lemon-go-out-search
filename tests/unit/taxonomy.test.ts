@@ -293,10 +293,16 @@ describe('TAX-01 truthful coverage', () => {
     expect(classifyCoverageStatus(7, reviewed('COMPLETE'), [])).toBe('NEEDS_VALIDATION');
   });
 
-  it('loads an intentionally conservative reviewed-evidence file', async () => {
+  it('loads the accepted post-coverage reviewed-evidence file', async () => {
     const evidence = await loadCoverageEvidence();
     expect(evidence.coverage_version).toBe('taxonomy-coverage.v1');
-    expect(evidence.leaf_reviews).toEqual([]);
+    expect(evidence.leaf_reviews).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        leaf_slug: 'indian',
+        status: 'SUPPLY_CONSTRAINED',
+        stop_reason: 'SOURCES_EXHAUSTED',
+      }),
+    ]));
   });
 
   it('reports every active leaf exactly once with target 5–10', async () => {

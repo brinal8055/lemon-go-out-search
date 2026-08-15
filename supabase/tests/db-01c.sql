@@ -22,7 +22,9 @@ insert into app.search_configs (
   embedding_timeout_ms, semantic_trigger_terms, event_horizon_days,
   event_freshness_by_source, radius_cap_m, noncollapse_enabled, broad_terms,
   taxonomy_group_depth, comparable_rrf_ratio, top_k_group_cap,
-  chain_repetition_cap, event_venue_repetition_cap, activated_at, created_by
+  chain_repetition_cap, event_venue_repetition_cap,
+  noncollapse_version, noncollapse_group_priority, noncollapse_grouping_rules,
+  noncollapse_tie_policy, activated_at, created_by
 ) values (
   'db-01c-v1', repeat('1', 64), true,
   2, 3, 0.3,
@@ -32,7 +34,14 @@ insert into app.search_configs (
   700, array['broad'], 30,
   '{"db-01c-source":{"toleranceHours":1,"nearTermHours":2,"refreshTargetHours":3}}',
   10000, true, array['occasion'],
-  2, 0.8, 2, 1, 1, now(), 'db-01c-test'
+  2, 0.8, 2, 1, 1,
+  'NONCOLLAPSE_V1', array['TAXONOMY', 'CHAIN', 'EVENT_VENUE'],
+  array[
+    'TAXONOMY:ACTIVE_MEMBERSHIP_PATH_DEPTH',
+    'CHAIN:EXPLICIT_CHAIN_KEY',
+    'EVENT_VENUE:LINKED_PLACE_ID'
+  ], 'BASE_RRF_ORDER_EARLIEST_COMPARABLE_V1',
+  now(), 'db-01c-test'
 );
 
 select lives_ok(
@@ -333,12 +342,21 @@ select throws_ok(
       rrf_k, semantic_enabled, embedding_provider, embedding_model, embedding_revision,
       embedding_dimension, embedding_timeout_ms, event_horizon_days, event_freshness_by_source,
       radius_cap_m, noncollapse_enabled, taxonomy_group_depth, comparable_rrf_ratio,
-      top_k_group_cap, chain_repetition_cap, event_venue_repetition_cap, activated_at, created_by
+      top_k_group_cap, chain_repetition_cap, event_venue_repetition_cap,
+      noncollapse_version, noncollapse_group_priority, noncollapse_grouping_rules,
+      noncollapse_tie_policy, activated_at, created_by
     ) values (
       'db-01c-v2', repeat('2', 64), true,
       2, 3, 0.3, 20, 20, 20, 20, 20, 20, 20,
       60, true, 'other', 'other', 'other', 3, 700, 30,
-      '{}', 10000, true, 2, 0.8, 2, 1, 1, now(), 'db-01c-test'
+      '{}', 10000, true, 2, 0.8, 2, 1, 1,
+      'NONCOLLAPSE_V1', array['TAXONOMY', 'CHAIN', 'EVENT_VENUE'],
+      array[
+        'TAXONOMY:ACTIVE_MEMBERSHIP_PATH_DEPTH',
+        'CHAIN:EXPLICIT_CHAIN_KEY',
+        'EVENT_VENUE:LINKED_PLACE_ID'
+      ], 'BASE_RRF_ORDER_EARLIEST_COMPARABLE_V1',
+      now(), 'db-01c-test'
     )
   $$,
   '23505', null,

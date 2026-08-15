@@ -28,9 +28,12 @@ function assert(condition, message) {
 }
 
 const diagnosticsRequested = process.argv.slice(2).includes('diagnostics');
+const httpOnly = process.argv.slice(2).includes('--http-only');
 
-run('pnpm', ['test:db', '--', 'sec-01']);
-if (diagnosticsRequested) run('pnpm', ['test:db', '--', 'search-diagnostics']);
+if (!httpOnly) {
+  run('pnpm', ['test:db', '--', 'sec-01']);
+  if (diagnosticsRequested) run('pnpm', ['test:db', '--', 'search-diagnostics']);
+}
 
 const local = parseEnvironment(run('pnpm', ['exec', 'supabase', 'status', '-o', 'env']));
 const restUrl = local.REST_URL;
@@ -135,5 +138,7 @@ assert(
 );
 
 console.log(
-  `SEC-01 security smoke: PASS (${assertions} HTTP/config assertions + 38 pgTAP assertions${diagnosticsRequested ? ' + 37 diagnostic pgTAP assertions' : ''})`,
+  httpOnly
+    ? `SEC-01 HTTP/config security smoke: PASS (${assertions} assertions; pgTAP executed separately)`
+    : `SEC-01 security smoke: PASS (${assertions} HTTP/config assertions + 38 pgTAP assertions${diagnosticsRequested ? ' + 37 diagnostic pgTAP assertions' : ''})`,
 );
