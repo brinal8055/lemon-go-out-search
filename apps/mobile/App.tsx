@@ -15,11 +15,14 @@ import {
   initialSearchState,
   rejectSearch,
   resolveSearch,
+  showSemanticDegraded,
   startSearch,
 } from './src/search';
+import { formatEventTime, formatEventVenue } from './src/event-presentation';
 import { localizedText } from './src/localization';
 import { loadActiveTaxonomy } from './src/taxonomy-reference';
 import { taxonomyLabel, type TaxonomyNode } from './src/taxonomy';
+import type { EventCard } from '@lemon/contracts';
 
 type UiLocale = 'en' | 'sv';
 type DiscoveryRequest = { query: string; taxonomyNodeId?: string };
@@ -137,17 +140,50 @@ export default function App() {
             </Pressable>
           </View>
         )}
-        {state.results.map((place) => (
-          <View key={place.canonicalId} style={styles.card}>
-            <Text style={styles.cardTitle}>{place.name}</Text>
-            {place.categories.length > 0 && (
-              <Text style={styles.body}>{place.categories.map((category) => category.label).join(', ')}</Text>
+        {showSemanticDegraded(state) && (
+          <Text
+            accessibilityLiveRegion="polite"
+            accessibilityRole="text"
+            style={styles.degradedNotice}
+          >
+            {text.semanticDegraded}
+          </Text>
+        )}
+        {state.results.map((result) => result.type === 'PLACE' ? (
+          <View accessible key={result.canonicalId} style={styles.card}>
+            <Text style={styles.cardTitle}>{result.name}</Text>
+            {result.categories.length > 0 && (
+              <Text style={styles.body}>{result.categories.map((category) => category.label).join(', ')}</Text>
             )}
-            {place.factualSummary && <Text style={styles.body}>{place.factualSummary}</Text>}
+            {result.factualSummary && <Text style={styles.body}>{result.factualSummary}</Text>}
           </View>
+        ) : (
+          <EventResultCard event={result} key={result.canonicalId} locale={uiLocale} />
         ))}
       </ScrollView>
     </SafeAreaView>
+  );
+}
+
+function EventResultCard({ event, locale }: { event: EventCard; locale: UiLocale }) {
+  const text = localizedText(locale);
+  const time = formatEventTime(event, locale);
+  const venue = formatEventVenue(event, text);
+
+  return (
+    <View
+      accessibilityLabel={`${event.title}. ${time}. ${venue}`}
+      accessible
+      style={styles.card}
+    >
+      <Text style={styles.cardTitle}>{event.title}</Text>
+      {event.categories.length > 0 && (
+        <Text style={styles.body}>{event.categories.map((category) => category.label).join(', ')}</Text>
+      )}
+      <Text style={styles.eventTime}>{time}</Text>
+      <Text style={styles.body}>{venue}</Text>
+      {event.location.locality && <Text style={styles.locality}>{event.location.locality}</Text>}
+    </View>
   );
 }
 
@@ -191,6 +227,8 @@ const styles = StyleSheet.create({
   localeButton: {
     borderColor: '#637000',
     borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 44,
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
@@ -208,6 +246,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#637000',
     justifyContent: 'center',
+    minHeight: 44,
     paddingHorizontal: 16,
   },
   buttonText: {
@@ -218,6 +257,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     marginTop: 16,
     padding: 16,
+  },
+  degradedNotice: {
+    color: '#4c5200',
+    fontSize: 14,
+    marginTop: 16,
   },
   browseTitle: {
     color: '#202400',
@@ -232,6 +276,8 @@ const styles = StyleSheet.create({
   category: {
     borderColor: '#c3cb84',
     borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 44,
     padding: 10,
   },
   categoryText: {
@@ -241,12 +287,25 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     backgroundColor: '#637000',
     marginTop: 12,
+    minHeight: 44,
     paddingHorizontal: 16,
     paddingVertical: 10,
   },
   cardTitle: {
     color: '#202400',
+    flexShrink: 1,
     fontSize: 18,
     fontWeight: '700',
+  },
+  eventTime: {
+    color: '#202400',
+    fontSize: 16,
+    fontWeight: '600',
+    marginTop: 12,
+  },
+  locality: {
+    color: '#4c5200',
+    fontSize: 14,
+    marginTop: 6,
   },
 });

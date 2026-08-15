@@ -1,13 +1,21 @@
-import type { PlaceCard, SearchRequestV1, SearchResponseV1, UiLocale } from '@lemon/contracts';
+import type {
+  EventCard,
+  PlaceCard,
+  SearchRequestV1,
+  SearchResponseV1,
+  UiLocale,
+} from '@lemon/contracts';
 
 export const JONKOPING_SCOPE_ID = 'a4b19b09-b272-5748-80ef-2c91d9d33ca6';
 
+export type SearchResult = PlaceCard | EventCard;
+
 export type SearchState =
-  | { status: 'idle'; results: PlaceCard[] }
-  | { status: 'loading'; results: PlaceCard[] }
-  | { status: 'results'; results: PlaceCard[] }
-  | { status: 'empty'; results: PlaceCard[] }
-  | { status: 'error'; results: PlaceCard[]; message: string };
+  | { status: 'idle'; results: SearchResult[] }
+  | { status: 'loading'; results: SearchResult[] }
+  | { status: 'results'; results: SearchResult[]; semanticDegraded: boolean }
+  | { status: 'empty'; results: SearchResult[]; semanticDegraded: boolean }
+  | { status: 'error'; results: SearchResult[]; message: string };
 
 export const initialSearchState: SearchState = { status: 'idle', results: [] };
 
@@ -24,7 +32,7 @@ export function createSearchRequest(
     query: query.trim(),
     uiLocale,
     scopeId: JONKOPING_SCOPE_ID,
-    entityTypes: ['PLACE'],
+    entityTypes: ['PLACE', 'EVENT'],
     limit: 10,
     ...(taxonomyNodeId ? { taxonomyNodeId } : {}),
   };
@@ -55,15 +63,19 @@ export function resolveSearch(
   response: SearchResponseV1,
 ): SearchState | null {
   if (responseGeneration !== currentGeneration) return null;
-  const results = response.results.filter(isPlaceCard);
+  const results = response.results.filter(isSupportedSearchResult);
   return results.length > 0
-    ? { status: 'results', results }
-    : { status: 'empty', results: [] };
+    ? { status: 'results', results, semanticDegraded: response.semanticDegraded }
+    : { status: 'empty', results: [], semanticDegraded: response.semanticDegraded };
 }
 
 export function rejectSearch(currentGeneration: number, responseGeneration: number): SearchState | null {
   if (responseGeneration !== currentGeneration) return null;
   return { status: 'error', results: [], message: 'SEARCH_UNAVAILABLE' };
+}
+
+export function showSemanticDegraded(state: SearchState): boolean {
+  return (state.status === 'results' || state.status === 'empty') && state.semanticDegraded;
 }
 
 function isSearchResponse(value: unknown): value is SearchResponseV1 {
@@ -88,6 +100,31 @@ function isPlaceCard(value: unknown): value is PlaceCard {
     && (value.placeStatus === 'ACTIVE'
       || value.placeStatus === 'TEMPORARILY_CLOSED'
       || value.placeStatus === 'UNKNOWN');
+}
+
+function isEventCard(value: unknown): value is EventCard {
+  return isRecord(value)
+    && value.type === 'EVENT'
+    && typeof value.canonicalId === 'string'
+    && typeof value.title === 'string'
+    && Array.isArray(value.categories)
+    && typeof value.startsAt === 'string'
+    && Number.isFinite(Date.parse(value.startsAt))
+    && (value.endsAt === undefined
+      || (typeof value.endsAt === 'string' && Number.isFinite(Date.parse(value.endsAt))))
+    && typeof value.timezone === 'string'
+    && isRecord(value.venue)
+    && typeof value.venue.name === 'string'
+    && (value.venue.canonicalPlaceId === undefined
+      || typeof value.venue.canonicalPlaceId === 'string')
+    && isRecord(value.location)
+    && typeof value.location.latitude === 'number'
+    && typeof value.location.longitude === 'number'
+    && value.status === 'SCHEDULED';
+}
+
+function isSupportedSearchResult(value: unknown): value is SearchResult {
+  return isPlaceCard(value) || isEventCard(value);
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
