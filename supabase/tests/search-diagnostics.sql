@@ -7,6 +7,9 @@ select plan(34);
 
 grant lemon_evaluation to postgres with set true;
 
+create temporary table diagnostic_baseline as
+select count(*)::bigint as search_document_count from app.search_documents;
+
 create function pg_temp.make_diagnostic_place(
   entity_id uuid,
   place_name text,
@@ -319,7 +322,7 @@ select is(
     '{"query":"Diagnostic Exact","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
     'd1000000-0000-4000-8000-000000000001'
   )#>>'{versions,searchConfigVersion}',
-  'event-01-time-v1',
+  'embed-01b-voyage-4-v1',
   'active search configuration version is visible'
 );
 select ok(
@@ -414,7 +417,7 @@ select is(
 );
 select is(
   (select count(*) from app.search_documents),
-  15::bigint,
+  (select search_document_count + 15 from diagnostic_baseline),
   'diagnostics do not persist or mutate SearchDocuments'
 );
 select is(

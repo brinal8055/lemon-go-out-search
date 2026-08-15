@@ -1,10 +1,16 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   createAttemptKey,
+  EMBEDDING_CONFIG_VERSION,
   EMBEDDING_DIMENSION,
+  EMBEDDING_DOCUMENT_INPUT_TYPE,
+  EMBEDDING_DOCUMENT_TEMPLATE_VERSION,
   EMBEDDING_MODEL,
+  EMBEDDING_PROVIDER,
+  EMBEDDING_QUERY_INPUT_TYPE,
   requestVoyageEmbedding,
   type EmbeddingTarget,
+  validateSelectedEmbeddingConfig,
   validateEmbeddingVector,
 } from '../../packages/embedding/src/index.ts';
 
@@ -12,6 +18,7 @@ const vector = Array.from({ length: EMBEDDING_DIMENSION }, (_, index) => (index 
 const target: EmbeddingTarget = {
   documentId: '10000000-0000-0000-0000-000000000001',
   entityId: '20000000-0000-0000-0000-000000000001',
+  entityType: 'PLACE',
   documentHash: 'a'.repeat(64),
   embeddingText: 'Evergreen Restaurang & Pizzeria',
   displayName: 'Evergreen Restaurang & Pizzeria',
@@ -27,6 +34,28 @@ function voyageResponse(embedding: unknown = vector, model = EMBEDDING_MODEL): R
 }
 
 describe('EMBED-01A Voyage client', () => {
+  it('pins the selected trial config and both input types', () => {
+    expect(validateSelectedEmbeddingConfig({
+      version: EMBEDDING_CONFIG_VERSION,
+      provider: EMBEDDING_PROVIDER,
+      model: EMBEDDING_MODEL,
+      revision: 'voyage-4-preflight-v1',
+      dimension: EMBEDDING_DIMENSION,
+      documentInputType: EMBEDDING_DOCUMENT_INPUT_TYPE,
+      queryInputType: EMBEDDING_QUERY_INPUT_TYPE,
+      documentVersion: 'search-document-v1',
+      documentTemplateVersion: EMBEDDING_DOCUMENT_TEMPLATE_VERSION,
+      batchSize: 8,
+      corpusLimit: 500,
+    })).toMatchObject({
+      provider: 'voyage',
+      model: 'voyage-4',
+      dimension: 1024,
+      documentInputType: 'document',
+      queryInputType: 'query',
+    });
+  });
+
   it.each(['document', 'query'] as const)('sends one bounded %s request and validates 1024 floats', async (inputType) => {
     const fetchMock = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
       const body = JSON.parse(String(init?.body)) as Record<string, unknown>;
@@ -83,6 +112,12 @@ describe('EMBED-01A Voyage client', () => {
     const cases: Array<[Response, string]> = [
       [new Response('{', { status: 200 }), 'INVALID_JSON'],
       [new Response(JSON.stringify({ model: EMBEDDING_MODEL, data: [] }), { status: 200 }), 'INVALID_RESPONSE'],
+      [new Response(JSON.stringify({ model: EMBEDDING_MODEL, data: [{ index: 1, embedding: vector }] }), {
+        status: 200,
+      }), 'INVALID_RESPONSE'],
+      [new Response(JSON.stringify({ model: EMBEDDING_MODEL, data: [{ index: 0 }] }), {
+        status: 200,
+      }), 'VECTOR_MISSING'],
       [voyageResponse(vector, 'other-model'), 'INVALID_RESPONSE'],
       [voyageResponse([1]), 'WRONG_DIMENSION'],
       [voyageResponse([...vector.slice(0, -1), Number.POSITIVE_INFINITY]), 'NON_FINITE_VECTOR'],

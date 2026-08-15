@@ -1,0 +1,13 @@
+{
+  "version": "embed-01b-voyage-4-v1",
+  "provider": "voyage",
+  "model": "voyage-4",
+  "revision": "voyage-4-preflight-v1",
+  "dimension": 1024,
+  "documentInputType": "document",
+  "queryInputType": "query",
+  "documentVersion": "search-document-v1",
+  "documentTemplateVersion": "lexical-embedding-template-v1",
+  "batchSize": 8,
+  "corpusLimit": 500
+}

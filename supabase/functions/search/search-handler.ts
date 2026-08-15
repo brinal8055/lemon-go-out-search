@@ -277,7 +277,7 @@ function toRpcParams(
     p_embedding_revision: 'voyage-4-preflight-v1',
     p_embedding_dimension: 1024,
     p_limit: request.limit ?? 10,
-    p_search_config_version: 'event-01-time-v1',
+    p_search_config_version: 'embed-01b-voyage-4-v1',
   };
 }
 

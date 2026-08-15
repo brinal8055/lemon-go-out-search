@@ -3,7 +3,13 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = extensions, public;
 
-select plan(26);
+select plan(31);
+
+select is(
+  (select version from app.search_configs where is_active),
+  'embed-01b-voyage-4-v1',
+  'selected EMBED-01B config version is active'
+);
 
 select is(
   (select concat_ws('/', embedding_provider, embedding_model, embedding_revision, embedding_dimension)
@@ -256,7 +262,8 @@ select lives_ok(
   'retry creates a new FAILED row with a new attempt key'
 );
 select is(
-  (select count(*) from app.embeddings where status = 'FAILED'),
+  (select count(*) from app.embeddings
+   where status = 'FAILED' and attempt_key in ('embed-failed-a1', 'embed-failed-a2')),
   2::bigint,
   'retry preserves complete failed attempt history'
 );
@@ -303,6 +310,73 @@ select throws_ok(
        where id = '21000000-0000-0000-0000-000000000201'$sql$,
   '55000', null,
   'STALE vector mutation is rejected'
+);
+
+insert into app.embeddings (
+  id, search_document_id, entity_id, provider, model, model_revision,
+  dimension, embedding, document_hash, status, attempt_key, attempted_at, generated_at
+) values (
+  '21000000-0000-0000-0000-000000000203',
+  '21000000-0000-0000-0000-000000000101',
+  '21000000-0000-0000-0000-000000000001',
+  'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
+  ('[' || array_to_string(array_fill(0.03::real, array[1024]), ',') || ']')::extensions.vector,
+  repeat('a', 64), 'READY', 'embed-contract-change-ready',
+  '2026-08-15T00:10:00Z', '2026-08-15T00:11:00Z'
+);
+select is(
+  (select count(*) from app.compatible_ready_embeddings_v
+   where id = '21000000-0000-0000-0000-000000000203'),
+  1::bigint,
+  'compatible READY seam requires the active document and selected contract'
+);
+update app.search_configs set is_active = false, activated_at = null where is_active;
+insert into app.search_configs (
+  version, config_checksum, is_active,
+  prefix_min_length, trigram_min_length, trigram_threshold,
+  exact_cap, prefix_cap, trigram_cap, fts_cap, taxonomy_cap, event_cap, semantic_cap,
+  rrf_k, semantic_enabled, embedding_provider, embedding_model, embedding_revision,
+  embedding_dimension, embedding_timeout_ms, semantic_trigger_terms,
+  event_horizon_days, event_freshness_by_source, radius_cap_m, noncollapse_enabled,
+  broad_terms, taxonomy_group_depth, comparable_rrf_ratio, top_k_group_cap,
+  chain_repetition_cap, event_venue_repetition_cap, activated_at, created_by, note
+)
+select 'embed-contract-change-fixture', repeat('f', 64), true,
+       prefix_min_length, trigram_min_length, trigram_threshold,
+       exact_cap, prefix_cap, trigram_cap, fts_cap, taxonomy_cap, event_cap, semantic_cap,
+       rrf_k, semantic_enabled, embedding_provider, embedding_model, 'fixture-revision',
+       embedding_dimension, embedding_timeout_ms, semantic_trigger_terms,
+       event_horizon_days, event_freshness_by_source, radius_cap_m, noncollapse_enabled,
+       broad_terms, taxonomy_group_depth, comparable_rrf_ratio, top_k_group_cap,
+       chain_repetition_cap, event_venue_repetition_cap, now(), 'EMBED-01B-TEST', null
+from app.search_configs where version = 'embed-01b-voyage-4-v1';
+select lives_ok(
+  $sql$
+    update app.embeddings as embedding
+    set status = 'STALE', stale_reason = 'EMBEDDING_CONTRACT_CHANGED'
+    where embedding.status = 'READY'
+      and not exists (
+        select 1 from app.search_configs as config
+        where config.is_active
+          and config.embedding_provider = embedding.provider
+          and config.embedding_model = embedding.model
+          and config.embedding_revision = embedding.model_revision
+          and config.embedding_dimension = embedding.dimension
+      )
+  $sql$,
+  'contract change moves old READY rows through READY to STALE only'
+);
+select ok(
+  (select status = 'STALE' and embedding is not null
+      and generated_at = '2026-08-15T00:11:00Z'
+      and stale_reason = 'EMBEDDING_CONTRACT_CHANGED'
+   from app.embeddings where id = '21000000-0000-0000-0000-000000000203'),
+  'contract-change STALE retains vector, generation time, and history'
+);
+select is_empty(
+  $sql$select 1 from app.compatible_ready_embeddings_v
+       where id = '21000000-0000-0000-0000-000000000203'$sql$,
+  'contract-change STALE is absent from the compatible READY seam'
 );
 select is_empty(
   $sql$
