@@ -7,7 +7,7 @@ select plan(31);
 
 select is(
   (select version from app.search_configs where is_active),
-  'sem-01-query-v1',
+  'rank-01-rrf-v1',
   'SEM-01 config preserves the selected embedding contract'
 );
 

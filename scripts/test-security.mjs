@@ -62,7 +62,7 @@ const requestBody = JSON.stringify({
   p_embedding_revision: 'voyage-4-preflight-v1',
   p_embedding_dimension: 1024,
   p_limit: 10,
-  p_search_config_version: 'sem-01-query-v1',
+  p_search_config_version: 'rank-01-rrf-v1',
 });
 
 const noKey = await fetch(rpcUrl, {
@@ -135,5 +135,5 @@ assert(
 );
 
 console.log(
-  `SEC-01 security smoke: PASS (${assertions} HTTP/config assertions + 38 pgTAP assertions${diagnosticsRequested ? ' + 34 diagnostic pgTAP assertions' : ''})`,
+  `SEC-01 security smoke: PASS (${assertions} HTTP/config assertions + 38 pgTAP assertions${diagnosticsRequested ? ' + 37 diagnostic pgTAP assertions' : ''})`,
 );

@@ -5,7 +5,7 @@ import {
 } from '../../../packages/embedding/src/voyage-client.ts';
 import type { TaxonomyRecognition } from './semantic-taxonomy.ts';
 
-export const SEMANTIC_CONFIG_VERSION = 'sem-01-query-v1';
+export const SEMANTIC_CONFIG_VERSION = 'rank-01-rrf-v1';
 export const SEMANTIC_QUERY_TEMPLATE_VERSION = 'semantic-query-template-v1';
 export const SEMANTIC_TIMEOUT_MS = 700;
 export const SEMANTIC_CANDIDATE_CAP = 30;
