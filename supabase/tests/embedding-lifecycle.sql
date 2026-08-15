@@ -7,8 +7,8 @@ select plan(31);
 
 select is(
   (select version from app.search_configs where is_active),
-  'embed-01b-voyage-4-v1',
-  'selected EMBED-01B config version is active'
+  'sem-01-query-v1',
+  'SEM-01 config preserves the selected embedding contract'
 );
 
 select is(
@@ -18,8 +18,8 @@ select is(
   'active config pins the Voyage preflight contract'
 );
 select ok(
-  not (select semantic_enabled from app.search_configs where is_active),
-  'embedding preflight does not enable semantic retrieval'
+  (select semantic_enabled from app.search_configs where is_active),
+  'SEM-01 activates semantic retrieval without changing embedding lifecycle'
 );
 
 insert into app.canonical_entities (
@@ -386,12 +386,11 @@ select is_empty(
   $sql$,
   'no ANN embedding index exists'
 );
-select is_empty(
-  $sql$
-    select 1 from pg_proc
-    where proname ~* '(semantic_candidates|cosine)' and pronamespace = 'app'::regnamespace
-  $sql$,
-  'no semantic candidate or cosine retrieval function exists'
+select is(
+  (select count(*) from pg_proc
+   where proname = 'search_semantic_candidates' and pronamespace = 'app'::regnamespace),
+  1::bigint,
+  'SEM-01 adds only the expected exact semantic candidate seam'
 );
 
 select * from finish();

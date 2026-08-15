@@ -193,7 +193,7 @@ begin
 end;
 $$;
 
-select is((select version from app.search_configs where is_active), 'embed-01b-voyage-4-v1',
+select is((select version from app.search_configs where is_active), 'sem-01-query-v1',
   'the selected embedding config retains the EVENT-01 search settings');
 select is((select event_horizon_days from app.search_configs where is_active), 30::smallint,
   'the active Event horizon is exactly 30 days');
@@ -378,7 +378,7 @@ select is((select count(distinct entity_type) from api.search_v1(
   'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
   null, '2026-08-15T10:00Z', '2026-08-15T14:00Z', null::extensions.vector,
   'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-  20::smallint, 'embed-01b-voyage-4-v1'
+  20::smallint, 'sem-01-query-v1'
 )), 2::bigint,
   'recognized time retains ordinary Place retrieval alongside eligible Events');
 reset role;
@@ -485,7 +485,7 @@ select is((select count(*) from api.search_v1(
   'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
   array['EVENT']::app.entity_type[], null, null, null::extensions.vector,
   'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-  10::smallint, 'embed-01b-voyage-4-v1'
+  10::smallint, 'sem-01-query-v1'
 ) where entity_id = 'e1000000-0000-4000-8000-000000000001'), 1::bigint,
   'production API uses its server clock and returns the current Event');
 reset role;

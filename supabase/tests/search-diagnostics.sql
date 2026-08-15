@@ -3,7 +3,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = extensions, public;
 
-select plan(34);
+select plan(37);
 
 grant lemon_evaluation to postgres with set true;
 
@@ -118,6 +118,17 @@ select pg_temp.add_diagnostic_document(
   'd1000000-0000-4000-8000-000000000001', 'Diagnostic Exact',
   description => 'TOP SECRET DOCUMENT TEXT'
 );
+insert into app.embeddings (
+  search_document_id, entity_id, provider, model, model_revision, dimension,
+  embedding, document_hash, status, attempt_key, attempted_at, generated_at
+)
+select document.id, document.entity_id, 'voyage', 'voyage-4',
+       'voyage-4-preflight-v1', 1024,
+       ('[1,' || array_to_string(array_fill(0::real, array[1023]), ',') || ']')::extensions.vector,
+       document.content_hash, 'READY', 'diagnostic-semantic-ready',
+       '2026-08-15T00:00:00Z', '2026-08-15T00:00:01Z'
+from app.search_documents as document
+where document.entity_id = 'd1000000-0000-4000-8000-000000000001' and document.is_active;
 select pg_temp.make_diagnostic_place(
   'd1000000-0000-4000-8000-000000000002', 'Alias Venue'
 );
@@ -322,7 +333,7 @@ select is(
     '{"query":"Diagnostic Exact","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
     'd1000000-0000-4000-8000-000000000001'
   )#>>'{versions,searchConfigVersion}',
-  'embed-01b-voyage-4-v1',
+  'sem-01-query-v1',
   'active search configuration version is visible'
 );
 select ok(
@@ -344,12 +355,78 @@ select ok(
   and diagnostic.explain_search_v1(
     '{"query":"Diagnostic Exact","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
     'd1000000-0000-4000-8000-000000000001'
-  )#>>'{stages,semantic,status}' = 'NOT_IMPLEMENTED'
+  )#>>'{stages,semantic,status}' = 'SKIPPED'
   and diagnostic.explain_search_v1(
     '{"query":"Diagnostic Exact","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
     'd1000000-0000-4000-8000-000000000001'
   )#>>'{stages,rrf,status}' = 'NOT_IMPLEMENTED',
-  'future stages are explicit NOT_IMPLEMENTED rather than fake zeroes'
+  'semantic skip is explicit while later RRF remains NOT_IMPLEMENTED'
+);
+select ok(
+  (diagnostic.explain_search_v1(
+    jsonb_build_object(
+      'query', 'things to do',
+      'scopeId', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
+      'queryVector', to_jsonb(array[1::real] || array_fill(0::real, array[1023])),
+      'semantic', jsonb_build_object(
+        'shouldEmbed', true, 'shouldEmbedReason', 'BROAD_DISCOVERY',
+        'attempted', true, 'success', true, 'degraded', false
+      )
+    ),
+    'd1000000-0000-4000-8000-000000000001'
+  )#>>'{stages,semantic,present}')::boolean
+  and (diagnostic.explain_search_v1(
+    jsonb_build_object(
+      'query', 'things to do',
+      'scopeId', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
+      'queryVector', to_jsonb(array[1::real] || array_fill(0::real, array[1023])),
+      'semantic', jsonb_build_object('shouldEmbed', true, 'shouldEmbedReason', 'BROAD_DISCOVERY')
+    ),
+    'd1000000-0000-4000-8000-000000000001'
+  )#>>'{stages,semantic,rank}')::integer = 1,
+  'restricted diagnostics expose exact semantic stage presence and rank'
+);
+select ok(
+  diagnostic.explain_search_v1(
+    jsonb_build_object(
+      'query', 'things to do',
+      'scopeId', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
+      'queryVector', to_jsonb(array[1::real] || array_fill(0::real, array[1023])),
+      'semantic', jsonb_build_object('shouldEmbed', true, 'shouldEmbedReason', 'BROAD_DISCOVERY')
+    ),
+    'd1000000-0000-4000-8000-000000000001'
+  )#>>'{versions,embedding,provider}' = 'voyage'
+  and diagnostic.explain_search_v1(
+    jsonb_build_object(
+      'query', 'things to do',
+      'scopeId', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
+      'queryVector', to_jsonb(array[1::real] || array_fill(0::real, array[1023])),
+      'semantic', jsonb_build_object('shouldEmbed', true, 'shouldEmbedReason', 'BROAD_DISCOVERY')
+    ),
+    'd1000000-0000-4000-8000-000000000001'
+  )#>>'{versions,embedding,queryTemplateVersion}' = 'semantic-query-template-v1',
+  'restricted diagnostics pin the active semantic contract and query template'
+);
+select ok(
+  (diagnostic.explain_search_v1(
+    jsonb_build_object(
+      'query', 'things to do',
+      'scopeId', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
+      'queryVector', to_jsonb(array[1::real] || array_fill(0::real, array[1023])),
+      'semantic', jsonb_build_object('shouldEmbed', true, 'shouldEmbedReason', 'BROAD_DISCOVERY')
+    ),
+    'd1000000-0000-4000-8000-000000000001'
+  ) ? 'queryVector') = false
+  and diagnostic.explain_search_v1(
+    jsonb_build_object(
+      'query', 'things to do',
+      'scopeId', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
+      'queryVector', to_jsonb(array[1::real] || array_fill(0::real, array[1023])),
+      'semantic', jsonb_build_object('shouldEmbed', true, 'shouldEmbedReason', 'BROAD_DISCOVERY')
+    ),
+    'd1000000-0000-4000-8000-000000000001'
+  )::text not like '%diagnostic-semantic-ready%',
+  'restricted diagnostics expose neither vectors nor attempt identity'
 );
 select is(
   diagnostic.explain_search_v1(

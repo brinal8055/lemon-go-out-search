@@ -4,6 +4,17 @@ import {
   parseTimeExpression,
   STOCKHOLM_TIME_ZONE,
 } from '../../../packages/time-parser/src/index.ts';
+import {
+  buildSemanticQueryInput,
+  classifySemanticFailure,
+  SEMANTIC_CONFIG_VERSION,
+  SEMANTIC_QUERY_TEMPLATE_VERSION,
+  SEMANTIC_TIMEOUT_MS,
+  SemanticCircuitBreaker,
+  shouldEmbed,
+  validateQueryVector,
+} from './semantic.ts';
+import { recognizeTaxonomyQuery, taxonomyContextById } from './semantic-taxonomy.ts';
 
 type UiLocale = 'en' | 'sv';
 type EntityType = 'PLACE' | 'EVENT';
@@ -71,6 +82,28 @@ type HandlerDependencies = {
   client: SearchRpcClient;
   randomUUID?: () => string;
   clock?: () => Date;
+  queryEmbedder?: (input: string, timeoutMs: number) => Promise<unknown>;
+  semanticEnabled?: boolean;
+  circuitBreaker?: SemanticCircuitBreaker;
+  telemetry?: (event: SearchTelemetry) => void;
+};
+
+export type SearchTelemetry = {
+  requestId: string;
+  shouldEmbed: boolean;
+  shouldEmbedReason: string;
+  semanticAttempted: boolean;
+  semanticSuccess: boolean;
+  semanticDegraded: boolean;
+  degradationReason: string | null;
+  providerLatencyMs: number;
+  dbLatencyMs: number;
+  totalBackendLatencyMs: number;
+  semanticCandidateCount: number;
+  resultCount: number;
+  searchConfigVersion: typeof SEMANTIC_CONFIG_VERSION;
+  modelRevision: 'voyage-4-preflight-v1';
+  queryTemplateVersion: typeof SEMANTIC_QUERY_TEMPLATE_VERSION;
 };
 
 class PublicRequestError extends Error {
@@ -97,8 +130,13 @@ export function createSearchHandler({
   client,
   randomUUID = () => crypto.randomUUID(),
   clock = () => new Date(),
+  queryEmbedder,
+  semanticEnabled = true,
+  circuitBreaker = new SemanticCircuitBreaker(),
+  telemetry = () => {},
 }: HandlerDependencies) {
   return async (request: Request): Promise<Response> => {
+    const startedAt = clock().getTime();
     const suppliedRequestId = request.headers.get('x-request-id');
     const requestId = suppliedRequestId && UUID_PATTERN.test(suppliedRequestId)
       ? suppliedRequestId
@@ -150,21 +188,97 @@ export function createSearchHandler({
         throw new PublicRequestError(400, 'QUERY_REQUIRED', 'A query, taxonomy filter, or time is required.');
       }
 
-      const params = toRpcParams(searchRequest, requestId, normalized);
+      const taxonomyRecognition = recognizeTaxonomyQuery(normalized.preserving);
+      if (!searchRequest.taxonomyNodeId && taxonomyRecognition) {
+        searchRequest = { ...searchRequest, taxonomyNodeId: taxonomyRecognition.id };
+      }
+      const taxonomyContext = taxonomyRecognition ?? taxonomyContextById(searchRequest.taxonomyNodeId);
+      let embeddingDecision = shouldEmbed({
+        normalizedQuery: normalized.preserving,
+        semanticEnabled,
+        circuitOpen: circuitBreaker.isOpen(clock().getTime()),
+        recognizedTaxonomyOnly: taxonomyRecognition !== null,
+        hasTime: searchRequest.time !== undefined,
+        hasTaxonomyConstraint: searchRequest.taxonomyNodeId !== undefined && taxonomyRecognition === null,
+        hasLocationConstraint: searchRequest.location !== undefined,
+      });
+      let queryVector: number[] | null = null;
+      let semanticAttempted = false;
+      let semanticSuccess = false;
+      let semanticDegraded = embeddingDecision.reason === 'CIRCUIT_OPEN';
+      let degradationReason: string | null = semanticDegraded ? 'CIRCUIT_OPEN' : null;
+      let providerLatencyMs = 0;
+
+      if (embeddingDecision.shouldEmbed) {
+        if (!circuitBreaker.acquire(clock().getTime())) {
+          embeddingDecision = { shouldEmbed: false, reason: 'CIRCUIT_OPEN' };
+          semanticDegraded = true;
+          degradationReason = 'CIRCUIT_OPEN';
+        } else if (!queryEmbedder) {
+          semanticDegraded = true;
+          degradationReason = 'PROVIDER_UNAVAILABLE';
+          circuitBreaker.failure(clock().getTime(), false);
+        } else {
+          semanticAttempted = true;
+          const providerStartedAt = clock().getTime();
+          try {
+            queryVector = validateQueryVector(await queryEmbedder(
+              buildSemanticQueryInput(normalized.preserving, taxonomyContext, searchRequest.time),
+              SEMANTIC_TIMEOUT_MS,
+            ));
+            semanticSuccess = true;
+            circuitBreaker.success();
+          } catch (error) {
+            const failure = classifySemanticFailure(error);
+            semanticDegraded = true;
+            degradationReason = failure.reason;
+            circuitBreaker.failure(clock().getTime(), failure.qualifying);
+          } finally {
+            providerLatencyMs = Math.max(0, clock().getTime() - providerStartedAt);
+          }
+        }
+      }
+
+      const params = toRpcParams(searchRequest, requestId, normalized, queryVector);
       let rpcResult: Awaited<ReturnType<ReturnType<SearchRpcClient['schema']>['rpc']>>;
+      const dbStartedAt = clock().getTime();
       try {
         rpcResult = await client.schema('api').rpc('search_v1', params);
       } catch {
+        emitTelemetry(telemetry, {
+          requestId, embeddingDecision, semanticAttempted, semanticSuccess,
+          semanticDegraded, degradationReason, providerLatencyMs,
+          dbLatencyMs: Math.max(0, clock().getTime() - dbStartedAt),
+          totalBackendLatencyMs: Math.max(0, clock().getTime() - startedAt),
+          semanticCandidateCount: 0, resultCount: 0,
+        });
         throw new PublicRequestError(503, 'DATABASE_UNAVAILABLE', 'Search is temporarily unavailable.', true);
       }
       const { data, error } = rpcResult;
-      if (error) throw mapRpcError(error.code);
-      if (!data) throw new PublicRequestError(503, 'SEARCH_UNAVAILABLE', 'Search is temporarily unavailable.', true);
+      if (error || !data) {
+        emitTelemetry(telemetry, {
+          requestId, embeddingDecision, semanticAttempted, semanticSuccess,
+          semanticDegraded, degradationReason, providerLatencyMs,
+          dbLatencyMs: Math.max(0, clock().getTime() - dbStartedAt),
+          totalBackendLatencyMs: Math.max(0, clock().getTime() - startedAt),
+          semanticCandidateCount: 0, resultCount: 0,
+        });
+        if (error) throw mapRpcError(error.code);
+        throw new PublicRequestError(503, 'SEARCH_UNAVAILABLE', 'Search is temporarily unavailable.', true);
+      }
 
       const results = data.map(shapeCard);
+      const dbLatencyMs = Math.max(0, clock().getTime() - dbStartedAt);
+      emitTelemetry(telemetry, {
+        requestId, embeddingDecision, semanticAttempted, semanticSuccess,
+        semanticDegraded, degradationReason, providerLatencyMs, dbLatencyMs,
+        totalBackendLatencyMs: Math.max(0, clock().getTime() - startedAt),
+        semanticCandidateCount: data.filter((row) => row.semantic_used).length,
+        resultCount: results.length,
+      });
       const response: SearchResponseV1 = {
         requestId,
-        semanticDegraded: data.some((row) => row.semantic_degraded),
+        semanticDegraded,
         metadata: { limit: searchRequest.limit ?? 10, resultCount: results.length },
         results,
       };
@@ -256,6 +370,7 @@ function toRpcParams(
   request: SearchRequestV1,
   requestId: string,
   normalized: { preserving: string; accentless: string },
+  queryVector: number[] | null,
 ): SearchRpcParams {
   return {
     p_request_id: requestId,
@@ -271,14 +386,53 @@ function toRpcParams(
     p_entity_types: request.entityTypes ?? null,
     p_time_start: request.time?.start ?? null,
     p_time_end: request.time?.end ?? null,
-    p_query_vector: null,
+    p_query_vector: queryVector ? `[${queryVector.join(',')}]` : null,
     p_embedding_provider: 'voyage',
     p_embedding_model: 'voyage-4',
     p_embedding_revision: 'voyage-4-preflight-v1',
     p_embedding_dimension: 1024,
     p_limit: request.limit ?? 10,
-    p_search_config_version: 'embed-01b-voyage-4-v1',
+    p_search_config_version: SEMANTIC_CONFIG_VERSION,
   };
+}
+
+function emitTelemetry(
+  sink: (event: SearchTelemetry) => void,
+  input: {
+    requestId: string;
+    embeddingDecision: { shouldEmbed: boolean; reason: string };
+    semanticAttempted: boolean;
+    semanticSuccess: boolean;
+    semanticDegraded: boolean;
+    degradationReason: string | null;
+    providerLatencyMs: number;
+    dbLatencyMs: number;
+    totalBackendLatencyMs: number;
+    semanticCandidateCount: number;
+    resultCount: number;
+  },
+): void {
+  try {
+    sink({
+      requestId: input.requestId,
+      shouldEmbed: input.embeddingDecision.shouldEmbed,
+      shouldEmbedReason: input.embeddingDecision.reason,
+      semanticAttempted: input.semanticAttempted,
+      semanticSuccess: input.semanticSuccess,
+      semanticDegraded: input.semanticDegraded,
+      degradationReason: input.degradationReason,
+      providerLatencyMs: input.providerLatencyMs,
+      dbLatencyMs: input.dbLatencyMs,
+      totalBackendLatencyMs: input.totalBackendLatencyMs,
+      semanticCandidateCount: input.semanticCandidateCount,
+      resultCount: input.resultCount,
+      searchConfigVersion: SEMANTIC_CONFIG_VERSION,
+      modelRevision: 'voyage-4-preflight-v1',
+      queryTemplateVersion: SEMANTIC_QUERY_TEMPLATE_VERSION,
+    });
+  } catch {
+    // Telemetry is best-effort and cannot affect search availability.
+  }
 }
 
 function shapeCard(row: SearchRpcRow): PlaceCard | EventCard {

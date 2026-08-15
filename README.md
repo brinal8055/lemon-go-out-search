@@ -33,7 +33,7 @@ pnpm env:check:edge
 pnpm env:check:deploy
 ```
 
-Never place `LEMON_SUPABASE_SECRET_KEY`, `LEMON_EMBEDDING_API_KEY`, a Supabase access token, or any database credential in Expo configuration or an `EXPO_PUBLIC_*` variable.
+Never place `LEMON_SUPABASE_SECRET_KEY`, `VOYAGE_API_KEY`, a Supabase access token, or any database credential in Expo configuration or an `EXPO_PUBLIC_*` variable.
 
 ## Mobile shell
 

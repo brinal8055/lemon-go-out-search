@@ -16,6 +16,7 @@ const supportedSuites = new Map([
   ['search-discovery', 'supabase/tests/search-discovery.sql'],
   ['search-diagnostics', 'supabase/tests/search-diagnostics.sql'],
   ['embedding-lifecycle', 'supabase/tests/embedding-lifecycle.sql'],
+  ['semantic-search', 'supabase/tests/semantic-search.sql'],
   ['event-01', 'supabase/tests/event-01.sql'],
   ['sec-01', 'supabase/tests/sec-01.sql'],
 ]);

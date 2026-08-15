@@ -3,13 +3,13 @@ const targetVariables = {
   edge: [
     'SUPABASE_URL',
     'LEMON_SUPABASE_SECRET_KEY',
-    'LEMON_EMBEDDING_API_KEY',
+    'VOYAGE_API_KEY',
   ],
   deploy: [
     'EXPO_PUBLIC_LEMON_SEARCH_EDGE_URL',
     'SUPABASE_URL',
     'LEMON_SUPABASE_SECRET_KEY',
-    'LEMON_EMBEDDING_API_KEY',
+    'VOYAGE_API_KEY',
     'SUPABASE_ACCESS_TOKEN',
     'SUPABASE_PROJECT_ID',
   ],
@@ -51,4 +51,3 @@ if (process.argv[1] === new URL(import.meta.url).pathname) {
   output(result.message);
   process.exitCode = result.ok ? 0 : 1;
 }
-

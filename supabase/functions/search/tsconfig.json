@@ -9,5 +9,9 @@
     "moduleResolution": "Bundler",
     "lib": ["ES2022", "DOM"]
   },
-  "include": ["*.ts", "../../../packages/time-parser/src/index.ts"]
+  "include": [
+    "*.ts",
+    "../../../packages/time-parser/src/index.ts",
+    "../../../packages/embedding/src/voyage-client.ts"
+  ]
 }

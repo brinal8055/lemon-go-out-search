@@ -119,8 +119,8 @@ select ok(
 select ok(
   not has_table_privilege('lemon_api_owner', 'app.source_record_versions', 'SELECT')
     and not has_table_privilege('lemon_api_owner', 'app.sources', 'SELECT')
-    and not has_table_privilege('lemon_api_owner', 'app.embeddings', 'SELECT'),
-  'lemon_api_owner cannot read source payloads or embedding rows'
+    and has_table_privilege('lemon_api_owner', 'app.embeddings', 'SELECT'),
+  'lemon_api_owner cannot read source payloads but can execute private exact-vector retrieval'
 );
 select is(
   (select count(*) from pg_policies where schemaname = 'app' and roles = '{lemon_api_owner}'),
@@ -135,7 +135,7 @@ select is(
 );
 select is(
   (select version from app.search_configs where is_active),
-  'embed-01b-voyage-4-v1',
+  'sem-01-query-v1',
   'the selected embedding configuration is active'
 );
 select ok(
@@ -171,7 +171,7 @@ select is(
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
     'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-    10::smallint, 'embed-01b-voyage-4-v1'
+    10::smallint, 'sem-01-query-v1'
   )),
   1::bigint,
   'service_role can execute the shaped RPC'
@@ -184,13 +184,13 @@ select is(
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
     'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-    10::smallint, 'embed-01b-voyage-4-v1'
+    10::smallint, 'sem-01-query-v1'
   )),
   'SEC Fixture Café',
   'the RPC returns the safe canonical display name'
 );
 select ok(
-  (select not semantic_used and not semantic_degraded
+  (select not semantic_used and semantic_degraded
    from api.search_v1(
     '91000000-0000-0000-0000-000000000099',
     'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
@@ -198,9 +198,9 @@ select ok(
     null, null, null, null,
     array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
     'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-    10::smallint, 'embed-01b-voyage-4-v1'
+    10::smallint, 'sem-01-query-v1'
   )),
-  'the deterministic slice reports no semantic use or degradation'
+  'the DB reports vector-NULL semantic degradation while retaining deterministic results'
 );
 select is(
   (select count(*) from api.search_v1(
@@ -210,7 +210,7 @@ select is(
     null, null, null, null,
     array['EVENT']::app.entity_type[], null, null, null::extensions.vector,
     'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-    10::smallint, 'embed-01b-voyage-4-v1'
+    10::smallint, 'sem-01-query-v1'
   )),
   0::bigint,
   'an unsupported Event-only filter cannot leak Place results'
@@ -224,7 +224,7 @@ select throws_ok(
       null, 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
-      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01b-voyage-4-v1'
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'sem-01-query-v1'
     )
   $$,
   '22023',
@@ -237,7 +237,7 @@ select throws_ok(
       gen_random_uuid(), 'SEC Fixture Café', 'wrong', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
-      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01b-voyage-4-v1'
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'sem-01-query-v1'
     )
   $$,
   '22023',
@@ -263,7 +263,7 @@ select throws_ok(
       gen_random_uuid(), 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', 57.7, null, null, null,
       null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
-      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01b-voyage-4-v1'
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'sem-01-query-v1'
     )
   $$,
   '22023',
@@ -276,7 +276,7 @@ select throws_ok(
       gen_random_uuid(), 'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
-      'voyage-4-preflight-v1', 1024, 21::smallint, 'embed-01b-voyage-4-v1'
+      'voyage-4-preflight-v1', 1024, 21::smallint, 'sem-01-query-v1'
     )
   $$,
   '22023',
@@ -291,7 +291,7 @@ select throws_ok(
       'SEC Fixture Café', 'sec fixture café', 'sec fixture cafe', 'en',
       'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
       null, null, null, null::extensions.vector, 'voyage', 'voyage-4',
-      'voyage-4-preflight-v1', 1024, 10::smallint, 'embed-01b-voyage-4-v1'
+      'voyage-4-preflight-v1', 1024, 10::smallint, 'sem-01-query-v1'
     )
   $$,
   '42501',

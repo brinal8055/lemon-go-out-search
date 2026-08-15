@@ -12,13 +12,13 @@ export type SearchRpcParams = {
   p_entity_types: Array<'PLACE' | 'EVENT'> | null;
   p_time_start: string | null;
   p_time_end: string | null;
-  p_query_vector: null;
+  p_query_vector: string | null;
   p_embedding_provider: 'voyage';
   p_embedding_model: 'voyage-4';
   p_embedding_revision: 'voyage-4-preflight-v1';
   p_embedding_dimension: 1024;
   p_limit: number;
-  p_search_config_version: 'embed-01b-voyage-4-v1';
+  p_search_config_version: 'sem-01-query-v1';
 };
 
 export type SearchRpcRow = {

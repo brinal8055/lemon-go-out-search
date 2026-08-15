@@ -44,6 +44,7 @@
     "test:taxonomy": "vitest run tests/unit/taxonomy.test.ts",
     "test:search-documents": "vitest run tests/unit/search-documents.test.ts",
     "test:embeddings": "vitest run tests/unit/embedding-client.test.ts tests/unit/embedding-generator.test.ts && node scripts/test-db.mjs embedding-lifecycle",
+    "test:semantic": "vitest run tests/unit/semantic-query.test.ts tests/unit/edge-search.test.ts && node scripts/test-db.mjs semantic-search && node scripts/test-db.mjs search-diagnostics",
     "test:event-source": "vitest run tests/unit/jonkoping-event-source.test.ts",
     "test:event-ingestion": "vitest run tests/unit/jonkoping-event-ingestion.test.ts",
     "test:normalization": "vitest run tests/unit/normalization.test.ts",
@@ -59,7 +60,7 @@
     "db:start": "supabase start",
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
-    "edge:serve": "supabase functions serve search --no-verify-jwt"
+    "edge:serve": "supabase functions serve --no-verify-jwt"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

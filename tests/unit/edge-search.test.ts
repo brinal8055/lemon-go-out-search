@@ -8,6 +8,8 @@ import type {
   SearchRpcParams,
   SearchRpcRow,
 } from '../../supabase/functions/search/types.ts';
+import { EmbeddingRequestError } from '../../packages/embedding/src/voyage-client.ts';
+import { SemanticCircuitBreaker } from '../../supabase/functions/search/semantic.ts';
 
 const REQUEST_ID = '94000000-0000-4000-8000-000000000001';
 const SCOPE_ID = 'a4b19b09-b272-5748-80ef-2c91d9d33ca6';
@@ -96,7 +98,7 @@ describe('EDGE-01 search handler', () => {
       p_query_norm: 'evergreen restaurang pizzeria',
       p_query_ascii: 'evergreen restaurang pizzeria',
       p_query_vector: null,
-      p_search_config_version: 'embed-01b-voyage-4-v1',
+      p_search_config_version: 'sem-01-query-v1',
     }));
     expect(body).toEqual({
       requestId: REQUEST_ID,
@@ -287,6 +289,142 @@ describe('EDGE-01 search handler', () => {
   });
 });
 
+describe('SEM-01 Edge fail-open path', () => {
+  const broadRequest = {
+    query: 'things to do in Jönköping',
+    uiLocale: 'en',
+    scopeId: SCOPE_ID,
+    limit: 10,
+  };
+  const queryVector = [1, ...Array.from({ length: 1023 }, () => 0)];
+
+  it('embeds a broad request, validates the vector, and makes exactly one DB RPC', async () => {
+    const mocked = mockClient({ data: [{ ...placeRow, semantic_used: true }], error: null });
+    const queryEmbedder = vi.fn(async (input: string, timeoutMs: number) => {
+      expect(input).toBe('query: things to do in jönköping');
+      expect(timeoutMs).toBe(700);
+      return queryVector;
+    });
+    const telemetry = vi.fn();
+    const response = await createSearchHandler({
+      client: mocked.client,
+      randomUUID: () => REQUEST_ID,
+      queryEmbedder,
+      telemetry,
+    })(post(broadRequest));
+    const body = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(body.semanticDegraded).toBe(false);
+    expect(queryEmbedder).toHaveBeenCalledOnce();
+    expect(mocked.rpc).toHaveBeenCalledOnce();
+    expect(mocked.rpc).toHaveBeenCalledWith('search_v1', expect.objectContaining({
+      p_query_vector: `[${queryVector.join(',')}]`,
+      p_embedding_provider: 'voyage',
+      p_embedding_model: 'voyage-4',
+      p_embedding_revision: 'voyage-4-preflight-v1',
+      p_embedding_dimension: 1024,
+      p_search_config_version: 'sem-01-query-v1',
+    }));
+    expect(telemetry).toHaveBeenCalledWith(expect.objectContaining({
+      shouldEmbed: true,
+      shouldEmbedReason: 'BROAD_DISCOVERY',
+      semanticAttempted: true,
+      semanticSuccess: true,
+      semanticDegraded: false,
+      semanticCandidateCount: 1,
+      searchConfigVersion: 'sem-01-query-v1',
+      queryTemplateVersion: 'semantic-query-template-v1',
+    }));
+    expect(JSON.stringify(body)).not.toMatch(/query_vector|semantic_used|cosine|provider|voyage|score/i);
+  });
+
+  it.each([
+    ['timeout', new EmbeddingRequestError('private timeout', 'TIMEOUT', 'PROVIDER_TIMEOUT'), 'TIMEOUT'],
+    ['429', new EmbeddingRequestError('private rate body', 'RATE_LIMIT', 'PROVIDER_RATE_LIMIT'), 'RATE_LIMIT'],
+    ['5xx', new EmbeddingRequestError('private provider body', 'PROVIDER', 'PROVIDER_5XX'), 'PROVIDER_5XX'],
+    ['invalid vector', [0], 'INVALID_VECTOR'],
+  ])('returns the identical deterministic ordering after %s with one RPC', async (_name, failure, reason) => {
+    const disabled = mockClient({ data: [placeRow, eventRow], error: null });
+    const disabledResponse = await createSearchHandler({
+      client: disabled.client,
+      randomUUID: () => REQUEST_ID,
+      semanticEnabled: false,
+    })(post(broadRequest));
+    const disabledBody = await disabledResponse.json();
+
+    const degraded = mockClient({ data: [placeRow, eventRow], error: null });
+    const telemetry = vi.fn();
+    const queryEmbedder = vi.fn(async () => {
+      if (failure instanceof Error) throw failure;
+      return failure;
+    });
+    const degradedResponse = await createSearchHandler({
+      client: degraded.client,
+      randomUUID: () => REQUEST_ID,
+      queryEmbedder,
+      telemetry,
+    })(post(broadRequest));
+    const degradedBody = await degradedResponse.json();
+
+    expect(degradedResponse.status).toBe(200);
+    expect(degradedBody.semanticDegraded).toBe(true);
+    expect(degradedBody.results.map((result: { canonicalId: string }) => result.canonicalId))
+      .toEqual(disabledBody.results.map((result: { canonicalId: string }) => result.canonicalId));
+    expect(degraded.rpc).toHaveBeenCalledOnce();
+    expect(degraded.rpc).toHaveBeenCalledWith('search_v1', expect.objectContaining({ p_query_vector: null }));
+    expect(queryEmbedder).toHaveBeenCalledOnce();
+    expect(telemetry).toHaveBeenCalledWith(expect.objectContaining({
+      semanticDegraded: true,
+      degradationReason: reason,
+    }));
+    expect(JSON.stringify(degradedBody)).not.toMatch(/private timeout|private rate|private provider/i);
+  });
+
+  it('suppresses provider work while open but still makes one deterministic RPC', async () => {
+    const circuitBreaker = new SemanticCircuitBreaker();
+    circuitBreaker.failure(0, true);
+    circuitBreaker.failure(1, true);
+    circuitBreaker.failure(2, true);
+    const mocked = mockClient({ data: [placeRow], error: null });
+    const queryEmbedder = vi.fn(async () => queryVector);
+    const response = await createSearchHandler({
+      client: mocked.client,
+      randomUUID: () => REQUEST_ID,
+      clock: () => new Date(2),
+      queryEmbedder,
+      circuitBreaker,
+    })(post(broadRequest));
+    expect(response.status).toBe(200);
+    expect((await response.json()).semanticDegraded).toBe(true);
+    expect(queryEmbedder).not.toHaveBeenCalled();
+    expect(mocked.rpc).toHaveBeenCalledOnce();
+    expect(mocked.rpc).toHaveBeenCalledWith('search_v1', expect.objectContaining({ p_query_vector: null }));
+  });
+
+  it('does not label a taxonomy-only or known-item skip as degradation', async () => {
+    const mocked = mockClient({ data: [placeRow], error: null });
+    const queryEmbedder = vi.fn(async () => queryVector);
+    const handler = createSearchHandler({
+      client: mocked.client,
+      randomUUID: () => REQUEST_ID,
+      queryEmbedder,
+    });
+    const taxonomy = await handler(post({
+      query: 'Italian restaurants', uiLocale: 'en', scopeId: SCOPE_ID,
+    }));
+    const knownItem = await handler(post(baseRequest));
+    expect((await taxonomy.json()).semanticDegraded).toBe(false);
+    expect((await knownItem.json()).semanticDegraded).toBe(false);
+    expect(queryEmbedder).not.toHaveBeenCalled();
+    expect(mocked.rpc).toHaveBeenCalledTimes(2);
+    expect(mocked.rpc).toHaveBeenNthCalledWith(1, 'search_v1', expect.objectContaining({
+      p_taxonomy_node_id: 'd43e33db-0ad3-575c-8514-d01ccf700587',
+      p_query_vector: null,
+    }));
+  });
+});
+
 describe('EDGE-01 server RPC client', () => {
   it('uses only its backend credential for one fixed api.search_v1 request', async () => {
     const fetchImpl = vi.fn(async (_url: string | URL | Request, init?: RequestInit) => {
@@ -316,7 +454,7 @@ describe('EDGE-01 server RPC client', () => {
       p_embedding_revision: 'voyage-4-preflight-v1',
       p_embedding_dimension: 1024,
       p_limit: 10,
-      p_search_config_version: 'embed-01b-voyage-4-v1',
+      p_search_config_version: 'sem-01-query-v1',
     } satisfies SearchRpcParams;
 
     await client.schema('api').rpc('search_v1', params);

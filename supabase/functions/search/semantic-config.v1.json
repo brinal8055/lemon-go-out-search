@@ -1,0 +1,32 @@
+{
+  "version": "sem-01-query-v1",
+  "provider": "voyage",
+  "model": "voyage-4",
+  "revision": "voyage-4-preflight-v1",
+  "dimension": 1024,
+  "queryInputType": "query",
+  "queryTemplateVersion": "semantic-query-template-v1",
+  "semanticCandidateCap": 30,
+  "embeddingTimeoutMs": 700,
+  "circuitFailureThreshold": 3,
+  "circuitOpenMs": 30000,
+  "broadTerms": [
+    "things to do", "what to do", "something to do", "places to go",
+    "saker att göra", "vad kan man göra", "något att göra", "ställen att gå"
+  ],
+  "occasionTerms": [
+    "date night", "family outing", "with friends", "birthday", "celebrate",
+    "dejt", "familjeutflykt", "med vänner", "födelsedag", "fira"
+  ],
+  "constraintTerms": [
+    "nearby", "near me", "within", "outdoor", "open now",
+    "i närheten", "nära mig", "inom", "utomhus", "öppet nu"
+  ],
+  "genericNouns": [
+    "activity", "activities", "aktivitet", "aktiviteter", "event", "events",
+    "evenemang", "place", "places", "restaurant", "restaurants", "restaurang",
+    "restauranger", "ställe", "ställen"
+  ],
+  "taxonomyVersion": "active-going-out.v1",
+  "taxonomyChecksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2"
+}
