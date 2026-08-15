@@ -106,7 +106,7 @@ as $$
 $$;
 
 select is((select version from app.search_configs where is_active),
-  'rank-01-rrf-v1', 'RRF uses a new active search-config version');
+  'noncollapse-v1', 'RRF uses a new active search-config version');
 select ok((select not is_active from app.search_configs where version = 'sem-01-query-v1'),
   'the inspected SEM-01 config is retained without silent mutation');
 select ok((select rrf_enabled and rrf_version = 'RRF_V1' and rrf_k = 60
@@ -189,7 +189,7 @@ select * from app.search_ranked_candidates(
   array['PLACE']::app.entity_type[], null, null,
   ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')
     ::extensions.vector,
-  'rank-01-rrf-v1'
+  'noncollapse-v1'
 );
 
 select is((select canonical_entity_id from protected_rank where final_rank = 1),
@@ -219,7 +219,7 @@ select ok((select protected and protection_class = 'PROTECTED_ALIAS_EXACT'
   from app.search_ranked_candidates(
     'RRF Alias', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
     '2026-08-15T09:00:00Z', null, null, null, null,
-    array['PLACE']::app.entity_type[], null, null, null, 'rank-01-rrf-v1'
+    array['PLACE']::app.entity_type[], null, null, null, 'noncollapse-v1'
   ) where canonical_entity_id = '41000000-0000-4000-8000-000000000003'),
   'qualifying verified alias protection is preserved');
 
@@ -230,7 +230,7 @@ select ok((select not protected and stage_ranks ? 'ASCII_EXACT'
   from app.search_ranked_candidates(
     'Rank Cafe', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
     '2026-08-15T09:00:00Z', null, null, null, null,
-    array['PLACE']::app.entity_type[], null, null, null, 'rank-01-rrf-v1'
+    array['PLACE']::app.entity_type[], null, null, null, 'noncollapse-v1'
   ) where canonical_entity_id = '41000000-0000-4000-8000-000000000004'),
   'accentless exact remains ordinary RRF evidence');
 
@@ -253,7 +253,7 @@ select * from app.search_ranked_candidates(
   array['PLACE']::app.entity_type[], null, null,
   ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')
     ::extensions.vector,
-  'rank-01-rrf-v1'
+  'noncollapse-v1'
 );
 select is((select count(*) from italian_semantic where canonical_entity_id =
   '42000000-0000-4000-8000-000000000001'), 1::bigint,
@@ -277,7 +277,7 @@ create temporary table italian_without_semantic as
 select * from app.search_ranked_candidates(
   'Italian', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
   '2026-08-15T09:00:00Z', null, null, null, null,
-  array['PLACE']::app.entity_type[], null, null, null, 'rank-01-rrf-v1'
+  array['PLACE']::app.entity_type[], null, null, null, 'noncollapse-v1'
 );
 select is(
   (select array_agg(canonical_entity_id order by final_rank) from italian_without_semantic),
@@ -285,7 +285,7 @@ select is(
    from app.search_ranked_candidates(
      'Italian', 'a4b19b09-b272-5748-80ef-2c91d9d33ca6',
      '2026-08-15T09:00:00Z', null, null, null, null,
-     array['PLACE']::app.entity_type[], null, null, null, 'rank-01-rrf-v1'
+     array['PLACE']::app.entity_type[], null, null, null, 'noncollapse-v1'
    )),
   'every vector-NULL degradation reason has the semantic-absent deterministic order');
 select ok((select bool_and(not semantic_present) from italian_without_semantic),
@@ -309,7 +309,7 @@ select is_empty($sql$
     array['PLACE']::app.entity_type[], null, null,
     ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')
       ::extensions.vector,
-    'rank-01-rrf-v1'
+    'noncollapse-v1'
   ) where canonical_entity_id = '42000000-0000-4000-8000-000000000099'
 $sql$, 'multiple strong stage ranks cannot bypass the radius hard filter');
 
@@ -339,7 +339,7 @@ select * from app.search_ranked_candidates(
   array['PLACE']::app.entity_type[], null, null,
   ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')
     ::extensions.vector,
-  'rank-01-rrf-v1'
+  'noncollapse-v1'
 )
 where canonical_entity_id in (
   '43000000-0000-4000-8000-000000000001',
@@ -372,14 +372,14 @@ select is((select count(*) from api.search_v1(
   'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
   array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
   'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-  1::smallint, 'rank-01-rrf-v1'
+  1::smallint, 'noncollapse-v1'
 )), 1::bigint, 'the final response limit is applied after deterministic ranking');
 select ok((select count(*) = count(distinct entity_id) from api.search_v1(
   gen_random_uuid(), 'Italian', 'italian', 'italian', 'en',
   'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
   array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
   'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-  20::smallint, 'rank-01-rrf-v1'
+  20::smallint, 'noncollapse-v1'
 )), 'public canonical IDs remain unique');
 select ok((select row_to_json(result)::jsonb ?& array[
   'result_position','entity_id','entity_type','display_name','semantic_used'
@@ -390,7 +390,7 @@ select ok((select row_to_json(result)::jsonb ?& array[
   'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
   array['PLACE']::app.entity_type[], null, null, null::extensions.vector,
   'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024,
-  1::smallint, 'rank-01-rrf-v1'
+  1::smallint, 'noncollapse-v1'
 ) as result), 'public results leak no RRF or protection internals');
 reset role;
 

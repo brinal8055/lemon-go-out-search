@@ -62,7 +62,7 @@ const requestBody = JSON.stringify({
   p_embedding_revision: 'voyage-4-preflight-v1',
   p_embedding_dimension: 1024,
   p_limit: 10,
-  p_search_config_version: 'rank-01-rrf-v1',
+  p_search_config_version: 'noncollapse-v1',
 });
 
 const noKey = await fetch(rpcUrl, {

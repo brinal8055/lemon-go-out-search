@@ -140,7 +140,7 @@ select * from app.search_semantic_candidates(
   'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 30
 );
 
-select is((select version from app.search_configs where is_active), 'rank-01-rrf-v1',
+select is((select version from app.search_configs where is_active), 'noncollapse-v1',
   'the active semantic config is version-pinned');
 select is((select semantic_cap from app.search_configs where is_active), 30::smallint,
   'the semantic candidate cap is 30');
@@ -235,7 +235,7 @@ select is(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null,
     ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')::extensions.vector,
-    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'rank-01-rrf-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'noncollapse-v1'
   )),
   '31000000-0000-4000-8000-000000000001'::uuid,
   'a semantic-only eligible candidate reaches the current union');
@@ -246,7 +246,7 @@ select ok(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null,
     ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')::extensions.vector,
-    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'rank-01-rrf-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'noncollapse-v1'
   )),
   'semantic evidence is retained on the unique union row');
 select is(
@@ -256,7 +256,7 @@ select is(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null,
     ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')::extensions.vector,
-    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'rank-01-rrf-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'noncollapse-v1'
   )),
   '31000000-0000-4000-8000-000000000002'::uuid,
   'protected canonical exact remains ahead of stronger semantic-only similarity');
@@ -267,7 +267,7 @@ select ok(
     'a4b19b09-b272-5748-80ef-2c91d9d33ca6', null, null, null, null,
     array['PLACE']::app.entity_type[], null, null,
     ('[1,0,' || array_to_string(array_fill(0::real, array[1022]), ',') || ']')::extensions.vector,
-    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'rank-01-rrf-v1'
+    'voyage', 'voyage-4', 'voyage-4-preflight-v1', 1024, 1::smallint, 'noncollapse-v1'
   )),
   'semantic evidence may coexist without creating or displacing exact protection');
 select is(

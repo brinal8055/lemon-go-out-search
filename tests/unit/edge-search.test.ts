@@ -98,7 +98,7 @@ describe('EDGE-01 search handler', () => {
       p_query_norm: 'evergreen restaurang pizzeria',
       p_query_ascii: 'evergreen restaurang pizzeria',
       p_query_vector: null,
-      p_search_config_version: 'rank-01-rrf-v1',
+      p_search_config_version: 'noncollapse-v1',
     }));
     expect(body).toEqual({
       requestId: REQUEST_ID,
@@ -324,7 +324,7 @@ describe('SEM-01 Edge fail-open path', () => {
       p_embedding_model: 'voyage-4',
       p_embedding_revision: 'voyage-4-preflight-v1',
       p_embedding_dimension: 1024,
-      p_search_config_version: 'rank-01-rrf-v1',
+      p_search_config_version: 'noncollapse-v1',
     }));
     expect(telemetry).toHaveBeenCalledWith(expect.objectContaining({
       shouldEmbed: true,
@@ -333,7 +333,7 @@ describe('SEM-01 Edge fail-open path', () => {
       semanticSuccess: true,
       semanticDegraded: false,
       semanticCandidateCount: 1,
-      searchConfigVersion: 'rank-01-rrf-v1',
+      searchConfigVersion: 'noncollapse-v1',
       queryTemplateVersion: 'semantic-query-template-v1',
     }));
     expect(JSON.stringify(body)).not.toMatch(/query_vector|semantic_used|cosine|provider|voyage|score/i);
@@ -454,7 +454,7 @@ describe('EDGE-01 server RPC client', () => {
       p_embedding_revision: 'voyage-4-preflight-v1',
       p_embedding_dimension: 1024,
       p_limit: 10,
-      p_search_config_version: 'rank-01-rrf-v1',
+      p_search_config_version: 'noncollapse-v1',
     } satisfies SearchRpcParams;
 
     await client.schema('api').rpc('search_v1', params);

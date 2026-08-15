@@ -30,7 +30,7 @@ describe('SEM-01 deterministic query policy', () => {
       inputType: EMBEDDING_QUERY_INPUT_TYPE,
       dimension: EMBEDDING_DIMENSION,
     }).toEqual({
-      config: 'rank-01-rrf-v1',
+      config: 'noncollapse-v1',
       template: 'semantic-query-template-v1',
       timeout: 700,
       cap: 30,

@@ -19,6 +19,7 @@ const supportedSuites = new Map([
   ['semantic-search', 'supabase/tests/semantic-search.sql'],
   ['event-01', 'supabase/tests/event-01.sql'],
   ['rank', 'supabase/tests/rank-01.sql'],
+  ['noncollapse', 'supabase/tests/noncollapse-01.sql'],
   ['sec-01', 'supabase/tests/sec-01.sql'],
 ]);
 

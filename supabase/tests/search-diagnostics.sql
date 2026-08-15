@@ -333,7 +333,7 @@ select is(
     '{"query":"Diagnostic Exact","scopeId":"a4b19b09-b272-5748-80ef-2c91d9d33ca6"}',
     'd1000000-0000-4000-8000-000000000001'
   )#>>'{versions,searchConfigVersion}',
-  'rank-01-rrf-v1',
+  'noncollapse-v1',
   'active search configuration version is visible'
 );
 select ok(
