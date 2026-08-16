@@ -68,6 +68,14 @@ export type EvalJudgmentSetV1 = {
   dataset_inventory_checksum?: string;
   selected_query_ids?: string[];
   approval?: { authority: string; provenance: string };
+  freeze_metadata?: {
+    created_at: string;
+    review_source: string;
+    approved_proposal: string;
+    approved_proposal_sha256: string;
+    grading_rubric: Record<string, unknown>;
+    grading_rubric_version: string;
+  };
 };
 
 export type EvalDatasetManifestV1 = {
