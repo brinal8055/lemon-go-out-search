@@ -4,6 +4,6 @@ const { getDefaultConfig } = require('expo/metro-config');
 
 const config = getDefaultConfig(__dirname);
 config.resolver.assetExts.push('yaml');
-config.watchFolders = [path.resolve(__dirname, '../..')];
+config.watchFolders.push(path.resolve(__dirname, '../..'));
 
 module.exports = config;
