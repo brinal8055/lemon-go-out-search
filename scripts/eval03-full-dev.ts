@@ -30,7 +30,8 @@ const require = createRequire(new URL('../packages/evaluation/package.json', imp
 const pg = require('pg') as { Client: new (options: { connectionString: string }) => PgClient };
 const corpusUrl = new URL('evaluation/corpus/corpus.v1.jsonl', root);
 const corpusChecksumUrl = new URL('evaluation/corpus/checksum.v1.txt', root);
-const connectionString = process.env.LEMON_LOCAL_DATABASE_URL
+const connectionString = process.env.LEMON_FINAL_EVAL_DATABASE_URL
+  ?? process.env.LEMON_LOCAL_DATABASE_URL
   ?? 'postgresql://postgres:postgres@127.0.0.1:54322/postgres';
 const failureCategories = [
   'INVENTORY', 'ELIGIBILITY', 'CANDIDATE_RETRIEVAL', 'UNION',
@@ -38,8 +39,8 @@ const failureCategories = [
 ] as const;
 type FailureAttribution = (typeof failureCategories)[number];
 type Mode = 'HYBRID' | 'LEXICAL_ONLY';
-type MetricName = 'hitAt1' | 'hitAt3' | 'mrr' | 'recallAt20' | 'precisionAt5' | 'ndcgAt5';
-type QueryMetric = ReturnType<typeof metricsFor>;
+type MetricName = 'hitAt1' | 'hitAt3' | 'mrr' | 'recallAt20' | 'recallAt50' | 'precisionAt5' | 'ndcgAt5';
+type QueryMetric = ReturnType<typeof metricsFor> & { recallAt50: number | null };
 type QueryResult = {
   queryId: string;
   query: string;
@@ -53,6 +54,7 @@ type QueryResult = {
   productOutcome: 'QUERY_UNSATISFIED' | null;
   searchRankingAssessment: 'EVALUATED' | 'NOT_EVALUATED';
   failureAttribution: FailureAttribution | null;
+  hardConstraintViolationIds: string[];
   semanticCandidateCount: number;
   semanticCandidates: Array<{ entityId: string; rank: number; cosineDistance: number; cosineSimilarity: number }>;
   stages: Array<{ entityId: string; ranks: Record<string, number>; semanticPresent: boolean }>;
@@ -78,32 +80,47 @@ const manifestPath = resolve(requiredArg('--manifest'));
 const manifestChecksumPath = resolve(requiredArg('--manifest-checksum'));
 const judgmentPath = resolve(requiredArg('--judgments'));
 const judgmentChecksumPath = resolve(requiredArg('--judgment-checksum'));
+const recoveryInventoryPath = optionalArg('--recovery-inventory');
+const recoveryInventoryChecksumPath = optionalArg('--recovery-inventory-checksum');
 const outputDirectory = resolve(requiredArg('--output'));
 if (requiredArg('--config') !== 'eval-03-baseline.v1') throw new Error('BASELINE_CONFIG_REQUIRED');
 const providerSpacingMs = Number(optionalArg('--provider-spacing-ms') ?? '31000');
 if (!Number.isInteger(providerSpacingMs) || providerSpacingMs < 31_000) throw new Error('PROVIDER_SPACING_UNSAFE');
 
-const [corpusText, corpusChecksumText, manifestText, manifestChecksumText, judgmentText, judgmentChecksumText] = await Promise.all([
+const [
+  corpusText, corpusChecksumText, manifestText, manifestChecksumText, judgmentText, judgmentChecksumText,
+  recoveryInventoryText, recoveryInventoryFileChecksumText, baselineManifestText,
+] = await Promise.all([
   readFile(corpusUrl, 'utf8'),
   readFile(corpusChecksumUrl, 'utf8'),
   readFile(manifestPath, 'utf8'),
   readFile(manifestChecksumPath, 'utf8'),
   readFile(judgmentPath, 'utf8'),
   readFile(judgmentChecksumPath, 'utf8'),
+  recoveryInventoryPath ? readFile(resolve(recoveryInventoryPath), 'utf8') : Promise.resolve(null),
+  recoveryInventoryChecksumPath ? readFile(resolve(recoveryInventoryChecksumPath), 'utf8') : Promise.resolve(null),
+  readFile(new URL('evaluation/manifests/dataset-manifest.day4-postcoverage.v2.json', root), 'utf8'),
 ]);
-verifyChecksum(corpusText, corpusChecksumText, 'CORPUS');
-verifyChecksum(manifestText, manifestChecksumText, 'DATASET_MANIFEST');
-verifyChecksum(judgmentText, judgmentChecksumText, 'JUDGMENT');
-const manifest = JSON.parse(manifestText) as Day3Manifest;
+verifyChecksum(corpusText, checksumToken(corpusChecksumText), 'CORPUS');
+verifyChecksum(manifestText, checksumToken(manifestChecksumText), 'DATASET_MANIFEST');
+verifyChecksum(judgmentText, checksumToken(judgmentChecksumText), 'JUDGMENT');
 const judgments = JSON.parse(judgmentText) as EvalJudgmentSetV1;
 const corpus = corpusText.split(/\r?\n/)
   .filter((line) => line.includes('"split":"DEV"'))
   .map((line) => JSON.parse(line) as EvalCorpusRecordV1)
   .sort((left, right) => left.query_id.localeCompare(right.query_id));
+const manifest = normalizeManifest(
+  JSON.parse(manifestText) as Day3Manifest | RecoveryManifest,
+  recoveryInventoryText,
+  recoveryInventoryFileChecksumText,
+  JSON.parse(baselineManifestText) as Day3Manifest,
+  corpus,
+  judgments,
+);
 validateFrozenInputs(corpus, judgments, manifest, {
-  corpusChecksum: corpusChecksumText.trim(),
-  manifestChecksum: manifestChecksumText.trim(),
-  judgmentChecksum: judgmentChecksumText.trim(),
+  corpusChecksum: checksumToken(corpusChecksumText),
+  manifestChecksum: checksumToken(manifestChecksumText),
+  judgmentChecksum: checksumToken(judgmentChecksumText),
 });
 
 const journal = mode === 'HYBRID'
@@ -211,13 +228,16 @@ try {
     if (!response.ok || !body.results) throw new Error(`SEARCH_EXECUTION_FAILED:${record.query_id}:${body.error?.code ?? response.status}`);
     const judgment = judgmentByQuery.get(record.query_id)!;
     const topResultIds = body.results.map(({ canonicalId }) => canonicalId).slice(0, 20);
-    const metrics = metricsFor(topResultIds, judgment);
+    const baseMetrics = metricsFor(topResultIds, judgment);
+    const metrics: QueryMetric = { ...baseMetrics, recallAt50: baseMetrics.recallAt20 };
     const relevantEntityRanks = judgment.relevant.filter(({ grade }) => grade > 0).map(({ entity_id: entityId, grade }) => ({
       entityId,
       grade,
       rank: rankOf(topResultIds, entityId),
     }));
     const unavailable = judgment.known_item_inventory_status === 'TARGET_NOT_IN_FROZEN_DATASET';
+    const hardEligibleIds = new Set(judgment.relevant.map(({ entity_id: entityId }) => entityId));
+    const hardConstraintViolationIds = topResultIds.filter((entityId) => !hardEligibleIds.has(entityId));
     const noEligible = judgment.expected_ineligible_behavior.includes('NO_HARD_ELIGIBLE_CANDIDATE');
     const relevantMiss = relevantEntityRanks.some(({ rank }) => rank === null || rank > 20);
     const event = telemetry.get(record.query_id);
@@ -244,6 +264,7 @@ try {
       searchRankingAssessment: unavailable ? 'NOT_EVALUATED' : 'EVALUATED',
       failureAttribution: unavailable ? 'INVENTORY' : noEligible ? 'ELIGIBILITY'
         : relevantMiss ? 'CANDIDATE_RETRIEVAL' : null,
+      hardConstraintViolationIds,
       semanticCandidateCount: event.semanticCandidateCount,
       semanticCandidates: (semanticRows.get(record.query_id) ?? []).map((row) => ({
         entityId: row.entity_id,
@@ -272,9 +293,9 @@ try {
     await journal?.markQueryCompleted(record.query_id);
   }
   const reportWithoutChecksum = buildReport(mode, corpus, judgments, manifest, {
-    corpusChecksum: corpusChecksumText.trim(),
-    manifestChecksum: manifestChecksumText.trim(),
-    judgmentChecksum: judgmentChecksumText.trim(),
+    corpusChecksum: checksumToken(corpusChecksumText),
+    manifestChecksum: checksumToken(manifestChecksumText),
+    judgmentChecksum: checksumToken(judgmentChecksumText),
   }, queries);
   const report = { ...reportWithoutChecksum, contentChecksum: sha256(stableJson(reportWithoutChecksum)) };
   const timings = [...operational.entries()].map(([queryId, value]) => ({ queryId, ...value }));
@@ -344,11 +365,151 @@ type Day3Manifest = {
   corpus: { version: 'corpus.v1'; checksum: string; dev_query_count: number };
   code_git_commit: string;
   dataset_inventory: { published_unmerged_entities: number; active_search_documents: number; checksum: string };
+  recoveryInventory?: { version: string; fileChecksum: string };
+  recoveryState?: {
+    publishedPlaces: number;
+    publishedEvents: number;
+    fixtureContamination: number;
+    documentInventoryChecksum: string;
+    embeddingIdentityChecksum: string;
+  };
   held_out_access: {
     parsed_splits: ['DEV']; sealed_queries_executed: 0; adversarial_queries_executed: 0;
     sealed_or_adversarial_judgments_loaded: false;
   };
 };
+
+type RecoveryManifest = {
+  manifest_version: 'dataset-manifest.final-eval-recovery.v1';
+  status: 'FROZEN_PRE_JUDGMENT';
+  canonical_dataset_version: string;
+  source_runs: Array<{ source_key: string; run_id: string }>;
+  boundary: { scope_id: string; boundary_version: string; boundary_checksum: string };
+  taxonomy: { version: string };
+  normalization_version: string;
+  search_documents: {
+    active_count: number;
+    inventory_checksum: string;
+    documents: Array<{ content_hash: string }>;
+  };
+  embedding: { provider: string; model: string; revision: string; dimension: number };
+  compatible_ready_embeddings: { compatible_ready_count: number; identity_checksum: string };
+  query_corpus: { checksum: string };
+  fixture_contamination: number;
+  accepted_implementation_commit: string;
+};
+
+type RecoveryInventory = {
+  inventory_version: 'dev-inventory.final-eval-recovery.v1';
+  status: 'FROZEN_FOR_HUMAN_REVIEW';
+  inventory_checksum: string;
+  entity_count: number;
+  active_search_document_count: number;
+  compatible_ready_embedding_count: number;
+  query_corpus: { checksum: string; dev_query_count: number; semantic_dev_query_count: number };
+  recovery_b_remote_verification: {
+    state: 'MATCHES_RECOVERY_B';
+    document_inventory_checksum: string;
+    embedding_identity_checksum: string;
+    fixture_contamination: number;
+    source_run_drift: boolean;
+  };
+  entities: Array<{ entityType: 'PLACE' | 'EVENT' }>;
+  held_out_guard: Day3Manifest['held_out_access'];
+};
+
+function normalizeManifest(
+  manifest: Day3Manifest | RecoveryManifest,
+  recoveryInventoryText: string | null,
+  recoveryInventoryFileChecksumText: string | null,
+  baseline: Day3Manifest,
+  corpus: EvalCorpusRecordV1[],
+  judgments: EvalJudgmentSetV1,
+): Day3Manifest {
+  if (manifest.manifest_version !== 'dataset-manifest.final-eval-recovery.v1') return manifest as Day3Manifest;
+  if (!recoveryInventoryText || !recoveryInventoryFileChecksumText) {
+    throw new Error('RECOVERY_INVENTORY_REQUIRED');
+  }
+  verifyChecksum(recoveryInventoryText, checksumToken(recoveryInventoryFileChecksumText), 'RECOVERY_INVENTORY_FILE');
+  const inventory = JSON.parse(recoveryInventoryText) as RecoveryInventory;
+  const clocks = new Set(corpus.map(({ evaluation_clock_utc: clock }) => clock));
+  if (manifest.status !== 'FROZEN_PRE_JUDGMENT'
+    || inventory.inventory_version !== 'dev-inventory.final-eval-recovery.v1'
+    || inventory.status !== 'FROZEN_FOR_HUMAN_REVIEW'
+    || inventory.inventory_checksum !== judgments.dataset_inventory_checksum
+    || inventory.query_corpus.checksum !== manifest.query_corpus.checksum
+    || inventory.query_corpus.dev_query_count !== 60
+    || inventory.query_corpus.semantic_dev_query_count !== 16
+    || inventory.entity_count !== 395
+    || inventory.active_search_document_count !== 395
+    || inventory.compatible_ready_embedding_count !== 395
+    || inventory.recovery_b_remote_verification.state !== 'MATCHES_RECOVERY_B'
+    || inventory.recovery_b_remote_verification.source_run_drift
+    || clocks.size !== 1
+    || !clocks.has('2026-10-15T12:00:00Z')) {
+    throw new Error('RECOVERY_INPUT_IDENTITY_MISMATCH');
+  }
+  const publishedPlaces = inventory.entities.filter(({ entityType }) => entityType === 'PLACE').length;
+  const publishedEvents = inventory.entities.filter(({ entityType }) => entityType === 'EVENT').length;
+  return {
+    manifest_version: manifest.manifest_version,
+    status: 'FROZEN_FOR_HUMAN_REVIEW',
+    canonical_dataset_version: manifest.canonical_dataset_version,
+    source_record_ingestion_runs: manifest.source_runs.map(({ source_key: sourceKey, run_id: captureRunId }) => ({
+      sourceKey,
+      captureRunId,
+    })),
+    boundary: {
+      id: baseline.boundary.id,
+      version: manifest.boundary.boundary_version,
+      checksum: manifest.boundary.boundary_checksum,
+    },
+    taxonomy: {
+      version: manifest.taxonomy.version,
+      checksum: baseline.taxonomy.checksum,
+      nodeCount: baseline.taxonomy.nodeCount,
+    },
+    normalization_version: manifest.normalization_version,
+    search_documents: {
+      template_version: baseline.search_documents.template_version,
+      document_version: baseline.search_documents.document_version,
+      hashes: manifest.search_documents.documents.map(({ content_hash: contentHash }) => contentHash),
+    },
+    embedding: {
+      provider: manifest.embedding.provider,
+      model: manifest.embedding.model,
+      revision: manifest.embedding.revision,
+      dimension: manifest.embedding.dimension,
+      query_template_version: baseline.embedding.query_template_version,
+      compatible_ready_count: manifest.compatible_ready_embeddings.compatible_ready_count,
+    },
+    search_config: baseline.search_config,
+    evaluation_clock_utc: '2026-10-15T12:00:00Z',
+    corpus: {
+      version: 'corpus.v1',
+      checksum: manifest.query_corpus.checksum,
+      dev_query_count: inventory.query_corpus.dev_query_count,
+    },
+    code_git_commit: manifest.accepted_implementation_commit,
+    dataset_inventory: {
+      published_unmerged_entities: inventory.entity_count,
+      active_search_documents: inventory.active_search_document_count,
+      checksum: inventory.inventory_checksum,
+    },
+    recoveryInventory: {
+      version: inventory.inventory_version,
+      fileChecksum: checksumToken(recoveryInventoryFileChecksumText),
+    },
+    recoveryState: {
+      publishedPlaces,
+      publishedEvents,
+      fixtureContamination: inventory.recovery_b_remote_verification.fixture_contamination,
+      documentInventoryChecksum: inventory.recovery_b_remote_verification.document_inventory_checksum,
+      embeddingIdentityChecksum: inventory.recovery_b_remote_verification.embedding_identity_checksum,
+    },
+    held_out_access: inventory.held_out_guard,
+  };
+}
 
 type RankedRow = SearchRpcRow & {
   stage_ranks: Record<string, number>;
@@ -516,6 +677,7 @@ function buildReport(
         inventoryChecksum: manifest.dataset_inventory.checksum,
         manifestCodeCommit: manifest.code_git_commit,
       },
+      recoveryInventory: manifest.recoveryInventory ?? null,
       config: {
         candidate: manifest.search_config.baseline_candidate_version,
         activeVersion: manifest.search_config.active_database_version,
@@ -538,6 +700,10 @@ function buildReport(
       : manifest.embedding.compatible_ready_count === 0
         ? 'NO_COMPATIBLE_READY_DOCUMENT_EMBEDDINGS'
         : 'ENABLED',
+    resultDepth: {
+      publicContractMaximum: 20,
+      recallAt50Interpretation: 'EQUALS_RECALL_AT_20_BECAUSE_SEARCH_V1_RETURNS_AT_MOST_20_RESULTS',
+    },
     overall: aggregate(queries),
     byFamily: Object.fromEntries(families.map((family) => [family, aggregate(queries.filter((query) => query.family === family))])),
     byLanguage: Object.fromEntries(languages.map((language) => [language, aggregate(queries.filter((query) => query.language === language))])),
@@ -567,6 +733,11 @@ function buildReport(
     },
     pairComparison: pairComparison(queries),
     semanticCandidateCount: queries.reduce((sum, query) => sum + query.semanticCandidateCount, 0),
+    hardConstraintViolations: {
+      count: queries.reduce((sum, query) => sum + query.hardConstraintViolationIds.length, 0),
+      queries: queries.filter(({ hardConstraintViolationIds }) => hardConstraintViolationIds.length > 0)
+        .map(({ queryId, hardConstraintViolationIds }) => ({ queryId, entityIds: hardConstraintViolationIds })),
+    },
     failureAttribution: Object.fromEntries(failureCategories.map((category) => [
       category, queries.filter(({ failureAttribution }) => failureAttribution === category).length,
     ])),
@@ -580,7 +751,7 @@ function aggregate(queries: QueryResult[]) {
     zeroResultCount: queries.filter(({ topResultIds }) => topResultIds.length === 0).length,
     zeroResultRate: queries.length === 0 ? null : queries.filter(({ topResultIds }) => topResultIds.length === 0).length / queries.length,
     inventoryUnavailableQueryCount: queries.filter(({ inventoryUnavailable }) => inventoryUnavailable).length,
-    metrics: Object.fromEntries((['hitAt1', 'hitAt3', 'mrr', 'recallAt20', 'precisionAt5', 'ndcgAt5'] as MetricName[])
+    metrics: Object.fromEntries((['hitAt1', 'hitAt3', 'mrr', 'recallAt20', 'recallAt50', 'precisionAt5', 'ndcgAt5'] as MetricName[])
       .map((name) => [name, metricSummary(queries, name)])),
   };
 }
@@ -618,7 +789,7 @@ function renderResultMarkdown(report: ReturnType<typeof buildReport> & { content
     + `- Clock: ${report.pins.evaluationClockUtc}\n`
     + `- Queries: ${report.overall.queryCount}\n`
     + `- Hit@1 / Hit@3 / MRR: ${metric('hitAt1')} / ${metric('hitAt3')} / ${metric('mrr')}\n`
-    + `- Recall@20: ${metric('recallAt20')}\n`
+    + `- Recall@20 / Recall@50: ${metric('recallAt20')} / ${metric('recallAt50')}\n`
     + `- Precision@5 / NDCG@5: ${metric('precisionAt5')} / ${metric('ndcgAt5')}\n`
     + `- Zero results: ${report.overall.zeroResultCount} / ${report.overall.queryCount}\n`
     + `- Semantic participation: ${report.semanticParticipation}\n`
@@ -630,12 +801,16 @@ function renderResultMarkdown(report: ReturnType<typeof buildReport> & { content
 async function verifyCurrentDatabase(database: PgClient, manifest: Day3Manifest): Promise<void> {
   const state = await database.query<{
     published_count: number; document_count: number; ready_count: number;
+    published_places: number; published_events: number; fixture_contamination: number;
     document_hashes: string[]; config_version: string; config_checksum: string;
   }>(`
     select
       (select count(*)::integer from app.canonical_entities where publication_status = 'PUBLISHED' and merged_into_id is null) published_count,
+      (select count(*)::integer from app.canonical_entities where publication_status = 'PUBLISHED' and entity_type = 'PLACE' and merged_into_id is null) published_places,
+      (select count(*)::integer from app.canonical_entities where publication_status = 'PUBLISHED' and entity_type = 'EVENT' and merged_into_id is null) published_events,
       (select count(*)::integer from app.search_documents where is_active) document_count,
       (select count(*)::integer from app.compatible_ready_embeddings_v) ready_count,
+      (select count(*)::integer from app.sources where licence ilike '%TEST%' or attribution ilike '%fixture%') fixture_contamination,
       (select array_agg(content_hash order by content_hash) from app.search_documents where is_active) document_hashes,
       (select version from app.search_configs where is_active) config_version,
       (select config_checksum from app.search_configs where is_active) config_checksum
@@ -648,6 +823,38 @@ async function verifyCurrentDatabase(database: PgClient, manifest: Day3Manifest)
     || row.config_checksum !== manifest.search_config.config_checksum
     || row.document_hashes.join(',') !== [...manifest.search_documents.hashes].sort().join(',')) {
     throw new Error('CURRENT_DATABASE_DOES_NOT_MATCH_FROZEN_MANIFEST');
+  }
+  if (manifest.recoveryState) {
+    const [documents, embeddings] = await Promise.all([
+      database.query<{ id: string; entity_id: string; entity_type: string; content_hash: string }>(`
+        select document.id::text, document.entity_id::text, entity.entity_type::text, document.content_hash
+        from app.search_documents document
+        join app.canonical_entities entity on entity.id = document.entity_id
+        where document.is_active
+        order by document.id
+      `),
+      database.query<{
+        id: string; search_document_id: string; entity_id: string; document_hash: string; vector_hash: string;
+      }>(`
+        select embedding.id::text, embedding.search_document_id::text, embedding.entity_id::text,
+               embedding.document_hash, md5(embedding.embedding::text) vector_hash
+        from app.compatible_ready_embeddings_v embedding
+        order by embedding.id
+      `),
+    ]);
+    const documentInventoryChecksum = sha256Lines(documents.rows.map((document) => (
+      `${document.id}|${document.entity_id}|${document.entity_type}|${document.content_hash}`
+    )));
+    const embeddingIdentityChecksum = sha256Lines(embeddings.rows.map((embedding) => (
+      `${embedding.id}|${embedding.search_document_id}|${embedding.entity_id}|${embedding.document_hash}|${embedding.vector_hash}`
+    )));
+    if (row.published_places !== manifest.recoveryState.publishedPlaces
+      || row.published_events !== manifest.recoveryState.publishedEvents
+      || row.fixture_contamination !== manifest.recoveryState.fixtureContamination
+      || documentInventoryChecksum !== manifest.recoveryState.documentInventoryChecksum
+      || embeddingIdentityChecksum !== manifest.recoveryState.embeddingIdentityChecksum) {
+      throw new Error('RECOVERY_CORPUS_STATE_DRIFT');
+    }
   }
 }
 
@@ -662,6 +869,7 @@ function validateFrozenInputs(
   const acceptedPins = new Map([
     ['dataset-manifest.day3-current.v2', 'judgments.day3.v1'],
     ['dataset-manifest.day4-postcoverage.v2', 'judgments.day4-postcoverage.v1'],
+    ['dataset-manifest.final-eval-recovery.v1', 'judgments.final-eval-recovery.v1'],
   ]);
   if (!acceptedPins.has(manifest.manifest_version)
     || manifest.status !== 'FROZEN_FOR_HUMAN_REVIEW'
@@ -672,7 +880,9 @@ function validateFrozenInputs(
     || judgments.dataset_manifest_checksum !== checksums.manifestChecksum
     || judgments.dataset_inventory_checksum !== manifest.dataset_inventory.checksum
     || judgments.dataset_version !== manifest.canonical_dataset_version
-    || judgments.taxonomy_checksum !== manifest.taxonomy.checksum
+    || (manifest.manifest_version === 'dataset-manifest.final-eval-recovery.v1'
+      ? judgments.taxonomy_checksum != null
+      : judgments.taxonomy_checksum !== manifest.taxonomy.checksum)
     || judgments.boundary_version !== manifest.boundary.version) throw new Error('FROZEN_INPUT_PIN_MISMATCH');
   if (judgments.judgment_version !== acceptedPins.get(manifest.manifest_version)
     || !checksums.judgmentChecksum) throw new Error('FROZEN_JUDGMENT_VERSION_REQUIRED');
@@ -750,4 +960,12 @@ async function writeNew(path: string, value: string): Promise<void> {
 
 function sha256(value: string): string {
   return createHash('sha256').update(value).digest('hex');
+}
+
+function sha256Lines(lines: string[]): string {
+  return sha256(lines.join('\n'));
+}
+
+function checksumToken(value: string): string {
+  return value.trim().split(/\s+/, 1)[0] ?? '';
 }
