@@ -1,0 +1,30 @@
+{
+  "schema_version": "final-eval-checkpoint.v1",
+  "checkpoint_name": "post-recovery-b",
+  "dump_file": "20260816T100654Z.post-recovery-b.dump",
+  "created_at": "2026-08-16T10:10:15.834Z",
+  "sha256": "cb1f82e99c832d496641b881003cea0cf270a9e549de411645f024af75782a5f",
+  "remote_project": "zrxdjorrwcunprbykdtg",
+  "migration_identity": {
+    "count": 21,
+    "latest": "20260815160000"
+  },
+  "manifest_identity": {
+    "path": "evaluation/manifests/dataset-manifest.final-eval-recovery.v1.json",
+    "sha256": "f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82"
+  },
+  "row_counts": {
+    "referenceSources": 4,
+    "sourceRecords": 410,
+    "sourceRecordVersions": 410,
+    "parseAttempts": 410,
+    "canonicalEntities": 410,
+    "places": 407,
+    "events": 3,
+    "publishedPlaces": 392,
+    "publishedEvents": 3,
+    "activeSearchDocuments": 395,
+    "compatibleReadyEmbeddings": 395,
+    "fixtureContamination": 0
+  }
+}

@@ -1,0 +1,10 @@
+# FINAL-EVAL Recovery-B corpus evidence
+
+- `NEW_RECOVERY_CORPUS_LINEAGE = TRUE`
+- `HISTORICAL_V2_RESTORED = FALSE`
+- SEALED accessed: **NO**
+- Adversarial accessed: **NO**
+- Active SearchDocuments: 395; compatible READY embeddings: 395; coverage: 100%
+- Coverage finalization: NEEDS_VALIDATION_ALLOWED_UNRESOLVED; COMPLETE 7, SUPPLY_CONSTRAINED 38, NEEDS_VALIDATION 1.
+- Manifest: `dataset-manifest.final-eval-recovery.v1` / `f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82`
+- Backfill used the accepted Voyage batch lifecycle and conservative 31-second provider spacing.

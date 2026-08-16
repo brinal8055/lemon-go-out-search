@@ -80,6 +80,7 @@
     "final-eval:reference:deploy": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-reference-deploy.mjs",
     "final-eval:edge:deploy": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-edge-deploy.mjs",
     "final-eval:recovery-a": "node --env-file-if-exists=.env.final-eval --experimental-strip-types packages/source-adapters/src/final-eval-recovery-a-cli.ts",
+    "final-eval:recovery-b": "node --env-file-if-exists=.env --env-file-if-exists=.env.final-eval --experimental-strip-types packages/embedding/src/final-eval-recovery-b-cli.ts",
     "final-eval:checkpoint": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-checkpoint.mjs",
     "edge:serve": "supabase functions serve --no-verify-jwt"
   },
