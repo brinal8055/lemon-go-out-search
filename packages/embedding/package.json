@@ -8,6 +8,7 @@
   },
   "types": "./src/index.ts",
   "dependencies": {
+    "@lemon/contracts": "workspace:*",
     "pg": "^8.23.0"
   },
   "devDependencies": {

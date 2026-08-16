@@ -1,4 +1,5 @@
 import pg from 'pg';
+import { assertDestructiveDatabaseOperation } from '@lemon/contracts';
 import type { QueryResultRow } from 'pg';
 
 const { Client } = pg;
@@ -66,10 +67,7 @@ async function complianceQuery<T extends QueryResultRow>(
 }
 
 export async function prepareLocalComplianceRuntime(connectionString: string): Promise<void> {
-  const url = new URL(connectionString);
-  if (!['127.0.0.1', 'localhost', '::1'].includes(url.hostname)) {
-    throw new Error('compliance role preparation is restricted to a local database');
-  }
+  assertDestructiveDatabaseOperation(connectionString, process.env);
   const client = new Client({ connectionString });
   await client.connect();
   try {

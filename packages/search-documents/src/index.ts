@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { NORMALIZATION_VERSION, normalizePreserving } from '@lemon/normalization';
 import pg from 'pg';
+import { assertDestructiveDatabaseOperation } from '@lemon/contracts';
 
 const { Client } = pg;
 
@@ -190,10 +191,7 @@ export function buildSearchDocument(truth: SearchDocumentTruth): BuiltSearchDocu
 }
 
 export async function prepareLocalSearchDocumentRuntime(connectionString: string): Promise<void> {
-  const url = new URL(connectionString);
-  if (!['127.0.0.1', 'localhost', '::1'].includes(url.hostname)) {
-    throw new Error('search document role preparation is restricted to a local database');
-  }
+  assertDestructiveDatabaseOperation(connectionString, process.env);
   const client = new Client({ connectionString });
   await client.connect();
   try {

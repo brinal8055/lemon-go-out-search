@@ -47,6 +47,6 @@ describe('restricted search diagnostic CLI', () => {
 
   it('will not prepare a diagnostic role against a non-local database', async () => {
     await expect(prepareLocalDiagnosticRuntime('postgresql://example.com/postgres'))
-      .rejects.toThrow('restricted to a local database');
+      .rejects.toThrow('REFUSING_DESTRUCTIVE_DATABASE_OPERATION');
   });
 });

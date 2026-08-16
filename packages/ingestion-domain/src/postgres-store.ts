@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import pg from 'pg';
+import { assertDestructiveDatabaseOperation } from '@lemon/contracts';
 import { normalizeForSearch } from '@lemon/normalization';
 import type { PoolClient, QueryResultRow } from 'pg';
 import type {
@@ -839,7 +840,7 @@ export async function ensureFixtureSource(
 }
 
 export async function prepareLocalIngestionRuntime(connectionString: string): Promise<void> {
-  assertLocalDatabase(connectionString);
+  assertDestructiveDatabaseOperation(connectionString, process.env);
   const client = new Client({ connectionString });
   await client.connect();
   try {
@@ -851,15 +852,8 @@ export async function prepareLocalIngestionRuntime(connectionString: string): Pr
 
 export function fixtureDatabaseUrl(): string {
   const connectionString = process.env.LEMON_LOCAL_DATABASE_URL ?? LOCAL_DATABASE_URL;
-  assertLocalDatabase(connectionString);
+  assertDestructiveDatabaseOperation(connectionString, process.env);
   return connectionString;
-}
-
-function assertLocalDatabase(connectionString: string): void {
-  const url = new URL(connectionString);
-  if (!['127.0.0.1', 'localhost', '::1'].includes(url.hostname)) {
-    throw new Error('fixture ingestion is restricted to a local database');
-  }
 }
 
 export function canonicalJson(value: unknown): string {

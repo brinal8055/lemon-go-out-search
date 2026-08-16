@@ -16,6 +16,6 @@ describe('PROV-01 revocation controls', () => {
   it('never prepares the compliance role against a remote database', async () => {
     await expect(prepareLocalComplianceRuntime(
       'postgresql://postgres:postgres@example.com:5432/postgres',
-    )).rejects.toThrow('restricted to a local database');
+    )).rejects.toThrow('REFUSING_DESTRUCTIVE_DATABASE_OPERATION');
   });
 });

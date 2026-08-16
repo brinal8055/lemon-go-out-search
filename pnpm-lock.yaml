@@ -62,6 +62,9 @@ importers:
 
   packages/embedding:
     dependencies:
+      '@lemon/contracts':
+        specifier: workspace:*
+        version: link:../contracts
       pg:
         specifier: ^8.23.0
         version: 8.23.0
@@ -85,6 +88,9 @@ importers:
 
   packages/ingestion-domain:
     dependencies:
+      '@lemon/contracts':
+        specifier: workspace:*
+        version: link:../contracts
       '@lemon/normalization':
         specifier: workspace:*
         version: link:../normalization
@@ -100,6 +106,9 @@ importers:
 
   packages/search-documents:
     dependencies:
+      '@lemon/contracts':
+        specifier: workspace:*
+        version: link:../contracts
       '@lemon/normalization':
         specifier: workspace:*
         version: link:../normalization

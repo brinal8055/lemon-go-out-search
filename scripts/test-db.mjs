@@ -1,4 +1,9 @@
 import { spawnSync } from 'node:child_process';
+import { assertDestructiveDatabaseOperation } from '../packages/contracts/src/database-target.ts';
+
+const connectionString = process.env.LEMON_LOCAL_DATABASE_URL
+  ?? 'postgresql://postgres:postgres@127.0.0.1:54322/postgres';
+assertDestructiveDatabaseOperation(connectionString, process.env);
 
 const suite = process.argv.slice(2).find((argument) => argument !== '--');
 const supportedSuites = new Map([

@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import pg from 'pg';
+import { assertDestructiveDatabaseOperation } from '@lemon/contracts';
 import {
   EMBEDDING_DIMENSION,
   EMBEDDING_DOCUMENT_INPUT_TYPE,
@@ -204,10 +205,7 @@ export function createAttemptKey(target: EmbeddingTarget, attemptId: string): st
 }
 
 export async function prepareLocalEmbeddingRuntime(connectionString: string): Promise<void> {
-  const url = new URL(connectionString);
-  if (!['127.0.0.1', 'localhost'].includes(url.hostname)) {
-    throw new Error('embedding role preparation is restricted to a local database');
-  }
+  assertDestructiveDatabaseOperation(connectionString, process.env);
   const client = new Client({ connectionString });
   await client.connect();
   try {

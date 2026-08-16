@@ -64,3 +64,12 @@ export type SearchErrorResponseV1 = {
   };
 };
 
+export {
+  assertDestructiveDatabaseOperation,
+  assertFinalEvalTarget,
+  assertFinalEvalWriteOperation,
+  DESTRUCTIVE_DATABASE_REFUSAL,
+  FINAL_EVAL_WRITE_REFUSAL,
+  type DatabaseEnvironment,
+  type FinalEvalWriteOperation,
+} from './database-target.ts';

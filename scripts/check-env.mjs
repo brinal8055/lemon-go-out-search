@@ -25,6 +25,18 @@ export function validateEnvironment(target, environment) {
     };
   }
 
+  const forbiddenPublicVariables = Object.entries(environment)
+    .filter(([name, value]) => name.startsWith('EXPO_PUBLIC_')
+      && value?.trim()
+      && /(?:ADMIN|SECRET|SERVICE_ROLE|VOYAGE|DATABASE|DB_PASSWORD|ACCESS_TOKEN)/.test(name))
+    .map(([name]) => name);
+  if (forbiddenPublicVariables.length > 0) {
+    return {
+      ok: false,
+      message: `Forbidden mobile secret variables: ${forbiddenPublicVariables.join(', ')}`,
+    };
+  }
+
   const missing = required.filter((name) => !environment[name]?.trim());
 
   if (missing.length > 0) {
