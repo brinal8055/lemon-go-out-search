@@ -36,7 +36,7 @@ FINAL_EVAL_WRITE_OPERATION=migration-deploy
 
 The remote-write guard additionally verifies that the database hostname or
 pooler username identifies `SUPABASE_PROJECT_ID`. Supported named write
-acknowledgements are `migration-deploy`, `corpus-recovery-a`,
+acknowledgements are `migration-deploy`, `reference-deploy`, `corpus-recovery-a`,
 `corpus-recovery-b`, and `edge-deploy`. Set exactly one only for its explicit
 workflow. It cannot enable destructive tests, resets, or fixtures.
 
@@ -45,10 +45,15 @@ Before any hosted write, link the CLI deliberately with `pnpm exec supabase link
 project. Set `FINAL_EVAL_WRITE_OPERATION=migration-deploy`, inspect and dry-run
 with `pnpm final-eval:migrations:dry-run`, then apply only accepted migrations
 with `pnpm final-eval:migrations:deploy`; neither wrapper runs `supabase/seed.sql`.
+For a fresh project only, set `FINAL_EVAL_WRITE_OPERATION=reference-deploy` and
+run `pnpm final-eval:reference:deploy`. This guarded command permits only the
+checked-in scope/boundary, source-registry, taxonomy, and search-configuration
+targets in `supabase/seed.sql`; it rejects corpus or fixture table writes.
 Set `FINAL_EVAL_WRITE_OPERATION=edge-deploy` and deploy the accepted function
-with `pnpm final-eval:edge:deploy`. The wrapper configures `SUPABASE_URL`,
-`LEMON_SUPABASE_SECRET_KEY`, and an optional `VOYAGE_API_KEY` from
-`supabase/functions/.env.local` through the Supabase secret store before deploy.
+with `pnpm final-eval:edge:deploy`. Supabase provides `SUPABASE_URL` to the Edge
+runtime. The wrapper configures `LEMON_SUPABASE_SECRET_KEY` and an optional
+`VOYAGE_API_KEY` from `supabase/functions/.env.local` through the Supabase secret
+store before deploy; do not duplicate the platform-provided value in that file.
 Run only connectivity, migration/extension, authorization,
 RPC, Edge health, and empty/small-result canaries remotely—never normal tests.
 

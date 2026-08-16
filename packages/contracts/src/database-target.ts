@@ -13,6 +13,7 @@ export type DatabaseEnvironment = Record<string, string | undefined>;
 
 export type FinalEvalWriteOperation =
   | 'migration-deploy'
+  | 'reference-deploy'
   | 'corpus-recovery-a'
   | 'corpus-recovery-b'
   | 'edge-deploy';

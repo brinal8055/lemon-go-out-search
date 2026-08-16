@@ -18,8 +18,11 @@ const secretNames = new Map(
     .filter(Boolean)
     .map((match) => [match[1], match[2].trim()]),
 );
-for (const name of ['SUPABASE_URL', 'LEMON_SUPABASE_SECRET_KEY']) {
+for (const name of ['LEMON_SUPABASE_SECRET_KEY']) {
   if (!secretNames.get(name)) throw new Error(`missing Edge secret: ${name}`);
+}
+if (secretNames.has('SUPABASE_URL')) {
+  throw new Error('SUPABASE_URL is platform-provided and must not be uploaded as a custom secret');
 }
 if ([...secretNames.keys()].some((name) => name.startsWith('EXPO_PUBLIC_'))) {
   throw new Error('Edge secret file contains a mobile-public variable');

@@ -77,6 +77,7 @@
     "db:reset": "node --env-file-if-exists=.env.test --experimental-strip-types scripts/reset-local-db.mjs",
     "final-eval:migrations:dry-run": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-migrations.mjs --dry-run",
     "final-eval:migrations:deploy": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-migrations.mjs --apply",
+    "final-eval:reference:deploy": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-reference-deploy.mjs",
     "final-eval:edge:deploy": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-edge-deploy.mjs",
     "final-eval:checkpoint": "node --env-file-if-exists=.env.final-eval --experimental-strip-types scripts/final-eval-checkpoint.mjs",
     "edge:serve": "supabase functions serve --no-verify-jwt"
