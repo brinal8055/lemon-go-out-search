@@ -114,11 +114,11 @@ describe('MOB-02 bilingual discovery', () => {
   it('provides the required English and Swedish presentation strings', () => {
     expect(localizedText('en')).toMatchObject({
       searchPlaceholder: 'Search places and events', search: 'Search', loading: 'Searching',
-      noResults: 'No results found.', retry: 'Retry', browse: 'Browse categories',
+      noResults: 'No results found.', retry: 'Retry', browse: 'Browse categories', results: 'Results',
     });
     expect(localizedText('sv')).toMatchObject({
       searchPlaceholder: 'Sök platser och evenemang', search: 'Sök', loading: 'Söker',
-      noResults: 'Inga resultat hittades.', retry: 'Försök igen', browse: 'Bläddra bland kategorier',
+      noResults: 'Inga resultat hittades.', retry: 'Försök igen', browse: 'Bläddra bland kategorier', results: 'Resultat',
     });
   });
 
@@ -139,6 +139,9 @@ describe('MOB-02 bilingual discovery', () => {
     expect(taxonomyLabel(dining!, 'sv')).toBe('Restauranger');
     expect(nodes).toHaveLength(52);
     expect(nodes.indexOf(dining!)).toBeGreaterThan(nodes.findIndex((node) => node.slug === 'food-and-dining'));
+    expect(nodes.filter((node) => node.parentId === null).map((node) => node.slug)).toEqual([
+      'food-and-dining', 'drinks-and-nightlife', 'activities-and-experiences',
+    ]);
   });
 
   it('uses the existing empty-query taxonomy browse request without a fake label query', () => {
