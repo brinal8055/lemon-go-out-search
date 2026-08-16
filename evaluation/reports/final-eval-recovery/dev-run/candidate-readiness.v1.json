@@ -1,0 +1,207 @@
+{
+  "reportVersion": "final-eval-dev-candidate-readiness.v1",
+  "task": "FINAL-EVAL-DEV-RUN",
+  "createdAt": "2026-08-16T11:37:10Z",
+  "decision": "BLOCKED",
+  "decisionReason": "No evaluator-valid complete hybrid DEV run was produced. The initial run and the accepted fresh rerun both terminated on Voyage timeouts under the unchanged 700 ms production timeout.",
+  "pins": {
+    "manifest": {
+      "version": "dataset-manifest.final-eval-recovery.v1",
+      "checksum": "f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82"
+    },
+    "inventory": {
+      "version": "dev-inventory.final-eval-recovery.v1",
+      "checksum": "2b2246064bcdf1b76f77312c7f6bda573c9f724ee4d291704451c52f9ea76f37",
+      "fileChecksum": "de774184f5af261bf94dc6621d14112ba27f6eb30fb952eaa3a743070576b3af"
+    },
+    "judgments": {
+      "version": "judgments.final-eval-recovery.v1",
+      "checksum": "e604ba9bf0f04b500a37f2feb5cdc1a49d7b7031ef6055b917815ff60f5e0f70"
+    },
+    "queryCorpusChecksum": "bc2da4670e68532fe9b66c700157c3647c3a73181d460f21b4e443980d23242c",
+    "searchConfig": {
+      "candidate": "eval-03-baseline.v1",
+      "activeVersion": "noncollapse-v1",
+      "checksum": "cf017f94090c80c905be8868dd0239740726f0a9b2df929ef010b04a8675a624",
+      "rrf": "RRF_V1",
+      "rrfK": 60,
+      "nonCollapse": "NONCOLLAPSE_V1",
+      "semanticTimeoutMs": 700
+    },
+    "searchImplementationCommit": "f9eb2876964ce29943207a6b94fad75f3ba57aa9",
+    "evaluationBaseCommit": "7b03b3fadedd321c5dd66639853803a2873a8935",
+    "evaluationClockUtc": "2026-10-15T12:00:00Z",
+    "provider": {
+      "name": "Voyage",
+      "model": "voyage-4",
+      "revision": "voyage-4-preflight-v1",
+      "dimension": 1024,
+      "queryInputType": "query",
+      "concurrency": 1,
+      "spacingMs": 31000
+    }
+  },
+  "inputVerification": {
+    "devQueries": 60,
+    "semanticDevQueries": 16,
+    "candidateEntityPairs": 15735,
+    "missingJudgments": 0,
+    "publishedPlaces": 392,
+    "publishedEvents": 3,
+    "activeSearchDocuments": 395,
+    "compatibleReadyEmbeddings": 395,
+    "fixtureContamination": 0,
+    "documentInventoryIdentity": "MATCH",
+    "embeddingIdentity": "MATCH"
+  },
+  "lexical": {
+    "status": "VALID_COMPLETE",
+    "queries": 60,
+    "metrics": {
+      "hitAt1": 0.5714285714285714,
+      "hitAt3": 1,
+      "mrr": 0.7142857142857143,
+      "recallAt20": 0.37228810283789726,
+      "recallAt50": 0.37228810283789726,
+      "precisionAt5": 0.27499999999999997,
+      "ndcgAt5": 0.4563935380182446
+    },
+    "recallAt50Interpretation": "Equals Recall@20 because the frozen public search contract returns at most 20 results.",
+    "zeroResults": 34,
+    "languages": {
+      "en": {
+        "queries": 23,
+        "recallAt20": 0.2316592177411505,
+        "precisionAt5": 0.2625,
+        "ndcgAt5": 0.3597338450456116,
+        "zeroResults": 17
+      },
+      "sv": {
+        "queries": 31,
+        "recallAt20": 0.2973135164624526,
+        "precisionAt5": 0.2222222222222222,
+        "ndcgAt5": 0.4444444444444444,
+        "zeroResults": 17
+      }
+    },
+    "semanticFamily": {
+      "queries": 16,
+      "recallAt20": 0,
+      "precisionAt5": 0,
+      "ndcgAt5": 0,
+      "zeroResults": 16
+    },
+    "broadDiscovery": {
+      "queries": 4,
+      "recallAt20": 0.002551020408163265,
+      "precisionAt5": 0.2,
+      "ndcgAt5": 0.18893538018244652,
+      "zeroResults": 3
+    },
+    "broadConcentration": {
+      "queries": 4,
+      "recallAt20": 0.3333333333333333,
+      "precisionAt5": 0.19999999999999998,
+      "ndcgAt5": 0.3333333333333333,
+      "zeroResults": 3
+    },
+    "nonCollapseMoves": 0,
+    "nonCollapsePromotions": 0,
+    "hardConstraintViolations": 0,
+    "familyAndQueryDetailsArtifact": "lexical/dev-result.v1.json"
+  },
+  "hybrid": {
+    "status": "NO_VALID_COMPLETE_RUN",
+    "metrics": null,
+    "deltaFromLexical": null,
+    "attempts": [
+      {
+        "artifactDirectory": "hybrid",
+        "intendedProviderRequests": 26,
+        "actualProviderRequests": 16,
+        "successfulProviderRequests": 15,
+        "semanticDegraded": 1,
+        "timeouts": 1,
+        "providerErrors": 0,
+        "http429": 0,
+        "failure": "PROVIDER_TIMEOUT_DURING_RESPONSE_BODY",
+        "failedQueryId": "eval-v1-dev-semantic-occasion-language-10",
+        "httpStatus": 200,
+        "elapsedMs": 704.1565420000115
+      },
+      {
+        "artifactDirectory": "hybrid-rerun-1",
+        "intendedProviderRequests": 26,
+        "actualProviderRequests": 1,
+        "successfulProviderRequests": 0,
+        "semanticDegraded": 1,
+        "timeouts": 1,
+        "providerErrors": 0,
+        "http429": 0,
+        "failure": "PROVIDER_TIMEOUT",
+        "failedQueryId": "eval-v1-dev-broad-concentration-02",
+        "httpStatus": null,
+        "elapsedMs": 704.5949169999999
+      }
+    ],
+    "combinedProviderTelemetry": {
+      "actualRequests": 17,
+      "successfulRequests": 15,
+      "semanticDegraded": 2,
+      "timeouts": 2,
+      "providerErrors": 0,
+      "http429": 0,
+      "latencyMsAllAttempts": {
+        "p50": 405.5219999999972,
+        "p95": 704.5949169999999,
+        "max": 704.5949169999999
+      },
+      "latencyMsSuccessfulAttempts": {
+        "p50": 398.7619169999962,
+        "p95": 566.601250000007,
+        "max": 566.601250000007
+      },
+      "queryVectorFingerprintsRecorded": 15,
+      "rawQueryVectorsPersisted": false,
+      "databaseSemanticLatency": "UNAVAILABLE_BECAUSE_NEITHER_RUN_REACHED_FINAL_OPERATIONAL_REPORT"
+    }
+  },
+  "failureAttribution": {
+    "lexicalMaterialFailures": {
+      "INVENTORY": 9,
+      "EVENT_CLOCK_INVENTORY": 6,
+      "ELIGIBILITY": 5,
+      "RETRIEVAL": 13,
+      "SEMANTIC_RETRIEVAL_EXPECTED_LEXICAL_ONLY": 14
+    },
+    "hybridRunEndingFailures": {
+      "PROVIDER_DEGRADATION": 2
+    },
+    "rankingFusionAssessment": "NOT_VALID_WITHOUT_COMPLETE_HYBRID_RUN",
+    "nonCollapseAssessment": "LEXICAL_ZERO_MOVES_OR_PROMOTIONS; HYBRID_NOT_VALID"
+  },
+  "eventTimeLimitation": "The three real Events were acquired in August 2026 and none is eligible at the frozen 2026-10-15T12:00:00Z clock. The clock was not moved and no Events were fabricated.",
+  "historicalContext": {
+    "sameLineageRequired": false,
+    "lexical": {
+      "hitAt1": "0.571429 -> 0.571429",
+      "hitAt3": "1.000000 -> 1.000000",
+      "mrr": "0.785714 -> 0.714286",
+      "recallAt20": "0.372288 -> 0.372288",
+      "precisionAt5": "0.275000 -> 0.275000",
+      "ndcgAt5": "0.466213 -> 0.456394"
+    },
+    "hybrid": "NOT_COMPARABLE_WITHOUT_A_VALID_RECOVERY HYBRID RUN"
+  },
+  "guards": {
+    "judgmentsMutated": false,
+    "corpusMutated": false,
+    "searchConfigMutated": false,
+    "providerOrModelChanged": false,
+    "timeoutChanged": false,
+    "tuningImplemented": false,
+    "sealedAccessed": false,
+    "adversarialAccessed": false,
+    "specChangeRequired": "NONE"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "reportVersion": "postcov-hybrid-run-status.v1",
+  "runId": "69ae4506-a6d4-41db-8ca8-a4755062aeb6",
+  "mode": "HYBRID",
+  "status": "FAILED",
+  "validForQualityMetrics": false,
+  "lastCompletedQueryId": "eval-v1-dev-broad-concentration-01",
+  "nextQueryId": "eval-v1-dev-broad-concentration-02",
+  "counts": {
+    "providerSuccessCount": 0,
+    "providerFailureCount": 1,
+    "timeoutCount": 1,
+    "providerErrorCount": 0,
+    "http429Count": 0
+  },
+  "failureCategory": "SEMANTIC_DEGRADED",
+  "finalArtifacts": []
+}
