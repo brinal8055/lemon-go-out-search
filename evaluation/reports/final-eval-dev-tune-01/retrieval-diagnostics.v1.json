@@ -1,0 +1,226 @@
+{
+  "reportVersion": "final-eval-dev-tune-01-retrieval-diagnostics.v1",
+  "task": "FINAL-EVAL-DEV-TUNE-01",
+  "prerequisiteCommit": "113c6dec57337e8263b7a60d9a8e99cf340d70b7",
+  "decision": "TUNING_REJECTED",
+  "selectedConfig": "eval-03-baseline.v1",
+  "pins": {
+    "manifestChecksum": "f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82",
+    "inventoryChecksum": "2b2246064bcdf1b76f77312c7f6bda573c9f724ee4d291704451c52f9ea76f37",
+    "judgmentChecksum": "e604ba9bf0f04b500a37f2feb5cdc1a49d7b7031ef6055b917815ff60f5e0f70",
+    "corpus": "60 DEV / corpus.v1",
+    "baselineCandidate": "eval-03-baseline.v1",
+    "activeSearchConfig": "noncollapse-v1",
+    "rrfVersion": "RRF_V1",
+    "rrfK": 60,
+    "nonCollapseVersion": "NONCOLLAPSE_V1",
+    "provider": "Voyage",
+    "model": "voyage-4",
+    "dimension": 1024,
+    "timeoutMs": 700
+  },
+  "diagnosticMethod": {
+    "scope": "one highest-grade missing relevant entity for each of all 27 Hybrid CANDIDATE_RETRIEVAL queries",
+    "stages": [
+      "canonical exact",
+      "verified alias exact",
+      "accentless exact",
+      "prefix",
+      "trigram",
+      "FTS",
+      "taxonomy",
+      "Event",
+      "semantic",
+      "candidate union"
+    ],
+    "restrictedWrapper": "UNAVAILABLE_ON_HOSTED_TARGET_TO_CALLING_SESSION",
+    "restrictedWrapperEvidence": "The hosted role could neither SET ROLE lemon_evaluation nor execute diagnostic.explain_search_v1. No role or grant mutation was attempted.",
+    "fallback": "Read-only calls to the existing exact stage functions plus frozen Hybrid semantic/shouldEmbed telemetry",
+    "writes": "NONE"
+  },
+  "rootCauseCounts": {
+    "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP": 16,
+    "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED": 5,
+    "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30": 6,
+    "EXACT_OR_ALIAS_ABSENCE": 0,
+    "ACCENTLESS_ABSENCE": 0,
+    "PREFIX_BOUND_OR_THRESHOLD": 0,
+    "TRIGRAM_BOUND_OR_THRESHOLD": 0,
+    "FTS_NO_MATCH_OR_BOUND": 0,
+    "TAXONOMY_CANDIDATE_ABSENCE": 0,
+    "EVENT_CANDIDATE_ABSENCE": 0,
+    "CANDIDATE_UNION_BEHAVIOR": 0
+  },
+  "breakdown": {
+    "byLanguage": {
+      "en": {
+        "total": 13,
+        "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP": 8,
+        "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED": 2,
+        "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30": 3
+      },
+      "sv": {
+        "total": 13,
+        "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP": 7,
+        "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED": 3,
+        "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30": 3
+      },
+      "mixed": {
+        "total": 1,
+        "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP": 1,
+        "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED": 0,
+        "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30": 0
+      }
+    },
+    "byFamily": {
+      "broad_concentration": [0, 2, 0],
+      "broad_discovery": [3, 1, 0],
+      "geo_scope_radius": [3, 0, 0],
+      "semantic_occasion_language": [6, 2, 6],
+      "taxonomy_parent_leaf": [4, 0, 0]
+    },
+    "familyTupleOrder": [
+      "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP",
+      "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED",
+      "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30"
+    ],
+    "segments": {
+      "semanticFamily": 14,
+      "broadDiscovery": 4,
+      "knownItem": 0,
+      "taxonomyOrCategory": 4,
+      "knownItemNote": "Five discovery/semantic queries were labeled CONSERVATIVE_KNOWN_ITEM by shouldEmbed, but none belongs to a known-item evaluation family."
+    }
+  },
+  "queries": [
+    ["eval-v1-dev-broad-concentration-01", "en", "broad_concentration", "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED", 0, 0, 197],
+    ["eval-v1-dev-broad-concentration-04", "sv", "broad_concentration", "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED", 0, 0, 392],
+    ["eval-v1-dev-broad-discovery-01", "en", "broad_discovery", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 392],
+    ["eval-v1-dev-broad-discovery-02", "sv", "broad_discovery", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 392],
+    ["eval-v1-dev-broad-discovery-03", "en", "broad_discovery", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 184],
+    ["eval-v1-dev-broad-discovery-04", "sv", "broad_discovery", "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED", 0, 0, 392],
+    ["eval-v1-dev-geo-scope-radius-01", "en", "geo_scope_radius", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 34],
+    ["eval-v1-dev-geo-scope-radius-02", "en", "geo_scope_radius", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 125],
+    ["eval-v1-dev-geo-scope-radius-03", "sv", "geo_scope_radius", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 195],
+    ["eval-v1-dev-semantic-occasion-language-01", "en", "semantic_occasion_language", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 282],
+    ["eval-v1-dev-semantic-occasion-language-02", "sv", "semantic_occasion_language", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 282],
+    ["eval-v1-dev-semantic-occasion-language-03", "en", "semantic_occasion_language", "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30", 20, 5, 133],
+    ["eval-v1-dev-semantic-occasion-language-04", "sv", "semantic_occasion_language", "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30", 20, 9, 133],
+    ["eval-v1-dev-semantic-occasion-language-05", "en", "semantic_occasion_language", "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30", 20, 19, 188],
+    ["eval-v1-dev-semantic-occasion-language-06", "sv", "semantic_occasion_language", "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30", 20, 2, 188],
+    ["eval-v1-dev-semantic-occasion-language-07", "en", "semantic_occasion_language", "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED", 0, 0, 324],
+    ["eval-v1-dev-semantic-occasion-language-08", "sv", "semantic_occasion_language", "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED", 0, 0, 324],
+    ["eval-v1-dev-semantic-occasion-language-09", "en", "semantic_occasion_language", "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30", 20, 8, 52],
+    ["eval-v1-dev-semantic-occasion-language-10", "sv", "semantic_occasion_language", "SEMANTIC_CANDIDATE_ABSENCE_AT_CAP_30", 20, 6, 52],
+    ["eval-v1-dev-semantic-occasion-language-11", "en", "semantic_occasion_language", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 94],
+    ["eval-v1-dev-semantic-occasion-language-12", "sv", "semantic_occasion_language", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 94],
+    ["eval-v1-dev-semantic-occasion-language-15", "en", "semantic_occasion_language", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 190],
+    ["eval-v1-dev-semantic-occasion-language-16", "sv", "semantic_occasion_language", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 190],
+    ["eval-v1-dev-taxonomy-parent-leaf-03", "en", "taxonomy_parent_leaf", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 185],
+    ["eval-v1-dev-taxonomy-parent-leaf-04", "sv", "taxonomy_parent_leaf", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 185],
+    ["eval-v1-dev-taxonomy-parent-leaf-06", "sv", "taxonomy_parent_leaf", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 94],
+    ["eval-v1-dev-taxonomy-parent-leaf-07", "mixed", "taxonomy_parent_leaf", "CANDIDATE_DEPTH_TRUNCATION_PUBLIC_RESULT_CAP", 20, 20, 24]
+  ],
+  "queryTupleOrder": [
+    "queryId",
+    "language",
+    "family",
+    "rootCause",
+    "resultCount",
+    "judgedRelevantReturnedCount",
+    "judgedRelevantCount"
+  ],
+  "tuningCandidate": {
+    "dominantTunableCause": "EXISTING_RETRIEVER_CONDITION_CONSERVATIVE_SHOULD_EMBED",
+    "parameter": "shouldEmbed broad invocation vocabulary",
+    "frozenContractEligibility": "PERMITTED: Final Technical Specification section 'Implementation-Owned Tunables' and paragraph 930; no protected-status lookup or DB preflight required",
+    "oldValue": [
+      "things to do",
+      "what to do",
+      "something to do",
+      "places to go",
+      "saker att göra",
+      "vad kan man göra",
+      "något att göra",
+      "ställen att gå"
+    ],
+    "candidateAdditions": [
+      "places to eat",
+      "något roligt",
+      "något kul"
+    ],
+    "expectedAffectedQueries": [
+      "eval-v1-dev-broad-concentration-01",
+      "eval-v1-dev-broad-concentration-04",
+      "eval-v1-dev-broad-discovery-04"
+    ],
+    "expectedRisk": "Three additional provider invocations; semantic remains additive beneath eligibility and protected exact.",
+    "newConfig": null
+  },
+  "targetedPrecheck": {
+    "policyUnitCheck": "PASS: all 35 semantic-query tests passed and all three target phrases changed from CONSERVATIVE_KNOWN_ITEM to BROAD_DISCOVERY",
+    "liveQuery": "places to eat",
+    "liveDecision": "BROAD_DISCOVERY / shouldEmbed=true",
+    "liveProviderOutcome": "PROVIDER_TIMEOUT",
+    "liveProviderLatencyMs": 705,
+    "diagnosticCapProbe": "A separate cap-30-to-50 diagnostic attempt also timed out before returning candidates.",
+    "providerAttempts": 2,
+    "providerSuccesses": 0,
+    "providerTimeouts": 2,
+    "candidateCodeReverted": true,
+    "reason": "The unchanged 700 ms contract could not produce a valid live precheck, so no tuned configuration or full comparison was permitted."
+  },
+  "candidateDepthAssessment": {
+    "publicResultMaximum": 20,
+    "semanticCap": 30,
+    "semanticCap50Eligibility": "Candidate depth is tunable in the 20-50 range.",
+    "semanticCap50Decision": "NOT_SELECTED",
+    "reason": "For the six diagnosed semantic-only misses, ranks 31-50 cannot displace semantic ranks 1-20 under unchanged RRF and the frozen public result maximum. The 16 plurality failures are already saturated by 20 judged-relevant public results."
+  },
+  "baseline": {
+    "status": "VALID_COMPLETE_60_OF_60",
+    "hitAt1": 0.5714285714285714,
+    "hitAt3": 1,
+    "mrr": 0.7142857142857143,
+    "recallAt20": 0.41469874073194823,
+    "precisionAt5": 0.5999999999999999,
+    "ndcgAt5": 0.7506957028179352,
+    "zeroResults": 19,
+    "hardConstraintViolations": 0,
+    "nonCollapseMoves": 0,
+    "clearlyWeakerPromotions": 0,
+    "provider": "26/26 succeeded; 0 degraded; 0 timeout; 0 error; 0 429"
+  },
+  "tuned": {
+    "status": "NOT_RUN_NO_VALID_TARGETED_PRECHECK",
+    "metrics": null,
+    "familyLanguageDeltas": null,
+    "zeroResults": null,
+    "hardConstraintViolations": null,
+    "nonCollapse": null,
+    "provider": "NOT_VALID"
+  },
+  "acceptance": {
+    "reason": "No candidate may be accepted without a valid live targeted precheck and 60/60 valid baseline/tuned Hybrid comparison.",
+    "baselineRetained": true,
+    "candidateFrozen": false
+  },
+  "integrity": {
+    "manifestMutated": false,
+    "inventoryMutated": false,
+    "judgmentsMutated": false,
+    "corpusMutated": false,
+    "taxonomyMutated": false,
+    "eventsMutated": false,
+    "searchDocumentsRegenerated": false,
+    "documentEmbeddingsRegenerated": false,
+    "providerModelDimensionChanged": false,
+    "timeoutChanged": false,
+    "rrfChanged": false,
+    "eligibilityChanged": false,
+    "protectedExactChanged": false,
+    "sealedAccessed": false,
+    "adversarialAccessed": false,
+    "specChangeRequired": "NONE"
+  }
+}
