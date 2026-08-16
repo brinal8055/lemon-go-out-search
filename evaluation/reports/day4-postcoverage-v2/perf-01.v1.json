@@ -1,0 +1,296 @@
+{
+  "reportVersion": "perf-01.v1",
+  "task": "PERF-01",
+  "generatedAt": "2026-08-16",
+  "overallDecision": "PASS_WITH_OPERATIONAL_RISK",
+  "decisions": {
+    "directCategoryLatency": "PASS",
+    "semanticBackendLatency": "PASS",
+    "providerLatency": "RISK",
+    "providerRepeatability": "NOT_ESTABLISHED",
+    "failOpenPerformance": "PASS"
+  },
+  "frozenTargets": {
+    "directCategoryBackendMs": {
+      "p50Max": 100,
+      "p95Max": 300
+    },
+    "semanticBackendMs": {
+      "p50Max": 750,
+      "p95Max": 1500
+    },
+    "providerRequestTimeoutMs": 700,
+    "methodology": {
+      "requiredComponents": [
+        "edge_overhead_and_cold_start",
+        "embedding_provider",
+        "database",
+        "backend_total",
+        "client_perceived"
+      ],
+      "representativeMixPercent": {
+        "exact": 20,
+        "prefixOrTypo": 15,
+        "category": 20,
+        "broad": 10,
+        "semanticOccasion": 15,
+        "eventOrTime": 10,
+        "geo": 5,
+        "emptyStructuredBrowse": 5
+      },
+      "languages": ["EN", "SV"],
+      "thermalStates": ["WARM", "COLD"],
+      "trialScaleReference": "approximately 1000 entities plus bounded Events, documents, and vectors",
+      "numericMinimumSampleCount": null
+    }
+  },
+  "measurementSources": [
+    {
+      "path": "evaluation/manifests/dataset-manifest.day4-postcoverage.v2.json",
+      "purpose": "frozen corpus and configuration identity"
+    },
+    {
+      "path": "evaluation/reports/day4-postcoverage-v2/lexical-only/operational.v1.json",
+      "purpose": "direct/category handler-request and PostgreSQL timing"
+    },
+    {
+      "path": "evaluation/reports/day4-postcoverage-v2/hybrid/operational.v1.json",
+      "purpose": "first unpaced successful semantic backend request"
+    },
+    {
+      "path": "evaluation/reports/day4-postcoverage-v2/hybrid-rerun/operational.v1.json",
+      "purpose": "complete Hybrid provider run and first unpaced semantic request"
+    },
+    {
+      "path": "evaluation/reports/day4-postcoverage-v2/hybrid-fingerprinted-baseline-v2/operational.v1.json",
+      "purpose": "accepted Hybrid backend and DB timing"
+    },
+    {
+      "path": "evaluation/reports/day4-postcoverage-v2/hybrid-fingerprinted-baseline-v2/operational-journal.v1.jsonl",
+      "purpose": "accepted raw Voyage request outcomes and elapsed time"
+    },
+    {
+      "path": "evaluation/reports/day4-postcoverage-v2/hybrid-fingerprinted-rerun-v2/operational-journal.v1.jsonl",
+      "purpose": "incomplete rerun provider reliability evidence"
+    },
+    {
+      "path": "evaluation/reports/day4-postcoverage-v2/semantic-probe.v1.json",
+      "purpose": "controlled production-contract Voyage probe"
+    },
+    {
+      "path": "docs/trial-review/qa-01-evidence.md",
+      "purpose": "accepted QA fault-injection and final local hygiene evidence"
+    }
+  ],
+  "corpusEnvironment": {
+    "classification": "REAL_POSTCOVERAGE",
+    "manifestVersion": "dataset-manifest.day4-postcoverage.v2",
+    "manifestChecksum": "c0b025eec53f7f36ea1def046cef2b8873065491a0e63aca1091aa34028834d0",
+    "inventoryChecksum": "ed0e23189783959180c39ea73ff4d01cf344f6f8f08ddd079ffffa5e7a2f0209",
+    "publishedUnmergedEntities": 395,
+    "activeSearchDocuments": 395,
+    "compatibleReadyEmbeddings": 395,
+    "evaluationClockUtc": "2026-10-15T12:00:00Z",
+    "searchConfigVersion": "noncollapse-v1",
+    "searchBehaviorCandidate": "eval-03-baseline.v1",
+    "semanticContract": "Voyage / voyage-4 / voyage-4-preflight-v1 / 1024 / input_type=query / timeout=700ms",
+    "measurementRuntime": "local Node search handler with one logical api.search_v1 invocation and direct PostgreSQL evaluator client; remote Voyage for provider samples",
+    "currentInstrumentationRuntime": "Node v25.8.1 / Darwin 25.6.0 arm64",
+    "publicEdgeRuntimeIncluded": false,
+    "postgrestTransportIncluded": false,
+    "clientNetworkIncluded": false,
+    "annUsed": false,
+    "tuningPerformed": false,
+    "providerCallsMadeByPerf01": 0
+  },
+  "directCategory": {
+    "decision": "PASS",
+    "population": "lexical-only DEV families canonical_exact_same_name, verified_colliding_aliases, prefix, typo_transposition_accent_spacing, taxonomy_parent_leaf, broad_discovery, and broad_concentration",
+    "backendRequestLatencyMs": {
+      "count": 32,
+      "p50": 14.333833,
+      "p95": 37.327958,
+      "max": 164.893083,
+      "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "databaseLatencyMs": {
+      "count": 32,
+      "p50": 13.418333,
+      "p95": 37.062959,
+      "max": 131.862624,
+      "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "familyBreakdown": {
+      "canonicalExact": {"count": 5, "p50Ms": 14.333833, "p95Ms": 14.62175, "maxMs": 14.62175, "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]},
+      "verifiedAliasCollisionFamily": {"count": 3, "p50Ms": 13.482458, "p95Ms": 13.995875, "maxMs": 13.995875, "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]},
+      "prefix": {"count": 4, "p50Ms": 13.458583, "p95Ms": 14.29875, "maxMs": 14.29875, "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]},
+      "typoOrFuzzy": {"count": 5, "p50Ms": 13.794541, "p95Ms": 14.715834, "maxMs": 14.715834, "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]},
+      "taxonomyOrCategory": {"count": 7, "p50Ms": 15.570584, "p95Ms": 21.618375, "maxMs": 21.618375, "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]},
+      "broadDiscovery": {"count": 4, "p50Ms": 17.702042, "p95Ms": 37.327958, "maxMs": 37.327958, "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]},
+      "broadConcentration": {"count": 4, "p50Ms": 31.323584, "p95Ms": 164.893083, "maxMs": 164.893083, "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]}
+    }
+  },
+  "semantic": {
+    "decision": "PASS",
+    "backendRequestLatencyMs": {
+      "count": 3,
+      "p50": 472.115417,
+      "p95": 514.223125,
+      "max": 514.223125,
+      "samples": [444.22775, 514.223125, 472.115417],
+      "sampleRule": "first successful semantic request from each complete 26/26 zero-degradation Hybrid run; these requests have no evaluator pacing wait",
+      "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "acceptedBaselineDatabaseLatencyMs": {
+      "count": 26,
+      "p50": 73.8655,
+      "p95": 99.026542,
+      "max": 100.5395,
+      "boundary": "two evaluator PostgreSQL statements inside one logical RPC client call: ranked search plus semantic-candidate diagnostics",
+      "evidenceCategories": ["REAL_POSTCOVERAGE", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "externalVoyageLatency": {
+      "allDirectlyTimedSuccessfulSamplesMs": {
+        "count": 38,
+        "p50": 392.838125,
+        "p95": 553.205416,
+        "max": 689.371208,
+        "evidenceCategories": ["REAL_PROVIDER", "HISTORICAL_ACCEPTED_EVAL"]
+      },
+      "acceptedBaselineRawInvocationMs": {
+        "count": 26,
+        "p50": 391.06925,
+        "p95": 412.67125,
+        "max": 524.06675,
+        "evidenceCategories": ["REAL_PROVIDER", "HISTORICAL_ACCEPTED_EVAL"]
+      },
+      "acceptedBaselineOperationalWrapperMs": {
+        "count": 26,
+        "p50": 400,
+        "p95": 460,
+        "max": 536,
+        "boundary": "provider request wrapper including operational journal completion",
+        "evidenceCategories": ["REAL_PROVIDER", "HISTORICAL_ACCEPTED_EVAL"]
+      }
+    },
+    "edgeOverheadMs": {
+      "count": 0,
+      "p50": null,
+      "p95": null,
+      "max": null,
+      "reason": "not directly recorded; no subtraction-derived metric was created",
+      "evidenceCategories": []
+    },
+    "clientPerceivedLatencyMs": {
+      "count": 0,
+      "p50": null,
+      "p95": null,
+      "max": null,
+      "reason": "not recorded in accepted representative artifacts",
+      "evidenceCategories": []
+    }
+  },
+  "providerReliability": {
+    "finding": "VOYAGE_REQUEST_TIME_RELIABILITY_RISK",
+    "severity": "P3",
+    "providerLatencyDecision": "RISK",
+    "repeatabilityDecision": "NOT_ESTABLISHED",
+    "reconstructibleAttempts": {
+      "count": 91,
+      "successCount": 90,
+      "successRate": 0.989010989,
+      "deadlineOrTimeoutCount": 1,
+      "providerOrHttpErrorCountExclusiveOfDeadline": 0,
+      "http429Count": 0,
+      "evidenceCategories": ["REAL_PROVIDER", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "runBreakdown": [
+      {"run": "hybrid", "attempts": 26, "successes": 26, "failures": 0, "directRawLatencySamples": 0},
+      {"run": "hybrid-rerun", "attempts": 26, "successes": 26, "failures": 0, "directRawLatencySamples": 0, "summaryLatencyMs": {"p50": 410, "p95": 446, "max": 475}},
+      {"run": "hybrid-fingerprinted-baseline-v2", "attempts": 26, "successes": 26, "failures": 0, "directRawLatencySamples": 26},
+      {"run": "hybrid-fingerprinted-rerun-v2", "attempts": 10, "successes": 9, "failures": 1, "directRawLatencySamples": 10},
+      {"run": "semantic-probe.v1", "attempts": 3, "successes": 3, "failures": 0, "directRawLatencySamples": 3}
+    ],
+    "successfulDirectLatencyMs": {
+      "count": 38,
+      "p50": 392.838125,
+      "p95": 553.205416,
+      "max": 689.371208,
+      "evidenceCategories": ["REAL_PROVIDER", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "failureLatencyMs": {
+      "count": 1,
+      "p50": 708.946708,
+      "p95": 708.946708,
+      "max": 708.946708,
+      "classification": "PROVIDER_DEADLINE_DURING_RESPONSE_BODY_CONSUMPTION",
+      "rawOutcome": "HTTP_ERROR with HTTP 200 and UNEXPECTED_PROVIDER_EXCEPTION",
+      "attributionConfidence": "CODE_PATH_AND_TIMING_SUPPORTED_NOT_RAW_ERROR_PROOF",
+      "evidenceCategories": ["REAL_PROVIDER", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "controlledProbeMs": {
+      "count": 3,
+      "p50": 417.343958,
+      "p95": 442.291791,
+      "max": 442.291791,
+      "samples": [442.291791, 417.343958, 398.721],
+      "evidenceCategories": ["REAL_PROVIDER", "HISTORICAL_ACCEPTED_EVAL"]
+    },
+    "interpretation": "Successful zero-degradation full runs and sub-700ms provider distributions establish viable request latency, but the preserved deadline crossing prevents a repeatability PASS. Controlled pacing eliminated observed 429s."
+  },
+  "failOpenPerformance": {
+    "decision": "PASS",
+    "classification": "FAULT_INJECTION / NON_PRODUCTION_PROVIDER",
+    "method": "one cold sample plus five warm samples per path through the real search handler, immediate mock RPC, no network, one RPC assertion, deterministic result assertion",
+    "timeoutPathMs": {"cold": 740.437375, "warmCount": 5, "warmP50": 702.523375, "warmP95": 718.973083, "warmMax": 718.973083, "evidenceCategories": ["FAULT_INJECTION"]},
+    "providerErrorPathMs": {"cold": 0.546625, "warmCount": 5, "warmP50": 0.236125, "warmP95": 0.285, "warmMax": 0.285, "evidenceCategories": ["FAULT_INJECTION"]},
+    "openCircuitPathMs": {"cold": 0.162375, "warmCount": 5, "warmP50": 0.108, "warmP95": 0.11875, "warmMax": 0.11875, "evidenceCategories": ["FAULT_INJECTION"]},
+    "deterministicFallbackPathMs": {"cold": 0.101208, "warmCount": 5, "warmP50": 0.095375, "warmP95": 0.109584, "warmMax": 0.109584, "evidenceCategories": ["FAULT_INJECTION"]},
+    "interpretation": "The injected 700ms timeout completes deterministic fallback within 719ms warm p95 and 741ms cold; immediate provider-error and open-circuit paths add sub-millisecond handler overhead with the immediate mock RPC."
+  },
+  "smallLocalSmoke": {
+    "canonicalEntities": 7,
+    "activeSearchDocuments": 1,
+    "fixtureContamination": 0,
+    "usedForLatencyCertification": false,
+    "evidenceCategories": ["SMALL_LOCAL_SMOKE"]
+  },
+  "measurementIntegrity": {
+    "evaluatorPacingExcludedFromRequestLatency": true,
+    "hybridAggregateRequestPercentilesRejected": true,
+    "reasonRejected": "31-second provider-spacing sleeps are inside the recorded handler request interval",
+    "derivedEdgeBySubtraction": false,
+    "debugInstrumentationChangedProductionPath": false,
+    "manifestOrJudgmentMutation": false,
+    "searchTuning": false,
+    "providerModelOrTimeoutChange": false,
+    "sourceAcquisition": false,
+    "embeddingGeneration": false,
+    "sealedAccess": false,
+    "adversarialAccess": false
+  },
+  "limitations": [
+    "The accepted post-Coverage corpus has 395 entities/documents, below the frozen methodology's approximate 1000-entity trial-scale reference.",
+    "The accepted DEV population does not exactly reproduce the frozen percentage mix and contains no empty structured browse family.",
+    "Only three directly recorded semantic backend totals are usable because all later semantic requests include evaluator pacing sleeps.",
+    "Warm/cold state was not explicitly tagged in accepted evaluation artifacts; first-run maxima and first semantic calls are retained rather than hidden.",
+    "The evaluator calls the search handler locally and bypasses deployed Edge runtime, PostgREST transport, and client network; Edge overhead, Edge cold start, and client-perceived latency are unavailable.",
+    "The evaluator DB interval contains ranked search plus a semantic-candidate diagnostic query inside one logical RPC wrapper, so it is not a pure deployed PostgREST RPC interval.",
+    "Only 38 of 90 successful provider attempts retain direct raw latency; older complete runs retain counts or percentile summaries only."
+  ],
+  "findings": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 0,
+    "p3": 2,
+    "items": [
+      {"id": "VOYAGE_REQUEST_TIME_RELIABILITY_RISK", "severity": "P3", "status": "OPEN"},
+      {"id": "DIAGNOSTIC_STABLE_VOLATILITY_LINT_WARNING", "severity": "P3", "status": "INHERITED_UNCHANGED_NON_PERF"}
+    ]
+  },
+  "guards": {
+    "sealedAccess": "NO_ACCESS",
+    "adversarialAccess": "NO_ACCESS",
+    "specChangeRequired": "NONE"
+  }
+}
