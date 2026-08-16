@@ -22,6 +22,7 @@
     "eval:review-full-dev": "node --experimental-strip-types packages/evaluation/src/eval03-review-cli.ts",
     "eval:review-postcoverage": "node --experimental-strip-types packages/evaluation/src/eval03-review-cli.ts --phase=day4-postcoverage --artifact-version=1",
     "eval:review-postcoverage-v2": "node --experimental-strip-types packages/evaluation/src/eval03-review-cli.ts --phase=day4-postcoverage --artifact-version=2",
+    "final-eval:review-recovery-dev": "node --env-file-if-exists=.env.final-eval --experimental-strip-types packages/evaluation/src/eval03-review-cli.ts --phase=final-eval-recovery --artifact-version=1",
     "eval:audit-dataset": "node --experimental-strip-types packages/evaluation/src/eval03-provenance-audit-cli.ts",
     "eval:reconstruct-dataset": "node --experimental-strip-types packages/source-adapters/src/eval03-reconstruct-cli.ts",
     "eval:freeze-day2-judgments": "node --experimental-strip-types packages/evaluation/src/freeze-day2-judgments.ts",

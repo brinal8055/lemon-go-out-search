@@ -256,6 +256,124 @@ describe('EVAL-01 corpus foundation', () => {
     });
   });
 
+  it('freezes the recovery DEV inventory delta and leaves all fresh judgments for human review', async () => {
+    const root = new URL('../../', import.meta.url);
+    const inventoryBase = 'evaluation/inventories/dev-inventory.final-eval-recovery.v1';
+    const deltaBase = 'evaluation/reports/final-eval-recovery/dev-inventory-delta.final-eval-recovery.v1';
+    const packetBase = 'evaluation/judgments/dev-review-packet.final-eval-recovery.v1';
+    const [manifestText, inventoryText, inventoryChecksum, deltaText, deltaChecksum, packetText, packetChecksum] = await Promise.all([
+      readFile(new URL('evaluation/manifests/dataset-manifest.final-eval-recovery.v1.json', root), 'utf8'),
+      readFile(new URL(`${inventoryBase}.json`, root), 'utf8'),
+      readFile(new URL(`${inventoryBase}.sha256`, root), 'utf8'),
+      readFile(new URL(`${deltaBase}.json`, root), 'utf8'),
+      readFile(new URL(`${deltaBase}.sha256`, root), 'utf8'),
+      readFile(new URL(`${packetBase}.json`, root), 'utf8'),
+      readFile(new URL(`${packetBase}.sha256`, root), 'utf8'),
+    ]);
+    expect(sha256(inventoryText)).toBe(inventoryChecksum.trim());
+    expect(sha256(deltaText)).toBe(deltaChecksum.trim());
+    expect(sha256(packetText)).toBe(packetChecksum.trim());
+
+    const inventory = JSON.parse(inventoryText);
+    const delta = JSON.parse(deltaText);
+    const packet = JSON.parse(packetText);
+    expect(inventory).toMatchObject({
+      inventory_version: 'dev-inventory.final-eval-recovery.v1',
+      status: 'FROZEN_FOR_HUMAN_REVIEW',
+      dataset_manifest: {
+        version: 'dataset-manifest.final-eval-recovery.v1',
+        checksum: sha256(manifestText),
+      },
+      inventory_checksum: '2b2246064bcdf1b76f77312c7f6bda573c9f724ee4d291704451c52f9ea76f37',
+      entity_count: 395,
+      active_search_document_count: 395,
+      compatible_ready_embedding_count: 395,
+      recovery_b_remote_verification: { state: 'MATCHES_RECOVERY_B', fixture_contamination: 0 },
+      held_out_guard: {
+        parsed_splits: ['DEV'],
+        sealed_queries_executed: 0,
+        adversarial_queries_executed: 0,
+        sealed_or_adversarial_judgments_loaded: false,
+      },
+    });
+    expect(inventory.query_corpus).toMatchObject({
+      dev_query_count: 60,
+      semantic_dev_query_count: 16,
+      semantic_pair_group_count: 8,
+      family_allocation: {
+        canonical_exact_same_name: 5,
+        verified_colliding_aliases: 3,
+        prefix: 4,
+        typo_transposition_accent_spacing: 5,
+        taxonomy_parent_leaf: 7,
+        broad_discovery: 4,
+        semantic_occasion_language: 16,
+        event_time: 6,
+        geo_scope_radius: 3,
+        scarcity_duplicate_state: 3,
+        broad_concentration: 4,
+      },
+    });
+    expect(inventory.entities.every((entity: {
+      searchDocument: unknown;
+      currentSourceEvidence: unknown[];
+    }) => entity.searchDocument !== null && entity.currentSourceEvidence.length > 0)).toBe(true);
+
+    expect(delta).toMatchObject({
+      delta_version: 'dev-inventory-delta.final-eval-recovery.v1',
+      carry_forward_contract: { permitted: false, evidence_identical_pair_count: 0, carried_pair_count: 0 },
+      counts: {
+        EXACT_EVIDENCE_IDENTICAL: 0,
+        CHANGED_EVIDENCE: 0,
+        NEW_ENTITY: 15735,
+        REMOVED_ENTITY: 15735,
+        ELIGIBILITY_CHANGED: 0,
+        OTHER_MATERIAL_CHANGE: 0,
+      },
+    });
+    const classifiedPairCount = delta.query_pair_classifications.reduce((total: number, query: {
+      classifications: Record<string, string[]>;
+    }) => total + Object.values(query.classifications).flat().length, 0);
+    expect(delta.query_pair_classifications).toHaveLength(60);
+    expect(classifiedPairCount).toBe(31470);
+
+    expect(packet).toMatchObject({
+      packet_version: 'dev-review-packet.final-eval-recovery.v1',
+      status: 'HUMAN_DEV_JUDGMENT_REQUIRED',
+      carry_forward_permitted: false,
+      carry_forward_pair_count: 0,
+      fresh_human_review_pair_count: 15735,
+      dev_queries_total: 60,
+      current_dataset_judgments_complete: 0,
+      current_dataset_judgments_missing: 60,
+      held_out_guard: inventory.held_out_guard,
+    });
+    expect(new Set(packet.queries.map(({ queryId }: { queryId: string }) => queryId)).size).toBe(60);
+    expect(packet.queries.flatMap((query: { candidatePool: Array<{ grade: unknown }> }) => query.candidatePool))
+      .toHaveLength(15735);
+    expect(packet.queries.flatMap((query: { candidatePool: Array<{ grade: unknown }> }) => query.candidatePool)
+      .every(({ grade }: { grade: unknown }) => grade === null)).toBe(true);
+    expect(packet.queries.flatMap((query: {
+      hardConstraintExcludedInventory: Array<{ gradeRuleAfterHumanConfirmation: string }>;
+    }) => query.hardConstraintExcludedInventory).every(({ gradeRuleAfterHumanConfirmation }: {
+      gradeRuleAfterHumanConfirmation: string;
+    }) => gradeRuleAfterHumanConfirmation === '0')).toBe(true);
+    const inventoryIds = new Set(inventory.entities.map(({ canonicalEntityId }: { canonicalEntityId: string }) => (
+      canonicalEntityId
+    )));
+    expect(packet.queries.flatMap((query: { candidatePool: Array<{ canonicalEntityId: string }> }) => (
+      query.candidatePool
+    )).every(({ canonicalEntityId }: { canonicalEntityId: string }) => inventoryIds.has(canonicalEntityId))).toBe(true);
+    const semantic = packet.queries.filter(({ family }: { family: string }) => family === 'semantic_occasion_language');
+    const pairGroups = new Map<string, string[]>();
+    for (const query of semantic as Array<{ pairGroupId: string; language: string }>) {
+      pairGroups.set(query.pairGroupId, [...(pairGroups.get(query.pairGroupId) ?? []), query.language]);
+    }
+    expect(semantic).toHaveLength(16);
+    expect([...pairGroups.values()].map((languages) => languages.sort()))
+      .toEqual(Array.from({ length: 8 }, () => ['en', 'sv']));
+  });
+
   it('rejects SEALED, ADVERSARIAL, and generic all tuning access', async () => {
     await expect(loadTuningJudgments('SEALED')).rejects.toThrow('access denied');
     await expect(loadTuningJudgments('ADVERSARIAL')).rejects.toThrow('access denied');
