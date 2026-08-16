@@ -13,12 +13,12 @@ export const CIRCUIT_FAILURE_THRESHOLD = 3;
 export const CIRCUIT_OPEN_MS = 30_000;
 
 const BROAD_TERMS = [
-  'things to do', 'what to do', 'something to do', 'places to go',
-  'saker att göra', 'vad kan man göra', 'något att göra', 'ställen att gå',
+  'things to do', 'what to do', 'something to do', 'places to go', 'something fun', 'fun things', 'fun stuff', 'fun activities', 'fun things to do', 'somewhere', 'fun',
+  'saker att göra', 'vad kan man göra', 'något att göra', 'ställen att gå', 'något roligt', 'roliga saker', 'roliga grejer', 'roliga aktiviteter', 'roliga saker att göra', 'någonstans', 'roligt'
 ];
 const OCCASION_TERMS = [
-  'date night', 'family outing', 'with friends', 'birthday', 'celebrate',
-  'dejt', 'familjeutflykt', 'med vänner', 'födelsedag', 'fira',
+  'date night', 'family outing', 'with friends', 'birthday', 'celebrate', 'casual', 'romantic', 'fun', 'adventure', 'relaxing', 'special occasion',
+  'dejt', 'familjeutflykt', 'med vänner', 'födelsedag', 'fira', 'avslappnad', 'romantisk', 'roligt', 'äventyr', 'avkopplande', 'särskilt tillfälle'
 ];
 const CONSTRAINT_TERMS = [
   'nearby', 'near me', 'within', 'outdoor', 'open now',
@@ -66,8 +66,12 @@ export function shouldEmbed(input: ShouldEmbedInput): { shouldEmbed: boolean; re
   if (containsConfiguredTerm(input.normalizedQuery, OCCASION_TERMS)) {
     return { shouldEmbed: true, reason: 'OCCASION_INTENT' };
   }
-  if (input.hasTaxonomyConstraint || input.hasLocationConstraint
-    || containsConfiguredTerm(input.normalizedQuery, CONSTRAINT_TERMS)) {
+  if (
+    input.hasTime ||
+    input.hasTaxonomyConstraint ||
+    input.hasLocationConstraint ||
+    containsConfiguredTerm(input.normalizedQuery, CONSTRAINT_TERMS)
+  ) {
     return { shouldEmbed: true, reason: 'MIXED_CONSTRAINTS' };
   }
   if (input.normalizedQuery.split(' ').length > 4) {
