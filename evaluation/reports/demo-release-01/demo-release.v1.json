@@ -1,0 +1,174 @@
+{
+  "report_version": "demo-release.v1",
+  "task": "DEMO-RELEASE-01",
+  "generated_at": "2026-08-16T14:30:39.164Z",
+  "repository": {
+    "demo_git_pin": "a9e922dcf7b1c092cc8076e776a5c2301ce62e1a",
+    "base_identity": "a9e922dcf7b1c092cc8076e776a5c2301ce62e1a",
+    "working_tree_clean_at_start": true,
+    "accepted_prerequisites_present": true,
+    "frozen_sources_unchanged": true,
+    "accepted_search_or_config_changes_after_dev_tuning": false,
+    "committed_secret_scan": "PASS"
+  },
+  "candidate": {
+    "candidate_version": "eval-03-baseline.v1",
+    "search_config": "noncollapse-v1",
+    "rrf": {
+      "version": "RRF_V1",
+      "k": 60
+    },
+    "noncollapse": {
+      "version": "NONCOLLAPSE_V1",
+      "enabled": true
+    },
+    "semantic": {
+      "provider": "voyage",
+      "model": "voyage-4",
+      "revision": "voyage-4-preflight-v1",
+      "dimension": 1024,
+      "query_input_type": "query",
+      "timeout_ms": 700,
+      "vector_retrieval": "EXACT_PGVECTOR",
+      "ann": false
+    }
+  },
+  "canonical_dataset_manifest": {
+    "version": "dataset-manifest.final-eval-recovery.v1",
+    "checksum": "f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82",
+    "canonical_identity_verified": true
+  },
+  "hosted_corpus": {
+    "project": "zrxdjorrwcunprbykdtg",
+    "counts": {
+      "publishedPlaces": 392,
+      "publishedEvents": 3,
+      "activeSearchDocuments": 395,
+      "compatibleReadyEmbeddings": 395,
+      "fixtureContamination": 0
+    },
+    "config": {
+      "version": "noncollapse-v1",
+      "rrfVersion": "RRF_V1",
+      "rrfK": 60,
+      "noncollapseVersion": "NONCOLLAPSE_V1",
+      "noncollapseEnabled": true,
+      "provider": "voyage",
+      "model": "voyage-4",
+      "revision": "voyage-4-preflight-v1",
+      "dimension": 1024,
+      "timeoutMs": 700
+    },
+    "search_document_logical_identity": "7e5d83ebeee39595944b9ef1bdb5cca8f72ff5aa6a2e2880471b6c4963981a51",
+    "embedding_fingerprint_identity": "6ad7ad8fb1d6902de8ee4dbbb66042050ed732789ed4ee7e8a0dbbd46f38f20b",
+    "representation_only_drift": "ACKNOWLEDGED",
+    "ann_indexes": []
+  },
+  "edge": {
+    "function": "search",
+    "status": "ACTIVE",
+    "management_identity": {
+      "version": null,
+      "updated_at": null
+    },
+    "endpoint_reachable": true,
+    "public_path": "Edge -> api.search_v1",
+    "redeployed": false
+  },
+  "mobile": {
+    "public_edge_url": "https://zrxdjorrwcunprbykdtg.supabase.co/functions/v1/search",
+    "package": "apps/mobile",
+    "runtime_path": "Expo mobile -> Supabase Edge search",
+    "public_config_only": true,
+    "backend_secrets_in_client_source_or_config": false
+  },
+  "deployed_demo_smoke": [
+    {
+      "key": "direct_canonical",
+      "query": "Strömsholmsskogen",
+      "http_status": 200,
+      "result_count": 1,
+      "representative_top_result": "Strömsholmsskogen",
+      "semantic_degraded": false,
+      "observed_latency_ms": 2019
+    },
+    {
+      "key": "category_discovery",
+      "query": "pizza",
+      "http_status": 200,
+      "result_count": 10,
+      "representative_top_result": "Pizza & Kolgrill",
+      "semantic_degraded": false,
+      "observed_latency_ms": 411
+    },
+    {
+      "key": "semantic_english",
+      "query": "date night",
+      "http_status": 200,
+      "result_count": 10,
+      "representative_top_result": "Karlssons salonger",
+      "semantic_degraded": false,
+      "observed_latency_ms": 1467
+    },
+    {
+      "key": "semantic_swedish",
+      "query": "dejt",
+      "http_status": 200,
+      "result_count": 10,
+      "representative_top_result": "Dumme mosse",
+      "semantic_degraded": false,
+      "observed_latency_ms": 1412
+    },
+    {
+      "key": "live_event",
+      "query": "this weekend",
+      "http_status": 200,
+      "result_count": 1,
+      "representative_top_result": "Dans, musik och aktiviteter för hela familjen",
+      "semantic_degraded": false,
+      "observed_latency_ms": 1217
+    }
+  ],
+  "semantic_fail_open": {
+    "accepted_evidence_commit": "289b7e0102f7098beb2249736cbc34dc7124fb13",
+    "provider_failure_behavior": "HTTP/search remains available with deterministic retrieval and semanticDegraded=true",
+    "verified_samples": 6,
+    "mechanism": "IN_PROCESS_PRODUCTION_HANDLER_INJECTED_700MS_TIMEOUT_WITH_HOSTED_READ_ONLY_RPC"
+  },
+  "accepted_evidence": {
+    "dev": "113c6dec57337e8263b7a60d9a8e99cf340d70b7",
+    "dev_tune": "40112336fe569f327b570fab11e2135105bc0741",
+    "qa": "eea65f4b55da8d3174c7339556ba362d358a87b7",
+    "live_event": "84e8bf62aedf1675b2e54dce49a45287f0dac2e9",
+    "corpus_drift_diagnosis": "a9e922dcf7b1c092cc8076e776a5c2301ce62e1a"
+  },
+  "known_limitations": [
+    "PERF revalidation is BLOCKED and deferred; latency targets are not claimed as passed.",
+    "Voyage retains an intermittent 700 ms deadline reliability risk.",
+    "Published Event inventory is small (3 Events at the pinned corpus state).",
+    "Literal today/idag is outside the frozen supported time-parser contract.",
+    "The frozen DEV clock is evaluation-only; product/demo uses current Europe/Stockholm time.",
+    "Representation-sensitive document/embedding checksums differ, while canonical logical content and vector fingerprints remain verified."
+  ],
+  "submission_docs_gaps": [
+    "SUBMISSION-DOCS-01: expand README from bootstrap wording to the implemented install, Expo, Edge, migration, search, EN/SV, Event, evaluation, and demo paths.",
+    "SUBMISSION-DOCS-01: add the required docs/trial-review sources, architecture/search overview, evaluation report, known issues/cuts, and submission checklist artifacts."
+  ],
+  "status": {
+    "DEMO_RELEASE_READY": true,
+    "DEMO_CORPUS_LOGICAL_IDENTITY": "VERIFIED",
+    "REPRESENTATION_ONLY_DRIFT": "ACKNOWLEDGED",
+    "FINAL_EVALUATION_CANDIDATE_FROZEN": false,
+    "PERF_REVALIDATION_STATUS": "BLOCKED_DEFERRED",
+    "SEALED_ACCESSED": false,
+    "ADVERSARIAL_ACCESSED": false
+  },
+  "guards": {
+    "read_only_remote_operations": true,
+    "corpus_mutated": false,
+    "search_document_rebuilt": false,
+    "embeddings_mutated": false,
+    "judgments_mutated": false,
+    "search_or_runtime_behavior_changed": false
+  }
+}
