@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 
 const tracked = spawnSync('git', ['ls-files', '-co', '--exclude-standard', '-z'], { encoding: 'utf8' });
@@ -10,6 +10,7 @@ const secretAssignment = /^(?:SUPABASE_ACCESS_TOKEN|SUPABASE_DB_PASSWORD|LEMON_S
 const publicSecretAssignment = /^EXPO_PUBLIC_[A-Z0-9_]*(?:ADMIN|SECRET|SERVICE_ROLE|VOYAGE|DATABASE|DB_PASSWORD|ACCESS_TOKEN)[A-Z0-9_]*=[ \t]*[^\s#]+/m;
 
 for (const file of tracked.stdout.split('\0').filter(Boolean)) {
+  if (!existsSync(file)) continue;
   if (forbiddenFiles.test(file)) throw new Error(`tracked private artifact: ${file}`);
   const content = readFileSync(file, 'utf8');
   if (secretAssignment.test(content) || publicSecretAssignment.test(content)) {
