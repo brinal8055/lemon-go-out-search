@@ -59,6 +59,7 @@ export function shouldEmbed(input: ShouldEmbedInput): { shouldEmbed: boolean; re
   if (!input.normalizedQuery) {
     return { shouldEmbed: false, reason: input.hasTime ? 'TIME_ONLY' : 'EMPTY_QUERY' };
   }
+  if (input.hasTime) return { shouldEmbed: true, reason: 'MIXED_CONSTRAINTS' };
   if (input.recognizedTaxonomyOnly) return { shouldEmbed: false, reason: 'TAXONOMY_ONLY' };
   if (containsConfiguredTerm(input.normalizedQuery, BROAD_TERMS)) {
     return { shouldEmbed: true, reason: 'BROAD_DISCOVERY' };
@@ -67,7 +68,6 @@ export function shouldEmbed(input: ShouldEmbedInput): { shouldEmbed: boolean; re
     return { shouldEmbed: true, reason: 'OCCASION_INTENT' };
   }
   if (
-    input.hasTime ||
     input.hasTaxonomyConstraint ||
     input.hasLocationConstraint ||
     containsConfiguredTerm(input.normalizedQuery, CONSTRAINT_TERMS)

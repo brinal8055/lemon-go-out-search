@@ -17,6 +17,7 @@ import {
   validateQueryVector,
 } from '../../supabase/functions/search/semantic.ts';
 import { recognizeTaxonomyQuery } from '../../supabase/functions/search/semantic-taxonomy.ts';
+import { parseTimeExpression, STOCKHOLM_TIME_ZONE } from '../../packages/time-parser/src/index.ts';
 
 const vector = (first = 1) => [first, ...Array.from({ length: EMBEDDING_DIMENSION - 1 }, () => 0)];
 
@@ -55,15 +56,50 @@ describe('SEM-01 deterministic query policy', () => {
     ['saker att göra i jönköping', {}, 'BROAD_DISCOVERY'],
     ['date night ideas', {}, 'OCCASION_INTENT'],
     ['något för en dejt', {}, 'OCCASION_INTENT'],
+    ['something casual', {}, 'OCCASION_INTENT'],
+    ['any fun activities', {}, 'BROAD_DISCOVERY'],
+    ['something fun', {}, 'BROAD_DISCOVERY'],
     ['dinner', { hasTaxonomyConstraint: true }, 'MIXED_CONSTRAINTS'],
-    ['somewhere pleasant', { hasLocationConstraint: true }, 'MIXED_CONSTRAINTS'],
-    ['things to do', { hasTime: true }, 'BROAD_DISCOVERY'],
+    ['somewhere pleasant', { hasLocationConstraint: true }, 'BROAD_DISCOVERY'],
+    ['things to do', { hasTime: true }, 'MIXED_CONSTRAINTS'],
     ['a quiet place suitable for conversation', {}, 'UNCERTAIN_MULTI_TOKEN'],
   ] as const)('embeds semantic intent: %s', (normalizedQuery, flags, reason) => {
     expect(shouldEmbed({ normalizedQuery, semanticEnabled: true, ...flags })).toEqual({
       shouldEmbed: true,
       reason,
     });
+  });
+
+  it('classifies a non-empty timed occasion query as mixed constraints', () => {
+    const parsed = parseTimeExpression('place for casual dinner tonight', {
+      now: new Date('2026-08-17T12:00:00.000Z'),
+      timeZone: STOCKHOLM_TIME_ZONE,
+    });
+    expect(parsed).toMatchObject({ status: 'PARSED', lexicalText: 'place for casual dinner' });
+    if (parsed?.status !== 'PARSED') throw new Error('TIME_PARSE_EXPECTED');
+
+    expect(shouldEmbed({
+      normalizedQuery: parsed.lexicalText,
+      semanticEnabled: true,
+      hasTime: true,
+    })).toEqual({ shouldEmbed: true, reason: 'MIXED_CONSTRAINTS' });
+  });
+
+  it('keeps a recognized taxonomy-only query deterministic', () => {
+    expect(shouldEmbed({
+      normalizedQuery: 'casual',
+      semanticEnabled: true,
+      recognizedTaxonomyOnly: true,
+    })).toEqual({ shouldEmbed: false, reason: 'TAXONOMY_ONLY' });
+  });
+
+  it('treats a taxonomy-recognized query with time as mixed constraints', () => {
+    expect(shouldEmbed({
+      normalizedQuery: 'casual',
+      semanticEnabled: true,
+      recognizedTaxonomyOnly: true,
+      hasTime: true,
+    })).toEqual({ shouldEmbed: true, reason: 'MIXED_CONSTRAINTS' });
   });
 
   it('recognizes accepted taxonomy labels plus one generic noun', () => {
