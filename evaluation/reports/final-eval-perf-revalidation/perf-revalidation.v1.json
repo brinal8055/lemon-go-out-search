@@ -1,0 +1,866 @@
+{
+  "reportVersion": "final-eval-perf-revalidation.v1",
+  "task": "FINAL-EVAL-PERF-REVALIDATION",
+  "generatedAt": "2026-08-16T13:35:12.349Z",
+  "candidate": {
+    "candidateVersion": "eval-03-baseline.v1",
+    "searchConfigVersion": "noncollapse-v1",
+    "rrfVersion": "RRF_V1",
+    "rrfK": 60,
+    "noncollapseVersion": "NONCOLLAPSE_V1",
+    "provider": "voyage",
+    "model": "voyage-4",
+    "revision": "voyage-4-preflight-v1",
+    "dimension": 1024,
+    "queryInputType": "query",
+    "timeoutMs": 700,
+    "vectorRetrieval": "EXACT_PGVECTOR",
+    "ann": false
+  },
+  "localIdentity": {
+    "manifestVersion": "dataset-manifest.final-eval-recovery.v1",
+    "checksums": {
+      "manifestFile": "f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82",
+      "inventoryFile": "de774184f5af261bf94dc6621d14112ba27f6eb30fb952eaa3a743070576b3af",
+      "judgmentsFile": "e604ba9bf0f04b500a37f2feb5cdc1a49d7b7031ef6055b917815ff60f5e0f70",
+      "inventoryLogical": "2b2246064bcdf1b76f77312c7f6bda573c9f724ee4d291704451c52f9ea76f37"
+    }
+  },
+  "remoteIdentity": {
+    "project": "zrxdjorrwcunprbykdtg",
+    "inventory": {
+      "publishedPlaces": 392,
+      "publishedEvents": 3,
+      "activeSearchDocuments": 395,
+      "compatibleReadyEmbeddings": 395,
+      "fixtureContamination": 0
+    },
+    "config": {
+      "version": "noncollapse-v1",
+      "rrfVersion": "RRF_V1",
+      "rrfK": 60,
+      "noncollapseVersion": "NONCOLLAPSE_V1",
+      "noncollapseEnabled": true,
+      "provider": "voyage",
+      "model": "voyage-4",
+      "revision": "voyage-4-preflight-v1",
+      "dimension": 1024,
+      "timeoutMs": 700,
+      "semanticCap": 30
+    },
+    "documentChecksum": "7e5d83ebeee39595944b9ef1bdb5cca8f72ff5aa6a2e2880471b6c4963981a51",
+    "embeddingChecksum": "6ad7ad8fb1d6902de8ee4dbbb66042050ed732789ed4ee7e8a0dbbd46f38f20b",
+    "annIndexes": []
+  },
+  "targets": {
+    "directCategoryMs": {
+      "p50Max": 100,
+      "p95Max": 300,
+      "decision": "FAIL"
+    },
+    "semanticBackendMs": {
+      "p50Max": 750,
+      "p95Max": 1500,
+      "decision": "FAIL"
+    }
+  },
+  "directCategory": {
+    "requestCount": 48,
+    "edgeLatencyMs": {
+      "count": 48,
+      "p50": 440.8115829999988,
+      "p95": 1140.5355,
+      "max": 1981.7338750000004
+    },
+    "samples": [
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 1981.7338750000004
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 1140.5355
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 2,
+        "semanticDegraded": false,
+        "latencyMs": 440.309792
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 1174.0986250000005
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 3,
+        "semanticDegraded": false,
+        "latencyMs": 1062.0004589999999
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 1034.691334
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 5,
+        "semanticDegraded": false,
+        "latencyMs": 787.3504159999993
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 680.6243749999994
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 441.79612499999894
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 634.3704580000012
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 1103.552749999999
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 0,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 425.9486249999991
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 437.5543749999997
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 646.3427499999998
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 2,
+        "semanticDegraded": false,
+        "latencyMs": 415.2756250000002
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 408.74804199999926
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 3,
+        "semanticDegraded": false,
+        "latencyMs": 417.23783399999957
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 427.5516669999997
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 5,
+        "semanticDegraded": false,
+        "latencyMs": 374.88824999999997
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 660.1697079999994
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 469.99770799999897
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 420.9372079999994
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 501.35816599999816
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 1,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 630.4680410000001
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 356.8230000000003
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 527.5134169999983
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 2,
+        "semanticDegraded": false,
+        "latencyMs": 440.8115829999988
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 440.5787080000009
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 3,
+        "semanticDegraded": false,
+        "latencyMs": 415.11775000000125
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 494.04908299999806
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 5,
+        "semanticDegraded": false,
+        "latencyMs": 427.2320839999993
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 489.53116699999737
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 402.13433299999815
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 496.69737499999974
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 456.37987500000236
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 2,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 464.07645799999955
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 381.5992080000033
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 369.82745799999975
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "en",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 2,
+        "semanticDegraded": false,
+        "latencyMs": 776.4957090000025
+      },
+      {
+        "case": "canonical_exact",
+        "locale": "sv",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 386.44429200000013
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 3,
+        "semanticDegraded": false,
+        "latencyMs": 440.35170899999866
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 1,
+        "semanticDegraded": false,
+        "latencyMs": 382.2975839999999
+      },
+      {
+        "case": "prefix",
+        "locale": "en",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 5,
+        "semanticDegraded": false,
+        "latencyMs": 392.1132089999992
+      },
+      {
+        "case": "prefix",
+        "locale": "sv",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 6,
+        "semanticDegraded": false,
+        "latencyMs": 700.0424590000002
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 422.46170800000255
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "en",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 425.02883400000064
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 443.14754200000243
+      },
+      {
+        "case": "taxonomy_category",
+        "locale": "sv",
+        "repeat": 3,
+        "status": 200,
+        "resultCount": 4,
+        "semanticDegraded": false,
+        "latencyMs": 400.6014170000017
+      }
+    ]
+  },
+  "semanticTotal": {
+    "requestCount": 8,
+    "successfulSemantic": 8,
+    "degraded": 0,
+    "allLatencyMs": {
+      "count": 8,
+      "p50": 1277.809333000012,
+      "p95": 1407.7190000000119,
+      "max": 1407.7190000000119
+    },
+    "validLatencyMs": {
+      "count": 8,
+      "p50": 1277.809333000012,
+      "p95": 1407.7190000000119,
+      "max": 1407.7190000000119
+    },
+    "samples": [
+      {
+        "case": "occasion",
+        "locale": "en",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 807.8107909999999
+      },
+      {
+        "case": "occasion",
+        "locale": "sv",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 964.6937499999985
+      },
+      {
+        "case": "broad",
+        "locale": "en",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 946.3698340000119
+      },
+      {
+        "case": "broad",
+        "locale": "sv",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 1285.7119999999995
+      },
+      {
+        "case": "geo",
+        "locale": "en",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 1312.0048750000133
+      },
+      {
+        "case": "geo",
+        "locale": "sv",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 1277.809333000012
+      },
+      {
+        "case": "mixed",
+        "locale": "en",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 1407.7190000000119
+      },
+      {
+        "case": "mixed",
+        "locale": "sv",
+        "status": 200,
+        "resultCount": 10,
+        "semanticDegraded": false,
+        "latencyMs": 1333.1429159999825
+      }
+    ]
+  },
+  "voyage": {
+    "attempts": 10,
+    "successful": 10,
+    "timeouts": 0,
+    "providerErrors": 0,
+    "rateLimited": 0,
+    "invalidVectors": 0,
+    "successfulLatencyMs": {
+      "count": 10,
+      "p50": 389.17004100000486,
+      "p95": 476.2765420000069,
+      "max": 476.2765420000069
+    },
+    "allAttemptLatencyMs": {
+      "count": 10,
+      "p50": 389.17004100000486,
+      "p95": 476.2765420000069,
+      "max": 476.2765420000069
+    },
+    "pacingMs": 31000,
+    "concurrency": 1,
+    "samples": [
+      {
+        "attempt": 1,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 421.31508400000166,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "8c5a80a9f1b8839b80ee120c043a855a001492c564cd9424162272b774dd9d75"
+      },
+      {
+        "attempt": 2,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 387.7986249999958,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "be188e29d681d892643684f4e9eae377206291ddf4ed55191c3f1b87cdc1e279"
+      },
+      {
+        "attempt": 3,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 432.9207499999902,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "eb50566ad99756d35a3f683e7a0636b3832ef94432e98a7b6b47417c76f9bcf1"
+      },
+      {
+        "attempt": 4,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 414.8516660000314,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "ce49e79455d86f605cc185b49885809ce4ed9b8379019eef75b2488d37323d89"
+      },
+      {
+        "attempt": 5,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 429.25258299999405,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "1b634ad7e4381f5e0e83cecb11a42b833d04848c4d50884656d186aedbae96b4"
+      },
+      {
+        "attempt": 6,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 363.6560409999802,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "5ac91f0080b63a37904c5b68279192ee6f733dad2100d8395011b6cc8f2a506f"
+      },
+      {
+        "attempt": 7,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 373.09324999997625,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "39cf8035ae18ce3c6f23e79beffcbef774f0a2c477b35b8e4ca0f17e5af157fd"
+      },
+      {
+        "attempt": 8,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 387.7882080000127,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "55c3b199f04cf63c5a4e3e3200d41fa1a7a45fa5afecbbd902322ff8e98ed6ce"
+      },
+      {
+        "attempt": 9,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 389.17004100000486,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "347f529212c5af0984fee14b1fbc2fce6af5376f3efdfff1f68aba92a43f26e6"
+      },
+      {
+        "attempt": 10,
+        "outcome": "SUCCESS",
+        "httpStatus": 200,
+        "latencyMs": 476.2765420000069,
+        "validDimension": true,
+        "finiteVector": true,
+        "vectorFingerprint": "89f20c6c6cb82b3bb959abef39f0297bc3a6f51cb9a695798e204898d61dbef1"
+      }
+    ]
+  },
+  "semanticDatabase": {
+    "sampleCount": 20,
+    "latencyMs": {
+      "count": 20,
+      "p50": 197.250875000027,
+      "p95": 245.33299999998417,
+      "max": 872.1383749999804
+    },
+    "planNodeTypes": [
+      "Hash",
+      "Hash Join",
+      "Index Scan",
+      "Limit",
+      "Nested Loop",
+      "Seq Scan",
+      "Sort",
+      "Subquery Scan"
+    ],
+    "exactPgvector": true,
+    "ann": false
+  },
+  "failOpen": {
+    "sampleCount": 6,
+    "correct": 6,
+    "latencyMs": {
+      "count": 6,
+      "p50": 925.7257920000702,
+      "p95": 1171.4933339999989,
+      "max": 1171.4933339999989
+    },
+    "samples": [
+      {
+        "attempt": 1,
+        "status": 200,
+        "semanticDegraded": true,
+        "deterministicResultsAvailable": false,
+        "sameOrderingAsSemanticDisabled": true,
+        "latencyMs": 1171.4933339999989,
+        "telemetry": {
+          "providerLatencyMs": 702,
+          "dbLatencyMs": 452,
+          "totalBackendLatencyMs": 1171
+        }
+      },
+      {
+        "attempt": 2,
+        "status": 200,
+        "semanticDegraded": true,
+        "deterministicResultsAvailable": false,
+        "sameOrderingAsSemanticDisabled": true,
+        "latencyMs": 1023.2527080000145,
+        "telemetry": {
+          "providerLatencyMs": 701,
+          "dbLatencyMs": 322,
+          "totalBackendLatencyMs": 1023
+        }
+      },
+      {
+        "attempt": 3,
+        "status": 200,
+        "semanticDegraded": true,
+        "deterministicResultsAvailable": false,
+        "sameOrderingAsSemanticDisabled": true,
+        "latencyMs": 925.7257920000702,
+        "telemetry": {
+          "providerLatencyMs": 700,
+          "dbLatencyMs": 224,
+          "totalBackendLatencyMs": 926
+        }
+      },
+      {
+        "attempt": 4,
+        "status": 200,
+        "semanticDegraded": true,
+        "deterministicResultsAvailable": false,
+        "sameOrderingAsSemanticDisabled": true,
+        "latencyMs": 923.502416000003,
+        "telemetry": {
+          "providerLatencyMs": 700,
+          "dbLatencyMs": 222,
+          "totalBackendLatencyMs": 923
+        }
+      },
+      {
+        "attempt": 5,
+        "status": 200,
+        "semanticDegraded": true,
+        "deterministicResultsAvailable": false,
+        "sameOrderingAsSemanticDisabled": true,
+        "latencyMs": 1017.998499999987,
+        "telemetry": {
+          "providerLatencyMs": 702,
+          "dbLatencyMs": 315,
+          "totalBackendLatencyMs": 1017
+        }
+      },
+      {
+        "attempt": 6,
+        "status": 200,
+        "semanticDegraded": true,
+        "deterministicResultsAvailable": false,
+        "sameOrderingAsSemanticDisabled": true,
+        "latencyMs": 914.6310420000227,
+        "telemetry": {
+          "providerLatencyMs": 701,
+          "dbLatencyMs": 213,
+          "totalBackendLatencyMs": 914
+        }
+      }
+    ],
+    "mechanism": "IN_PROCESS_PRODUCTION_HANDLER_INJECTED_700MS_TIMEOUT_WITH_HOSTED_READ_ONLY_RPC"
+  },
+  "edgeOverhead": "NOT_DIRECTLY_MEASURED",
+  "historicalComparison": {
+    "priorDecision": "PASS_WITH_OPERATIONAL_RISK",
+    "directCategoryMs": {
+      "count": 32,
+      "p50": 14.334,
+      "p95": 37.328
+    },
+    "semanticBackendMs": {
+      "count": 3,
+      "p50": 472.115,
+      "p95": 514.223
+    },
+    "voyageMs": {
+      "count": 38,
+      "p50": 392.838,
+      "p95": 553.205,
+      "max": 689.371
+    },
+    "semanticDatabaseMs": {
+      "count": 26,
+      "p50": 73.865,
+      "p95": 99.027
+    },
+    "interpretation": "REGRESSION_ASSESSED_AGAINST_TARGETS_AND_HISTORICAL_CONTEXT"
+  },
+  "risks": [
+    "VOYAGE_REQUEST_TIME_RELIABILITY_RISK"
+  ],
+  "findings": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 1,
+    "p3": 1
+  },
+  "decision": "PERF_BLOCKED",
+  "guards": {
+    "readOnlyTraffic": true,
+    "corpusMutated": false,
+    "configMutated": false,
+    "judgmentsMutated": false,
+    "rawVectorsPersisted": false,
+    "sealedAccessed": false,
+    "adversarialAccessed": false,
+    "tuningPerformed": false,
+    "candidateFrozen": false
+  }
+}
