@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
+import { basename, resolve } from 'node:path';
 
 import { assertFinalEvalTarget } from '../packages/contracts/src/database-target.ts';
 
@@ -22,22 +23,40 @@ const dumpPath = `${directory}/${timestamp}.${label}.dump`;
 await mkdir(directory, { recursive: true, mode: 0o700 });
 const database = new URL(connectionString);
 
-const result = spawnSync('pg_dump', [
+const dumpArguments = [
   '--format', 'custom',
   '--no-owner',
   '--no-acl',
   '--file', dumpPath,
-], {
-  env: {
-    ...process.env,
-    PGHOST: database.hostname,
-    PGPORT: database.port || '5432',
-    PGUSER: decodeURIComponent(database.username),
-    PGPASSWORD: decodeURIComponent(database.password),
-    PGDATABASE: database.pathname.slice(1),
-  },
+];
+const postgresEnvironment = {
+  ...process.env,
+  PGHOST: database.hostname,
+  PGPORT: database.port || '5432',
+  PGUSER: decodeURIComponent(database.username),
+  PGPASSWORD: decodeURIComponent(database.password),
+  PGDATABASE: database.pathname.slice(1),
+};
+let result = spawnSync('pg_dump', dumpArguments, {
+  env: postgresEnvironment,
   stdio: ['ignore', 'inherit', 'inherit'],
 });
+if (result.error?.code === 'ENOENT') {
+  const docker = process.platform === 'darwin'
+    ? '/Applications/Docker.app/Contents/Resources/bin/docker'
+    : 'docker';
+  result = spawnSync(docker, [
+    'run', '--rm', '--network', 'host',
+    '--volume', `${resolve(directory)}:/backup`,
+    '--env', 'PGHOST', '--env', 'PGPORT', '--env', 'PGUSER', '--env', 'PGPASSWORD', '--env', 'PGDATABASE',
+    'public.ecr.aws/supabase/postgres:17.6.1.155',
+    'pg_dump', '--format', 'custom', '--no-owner', '--no-acl',
+    '--file', `/backup/${basename(dumpPath)}`,
+  ], {
+    env: postgresEnvironment,
+    stdio: ['ignore', 'inherit', 'inherit'],
+  });
+}
 if (result.error) throw result.error;
 if (result.status !== 0) process.exit(result.status ?? 1);
 

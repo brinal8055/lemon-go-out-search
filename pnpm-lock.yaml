@@ -122,6 +122,9 @@ importers:
 
   packages/source-adapters:
     dependencies:
+      '@lemon/contracts':
+        specifier: workspace:*
+        version: link:../contracts
       '@lemon/ingestion-domain':
         specifier: workspace:*
         version: link:../ingestion-domain

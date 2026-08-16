@@ -1,0 +1,28 @@
+{
+  "schema_version": "final-eval-checkpoint.v1",
+  "checkpoint_name": "post-recovery-a",
+  "dump_file": "20260816T082709Z.post-recovery-a.dump",
+  "created_at": "2026-08-16T08:30:49.337Z",
+  "sha256": "bf08b1c4b637859a4366efce2b249b1ee5d7accfb8230f22f0a45ea10c55d521",
+  "remote_project": "zrxdjorrwcunprbykdtg",
+  "migration_identity": {
+    "count": 21,
+    "latest": "20260815160000"
+  },
+  "row_counts": {
+    "referenceSources": 4,
+    "unexpectedSources": 0,
+    "sourceRecords": 410,
+    "sourceRecordVersions": 410,
+    "parseAttempts": 410,
+    "canonicalEntities": 410,
+    "places": 407,
+    "events": 3,
+    "activeTaxonomyAssignments": 451,
+    "duplicateCandidates": 2,
+    "searchDocuments": 395,
+    "activeSearchDocuments": 395,
+    "embeddings": 0,
+    "compatibleReadyEmbeddings": 0
+  }
+}

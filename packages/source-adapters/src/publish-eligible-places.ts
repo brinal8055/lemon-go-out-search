@@ -1,4 +1,5 @@
 import pg from 'pg';
+import { assertFinalEvalWriteOperation } from '@lemon/contracts';
 
 import {
   fixtureDatabaseUrl,
@@ -35,6 +36,22 @@ export async function publishEligiblePlaces(
 ): Promise<EligiblePlacePublicationReport> {
   await prepareLocalIngestionRuntime(connectionString);
   await prepareLocalSearchDocumentRuntime(connectionString);
+  return publishEligiblePlacesWithPreparedRuntime(connectionString, options);
+}
+
+export async function publishEligiblePlacesForFinalEvalRecoveryA(
+  connectionString: string,
+  options: { captureRunIds?: string[] } = {},
+): Promise<EligiblePlacePublicationReport> {
+  assertFinalEvalWriteOperation(connectionString, 'corpus-recovery-a', process.env);
+  await grantFinalEvalRecoveryRoles(connectionString);
+  return publishEligiblePlacesWithPreparedRuntime(connectionString, options);
+}
+
+async function publishEligiblePlacesWithPreparedRuntime(
+  connectionString: string,
+  options: { captureRunIds?: string[] },
+): Promise<EligiblePlacePublicationReport> {
   const candidates = await publicationCandidates(connectionString, options.captureRunIds);
   const report: EligiblePlacePublicationReport = {
     candidates: candidates.length,
@@ -57,6 +74,16 @@ export async function publishEligiblePlaces(
   }
   report.entityIds.sort();
   return report;
+}
+
+async function grantFinalEvalRecoveryRoles(connectionString: string): Promise<void> {
+  const client = new Client({ connectionString });
+  await client.connect();
+  try {
+    await client.query('grant lemon_ingestion to postgres with set true');
+  } finally {
+    await client.end();
+  }
 }
 
 async function publicationCandidates(
