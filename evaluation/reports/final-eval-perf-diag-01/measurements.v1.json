@@ -1,0 +1,4702 @@
+{
+  "reportVersion": "final-eval-perf-diag-01.measurements.v1",
+  "task": "FINAL-EVAL-PERF-DIAG-01",
+  "generatedAt": "2026-08-16T13:52:45.331Z",
+  "candidate": {
+    "version": "eval-03-baseline.v1",
+    "rrfVersion": "RRF_V1",
+    "rrfK": 60,
+    "noncollapseVersion": "NONCOLLAPSE_V1",
+    "timeoutMs": 700,
+    "provider": "voyage",
+    "model": "voyage-4",
+    "revision": "voyage-4-preflight-v1",
+    "dimension": 1024,
+    "vectorRetrieval": "EXACT_PGVECTOR",
+    "ann": false
+  },
+  "localIdentity": {
+    "manifestVersion": "dataset-manifest.final-eval-recovery.v1",
+    "checksums": {
+      "manifestFile": "f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82",
+      "inventoryLogical": "2b2246064bcdf1b76f77312c7f6bda573c9f724ee4d291704451c52f9ea76f37",
+      "judgmentsFile": "e604ba9bf0f04b500a37f2feb5cdc1a49d7b7031ef6055b917815ff60f5e0f70"
+    }
+  },
+  "remoteIdentity": {
+    "project": "zrxdjorrwcunprbykdtg",
+    "inventory": {
+      "publishedPlaces": 392,
+      "publishedEvents": 3,
+      "activeSearchDocuments": 395,
+      "compatibleReadyEmbeddings": 395,
+      "fixtureContamination": 0
+    },
+    "config": {
+      "version": "noncollapse-v1",
+      "rrfVersion": "RRF_V1",
+      "rrfK": 60,
+      "noncollapseVersion": "NONCOLLAPSE_V1",
+      "noncollapseEnabled": true,
+      "provider": "voyage",
+      "model": "voyage-4",
+      "revision": "voyage-4-preflight-v1",
+      "dimension": 1024,
+      "timeoutMs": 700,
+      "semanticCap": 30
+    },
+    "documentChecksum": "7e5d83ebeee39595944b9ef1bdb5cca8f72ff5aa6a2e2880471b6c4963981a51",
+    "embeddingChecksum": "6ad7ad8fb1d6902de8ee4dbbb66042050ed732789ed4ee7e8a0dbbd46f38f20b",
+    "annIndexes": []
+  },
+  "environment": {
+    "client": {
+      "runtime": "v25.8.1",
+      "platform": "darwin-arm64",
+      "timezone": "Asia/Kolkata"
+    },
+    "database": {
+      "projectRegion": "ap-northeast-1",
+      "cloudProvider": null,
+      "endpointHost": "db.zrxdjorrwcunprbykdtg.supabase.co",
+      "endpointPort": 5432,
+      "connectionPath": "DIRECT_DATABASE",
+      "databaseName": "postgres",
+      "databaseUser": "postgres",
+      "serverVersion": "17.6"
+    },
+    "postgrestHost": "zrxdjorrwcunprbykdtg.supabase.co"
+  },
+  "connection": {
+    "newDirectConnectionAndSelectMs": {
+      "count": 4,
+      "p50": 746.0261250000001,
+      "p95": 787.47675,
+      "max": 787.47675
+    },
+    "samplesMs": [
+      787.47675,
+      746.0261250000001,
+      746.1539590000002,
+      733.1708330000001
+    ]
+  },
+  "measurements": {
+    "postgresLexical": {
+      "sampleCount": 24,
+      "serverExecutionMs": {
+        "count": 24,
+        "p50": 35.01,
+        "p95": 58.735,
+        "max": 305.08
+      },
+      "serverPlanningMs": {
+        "count": 24,
+        "p50": 0.04,
+        "p95": 0.066,
+        "max": 0.15
+      },
+      "nodeTypes": [
+        "Function Scan"
+      ],
+      "representativePlans": [
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.15,
+          "executionMs": 305.08,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 305.046,
+              "sharedHitBlocks": 5378,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.038,
+          "executionMs": 49.571,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 3,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 49.537,
+              "sharedHitBlocks": 2095,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.043,
+          "executionMs": 56.396,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 56.361,
+              "sharedHitBlocks": 3251,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        }
+      ],
+      "samples": [
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.15,
+          "executionMs": 305.08,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 305.046,
+              "sharedHitBlocks": 5378,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 0,
+          "planningMs": 0.044,
+          "executionMs": 49.298,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 49.263,
+              "sharedHitBlocks": 2057,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.038,
+          "executionMs": 49.571,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 3,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 49.537,
+              "sharedHitBlocks": 2095,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 0,
+          "planningMs": 0.041,
+          "executionMs": 47.107,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 47.072,
+              "sharedHitBlocks": 2035,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.043,
+          "executionMs": 56.396,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 56.361,
+              "sharedHitBlocks": 3251,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 0,
+          "planningMs": 0.041,
+          "executionMs": 58.735,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 4,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 58.699,
+              "sharedHitBlocks": 2238,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 1,
+          "planningMs": 0.039,
+          "executionMs": 33.968,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 33.936,
+              "sharedHitBlocks": 1871,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 1,
+          "planningMs": 0.066,
+          "executionMs": 33.208,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 33.172,
+              "sharedHitBlocks": 1820,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 1,
+          "planningMs": 0.04,
+          "executionMs": 35.108,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 3,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 35.075,
+              "sharedHitBlocks": 1847,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 1,
+          "planningMs": 0.04,
+          "executionMs": 33.209,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 33.15,
+              "sharedHitBlocks": 1798,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 1,
+          "planningMs": 0.04,
+          "executionMs": 40.878,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 40.845,
+              "sharedHitBlocks": 2925,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 1,
+          "planningMs": 0.038,
+          "executionMs": 35.355,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 4,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 35.321,
+              "sharedHitBlocks": 1881,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 2,
+          "planningMs": 0.039,
+          "executionMs": 33.71,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 33.677,
+              "sharedHitBlocks": 1871,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 2,
+          "planningMs": 0.056,
+          "executionMs": 32.754,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 32.722,
+              "sharedHitBlocks": 1820,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 2,
+          "planningMs": 0.04,
+          "executionMs": 35.01,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 3,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 34.977,
+              "sharedHitBlocks": 1847,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 2,
+          "planningMs": 0.039,
+          "executionMs": 33.341,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 33.306,
+              "sharedHitBlocks": 1798,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 2,
+          "planningMs": 0.039,
+          "executionMs": 40.546,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 40.513,
+              "sharedHitBlocks": 2925,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 2,
+          "planningMs": 0.041,
+          "executionMs": 35.507,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 4,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 35.472,
+              "sharedHitBlocks": 1881,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 3,
+          "planningMs": 0.042,
+          "executionMs": 33.565,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 33.534,
+              "sharedHitBlocks": 1871,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 3,
+          "planningMs": 0.04,
+          "executionMs": 33.094,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 33.036,
+              "sharedHitBlocks": 1820,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 3,
+          "planningMs": 0.041,
+          "executionMs": 34.861,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 3,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 34.827,
+              "sharedHitBlocks": 1847,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 3,
+          "planningMs": 0.04,
+          "executionMs": 32.839,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 1,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 32.807,
+              "sharedHitBlocks": 1798,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 3,
+          "planningMs": 0.04,
+          "executionMs": 40.054,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 40.021,
+              "sharedHitBlocks": 2925,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 3,
+          "planningMs": 0.04,
+          "executionMs": 34.907,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 4,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 34.875,
+              "sharedHitBlocks": 1881,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        }
+      ]
+    },
+    "postgresBroad": {
+      "sampleCount": 8,
+      "serverExecutionMs": {
+        "count": 8,
+        "p50": 22.541,
+        "p95": 23.181,
+        "max": 23.181
+      },
+      "serverPlanningMs": {
+        "count": 8,
+        "p50": 0.04,
+        "p95": 0.05,
+        "max": 0.05
+      },
+      "nodeTypes": [
+        "Function Scan"
+      ],
+      "representativePlans": [
+        {
+          "family": "broad_discovery",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.04,
+          "executionMs": 22.468,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 22.437,
+              "sharedHitBlocks": 1388,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        }
+      ],
+      "samples": [
+        {
+          "family": "broad_discovery",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.04,
+          "executionMs": 22.468,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 22.437,
+              "sharedHitBlocks": 1388,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "broad_discovery",
+          "locale": "sv",
+          "repeat": 0,
+          "planningMs": 0.039,
+          "executionMs": 22.446,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 22.414,
+              "sharedHitBlocks": 1407,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "broad_discovery",
+          "locale": "en",
+          "repeat": 1,
+          "planningMs": 0.039,
+          "executionMs": 22.646,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 22.613,
+              "sharedHitBlocks": 1388,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "broad_discovery",
+          "locale": "sv",
+          "repeat": 1,
+          "planningMs": 0.04,
+          "executionMs": 22.603,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 22.571,
+              "sharedHitBlocks": 1407,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "broad_discovery",
+          "locale": "en",
+          "repeat": 2,
+          "planningMs": 0.047,
+          "executionMs": 22.455,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 22.422,
+              "sharedHitBlocks": 1388,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "broad_discovery",
+          "locale": "sv",
+          "repeat": 2,
+          "planningMs": 0.039,
+          "executionMs": 23.084,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 23.052,
+              "sharedHitBlocks": 1407,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "broad_discovery",
+          "locale": "en",
+          "repeat": 3,
+          "planningMs": 0.041,
+          "executionMs": 22.541,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 22.484,
+              "sharedHitBlocks": 1388,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "broad_discovery",
+          "locale": "sv",
+          "repeat": 3,
+          "planningMs": 0.05,
+          "executionMs": 23.181,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 0,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 23.149,
+              "sharedHitBlocks": 1407,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        }
+      ]
+    },
+    "postgresSemantic": {
+      "sampleCount": 8,
+      "serverExecutionMs": {
+        "count": 8,
+        "p50": 57.139,
+        "p95": 62.417,
+        "max": 62.417
+      },
+      "serverPlanningMs": {
+        "count": 8,
+        "p50": 0.044,
+        "p95": 0.056,
+        "max": 0.056
+      },
+      "nodeTypes": [
+        "Function Scan"
+      ],
+      "representativePlans": [
+        {
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.045,
+          "executionMs": 60.059,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 60.021,
+              "sharedHitBlocks": 8013,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.044,
+          "executionMs": 57.738,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 57.7,
+              "sharedHitBlocks": 7862,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        }
+      ],
+      "samples": [
+        {
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.045,
+          "executionMs": 60.059,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 60.021,
+              "sharedHitBlocks": 8013,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "sv",
+          "repeat": 0,
+          "planningMs": 0.041,
+          "executionMs": 55.182,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 55.147,
+              "sharedHitBlocks": 7773,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 0,
+          "planningMs": 0.044,
+          "executionMs": 57.738,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 57.7,
+              "sharedHitBlocks": 7862,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "sv",
+          "repeat": 0,
+          "planningMs": 0.056,
+          "executionMs": 56.786,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 56.745,
+              "sharedHitBlocks": 7842,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 1,
+          "planningMs": 0.047,
+          "executionMs": 56.298,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 56.258,
+              "sharedHitBlocks": 7814,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "sv",
+          "repeat": 1,
+          "planningMs": 0.044,
+          "executionMs": 62.417,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 62.378,
+              "sharedHitBlocks": 7868,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 1,
+          "planningMs": 0.042,
+          "executionMs": 59.473,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 59.437,
+              "sharedHitBlocks": 7823,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "sv",
+          "repeat": 1,
+          "planningMs": 0.042,
+          "executionMs": 57.139,
+          "nodeTypes": [
+            "Function Scan"
+          ],
+          "nodes": [
+            {
+              "nodeType": "Function Scan",
+              "relation": null,
+              "actualRows": 10,
+              "actualLoops": 1,
+              "actualTotalTimeMs": 57.104,
+              "sharedHitBlocks": 7842,
+              "sharedReadBlocks": 0,
+              "sortMethod": null
+            }
+          ]
+        }
+      ]
+    },
+    "exactPgvector": {
+      "sampleCount": 12,
+      "serverExecutionMs": {
+        "count": 12,
+        "p50": 4.021,
+        "p95": 4.37,
+        "max": 4.37
+      },
+      "serverPlanningMs": {
+        "count": 12,
+        "p50": 0.938,
+        "p95": 0.965,
+        "max": 0.965
+      },
+      "nodeTypes": [
+        "Hash",
+        "Hash Join",
+        "Index Scan",
+        "Limit",
+        "Nested Loop",
+        "Seq Scan",
+        "Sort",
+        "Subquery Scan"
+      ],
+      "representativePlan": {
+        "attempt": 1,
+        "planningMs": 0.965,
+        "executionMs": 4.019,
+        "nodeTypes": [
+          "Hash",
+          "Hash Join",
+          "Index Scan",
+          "Limit",
+          "Nested Loop",
+          "Seq Scan",
+          "Sort",
+          "Subquery Scan"
+        ],
+        "nodes": [
+          {
+            "nodeType": "Limit",
+            "relation": null,
+            "actualRows": 30,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 3.93,
+            "sharedHitBlocks": 3706,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Sort",
+            "relation": null,
+            "actualRows": 30,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 3.925,
+            "sharedHitBlocks": 3706,
+            "sharedReadBlocks": 0,
+            "sortMethod": "top-N heapsort"
+          },
+          {
+            "nodeType": "Subquery Scan",
+            "relation": null,
+            "actualRows": 395,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 3.809,
+            "sharedHitBlocks": 3706,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Nested Loop",
+            "relation": null,
+            "actualRows": 395,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 1.89,
+            "sharedHitBlocks": 2389,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Nested Loop",
+            "relation": null,
+            "actualRows": 395,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 1.158,
+            "sharedHitBlocks": 1204,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Hash Join",
+            "relation": null,
+            "actualRows": 395,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 0.39,
+            "sharedHitBlocks": 19,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Seq Scan",
+            "relation": "embeddings",
+            "actualRows": 395,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 0.138,
+            "sharedHitBlocks": 17,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Hash",
+            "relation": null,
+            "actualRows": 1,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 0.014,
+            "sharedHitBlocks": 2,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Seq Scan",
+            "relation": "search_configs",
+            "actualRows": 1,
+            "actualLoops": 1,
+            "actualTotalTimeMs": 0.009,
+            "sharedHitBlocks": 2,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Index Scan",
+            "relation": "canonical_entities",
+            "actualRows": 1,
+            "actualLoops": 395,
+            "actualTotalTimeMs": 0.002,
+            "sharedHitBlocks": 1185,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          },
+          {
+            "nodeType": "Index Scan",
+            "relation": "search_documents",
+            "actualRows": 1,
+            "actualLoops": 395,
+            "actualTotalTimeMs": 0.001,
+            "sharedHitBlocks": 1185,
+            "sharedReadBlocks": 0,
+            "sortMethod": null
+          }
+        ]
+      },
+      "exactPgvector": true,
+      "ann": false
+    },
+    "directDatabaseLexical": {
+      "sampleCount": 24,
+      "clientObservedMs": {
+        "count": 24,
+        "p50": 179.83691700000054,
+        "p95": 190.08762500000012,
+        "max": 192.68816700000025
+      },
+      "samples": [
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 0,
+          "resultCount": 1,
+          "latencyMs": 177.18645800000013
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 0,
+          "resultCount": 1,
+          "latencyMs": 177.41425000000163
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 0,
+          "resultCount": 3,
+          "latencyMs": 179.25658300000214
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 0,
+          "resultCount": 1,
+          "latencyMs": 181.15200000000186
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 0,
+          "resultCount": 10,
+          "latencyMs": 190.08762500000012
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 0,
+          "resultCount": 4,
+          "latencyMs": 180.49266699999862
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 1,
+          "resultCount": 1,
+          "latencyMs": 178.45729200000278
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 1,
+          "resultCount": 1,
+          "latencyMs": 177.31233300000167
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 1,
+          "resultCount": 3,
+          "latencyMs": 179.91620899999907
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 1,
+          "resultCount": 1,
+          "latencyMs": 176.77720799999952
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 1,
+          "resultCount": 10,
+          "latencyMs": 185.11324999999852
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 1,
+          "resultCount": 4,
+          "latencyMs": 180.3939999999966
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 2,
+          "resultCount": 1,
+          "latencyMs": 177.31833400000323
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 2,
+          "resultCount": 1,
+          "latencyMs": 192.68816700000025
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 2,
+          "resultCount": 3,
+          "latencyMs": 180.23020799999722
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 2,
+          "resultCount": 1,
+          "latencyMs": 180.35066599999845
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 2,
+          "resultCount": 10,
+          "latencyMs": 185.60558399999718
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 2,
+          "resultCount": 4,
+          "latencyMs": 180.30195900000035
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 3,
+          "resultCount": 1,
+          "latencyMs": 177.83558300000004
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 3,
+          "resultCount": 1,
+          "latencyMs": 177.57191700000112
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 3,
+          "resultCount": 3,
+          "latencyMs": 179.83691700000054
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 3,
+          "resultCount": 1,
+          "latencyMs": 175.66183399999863
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 3,
+          "resultCount": 10,
+          "latencyMs": 184.77395800000158
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 3,
+          "resultCount": 4,
+          "latencyMs": 179.59333299999707
+        }
+      ]
+    },
+    "directDatabaseSemantic": {
+      "sampleCount": 8,
+      "clientObservedMs": {
+        "count": 8,
+        "p50": 202.30875000000015,
+        "p95": 212.1309169999986,
+        "max": 212.1309169999986
+      },
+      "samples": [
+        {
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 0,
+          "resultCount": 10,
+          "latencyMs": 201.46887499999866
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "sv",
+          "repeat": 0,
+          "resultCount": 10,
+          "latencyMs": 202.30875000000015
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 0,
+          "resultCount": 10,
+          "latencyMs": 204.24925000000076
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "sv",
+          "repeat": 0,
+          "resultCount": 10,
+          "latencyMs": 212.1309169999986
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 1,
+          "resultCount": 10,
+          "latencyMs": 201.24225000000297
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "sv",
+          "repeat": 1,
+          "resultCount": 10,
+          "latencyMs": 202.6190409999981
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 1,
+          "resultCount": 10,
+          "latencyMs": 202.07708400000047
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "sv",
+          "repeat": 1,
+          "resultCount": 10,
+          "latencyMs": 207.09850000000006
+        }
+      ]
+    },
+    "postgrestLexical": {
+      "sampleCount": 24,
+      "clientObservedMs": {
+        "count": 24,
+        "p50": 231.30770800000028,
+        "p95": 343.43866700000217,
+        "max": 864.3424579999992
+      },
+      "samples": [
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 864.3424579999992,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 288.28033399999913,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 3,
+          "latencyMs": 273.05833399999756,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 230.89150000000154,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 244.07945800000016,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 4,
+          "latencyMs": 247.929500000002,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 223.1944999999978,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 315.5464580000007,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 3,
+          "latencyMs": 218.70241700000042,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 219.0169590000005,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 281.78150000000096,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 4,
+          "latencyMs": 222.7182079999984,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 219.71862500000134,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 216.78791600000113,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 3,
+          "latencyMs": 221.85762500000055,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 343.43866700000217,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 233.67150000000038,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 4,
+          "latencyMs": 231.30770800000028,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 229.3737089999995,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 329.5842080000002,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 3,
+          "latencyMs": 243.37308300000223,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "latencyMs": 268.8099170000023,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 225.17479199999798,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 4,
+          "latencyMs": 218.7407920000005,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        }
+      ]
+    },
+    "postgrestSemantic": {
+      "sampleCount": 8,
+      "clientObservedMs": {
+        "count": 8,
+        "p50": 263.3321250000008,
+        "p95": 280.4515420000025,
+        "max": 280.4515420000025
+      },
+      "samples": [
+        {
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 263.3321250000008,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 266.3901250000017,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 269.8420420000002,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 280.4515420000025,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 250.72358299999905,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "semantic_occasion",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 256.12412499999846,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 247.85145900000134,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "family": "semantic_broad",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "latencyMs": 267.79954200000066,
+          "headers": {
+            "edgeRegion": null,
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        }
+      ]
+    },
+    "edgeLexical": {
+      "sampleCount": 24,
+      "clientObservedMs": {
+        "count": 24,
+        "p50": 398.5969170000026,
+        "p95": 1033.9640419999996,
+        "max": 1127.140457999998
+      },
+      "firstRequestMs": 1127.140457999998,
+      "subsequentWarmMs": {
+        "count": 23,
+        "p50": 398.5969170000026,
+        "p95": 1002.8392910000039,
+        "max": 1033.9640419999996
+      },
+      "edgeRegions": [
+        "ap-south-1"
+      ],
+      "samples": [
+        {
+          "requestId": "15770298-3025-49c1-af7a-7025f487c6e0",
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 1127.140457999998,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "feea152f-b953-4231-9125-01f8d7498a17",
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 720.6180830000012,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "8bb921ca-e8f2-4eee-b4bf-932255184c96",
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 1002.8392910000039,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "8a29d666-bfc5-4f6f-844b-3b70e7760ca1",
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 367.28408299999865,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "dabcf124-aa64-42d4-965c-57933b00fbba",
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 406.369666999999,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "9e392985-3afa-4a2f-9cff-52ee8cb82c69",
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 893.617250000003,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "09b3b2cb-6f41-4fb7-931d-4f0db15539b2",
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 464.3618750000023,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "c804dc2e-7069-49e4-bdd8-aefc2a45cb2b",
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 883.5654580000046,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "49b58f4f-113e-4d6e-a654-07a7d98ff15f",
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 365.140790999998,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "a06e9220-7e51-44a0-bf5c-f58a68b7ae10",
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 413.0346669999999,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "7a6972c9-e2e2-4c64-a2de-d00178264396",
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1033.9640419999996,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "2b94b808-cbba-4a01-9fc8-912021eef5f4",
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 371.23066599999584,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "886db012-b9ce-4571-9dba-cdcd37c26fec",
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 419.2295830000003,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "54a01957-030d-448c-b7f8-7ea9d716e256",
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 398.5969170000026,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "97f4bae2-72d1-47fc-8dae-d32629fb8459",
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 378.68616699999984,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "540a57f5-1f88-4a06-8c62-f1d68aece000",
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 381.682541999995,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "94c81dc0-e9d4-4d36-8a77-3377529b6911",
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 419.12533399999666,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "5fe1613e-8315-4953-a176-2959eeee3fa3",
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 372.91816599999584,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "f3660bb9-3e9f-4ce6-afe8-e187d1bb53b4",
+          "family": "canonical_exact",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 478.1278749999983,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "ffb9d54a-c05d-4483-abea-110777f55f17",
+          "family": "canonical_exact",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 365.1674999999959,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "2b4fbe15-c7d8-4dc2-b6b2-bc900190011f",
+          "family": "prefix",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 360.19645899999887,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "3fcb791b-1ad5-47aa-a762-7a39170260ad",
+          "family": "prefix",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 376.2459170000002,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "01570e2a-7e2e-41fc-8aec-4eda540781c6",
+          "family": "taxonomy_category",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 333.9132499999978,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "caceb7fc-ead6-4157-afee-2673b4d12132",
+          "family": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 374.22433399999863,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        }
+      ]
+    },
+    "edgeSemantic": {
+      "sampleCount": 4,
+      "clientObservedMs": {
+        "count": 4,
+        "p50": 905.4562089999963,
+        "p95": 1674.0638749999925,
+        "max": 1674.0638749999925
+      },
+      "edgeRegions": [
+        "ap-south-1"
+      ],
+      "pacingMs": 31000,
+      "samples": [
+        {
+          "requestId": "6221e1b5-7b1f-4ea9-af5f-19e3bfa919ff",
+          "family": "semantic_occasion",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 726.5064999999959,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "fec7c01d-5c3e-4903-a0fe-fa37ff7db3bc",
+          "family": "semantic_occasion",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 940.1345419999998,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "36bbeb58-f0db-4fbb-8861-ea0326827896",
+          "family": "semantic_broad",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1674.0638749999925,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        },
+        {
+          "requestId": "93dbcd58-f38c-4054-8162-0db95a3d0124",
+          "family": "semantic_broad",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 905.4562089999963,
+          "headers": {
+            "edgeRegion": "ap-south-1",
+            "cloudflarePop": "AMD",
+            "serverTiming": null,
+            "proxyLatency": null,
+            "upstreamLatency": null
+          }
+        }
+      ]
+    },
+    "edgeTelemetry": {
+      "requested": 28,
+      "matched": 28,
+      "apiError": null,
+      "totalBackendMs": {
+        "count": 28,
+        "p50": 285,
+        "p95": 1005,
+        "max": 1488
+      },
+      "rpcFromEdgeMs": {
+        "count": 28,
+        "p50": 251,
+        "p95": 987,
+        "max": 1161
+      },
+      "providerMs": {
+        "count": 28,
+        "p50": 0,
+        "p95": 331,
+        "max": 337
+      },
+      "telemetry": [
+        {
+          "event": "search_request",
+          "requestId": "15770298-3025-49c1-af7a-7025f487c6e0",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 987,
+          "totalBackendLatencyMs": 1005,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:40.810000",
+          "region": "ap-south-1",
+          "executionId": "b405e210-22c9-4969-bb1d-9d45ade9bb81"
+        },
+        {
+          "event": "search_request",
+          "requestId": "feea152f-b953-4231-9125-01f8d7498a17",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 587,
+          "totalBackendLatencyMs": 605,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:41.531000",
+          "region": "ap-south-1",
+          "executionId": "34a8ec92-46ea-4ed6-809f-9d7b9af26052"
+        },
+        {
+          "event": "search_request",
+          "requestId": "8bb921ca-e8f2-4eee-b4bf-932255184c96",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 863,
+          "totalBackendLatencyMs": 880,
+          "semanticCandidateCount": 0,
+          "resultCount": 3,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:42.535000",
+          "region": "ap-south-1",
+          "executionId": "4c4247d9-5c5b-46cd-890f-2bbfa9024c62"
+        },
+        {
+          "event": "search_request",
+          "requestId": "8a29d666-bfc5-4f6f-844b-3b70e7760ca1",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 225,
+          "totalBackendLatencyMs": 244,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:42.903000",
+          "region": "ap-south-1",
+          "executionId": "f51c3976-0bce-4114-9f30-017e00418a52"
+        },
+        {
+          "event": "search_request",
+          "requestId": "dabcf124-aa64-42d4-965c-57933b00fbba",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "TAXONOMY_ONLY",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 268,
+          "totalBackendLatencyMs": 285,
+          "semanticCandidateCount": 0,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:43.309000",
+          "region": "ap-south-1",
+          "executionId": "7d143f41-ab20-43e7-839a-068481754a31"
+        },
+        {
+          "event": "search_request",
+          "requestId": "9e392985-3afa-4a2f-9cff-52ee8cb82c69",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 717,
+          "totalBackendLatencyMs": 735,
+          "semanticCandidateCount": 0,
+          "resultCount": 4,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:44.166000",
+          "region": "ap-south-1",
+          "executionId": "0b86693f-26bf-4a7b-87b4-caff2c72ccf6"
+        },
+        {
+          "event": "search_request",
+          "requestId": "09b3b2cb-6f41-4fb7-931d-4f0db15539b2",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 311,
+          "totalBackendLatencyMs": 329,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:44.658000",
+          "region": "ap-south-1",
+          "executionId": "9c731522-4dca-4860-8256-985e967025ea"
+        },
+        {
+          "event": "search_request",
+          "requestId": "c804dc2e-7069-49e4-bdd8-aefc2a45cb2b",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 747,
+          "totalBackendLatencyMs": 764,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:45.549000",
+          "region": "ap-south-1",
+          "executionId": "7bb6ec22-4fd5-4825-965a-718254737962"
+        },
+        {
+          "event": "search_request",
+          "requestId": "49b58f4f-113e-4d6e-a654-07a7d98ff15f",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 223,
+          "totalBackendLatencyMs": 241,
+          "semanticCandidateCount": 0,
+          "resultCount": 3,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:45.917000",
+          "region": "ap-south-1",
+          "executionId": "5f53f91e-2d00-4250-9b2f-762c488259ce"
+        },
+        {
+          "event": "search_request",
+          "requestId": "a06e9220-7e51-44a0-bf5c-f58a68b7ae10",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 267,
+          "totalBackendLatencyMs": 285,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:46.327000",
+          "region": "ap-south-1",
+          "executionId": "42d090ce-a978-4233-91de-dbbb490ad58a"
+        },
+        {
+          "event": "search_request",
+          "requestId": "7a6972c9-e2e2-4c64-a2de-d00178264396",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "TAXONOMY_ONLY",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 887,
+          "totalBackendLatencyMs": 905,
+          "semanticCandidateCount": 0,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:47.359000",
+          "region": "ap-south-1",
+          "executionId": "74c5cd8d-79a6-4dde-b6cf-71a3204eff5f"
+        },
+        {
+          "event": "search_request",
+          "requestId": "2b94b808-cbba-4a01-9fc8-912021eef5f4",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 227,
+          "totalBackendLatencyMs": 245,
+          "semanticCandidateCount": 0,
+          "resultCount": 4,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:47.736000",
+          "region": "ap-south-1",
+          "executionId": "459acdad-ab68-4493-8189-ce29af07b496"
+        },
+        {
+          "event": "search_request",
+          "requestId": "886db012-b9ce-4571-9dba-cdcd37c26fec",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 267,
+          "totalBackendLatencyMs": 285,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:48.152000",
+          "region": "ap-south-1",
+          "executionId": "55c3e150-b7d2-45f2-b6f0-1aa6350f7aea"
+        },
+        {
+          "event": "search_request",
+          "requestId": "54a01957-030d-448c-b7f8-7ea9d716e256",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 251,
+          "totalBackendLatencyMs": 269,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:48.551000",
+          "region": "ap-south-1",
+          "executionId": "3c73356c-e0b5-4a9c-88e9-a665fe884234"
+        },
+        {
+          "event": "search_request",
+          "requestId": "97f4bae2-72d1-47fc-8dae-d32629fb8459",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 233,
+          "totalBackendLatencyMs": 251,
+          "semanticCandidateCount": 0,
+          "resultCount": 3,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:48.926000",
+          "region": "ap-south-1",
+          "executionId": "b80dc616-6b8d-43f5-b2ff-ba250503b19e"
+        },
+        {
+          "event": "search_request",
+          "requestId": "540a57f5-1f88-4a06-8c62-f1d68aece000",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 223,
+          "totalBackendLatencyMs": 242,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:49.314000",
+          "region": "ap-south-1",
+          "executionId": "24ea3cf2-8e20-4f28-87bf-14a84b107f27"
+        },
+        {
+          "event": "search_request",
+          "requestId": "94c81dc0-e9d4-4d36-8a77-3377529b6911",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "TAXONOMY_ONLY",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 235,
+          "totalBackendLatencyMs": 253,
+          "semanticCandidateCount": 0,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:49.686000",
+          "region": "ap-south-1",
+          "executionId": "cef28f3f-14fd-46bf-bd7e-011ad31bc636"
+        },
+        {
+          "event": "search_request",
+          "requestId": "5fe1613e-8315-4953-a176-2959eeee3fa3",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 233,
+          "totalBackendLatencyMs": 251,
+          "semanticCandidateCount": 0,
+          "resultCount": 4,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:50.107000",
+          "region": "ap-south-1",
+          "executionId": "7d4f82a7-74d1-4153-8e64-f2950663a001"
+        },
+        {
+          "event": "search_request",
+          "requestId": "f3660bb9-3e9f-4ce6-afe8-e187d1bb53b4",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 278,
+          "totalBackendLatencyMs": 296,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:50.537000",
+          "region": "ap-south-1",
+          "executionId": "87374fbc-ed59-45d0-b7f9-f0206b10975c"
+        },
+        {
+          "event": "search_request",
+          "requestId": "ffb9d54a-c05d-4483-abea-110777f55f17",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 217,
+          "totalBackendLatencyMs": 236,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:50.938000",
+          "region": "ap-south-1",
+          "executionId": "5c4d649b-7dfb-4696-94ea-7426a9266c0e"
+        },
+        {
+          "event": "search_request",
+          "requestId": "2b4fbe15-c7d8-4dc2-b6b2-bc900190011f",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 214,
+          "totalBackendLatencyMs": 233,
+          "semanticCandidateCount": 0,
+          "resultCount": 3,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:51.310000",
+          "region": "ap-south-1",
+          "executionId": "05452241-9274-4eb2-88f4-4dc8d7e207e9"
+        },
+        {
+          "event": "search_request",
+          "requestId": "3fcb791b-1ad5-47aa-a762-7a39170260ad",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 225,
+          "totalBackendLatencyMs": 243,
+          "semanticCandidateCount": 0,
+          "resultCount": 1,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:51.680000",
+          "region": "ap-south-1",
+          "executionId": "9fcbb755-7e3b-42e0-9319-df55d2441edc"
+        },
+        {
+          "event": "search_request",
+          "requestId": "01570e2a-7e2e-41fc-8aec-4eda540781c6",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "TAXONOMY_ONLY",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 212,
+          "totalBackendLatencyMs": 222,
+          "semanticCandidateCount": 0,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:52.019000",
+          "region": "ap-south-1",
+          "executionId": "7d4f82a7-74d1-4153-8e64-f2950663a001"
+        },
+        {
+          "event": "search_request",
+          "requestId": "caceb7fc-ead6-4157-afee-2673b4d12132",
+          "shouldEmbed": false,
+          "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+          "semanticAttempted": false,
+          "semanticSuccess": false,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 0,
+          "dbLatencyMs": 224,
+          "totalBackendLatencyMs": 249,
+          "semanticCandidateCount": 0,
+          "resultCount": 4,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:52.393000",
+          "region": "ap-south-1",
+          "executionId": "5c129851-eb87-42e6-bed6-ee7ec14c40dd"
+        },
+        {
+          "event": "search_request",
+          "requestId": "6221e1b5-7b1f-4ea9-af5f-19e3bfa919ff",
+          "shouldEmbed": true,
+          "shouldEmbedReason": "OCCASION_INTENT",
+          "semanticAttempted": true,
+          "semanticSuccess": true,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 337,
+          "dbLatencyMs": 250,
+          "totalBackendLatencyMs": 605,
+          "semanticCandidateCount": 10,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:50:53.121000",
+          "region": "ap-south-1",
+          "executionId": "96a40204-0b30-4ead-8794-809c6e0743cd"
+        },
+        {
+          "event": "search_request",
+          "requestId": "fec7c01d-5c3e-4903-a0fe-fa37ff7db3bc",
+          "shouldEmbed": true,
+          "shouldEmbedReason": "OCCASION_INTENT",
+          "semanticAttempted": true,
+          "semanticSuccess": true,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 318,
+          "dbLatencyMs": 423,
+          "totalBackendLatencyMs": 760,
+          "semanticCandidateCount": 10,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:51:25.063000",
+          "region": "ap-south-1",
+          "executionId": "e15bc049-0970-4d72-92ef-37613b350e91"
+        },
+        {
+          "event": "search_request",
+          "requestId": "36bbeb58-f0db-4fbb-8861-ea0326827896",
+          "shouldEmbed": true,
+          "shouldEmbedReason": "BROAD_DISCOVERY",
+          "semanticAttempted": true,
+          "semanticSuccess": true,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 309,
+          "dbLatencyMs": 1161,
+          "totalBackendLatencyMs": 1488,
+          "semanticCandidateCount": 10,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:51:57.735000",
+          "region": "ap-south-1",
+          "executionId": "bab20fbc-2eac-4a50-8cbd-22ecffc33f82"
+        },
+        {
+          "event": "search_request",
+          "requestId": "93dbcd58-f38c-4054-8162-0db95a3d0124",
+          "shouldEmbed": true,
+          "shouldEmbedReason": "BROAD_DISCOVERY",
+          "semanticAttempted": true,
+          "semanticSuccess": true,
+          "semanticDegraded": false,
+          "degradationReason": null,
+          "providerLatencyMs": 331,
+          "dbLatencyMs": 357,
+          "totalBackendLatencyMs": 706,
+          "semanticCandidateCount": 10,
+          "resultCount": 10,
+          "searchConfigVersion": "noncollapse-v1",
+          "modelRevision": "voyage-4-preflight-v1",
+          "queryTemplateVersion": "semantic-query-template-v1",
+          "timestamp": "2026-08-16T13:52:29.652000",
+          "region": "ap-south-1",
+          "executionId": "51e8f08d-1eaa-40c3-949f-aeeeb8361b07"
+        }
+      ],
+      "lexical": {
+        "count": 24,
+        "totalBackendMs": {
+          "count": 24,
+          "p50": 253,
+          "p95": 905,
+          "max": 1005
+        },
+        "rpcFromEdgeMs": {
+          "count": 24,
+          "p50": 235,
+          "p95": 887,
+          "max": 987
+        },
+        "providerMs": {
+          "count": 24,
+          "p50": 0,
+          "p95": 0,
+          "max": 0
+        },
+        "handlerNonProviderNonRpcMs": {
+          "count": 24,
+          "p50": 18,
+          "p95": 19,
+          "max": 25
+        },
+        "publicGatewayTransportResidualMs": {
+          "count": 24,
+          "p50": 127.19645899999887,
+          "p95": 166.12533399999666,
+          "max": 182.1278749999983
+        },
+        "executionIds": {
+          "distinct": 23,
+          "reused": 1
+        },
+        "rows": [
+          {
+            "event": "search_request",
+            "requestId": "15770298-3025-49c1-af7a-7025f487c6e0",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 987,
+            "totalBackendLatencyMs": 1005,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:40.810000",
+            "region": "ap-south-1",
+            "executionId": "b405e210-22c9-4969-bb1d-9d45ade9bb81",
+            "family": "canonical_exact",
+            "locale": "en",
+            "repeat": 0,
+            "clientObservedMs": 1127.140457999998,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 122.14045799999803
+          },
+          {
+            "event": "search_request",
+            "requestId": "feea152f-b953-4231-9125-01f8d7498a17",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 587,
+            "totalBackendLatencyMs": 605,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:41.531000",
+            "region": "ap-south-1",
+            "executionId": "34a8ec92-46ea-4ed6-809f-9d7b9af26052",
+            "family": "canonical_exact",
+            "locale": "sv",
+            "repeat": 0,
+            "clientObservedMs": 720.6180830000012,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 115.6180830000012
+          },
+          {
+            "event": "search_request",
+            "requestId": "8bb921ca-e8f2-4eee-b4bf-932255184c96",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 863,
+            "totalBackendLatencyMs": 880,
+            "semanticCandidateCount": 0,
+            "resultCount": 3,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:42.535000",
+            "region": "ap-south-1",
+            "executionId": "4c4247d9-5c5b-46cd-890f-2bbfa9024c62",
+            "family": "prefix",
+            "locale": "en",
+            "repeat": 0,
+            "clientObservedMs": 1002.8392910000039,
+            "handlerNonProviderNonRpcMs": 17,
+            "publicGatewayTransportResidualMs": 122.83929100000387
+          },
+          {
+            "event": "search_request",
+            "requestId": "8a29d666-bfc5-4f6f-844b-3b70e7760ca1",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 225,
+            "totalBackendLatencyMs": 244,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:42.903000",
+            "region": "ap-south-1",
+            "executionId": "f51c3976-0bce-4114-9f30-017e00418a52",
+            "family": "prefix",
+            "locale": "sv",
+            "repeat": 0,
+            "clientObservedMs": 367.28408299999865,
+            "handlerNonProviderNonRpcMs": 19,
+            "publicGatewayTransportResidualMs": 123.28408299999865
+          },
+          {
+            "event": "search_request",
+            "requestId": "dabcf124-aa64-42d4-965c-57933b00fbba",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "TAXONOMY_ONLY",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 268,
+            "totalBackendLatencyMs": 285,
+            "semanticCandidateCount": 0,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:43.309000",
+            "region": "ap-south-1",
+            "executionId": "7d143f41-ab20-43e7-839a-068481754a31",
+            "family": "taxonomy_category",
+            "locale": "en",
+            "repeat": 0,
+            "clientObservedMs": 406.369666999999,
+            "handlerNonProviderNonRpcMs": 17,
+            "publicGatewayTransportResidualMs": 121.36966699999903
+          },
+          {
+            "event": "search_request",
+            "requestId": "9e392985-3afa-4a2f-9cff-52ee8cb82c69",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 717,
+            "totalBackendLatencyMs": 735,
+            "semanticCandidateCount": 0,
+            "resultCount": 4,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:44.166000",
+            "region": "ap-south-1",
+            "executionId": "0b86693f-26bf-4a7b-87b4-caff2c72ccf6",
+            "family": "taxonomy_category",
+            "locale": "sv",
+            "repeat": 0,
+            "clientObservedMs": 893.617250000003,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 158.61725000000297
+          },
+          {
+            "event": "search_request",
+            "requestId": "09b3b2cb-6f41-4fb7-931d-4f0db15539b2",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 311,
+            "totalBackendLatencyMs": 329,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:44.658000",
+            "region": "ap-south-1",
+            "executionId": "9c731522-4dca-4860-8256-985e967025ea",
+            "family": "canonical_exact",
+            "locale": "en",
+            "repeat": 1,
+            "clientObservedMs": 464.3618750000023,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 135.36187500000233
+          },
+          {
+            "event": "search_request",
+            "requestId": "c804dc2e-7069-49e4-bdd8-aefc2a45cb2b",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 747,
+            "totalBackendLatencyMs": 764,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:45.549000",
+            "region": "ap-south-1",
+            "executionId": "7bb6ec22-4fd5-4825-965a-718254737962",
+            "family": "canonical_exact",
+            "locale": "sv",
+            "repeat": 1,
+            "clientObservedMs": 883.5654580000046,
+            "handlerNonProviderNonRpcMs": 17,
+            "publicGatewayTransportResidualMs": 119.56545800000458
+          },
+          {
+            "event": "search_request",
+            "requestId": "49b58f4f-113e-4d6e-a654-07a7d98ff15f",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 223,
+            "totalBackendLatencyMs": 241,
+            "semanticCandidateCount": 0,
+            "resultCount": 3,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:45.917000",
+            "region": "ap-south-1",
+            "executionId": "5f53f91e-2d00-4250-9b2f-762c488259ce",
+            "family": "prefix",
+            "locale": "en",
+            "repeat": 1,
+            "clientObservedMs": 365.140790999998,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 124.14079099999799
+          },
+          {
+            "event": "search_request",
+            "requestId": "a06e9220-7e51-44a0-bf5c-f58a68b7ae10",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 267,
+            "totalBackendLatencyMs": 285,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:46.327000",
+            "region": "ap-south-1",
+            "executionId": "42d090ce-a978-4233-91de-dbbb490ad58a",
+            "family": "prefix",
+            "locale": "sv",
+            "repeat": 1,
+            "clientObservedMs": 413.0346669999999,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 128.0346669999999
+          },
+          {
+            "event": "search_request",
+            "requestId": "7a6972c9-e2e2-4c64-a2de-d00178264396",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "TAXONOMY_ONLY",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 887,
+            "totalBackendLatencyMs": 905,
+            "semanticCandidateCount": 0,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:47.359000",
+            "region": "ap-south-1",
+            "executionId": "74c5cd8d-79a6-4dde-b6cf-71a3204eff5f",
+            "family": "taxonomy_category",
+            "locale": "en",
+            "repeat": 1,
+            "clientObservedMs": 1033.9640419999996,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 128.9640419999996
+          },
+          {
+            "event": "search_request",
+            "requestId": "2b94b808-cbba-4a01-9fc8-912021eef5f4",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 227,
+            "totalBackendLatencyMs": 245,
+            "semanticCandidateCount": 0,
+            "resultCount": 4,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:47.736000",
+            "region": "ap-south-1",
+            "executionId": "459acdad-ab68-4493-8189-ce29af07b496",
+            "family": "taxonomy_category",
+            "locale": "sv",
+            "repeat": 1,
+            "clientObservedMs": 371.23066599999584,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 126.23066599999584
+          },
+          {
+            "event": "search_request",
+            "requestId": "886db012-b9ce-4571-9dba-cdcd37c26fec",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 267,
+            "totalBackendLatencyMs": 285,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:48.152000",
+            "region": "ap-south-1",
+            "executionId": "55c3e150-b7d2-45f2-b6f0-1aa6350f7aea",
+            "family": "canonical_exact",
+            "locale": "en",
+            "repeat": 2,
+            "clientObservedMs": 419.2295830000003,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 134.22958300000028
+          },
+          {
+            "event": "search_request",
+            "requestId": "54a01957-030d-448c-b7f8-7ea9d716e256",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 251,
+            "totalBackendLatencyMs": 269,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:48.551000",
+            "region": "ap-south-1",
+            "executionId": "3c73356c-e0b5-4a9c-88e9-a665fe884234",
+            "family": "canonical_exact",
+            "locale": "sv",
+            "repeat": 2,
+            "clientObservedMs": 398.5969170000026,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 129.59691700000258
+          },
+          {
+            "event": "search_request",
+            "requestId": "97f4bae2-72d1-47fc-8dae-d32629fb8459",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 233,
+            "totalBackendLatencyMs": 251,
+            "semanticCandidateCount": 0,
+            "resultCount": 3,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:48.926000",
+            "region": "ap-south-1",
+            "executionId": "b80dc616-6b8d-43f5-b2ff-ba250503b19e",
+            "family": "prefix",
+            "locale": "en",
+            "repeat": 2,
+            "clientObservedMs": 378.68616699999984,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 127.68616699999984
+          },
+          {
+            "event": "search_request",
+            "requestId": "540a57f5-1f88-4a06-8c62-f1d68aece000",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 223,
+            "totalBackendLatencyMs": 242,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:49.314000",
+            "region": "ap-south-1",
+            "executionId": "24ea3cf2-8e20-4f28-87bf-14a84b107f27",
+            "family": "prefix",
+            "locale": "sv",
+            "repeat": 2,
+            "clientObservedMs": 381.682541999995,
+            "handlerNonProviderNonRpcMs": 19,
+            "publicGatewayTransportResidualMs": 139.682541999995
+          },
+          {
+            "event": "search_request",
+            "requestId": "94c81dc0-e9d4-4d36-8a77-3377529b6911",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "TAXONOMY_ONLY",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 235,
+            "totalBackendLatencyMs": 253,
+            "semanticCandidateCount": 0,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:49.686000",
+            "region": "ap-south-1",
+            "executionId": "cef28f3f-14fd-46bf-bd7e-011ad31bc636",
+            "family": "taxonomy_category",
+            "locale": "en",
+            "repeat": 2,
+            "clientObservedMs": 419.12533399999666,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 166.12533399999666
+          },
+          {
+            "event": "search_request",
+            "requestId": "5fe1613e-8315-4953-a176-2959eeee3fa3",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 233,
+            "totalBackendLatencyMs": 251,
+            "semanticCandidateCount": 0,
+            "resultCount": 4,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:50.107000",
+            "region": "ap-south-1",
+            "executionId": "7d4f82a7-74d1-4153-8e64-f2950663a001",
+            "family": "taxonomy_category",
+            "locale": "sv",
+            "repeat": 2,
+            "clientObservedMs": 372.91816599999584,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 121.91816599999584
+          },
+          {
+            "event": "search_request",
+            "requestId": "f3660bb9-3e9f-4ce6-afe8-e187d1bb53b4",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 278,
+            "totalBackendLatencyMs": 296,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:50.537000",
+            "region": "ap-south-1",
+            "executionId": "87374fbc-ed59-45d0-b7f9-f0206b10975c",
+            "family": "canonical_exact",
+            "locale": "en",
+            "repeat": 3,
+            "clientObservedMs": 478.1278749999983,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 182.1278749999983
+          },
+          {
+            "event": "search_request",
+            "requestId": "ffb9d54a-c05d-4483-abea-110777f55f17",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 217,
+            "totalBackendLatencyMs": 236,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:50.938000",
+            "region": "ap-south-1",
+            "executionId": "5c4d649b-7dfb-4696-94ea-7426a9266c0e",
+            "family": "canonical_exact",
+            "locale": "sv",
+            "repeat": 3,
+            "clientObservedMs": 365.1674999999959,
+            "handlerNonProviderNonRpcMs": 19,
+            "publicGatewayTransportResidualMs": 129.16749999999593
+          },
+          {
+            "event": "search_request",
+            "requestId": "2b4fbe15-c7d8-4dc2-b6b2-bc900190011f",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 214,
+            "totalBackendLatencyMs": 233,
+            "semanticCandidateCount": 0,
+            "resultCount": 3,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:51.310000",
+            "region": "ap-south-1",
+            "executionId": "05452241-9274-4eb2-88f4-4dc8d7e207e9",
+            "family": "prefix",
+            "locale": "en",
+            "repeat": 3,
+            "clientObservedMs": 360.19645899999887,
+            "handlerNonProviderNonRpcMs": 19,
+            "publicGatewayTransportResidualMs": 127.19645899999887
+          },
+          {
+            "event": "search_request",
+            "requestId": "3fcb791b-1ad5-47aa-a762-7a39170260ad",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 225,
+            "totalBackendLatencyMs": 243,
+            "semanticCandidateCount": 0,
+            "resultCount": 1,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:51.680000",
+            "region": "ap-south-1",
+            "executionId": "9fcbb755-7e3b-42e0-9319-df55d2441edc",
+            "family": "prefix",
+            "locale": "sv",
+            "repeat": 3,
+            "clientObservedMs": 376.2459170000002,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 133.2459170000002
+          },
+          {
+            "event": "search_request",
+            "requestId": "01570e2a-7e2e-41fc-8aec-4eda540781c6",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "TAXONOMY_ONLY",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 212,
+            "totalBackendLatencyMs": 222,
+            "semanticCandidateCount": 0,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:52.019000",
+            "region": "ap-south-1",
+            "executionId": "7d4f82a7-74d1-4153-8e64-f2950663a001",
+            "family": "taxonomy_category",
+            "locale": "en",
+            "repeat": 3,
+            "clientObservedMs": 333.9132499999978,
+            "handlerNonProviderNonRpcMs": 10,
+            "publicGatewayTransportResidualMs": 111.91324999999779
+          },
+          {
+            "event": "search_request",
+            "requestId": "caceb7fc-ead6-4157-afee-2673b4d12132",
+            "shouldEmbed": false,
+            "shouldEmbedReason": "CONSERVATIVE_KNOWN_ITEM",
+            "semanticAttempted": false,
+            "semanticSuccess": false,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 0,
+            "dbLatencyMs": 224,
+            "totalBackendLatencyMs": 249,
+            "semanticCandidateCount": 0,
+            "resultCount": 4,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:52.393000",
+            "region": "ap-south-1",
+            "executionId": "5c129851-eb87-42e6-bed6-ee7ec14c40dd",
+            "family": "taxonomy_category",
+            "locale": "sv",
+            "repeat": 3,
+            "clientObservedMs": 374.22433399999863,
+            "handlerNonProviderNonRpcMs": 25,
+            "publicGatewayTransportResidualMs": 125.22433399999863
+          }
+        ]
+      },
+      "semantic": {
+        "count": 4,
+        "totalBackendMs": {
+          "count": 4,
+          "p50": 706,
+          "p95": 1488,
+          "max": 1488
+        },
+        "rpcFromEdgeMs": {
+          "count": 4,
+          "p50": 357,
+          "p95": 1161,
+          "max": 1161
+        },
+        "providerMs": {
+          "count": 4,
+          "p50": 318,
+          "p95": 337,
+          "max": 337
+        },
+        "handlerNonProviderNonRpcMs": {
+          "count": 4,
+          "p50": 18,
+          "p95": 19,
+          "max": 19
+        },
+        "publicGatewayTransportResidualMs": {
+          "count": 4,
+          "p50": 180.13454199999978,
+          "p95": 199.4562089999963,
+          "max": 199.4562089999963
+        },
+        "executionIds": {
+          "distinct": 4,
+          "reused": 0
+        },
+        "rows": [
+          {
+            "event": "search_request",
+            "requestId": "6221e1b5-7b1f-4ea9-af5f-19e3bfa919ff",
+            "shouldEmbed": true,
+            "shouldEmbedReason": "OCCASION_INTENT",
+            "semanticAttempted": true,
+            "semanticSuccess": true,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 337,
+            "dbLatencyMs": 250,
+            "totalBackendLatencyMs": 605,
+            "semanticCandidateCount": 10,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:50:53.121000",
+            "region": "ap-south-1",
+            "executionId": "96a40204-0b30-4ead-8794-809c6e0743cd",
+            "family": "semantic_occasion",
+            "locale": "en",
+            "repeat": 0,
+            "clientObservedMs": 726.5064999999959,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 121.50649999999587
+          },
+          {
+            "event": "search_request",
+            "requestId": "fec7c01d-5c3e-4903-a0fe-fa37ff7db3bc",
+            "shouldEmbed": true,
+            "shouldEmbedReason": "OCCASION_INTENT",
+            "semanticAttempted": true,
+            "semanticSuccess": true,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 318,
+            "dbLatencyMs": 423,
+            "totalBackendLatencyMs": 760,
+            "semanticCandidateCount": 10,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:51:25.063000",
+            "region": "ap-south-1",
+            "executionId": "e15bc049-0970-4d72-92ef-37613b350e91",
+            "family": "semantic_occasion",
+            "locale": "sv",
+            "repeat": 0,
+            "clientObservedMs": 940.1345419999998,
+            "handlerNonProviderNonRpcMs": 19,
+            "publicGatewayTransportResidualMs": 180.13454199999978
+          },
+          {
+            "event": "search_request",
+            "requestId": "36bbeb58-f0db-4fbb-8861-ea0326827896",
+            "shouldEmbed": true,
+            "shouldEmbedReason": "BROAD_DISCOVERY",
+            "semanticAttempted": true,
+            "semanticSuccess": true,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 309,
+            "dbLatencyMs": 1161,
+            "totalBackendLatencyMs": 1488,
+            "semanticCandidateCount": 10,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:51:57.735000",
+            "region": "ap-south-1",
+            "executionId": "bab20fbc-2eac-4a50-8cbd-22ecffc33f82",
+            "family": "semantic_broad",
+            "locale": "en",
+            "repeat": 0,
+            "clientObservedMs": 1674.0638749999925,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 186.06387499999255
+          },
+          {
+            "event": "search_request",
+            "requestId": "93dbcd58-f38c-4054-8162-0db95a3d0124",
+            "shouldEmbed": true,
+            "shouldEmbedReason": "BROAD_DISCOVERY",
+            "semanticAttempted": true,
+            "semanticSuccess": true,
+            "semanticDegraded": false,
+            "degradationReason": null,
+            "providerLatencyMs": 331,
+            "dbLatencyMs": 357,
+            "totalBackendLatencyMs": 706,
+            "semanticCandidateCount": 10,
+            "resultCount": 10,
+            "searchConfigVersion": "noncollapse-v1",
+            "modelRevision": "voyage-4-preflight-v1",
+            "queryTemplateVersion": "semantic-query-template-v1",
+            "timestamp": "2026-08-16T13:52:29.652000",
+            "region": "ap-south-1",
+            "executionId": "51e8f08d-1eaa-40c3-949f-aeeeb8361b07",
+            "family": "semantic_broad",
+            "locale": "sv",
+            "repeat": 0,
+            "clientObservedMs": 905.4562089999963,
+            "handlerNonProviderNonRpcMs": 18,
+            "publicGatewayTransportResidualMs": 199.4562089999963
+          }
+        ]
+      }
+    }
+  },
+  "acceptedRevalidationReference": {
+    "generatedAt": "2026-08-16T13:35:12.349Z",
+    "directCategory": {
+      "requestCount": 48,
+      "edgeLatencyMs": {
+        "count": 48,
+        "p50": 440.8115829999988,
+        "p95": 1140.5355,
+        "max": 1981.7338750000004
+      },
+      "samples": [
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 1981.7338750000004
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 1140.5355
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 2,
+          "semanticDegraded": false,
+          "latencyMs": 440.309792
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 1174.0986250000005
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 1062.0004589999999
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 1034.691334
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 5,
+          "semanticDegraded": false,
+          "latencyMs": 787.3504159999993
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 680.6243749999994
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 441.79612499999894
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 634.3704580000012
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1103.552749999999
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 0,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 425.9486249999991
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 437.5543749999997
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 646.3427499999998
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 2,
+          "semanticDegraded": false,
+          "latencyMs": 415.2756250000002
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 408.74804199999926
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 417.23783399999957
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 427.5516669999997
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 5,
+          "semanticDegraded": false,
+          "latencyMs": 374.88824999999997
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 660.1697079999994
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 469.99770799999897
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 420.9372079999994
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 501.35816599999816
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 1,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 630.4680410000001
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 356.8230000000003
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 527.5134169999983
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 2,
+          "semanticDegraded": false,
+          "latencyMs": 440.8115829999988
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 440.5787080000009
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 415.11775000000125
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 494.04908299999806
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 5,
+          "semanticDegraded": false,
+          "latencyMs": 427.2320839999993
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 489.53116699999737
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 402.13433299999815
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 496.69737499999974
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 456.37987500000236
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 2,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 464.07645799999955
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 381.5992080000033
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 369.82745799999975
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 2,
+          "semanticDegraded": false,
+          "latencyMs": 776.4957090000025
+        },
+        {
+          "case": "canonical_exact",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 386.44429200000013
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 3,
+          "semanticDegraded": false,
+          "latencyMs": 440.35170899999866
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 1,
+          "semanticDegraded": false,
+          "latencyMs": 382.2975839999999
+        },
+        {
+          "case": "prefix",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 5,
+          "semanticDegraded": false,
+          "latencyMs": 392.1132089999992
+        },
+        {
+          "case": "prefix",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 6,
+          "semanticDegraded": false,
+          "latencyMs": 700.0424590000002
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 422.46170800000255
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "en",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 425.02883400000064
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 443.14754200000243
+        },
+        {
+          "case": "taxonomy_category",
+          "locale": "sv",
+          "repeat": 3,
+          "status": 200,
+          "resultCount": 4,
+          "semanticDegraded": false,
+          "latencyMs": 400.6014170000017
+        }
+      ]
+    },
+    "semanticTotal": {
+      "requestCount": 8,
+      "successfulSemantic": 8,
+      "degraded": 0,
+      "allLatencyMs": {
+        "count": 8,
+        "p50": 1277.809333000012,
+        "p95": 1407.7190000000119,
+        "max": 1407.7190000000119
+      },
+      "validLatencyMs": {
+        "count": 8,
+        "p50": 1277.809333000012,
+        "p95": 1407.7190000000119,
+        "max": 1407.7190000000119
+      },
+      "samples": [
+        {
+          "case": "occasion",
+          "locale": "en",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 807.8107909999999
+        },
+        {
+          "case": "occasion",
+          "locale": "sv",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 964.6937499999985
+        },
+        {
+          "case": "broad",
+          "locale": "en",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 946.3698340000119
+        },
+        {
+          "case": "broad",
+          "locale": "sv",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1285.7119999999995
+        },
+        {
+          "case": "geo",
+          "locale": "en",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1312.0048750000133
+        },
+        {
+          "case": "geo",
+          "locale": "sv",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1277.809333000012
+        },
+        {
+          "case": "mixed",
+          "locale": "en",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1407.7190000000119
+        },
+        {
+          "case": "mixed",
+          "locale": "sv",
+          "status": 200,
+          "resultCount": 10,
+          "semanticDegraded": false,
+          "latencyMs": 1333.1429159999825
+        }
+      ]
+    },
+    "voyage": {
+      "attempts": 10,
+      "successful": 10,
+      "timeouts": 0,
+      "providerErrors": 0,
+      "rateLimited": 0,
+      "invalidVectors": 0,
+      "successfulLatencyMs": {
+        "count": 10,
+        "p50": 389.17004100000486,
+        "p95": 476.2765420000069,
+        "max": 476.2765420000069
+      },
+      "allAttemptLatencyMs": {
+        "count": 10,
+        "p50": 389.17004100000486,
+        "p95": 476.2765420000069,
+        "max": 476.2765420000069
+      },
+      "pacingMs": 31000,
+      "concurrency": 1,
+      "samples": [
+        {
+          "attempt": 1,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 421.31508400000166,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "8c5a80a9f1b8839b80ee120c043a855a001492c564cd9424162272b774dd9d75"
+        },
+        {
+          "attempt": 2,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 387.7986249999958,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "be188e29d681d892643684f4e9eae377206291ddf4ed55191c3f1b87cdc1e279"
+        },
+        {
+          "attempt": 3,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 432.9207499999902,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "eb50566ad99756d35a3f683e7a0636b3832ef94432e98a7b6b47417c76f9bcf1"
+        },
+        {
+          "attempt": 4,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 414.8516660000314,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "ce49e79455d86f605cc185b49885809ce4ed9b8379019eef75b2488d37323d89"
+        },
+        {
+          "attempt": 5,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 429.25258299999405,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "1b634ad7e4381f5e0e83cecb11a42b833d04848c4d50884656d186aedbae96b4"
+        },
+        {
+          "attempt": 6,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 363.6560409999802,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "5ac91f0080b63a37904c5b68279192ee6f733dad2100d8395011b6cc8f2a506f"
+        },
+        {
+          "attempt": 7,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 373.09324999997625,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "39cf8035ae18ce3c6f23e79beffcbef774f0a2c477b35b8e4ca0f17e5af157fd"
+        },
+        {
+          "attempt": 8,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 387.7882080000127,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "55c3b199f04cf63c5a4e3e3200d41fa1a7a45fa5afecbbd902322ff8e98ed6ce"
+        },
+        {
+          "attempt": 9,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 389.17004100000486,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "347f529212c5af0984fee14b1fbc2fce6af5376f3efdfff1f68aba92a43f26e6"
+        },
+        {
+          "attempt": 10,
+          "outcome": "SUCCESS",
+          "httpStatus": 200,
+          "latencyMs": 476.2765420000069,
+          "validDimension": true,
+          "finiteVector": true,
+          "vectorFingerprint": "89f20c6c6cb82b3bb959abef39f0297bc3a6f51cb9a695798e204898d61dbef1"
+        }
+      ]
+    },
+    "semanticDatabase": {
+      "sampleCount": 20,
+      "latencyMs": {
+        "count": 20,
+        "p50": 197.250875000027,
+        "p95": 245.33299999998417,
+        "max": 872.1383749999804
+      },
+      "planNodeTypes": [
+        "Hash",
+        "Hash Join",
+        "Index Scan",
+        "Limit",
+        "Nested Loop",
+        "Seq Scan",
+        "Sort",
+        "Subquery Scan"
+      ],
+      "exactPgvector": true,
+      "ann": false
+    }
+  },
+  "guards": {
+    "readOnlyTraffic": true,
+    "corpusMutated": false,
+    "configMutated": false,
+    "vectorsPersisted": false,
+    "judgmentsAccessed": false,
+    "judgmentsMutated": false,
+    "sealedAccessed": false,
+    "adversarialAccessed": false,
+    "providerDirectCalls": 0,
+    "tuningPerformed": false,
+    "candidateFrozen": false
+  }
+}
