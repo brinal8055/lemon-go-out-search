@@ -1,0 +1,63 @@
+{
+  "reportVersion": "final-eval-provider-recovery-decision.v1",
+  "task": "FINAL-EVAL-PROVIDER-RECOVERY-01",
+  "evaluatorCompatibility": {
+    "disposition": "LEGITIMATE_DETERMINISTIC_COMPATIBILITY_FIX",
+    "commit": "bfdc636fcedd348139c4d23be43ab37f7038d490"
+  },
+  "contract": {
+    "provider": "voyage",
+    "model": "voyage-4",
+    "revision": "voyage-4-preflight-v1",
+    "inputType": "query",
+    "dimension": 1024,
+    "timeoutMs": 700,
+    "credentialRuntimePath": "VOYAGE_API_KEY_SHARED_BY_EDGE_AND_OFFLINE_EVALUATION",
+    "localCredentialMatchesDeployedSecretDigest": true
+  },
+  "priorFailureMechanics": {
+    "initialRun": "HTTP_200_RESPONSE_BODY_EXCEEDED_700MS_DEADLINE",
+    "rerun": "PROVIDER_REQUEST_EXCEEDED_700MS_BEFORE_RESPONSE_HEADERS",
+    "rateLimited": false,
+    "circuitBreakerOpened": false,
+    "staleCircuitState": false,
+    "malformedResponse": false,
+    "orchestrationDefect": false,
+    "clientDefect": "RESPONSE_BODY_ABORT_WAS_NOT_NORMALIZED_TO_PROVIDER_TIMEOUT"
+  },
+  "implementationFix": {
+    "required": true,
+    "scope": "NORMALIZE_RESPONSE_BODY_DEADLINE_ABORT_TO_PROVIDER_TIMEOUT",
+    "timeoutChanged": false,
+    "circuitThresholdChanged": false,
+    "relevanceBehaviorChanged": false
+  },
+  "smoke": {
+    "artifact": "provider-smoke.v1.json",
+    "contentChecksum": "f04268eb05e384a4334b042b54069b1719dd39b8facf8e5ee770ea65585d3dae",
+    "attempted": 10,
+    "succeeded": 10,
+    "timeouts": 0,
+    "rateLimited": 0,
+    "otherFailures": 0,
+    "latencyMs": {
+      "p50": 437.7306249999965,
+      "p95": 478.36933399998816,
+      "max": 478.36933399998816
+    },
+    "circuitTransitions": [
+      "CLOSED_TO_CLOSED"
+    ],
+    "validDimensionCount": 10,
+    "finiteVectorCount": 10
+  },
+  "decision": "PROVIDER_RECOVERED",
+  "guards": {
+    "searchOrCorpusWrites": false,
+    "fullDevRerun": false,
+    "sealedAccessed": false,
+    "adversarialAccessed": false,
+    "specChangeRequired": false
+  },
+  "next": "FINAL-EVAL-DEV-RUN"
+}

@@ -136,6 +136,20 @@ describe('EMBED-01A Voyage client', () => {
     })).rejects.toMatchObject({ errorCode: 'PROVIDER_TRANSPORT' });
   });
 
+  it('classifies a deadline abort while reading a successful response body as a timeout', async () => {
+    const response = {
+      ok: true,
+      status: 200,
+      headers: new Headers(),
+      text: vi.fn(async () => { throw new DOMException('timeout', 'AbortError'); }),
+    } as unknown as Response;
+    const fetchMock = vi.fn(async () => response);
+
+    await expect(requestVoyageEmbedding('input', 'query', 'test-key', {
+      fetch: fetchMock as typeof fetch,
+    })).rejects.toMatchObject({ errorClass: 'TIMEOUT', errorCode: 'PROVIDER_TIMEOUT' });
+  });
+
   it('rejects invalid JSON, response shape, model, dimension, and vector values', async () => {
     const cases: Array<[Response, string]> = [
       [new Response('{', { status: 200 }), 'INVALID_JSON'],

@@ -82,7 +82,15 @@ export async function requestVoyageEmbeddings(
   if (contentLength > MAX_RESPONSE_BYTES) {
     throw new EmbeddingRequestError('Voyage response exceeded the size limit', 'PROVIDER_RESPONSE', 'RESPONSE_TOO_LARGE');
   }
-  const responseText = await response.text();
+  let responseText: string;
+  try {
+    responseText = await response.text();
+  } catch (error) {
+    if (timeout.aborted || (error instanceof DOMException && ['AbortError', 'TimeoutError'].includes(error.name))) {
+      throw new EmbeddingRequestError('Voyage request timed out', 'TIMEOUT', 'PROVIDER_TIMEOUT');
+    }
+    throw new EmbeddingRequestError('Voyage response body failed', 'TRANSPORT', 'PROVIDER_TRANSPORT');
+  }
   if (new TextEncoder().encode(responseText).byteLength > MAX_RESPONSE_BYTES) {
     throw new EmbeddingRequestError('Voyage response exceeded the size limit', 'PROVIDER_RESPONSE', 'RESPONSE_TOO_LARGE');
   }
