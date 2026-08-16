@@ -1,0 +1,197 @@
+{
+  "reportVersion": "final-eval-recovered-dev-decision.v1",
+  "task": "FINAL-EVAL-DEV-RUN",
+  "createdAt": "2026-08-16T12:27:33Z",
+  "decision": "DEV_EVAL_VALID",
+  "baselineAssessment": "BASELINE_CANDIDATE_ACCEPTABLE_AS_DEV_BASELINE",
+  "tuningRecommendation": "BOUNDED_TUNING_JUSTIFIED_BEFORE_CANDIDATE_FREEZE",
+  "executionBaseCommit": "cfa9ee4c388d147e5025d1eef9336bb8ee1acfc6",
+  "pins": {
+    "manifest": {
+      "version": "dataset-manifest.final-eval-recovery.v1",
+      "checksum": "f51638a4ed7c699d48b08423c14d060a9d406a18235ca5f2efbab6b7d59ffa82"
+    },
+    "inventory": {
+      "version": "dev-inventory.final-eval-recovery.v1",
+      "checksum": "2b2246064bcdf1b76f77312c7f6bda573c9f724ee4d291704451c52f9ea76f37",
+      "fileChecksum": "de774184f5af261bf94dc6621d14112ba27f6eb30fb952eaa3a743070576b3af"
+    },
+    "judgments": {
+      "version": "judgments.final-eval-recovery.v1",
+      "checksum": "e604ba9bf0f04b500a37f2feb5cdc1a49d7b7031ef6055b917815ff60f5e0f70"
+    },
+    "searchConfig": "eval-03-baseline.v1",
+    "activeSearchConfig": "noncollapse-v1",
+    "rrf": "RRF_V1",
+    "rrfK": 60,
+    "nonCollapse": "NONCOLLAPSE_V1",
+    "semanticTimeoutMs": 700,
+    "evaluationClockUtc": "2026-10-15T12:00:00Z"
+  },
+  "preRunGate": {
+    "status": "PASS",
+    "target": "FINAL_EVAL",
+    "publishedPlaces": 392,
+    "publishedEvents": 3,
+    "activeSearchDocuments": 395,
+    "compatibleReadyEmbeddings": 395,
+    "fixtureContamination": 0,
+    "documentInventoryChecksum": "7e5d83ebeee39595944b9ef1bdb5cca8f72ff5aa6a2e2880471b6c4963981a51",
+    "embeddingIdentityChecksum": "6ad7ad8fb1d6902de8ee4dbbb66042050ed732789ed4ee7e8a0dbbd46f38f20b",
+    "taxonomyVersion": "active-going-out.v1",
+    "taxonomyChecksum": "ec2d43046a9c1646cecdcc55c4091db31434bb8e78ca1a6483bc475a9a0d88c2",
+    "boundaryVersion": "lm-current-2026-08-14",
+    "boundaryChecksum": "257a277667cde164bcb70eae16ca6985578fe34666df92ff289af519a262df1d"
+  },
+  "provider": {
+    "name": "Voyage",
+    "model": "voyage-4",
+    "inputType": "query",
+    "dimension": 1024,
+    "timeoutMs": 700,
+    "spacingMs": 31000,
+    "intendedCalls": 26,
+    "attemptedCalls": 26,
+    "successfulCalls": 26,
+    "degradedCalls": 0,
+    "timeouts": 0,
+    "http429": 0,
+    "otherErrors": 0,
+    "latencyMs": {
+      "p50": 397.83820800005924,
+      "p95": 491.88287500001024,
+      "max": 616.7274169999873
+    },
+    "circuitTransitions": "26x CLOSED_TO_CLOSED",
+    "circuitEvidence": "Inferred from a fresh initially usable circuit and 26 consecutive successful calls; evaluator telemetry records no explicit circuit-state field."
+  },
+  "lexical": {
+    "status": "VALID_COMPLETE",
+    "queries": 60,
+    "metrics": {
+      "hitAt1": 0.5714285714285714,
+      "hitAt3": 1,
+      "mrr": 0.7142857142857143,
+      "recallAt20": 0.37228810283789726,
+      "recallAt50": 0.37228810283789726,
+      "precisionAt5": 0.27499999999999997,
+      "ndcgAt5": 0.4563935380182446
+    },
+    "zeroResults": 34
+  },
+  "hybrid": {
+    "status": "VALID_COMPLETE",
+    "queries": 60,
+    "metrics": {
+      "hitAt1": 0.5714285714285714,
+      "hitAt3": 1,
+      "mrr": 0.7142857142857143,
+      "recallAt20": 0.41469874073194823,
+      "recallAt50": 0.41469874073194823,
+      "precisionAt5": 0.5999999999999999,
+      "ndcgAt5": 0.7506957028179352
+    },
+    "zeroResults": 19
+  },
+  "recallAt50Disclosure": "Recall@50 equals Recall@20 because the frozen public search contract returns at most 20 results.",
+  "lexicalToHybrid": {
+    "overallDelta": {
+      "hitAt1": 0,
+      "hitAt3": 0,
+      "mrr": 0,
+      "recallAt20": 0.04241063789405097,
+      "recallAt50": 0.04241063789405097,
+      "precisionAt5": 0.3249999999999999,
+      "ndcgAt5": 0.29430216479969057,
+      "zeroResults": -15
+    },
+    "en": {
+      "recallAt20": [0.2316592177411505, 0.29359465826974224],
+      "precisionAt5": [0.2625, 0.7374999999999999],
+      "ndcgAt5": [0.3597338450456116, 0.7986323659060925],
+      "zeroResults": [17, 9]
+    },
+    "sv": {
+      "recallAt20": [0.2973135164624526, 0.33650565353492884],
+      "precisionAt5": [0.2222222222222222, 0.5222222222222221],
+      "ndcgAt5": [0.4444444444444444, 0.7083172365677736],
+      "zeroResults": [17, 10]
+    },
+    "semanticFamily": {
+      "recallAt20": [0, 0.09029273264995548],
+      "precisionAt5": [0, 0.7000000000000001],
+      "ndcgAt5": [0, 0.6223340760205313],
+      "zeroResults": [16, 4]
+    },
+    "broadDiscovery": {
+      "recallAt20": [0.002551020408163265, 0.05268411712511091],
+      "precisionAt5": [0.2, 0.75],
+      "ndcgAt5": [0.18893538018244652, 0.7037877621074919],
+      "zeroResults": [3, 1]
+    },
+    "broadConcentration": {
+      "recallAt20": [0.3333333333333333, 0.3333333333333333],
+      "precisionAt5": [0.19999999999999998, 0.19999999999999998],
+      "ndcgAt5": [0.3333333333333333, 0.3333333333333333],
+      "zeroResults": [3, 3]
+    }
+  },
+  "nonCollapse": {
+    "lexicalMoves": 0,
+    "hybridMoves": 0,
+    "lexicalClearlyWeakerPromotions": 0,
+    "hybridClearlyWeakerPromotions": 0
+  },
+  "hardConstraintViolations": 0,
+  "topFailureAttribution": {
+    "CANDIDATE_RETRIEVAL": 27,
+    "ELIGIBILITY": 11,
+    "INVENTORY": 9
+  },
+  "eventTimeLimitation": "All three real Events were acquired in August 2026 and are ineligible at the frozen 2026-10-15T12:00:00Z clock; all six Event/time DEV queries return zero results. The clock was not moved and no Events were fabricated.",
+  "historicalComparison": {
+    "baseline": "day4-postcoverage-v2/hybrid-fingerprinted-baseline-v2",
+    "strictlyApplesToApples": false,
+    "sameQueryCorpus": true,
+    "sameSearchConfig": true,
+    "identityDifference": "Recovered manifest, inventory, and judgments differ from the post-coverage baseline.",
+    "hybridMetricDelta": {
+      "hitAt1": 0,
+      "hitAt3": 0,
+      "mrr": -0.0714285714285714,
+      "recallAt20": -0.0006766381766382668,
+      "precisionAt5": -0.0050000000000001155,
+      "ndcgAt5": -0.02080750110616203,
+      "zeroResults": 0
+    },
+    "inventoryEffect": "Lexical metric differences with the same search configuration demonstrate recovered inventory/judgment effects.",
+    "providerEffect": "Both valid hybrid runs completed 26/26 provider calls; fresh query-vector variation may contribute to small hybrid-only rank differences.",
+    "rankingEffect": "No ranking, RRF, shouldEmbed, or non-collapse configuration changed, so this task provides no evidence of a ranking-configuration change."
+  },
+  "recommendationEvidence": {
+    "baselineIsValid": true,
+    "knownItemRegressionFromLexical": false,
+    "semanticNdcgAt5": 0.6223340760205313,
+    "semanticTargetNdcgAt5": 0.75,
+    "knownConservativeShouldEmbedZeroResultPair": [
+      "eval-v1-dev-semantic-occasion-language-07",
+      "eval-v1-dev-semantic-occasion-language-08"
+    ],
+    "implementationInThisTask": "NONE"
+  },
+  "guards": {
+    "corpusMutated": false,
+    "judgmentsMutated": false,
+    "searchDocumentsRegenerated": false,
+    "documentEmbeddingsRegenerated": false,
+    "providerOrModelChanged": false,
+    "timeoutChanged": false,
+    "shouldEmbedChanged": false,
+    "rankingChanged": false,
+    "tuningPerformed": false,
+    "sealedAccessed": false,
+    "adversarialAccessed": false,
+    "candidateFrozen": false,
+    "specChangeRequired": "NONE"
+  }
+}

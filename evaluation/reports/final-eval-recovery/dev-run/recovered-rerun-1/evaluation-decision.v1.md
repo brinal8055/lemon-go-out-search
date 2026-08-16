@@ -1,0 +1,27 @@
+# FINAL-EVAL-DEV-RUN — Recovered clean rerun
+
+- Decision: `DEV_EVAL_VALID`
+- Baseline assessment: `BASELINE_CANDIDATE_ACCEPTABLE_AS_DEV_BASELINE`
+- Tuning: `BOUNDED_TUNING_JUSTIFIED_BEFORE_CANDIDATE_FREEZE`; not performed
+- Frozen identity: manifest `f51638a…`, inventory `2b224606…`, judgments `e604ba9…`
+- Search: `eval-03-baseline.v1`; `RRF_V1` k=60; `NONCOLLAPSE_V1`; timeout 700 ms
+- Lexical: 60/60 valid; H@1/H@3/MRR 0.571429/1.000000/0.714286; R@20/R@50/P@5/NDCG@5 0.372288/0.372288/0.275000/0.456394
+- Hybrid: 60/60 valid; H@1/H@3/MRR 0.571429/1.000000/0.714286; R@20/R@50/P@5/NDCG@5 0.414699/0.414699/0.600000/0.750696
+- Overall deltas: H@1 +0; H@3 +0; MRR +0; R@20/R@50 +0.042411; P@5 +0.325000; NDCG@5 +0.294302
+- Zero results: overall 34→19; semantic family 16→4
+- EN R@20/P@5/NDCG@5: 0.231659/0.262500/0.359734 → 0.293595/0.737500/0.798632
+- SV R@20/P@5/NDCG@5: 0.297314/0.222222/0.444444 → 0.336506/0.522222/0.708317
+- Semantic R@20/P@5/NDCG@5: 0/0/0 → 0.090293/0.700000/0.622334
+- Broad discovery R@20/P@5/NDCG@5: 0.002551/0.200000/0.188935 → 0.052684/0.750000/0.703788
+- Broad concentration: unchanged at 0.333333/0.200000/0.333333; zero results 3→3
+- Non-collapse moves / weaker promotions: 0 / 0 in lexical and hybrid
+- Hard-constraint violations: 0
+- Provider: 26/26 succeeded; 0 degraded/timeouts/errors/429; p50/p95/max 397.838/491.883/616.727 ms
+- Circuit: 26 inferred CLOSED→CLOSED transitions; evaluator telemetry has no explicit state field
+- Top attribution: CANDIDATE_RETRIEVAL 27; ELIGIBILITY 11; INVENTORY 9
+- Event/time: 3 real August Events are ineligible at the frozen October clock; 6/6 queries return zero results
+- Historical comparison is not strict apples-to-apples: recovered manifest/inventory/judgments differ; config and query corpus are unchanged
+- Historical hybrid delta: H@1 +0; H@3 +0; MRR -0.071429; R@20 -0.000677; P@5 -0.005000; NDCG@5 -0.020808; zero results +0
+- Recall@50 equals Recall@20 because the public result depth is capped at 20
+- SEALED/adversarial: no access
+- Candidate freeze: not performed
